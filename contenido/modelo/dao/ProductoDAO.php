@@ -376,10 +376,6 @@ final class ProductoDAO implements DAOPaginable {
             $parametros[] = $rangPrecio["MAX"];
         }
         $consulta .= ";";
-        //Lineas para probar la salida final de las variables nececesarias para el query
-//        echo(var_dump($parametros));
-//        echo(var_dump($consulta));
-//        echo(var_dump($patronBind));
         try {
             $conexion = $this->db->creaConexion();
             $conexion instanceof mysqli;
