@@ -54,7 +54,7 @@ class ProductoDAOTest extends TestCase {
         //echo (var_dump($neP));
     }
 
-    public function testInsert() {
+    public function tesInsert() {
         $proDAO = new ProductoDAO();
         $proDTO = new ProductoDTO();
         $proDTO->setIdProducto($proDAO->generateIdInDB());
@@ -67,14 +67,13 @@ class ProductoDAOTest extends TestCase {
         $proDTO->setDescripcion("BasuraBasura de pruebaBasura de pruebaBasura de pruebaBasura de pruebade prueba");
         $proDTO->setPrecio(5500);
         $rta = $proDAO->insert($proDTO);
-        echo(var_dump($rta));
         $this->assertEquals(1, $rta);
     }
 
     public function tesUpdate() {
         $proDAO = new ProductoDAO();
         $proDTO = new ProductoDTO();
-        $proDTO->setIdProducto("pro0000032");
+        $proDTO->setIdProducto("pro0000034");
         $proDTO->setNombre("Nuevo producto Actualizado");
         $proDTO->setCatalogoIdCatalogo(1);
         $proDTO->setCategoriaIdCategoria(6);
@@ -85,6 +84,30 @@ class ProductoDAOTest extends TestCase {
         $proDTO->setPrecio(123456);
         $rta = $proDAO->update($proDTO);
         $this->assertEquals(1, $rta);
+    }
+
+    public function tesCambiarCantidad() {
+        echo("Test del metodo update cantidad");
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setIdProducto("pro0000030");
+        $proDTO->setCantidad(9);
+        $rta = $proDAO->updateCantidad($proDTO);
+        $this->assertEquals(1, $rta);
+        echo(var_dump($proDTO));
+    }
+
+    public function testDelete() {
+        echo("\n Test del metodo update cantidad.");
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setIdProducto("pro0000040");
+        $proDTO->setCantidad(9);
+        $proF = $proDAO->find($proDTO);
+        $this->assertInstanceOf(ProductoDTO::class, $proF);
+        $rta = $proDAO->delete($proDTO);
+        $this->assertEquals(1, $rta);
+        echo(var_dump($proF));
     }
 
 }
