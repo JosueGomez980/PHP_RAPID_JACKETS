@@ -1,0 +1,471 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4/03/2017, 12:31:22 PM
+    Author     : Josué Francisco
+*/
+/*---------------MAQUETACION--------------*/
+body{
+    background-color: #f2f6fa;
+    padding: 0px;
+    margin: 0px;
+}
+.m-logo{
+    width: 100%;
+    height: auto;
+}
+.m-header{
+    background-color: #1e3552;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    color: #ffffff;
+}
+.m-header2{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    color: #ffffff;
+}
+.m-nav{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    color: #ffffff;
+    font-size: 100%;
+}
+.m-footer{
+    background-color: #1e3552;
+    width: 100%;
+    padding: 10px;
+    height: auto;
+    margin:auto;
+    color: #ffffff;
+}
+.m-section{
+    background-color: #d5e1f0;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.m-redes-social{
+    margin: auto;
+}
+.m-redes-social .icon{
+    margin-left: 5px;
+    width: 25px;
+    height: 25px;
+    opacity: 0.3;
+    -moz-transition: opacity 0.33s, width 0.33s, height 0.33s;
+    -webkit-transition: opacity 0.33s, width 0.33s, height 0.33s;
+    transition: opacity 0.33s, width 0.33s, height 0.33s;
+}
+.m-redes-social .icon:hover{
+    opacity: 1;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+}
+.m-autores, .m-center{
+    margin: auto;
+}
+.m-autor-foto{
+    width: 45px;
+    height: 45px;
+    opacity: 0.4;
+    -moz-transition: opacity 0.6s;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+}
+.m-autor-foto:hover{
+    opacity: 1;
+}
+.m-auto-desc{
+    padding: 5px 10px;
+    font-size: 75%;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+.cleaner{
+    clear: both;
+}
+.m-simple-user-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 30px;
+    display: block;
+
+}
+.m-user-in-sesion-img{
+    width: 50px;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+.m-user-admin-icons{
+    width: 16px;
+    height: auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 5px;
+}
+.m-c-v{
+    vertical-align: central;
+}
+.m-producto-view-1-img{
+    width: 100%;
+    height: 280px;
+    cursor: pointer;
+    border-top: #ff6600 3px solid;
+    border-bottom: #ff6600 3px solid;
+}
+.m-producto-view-1-img:hover{
+    border-top: #660066 3px solid;
+    border-bottom:#660066 3px solid;
+    cursor: pointer;
+}
+.m-producto-default-img{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.25;
+    -moz-transition: opacity 0.6s;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+}
+.m-producto-default-img:hover{
+    opacity: 1;
+}
+.m-carrito{
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+.m-boton-add-carrito{
+    width: 98%;
+    background-color: #ffff66;
+    color: black; 
+    height: 34px;
+    padding: 2px;
+    outline: none;
+    border: 1px #333333 solid;
+    vertical-align: middle;
+    font-size: 0.7em;
+    border-radius: 8px;
+    transition:all 0.36s ease-in-out;
+}
+.m-boton-add-carrito:hover{
+    background-color: #333333;
+    color: white;
+    border-color: #ffff66;
+    box-shadow: 2px 2px 5px #006633;
+    cursor: pointer;
+}
+.m-boton-go-up{
+    opacity: 0.3;
+    position: fixed;
+    background-color: #333333;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    right:3%;bottom:3%;
+    z-index: 10;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    -o-transition: all 0.7s;
+    transition: all 0.7s;
+}
+.m-boton-go-up:hover{
+    opacity: 1;
+    color: black;
+    background-color: #ff6600;
+    cursor: pointer;
+}
+.m-producto-mq-image{
+    width: 100%;
+    height: auto;
+    border: 2px solid #000;
+    border-radius: 2%;
+    -webkit-transition: opacity 0.75s, border-color 0.75s;
+    -moz-transition: opacity 0.75s, border-color 0.75s;
+    -o-transition: opacity 0.75s, border-color 0.75s;
+    transition: opacity 0.75s, border-color 0.75s;
+}
+.m-producto-mq-image:hover{
+    opacity: 0.7;
+    border-color: #ff6600;
+    cursor: pointer;
+}
+.m-crud_icons{
+    width: 30px;
+    height: auto;
+    margin-left: 10px;
+    opacity: 0.65;
+    transition: all 0.75s ease-out;
+    -webkit-transition: all 0.75s ease-out;
+    -moz-transition: all 0.75s ease-out;
+    -o-transition: all 0.75s ease-out;
+}
+.m-crud_icons:hover{
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    opacity: 1;
+    cursor: pointer;
+}
+.m-producto-full-img{
+    width: 95%;
+    border-radius: 2%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+.m-producto-img-vistaprevia{
+    width: 100px;
+    height: 80px;
+    border: 2px solid #ff6600;
+    border-radius: 7px;
+}
+.m-manager-tools{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: #FFF;
+    border: 3px solid #000;
+    border-radius: 10px;
+    opacity: 0.45;
+    transition: opacity 1.20s;
+    -webkit-transition: opacity 1.20s;
+    -moz-transition: opacity 1.20s;
+    -o-transition: opacity 1.20s;
+}
+.m-manager-tools:hover{
+    opacity: 1;
+}
+.icon_btn{
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    border-radius: 3px;
+    margin-right: 3px;
+}
+.m-img-logo-2{
+    width: 50%;
+    height: auto;
+    border: 0px;
+    border-radius: 5px;
+}
+
+/* -------------------- INPUTS Y FORMULARIO --------------------- */
+.m-loading-gif{
+    display: block;
+    margin: auto;
+    width: 40%;
+    height: auto;
+}
+.labels{
+    color: #012641;
+    font-size: medium;
+    font-weight: bolder;
+    display: block;
+}
+.m-selects{
+    border: 0px;
+    border-radius: 6px;
+    color: #333333;
+    padding: 5px 10px;
+    outline: none;
+    box-shadow: 2px 2px 6px #000;
+    margin-bottom: 25px;
+    width: 95%;
+    -webkit-transition: width 0.36s, box-shadow 0.5s;
+    -moz-transition: width 0.36s, box-shadow 0.5s;
+    -o-transition: width 0.36s, box-shadow 0.5s;
+    transition: width 0.36s, box-shadow 0.5s;
+}
+.m-selects option{
+    padding: 5px 10px;
+}
+.input_texto , .input_pass, .input_number{
+    border: 0px;
+    margin-bottom: 25px;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #333333;
+    width: 80%;
+    -webkit-transition: width 0.36s, box-shadow 0.5s;
+    -moz-transition: width 0.36s, box-shadow 0.5s;
+    -o-transition: width 0.36s, box-shadow 0.5s;
+    transition: width 0.36s, box-shadow 0.5s;
+}
+.input_carrito{
+    border: 0px;
+    outline: none;
+    border-radius: 5px;
+    padding: 2px 2px;
+    color: #333333;
+    width: 80%;
+    -webkit-transition: width 0.36s, box-shadow 0.5s;
+    -moz-transition: width 0.36s, box-shadow 0.5s;
+    -o-transition: width 0.36s, box-shadow 0.5s;
+    transition: width 0.36s, box-shadow 0.5s;
+}
+.input_pass:focus , .input_texto:focus, .input_number:focus, .input_carrito:focus, .m-selects:focus{
+    width: 100%;
+    box-shadow: 2px 2px 6px #000;
+}
+.m-wrong-input{
+    box-shadow: 0px 0px 10px red;
+}
+.m-ok-input{
+    box-shadow: 0px 0px 10px green;
+}
+.m-login-logo{
+    display: block;
+    opacity: 0.79;
+    width: 20%;
+    margin: auto;
+    height: auto;
+    border: 0px;
+    border-radius: 5%;
+}
+.m-textarea{
+    width: 95%;
+    height: 90px;
+    resize: vertical;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 8px;
+    text-align: left;
+    font-size: 0.925em;
+    line-height: 1.5em;
+    transition: all 0.5s;
+    -web-kit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+.m-textarea:focus{
+    width: 100%;
+    box-shadow: 2px 2px 6px #000;
+    background-color: #ffffff;
+    color: #000;
+    border-color: #ff6600;
+}
+.m-boton-a{
+    width: auto;
+    font-size: 1em;
+    background-color: #244063;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #000;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.m-boton-a:hover{
+    background-color: #fff;
+    border-color: #244063;
+    color: #244063;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+.m-producto-card{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #000;
+    border-radius: 0px;
+}
+.m-producto-name{
+    height: 60px;
+    font-size: 0.85em;
+    font-weight:bolder;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    /*    text-align: center;*/
+}
+/* -------------------TIPOGRAFIA ------------------ */
+.negri{
+    font-weight: bold;
+}
+
+.m-all-text{
+    font-size: 1em;
+}
+.m-text-sub1{
+    font-size: 1.025em;
+    word-wrap: break-word;
+    color: #ff9900;
+}
+.tit1{
+    font-size: 50px;
+    color:#ff9900;
+    text-shadow: 1px 1px 2px #ffffff;
+    display: block;
+    text-align: center;
+}
+.tit2{
+    font-size: 30px;
+    color: #ffcc00;
+    text-align: center;
+    text-shadow: 1px 1px 2px #ffffff;
+    display: block;
+    line-height: 30px;
+}
+.tit3{
+    font-size: 25px;
+    color: #f2f6fa;
+    display: block;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
+    line-height: 25px;
+}
+.tit4{
+    font-size: 2em;
+    color: #339900;
+    display: block;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
+    line-height: 1em;
+}
+.m-tituloA{
+    text-align: center;
+    color: #ff9900;
+    text-shadow: 1px 1px 2px #000;
+    font-size: 20px;
+    padding: 5px;
+}
+.m-list-footer{
+    color: #ffffff;
+    font-size: 75%;
+    text-align: justify;
+    border-bottom: 1px solid #ffffff;
+}
+.m-texto-bajo{
+    font-size: 20%;
+}
+.m-producto-big-name{
+    font-size: 2.5em;
+    color: #000099;
+    text-shadow: 1px 1px 3px #000;
+    word-break: break-all;
+}

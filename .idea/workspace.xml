@@ -1,0 +1,1118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bc3dbdca-6665-4686-80b5-7ada37f70731" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="PHP/C:/xampp/htdocs/PHP_RAPID_JACKETS/contenido" pinned="false" current-in-tab="true">
+        <entry file="uml://PHP/C:/xampp/htdocs/PHP_RAPID_JACKETS/contenido">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>PHP</ID>
+              <OriginalElement>$PROJECT_DIR$/contenido</OriginalElement>
+              <nodes>
+                <node x="1836.0" y="3030.0">\InventarioController</node>
+                <node x="271.0" y="4454.0">\ProductoMaquetador</node>
+                <node x="3308.0" y="4320.0">$PROJECT_DIR$/contenido/controlador/negocio</node>
+                <node x="437.0" y="2736.0">\Maquetable</node>
+                <node x="2379.8333333333335" y="2714.0">\GenericController</node>
+                <node x="2581.0" y="2054.0">\DomicilioCuentaDAO</node>
+                <node x="285.0" y="2142.0">\CatalogoDAO</node>
+                <node x="201.0" y="3326.5">\ModalSimple</node>
+                <node x="1571.9999999999998" y="208.0">\ProductoDTO</node>
+                <node x="2122.0" y="4320.0">\AutoCarga3</node>
+                <node x="497.0" y="0.0">\FileUpload</node>
+                <node x="2839.0" y="3579.0">\AutoCarga</node>
+                <node x="2627.0" y="4320.0">\AccesoPagina</node>
+                <node x="3281.0" y="274.0">\ItemCarritoDTO</node>
+                <node x="615.0" y="4520.0">\CuentaMaquetador</node>
+                <node x="1195.0" y="2991.5">\Exito</node>
+                <node x="0.0" y="4023.0">\CategoriaRequest</node>
+                <node x="2334.0" y="340.0">\ItemDTO</node>
+                <node x="248.99999999999994" y="4034.0">\ProductoRequest</node>
+                <node x="1195.0" y="2714.0">\Formato</node>
+                <node x="3265.0" y="3052.0">\CategoriaController</node>
+                <node x="1710.0" y="2098.0">\InventarioDAO</node>
+                <node x="400.0" y="2992.0">\Content</node>
+                <node x="611.0" y="2870.0">\BtnPaginacion</node>
+                <node x="567.5" y="1138.0">\FileUploadImage</node>
+                <node x="4276.754444515756" y="241.75444451575638">\CuentaDTO</node>
+                <node x="1475.0" y="4498.0">\CategoriaMaquetador</node>
+                <node x="424.99999999999994" y="4023.0">\FacturaRequest</node>
+                <node x="2736.5" y="0.0">\EntityDTO</node>
+                <node x="1850.0" y="4509.0">\CarritoComprasMaquetador</node>
+                <node x="2583.0" y="2964.0">\UsuarioController</node>
+                <node x="570.0" y="2032.0">\CategoriaDAO</node>
+                <node x="4558.0" y="340.0">\UsuarioDTO</node>
+                <node x="83.0" y="-61.86445029202233">\Paginable</node>
+                <node x="899.9999999999998" y="142.0">\PedidoEntregaDTO</node>
+                <node x="981.0" y="3003.0">\Boton</node>
+                <node x="1140.0" y="1999.0">\FacturaDAO</node>
+                <node x="3176.0" y="2079.0">\SimpleSession</node>
+                <node x="2108.0" y="3085.0">\CuentaController</node>
+                <node x="855.0" y="2065.0">\ItemDAO</node>
+                <node x="3953.0" y="340.0">\CategoriaDTO</node>
+                <node x="1349.0" y="2991.5">\Alerta</node>
+                <node x="1254.9999999999998" y="307.0">\InventarioDTO</node>
+                <node x="3006.0" y="340.0">\PagoDTO</node>
+                <node x="2110.0" y="340.0">\CatalogoDTO</node>
+                <node x="1955.0" y="3579.0">\ControlVistas</node>
+                <node x="2406.0" y="3118.0">\FacturaController</node>
+                <node x="2651.0" y="274.0">\DomicilioCuentaDTO</node>
+                <node x="1894.9999999999998" y="318.0">\CarritoComprasDTO</node>
+                <node x="1425.0" y="1845.0">\PedidoEntregaDAO</node>
+                <node x="2933.0" y="4320.0">\SetUpController</node>
+                <node x="827.0" y="2991.5">\Errado</node>
+                <node x="1503.0" y="2980.0">\CloseBtn</node>
+                <node x="1657.0" y="2991.5">\Neutral</node>
+                <node x="3161.0" y="4320.0">\PreparedSQL</node>
+                <node x="3430.0" y="4320.0">$PROJECT_DIR$/contenido/controlador/controllers/cookies</node>
+                <node x="109.49107142857156" y="2992.0">\Modal</node>
+                <node x="650.0" y="4023.0">\UsuarioRequest</node>
+                <node x="1425.0" y="1713.0">\DAOPaginable</node>
+                <node x="0.0" y="4520.0">\InventarioMaquetador</node>
+                <node x="558.25" y="3579.0">\Request</node>
+                <node x="0.0" y="1306.0">\PaginadorMemoria</node>
+                <node x="0.0" y="3360.0">\DialogModal</node>
+                <node x="2590.0" y="3579.0">\DateManager</node>
+                <node x="400.00000000000006" y="3282.0">\ContentManager</node>
+                <node x="914.0" y="4454.0">\UsuarioMaquetador</node>
+                <node x="2761.9166666666665" y="2747.0">\Validable</node>
+                <node x="2263.0" y="3579.0">\CarritoComprasController</node>
+                <node x="1615.0" y="3579.0">\CriptManager</node>
+                <node x="3180.5" y="1713.0">\Session</node>
+                <node x="80.5" y="278.0">\PaginadorAbstracto</node>
+                <node x="1995.0" y="1845.0">\ProductoDAO</node>
+                <node x="1101.0" y="4023.0">\InventarioRequest</node>
+                <node x="2959.0" y="2997.0">\ProductoController</node>
+                <node x="2362.0" y="4320.0">\Validador</node>
+                <node x="3598.0" y="208.0">\FacturaDTO</node>
+                <node x="1381.0" y="3579.0">\Conexion</node>
+                <node x="1228.0" y="4531.0">\FacturaMaquetador</node>
+                <node x="2296.0" y="1988.0">\UsuarioDAO</node>
+                <node x="947.5" y="4320.0">\GenericMaquetador</node>
+                <node x="2866.0" y="2076.0">\PagoDAO</node>
+                <node x="878.0" y="4023.0">\CuentaRequest</node>
+                <node x="0.0" y="1999.0">\CuentaDAO</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="\FacturaDTO" target="\EntityDTO">
+                  <point x="0.0" y="-346.0" />
+                  <point x="3765.5" y="102.0" />
+                  <point x="2856.3461538461534" y="102.0" />
+                  <point x="37.84615384615381" y="26.0" />
+                </edge>
+                <edge source="\InventarioMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-48.0" />
+                  <point x="125.5" y="4414.0" />
+                  <point x="963.7142857142857" y="4414.0" />
+                  <point x="-97.28571428571433" y="37.0" />
+                </edge>
+                <edge source="\Modal" target="\Maquetable">
+                  <point x="0.0" y="-59.0" />
+                  <point x="198.99107142857156" y="2850.0" />
+                  <point x="456.5" y="2850.0" />
+                  <point x="-39.0" y="26.0" />
+                </edge>
+                <edge source="\InventarioDTO" target="\EntityDTO">
+                  <point x="0.0" y="-247.0" />
+                  <point x="1403.4999999999998" y="82.0" />
+                  <point x="2755.423076923077" y="82.0" />
+                  <point x="-63.07692307692287" y="26.0" />
+                </edge>
+                <edge source="\CategoriaController" target="\Validable">
+                  <point x="85.0" y="-192.0" />
+                  <point x="3520.0" y="2874.0" />
+                  <point x="2900.333333333333" y="2874.0" />
+                  <point x="62.916666666666515" y="37.0" />
+                </edge>
+                <edge source="\ModalSimple" target="\Modal">
+                  <point x="0.0" y="-81.5" />
+                  <point x="290.5" y="3257.0" />
+                  <point x="243.74107142857156" y="3257.0" />
+                  <point x="44.75" y="59.0" />
+                </edge>
+                <edge source="\UsuarioDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-269.0" />
+                  <point x="2428.5" y="1805.0" />
+                  <point x="1629.7727272727273" y="1805.0" />
+                  <point x="72.27272727272725" y="26.0" />
+                </edge>
+                <edge source="\BtnPaginacion" target="\Maquetable">
+                  <point x="-49.0" y="-181.0" />
+                  <point x="660.0" y="2850.0" />
+                  <point x="534.5" y="2850.0" />
+                  <point x="38.99999999999994" y="26.0" />
+                </edge>
+                <edge source="\InventarioController" target="\GenericController">
+                  <point x="-63.0" y="-214.0" />
+                  <point x="1899.0" y="2904.0" />
+                  <point x="2392.916666666667" y="2904.0" />
+                  <point x="-65.41666666666652" y="70.0" />
+                </edge>
+                <edge source="\UsuarioController" target="\Validable">
+                  <point x="89.0" y="-280.0" />
+                  <point x="12.583333333333485" y="37.0" />
+                </edge>
+                <edge source="\ProductoController" target="\Validable">
+                  <point x="71.5" y="-247.0" />
+                  <point x="3173.5" y="2894.0" />
+                  <point x="2875.1666666666665" y="2894.0" />
+                  <point x="37.75" y="37.0" />
+                </edge>
+                <edge source="\PedidoEntregaDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-412.0" />
+                  <point x="0.0" y="26.0" />
+                </edge>
+                <edge source="\FacturaController" target="\Validable">
+                  <point x="39.25" y="-126.0" />
+                  <point x="2523.75" y="2944.0" />
+                  <point x="2824.833333333333" y="2944.0" />
+                  <point x="-12.583333333333485" y="37.0" />
+                </edge>
+                <edge source="\DialogModal" target="\Modal">
+                  <point x="0.0" y="-48.0" />
+                  <point x="90.5" y="3257.0" />
+                  <point x="154.24107142857156" y="3257.0" />
+                  <point x="-44.75" y="59.0" />
+                </edge>
+                <edge source="\DomicilioCuentaDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-203.0" />
+                  <point x="2713.5" y="1795.0" />
+                  <point x="1653.8636363636365" y="1795.0" />
+                  <point x="96.36363636363649" y="26.0" />
+                </edge>
+                <edge source="\UsuarioMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-114.0" />
+                  <point x="0.0" y="37.0" />
+                </edge>
+                <edge source="\Errado" target="\Formato">
+                  <point x="0.0" y="-59.5" />
+                  <point x="894.0" y="2840.0" />
+                  <point x="1223.7142857142858" y="2840.0" />
+                  <point x="-38.28571428571422" y="48.0" />
+                </edge>
+                <edge source="\ContentManager" target="\Content">
+                  <point x="-5.6843418860808015E-14" y="-126.0" />
+                  <point x="0.0" y="59.0" />
+                </edge>
+                <edge source="\FacturaRequest" target="\Request">
+                  <point x="0.0" y="-126.0" />
+                  <point x="527.5" y="4003.0" />
+                  <point x="627.0" y="4003.0" />
+                  <point x="-13.75" y="192.0" />
+                </edge>
+                <edge source="\ProductoDTO" target="\EntityDTO">
+                  <point x="0.0" y="-346.0" />
+                  <point x="1723.4999999999998" y="92.0" />
+                  <point x="2768.038461538461" y="92.0" />
+                  <point x="-50.46153846153857" y="26.0" />
+                </edge>
+                <edge source="\ItemDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-192.0" />
+                  <point x="987.5" y="1815.0" />
+                  <point x="1509.3181818181818" y="1815.0" />
+                  <point x="-48.181818181818244" y="26.0" />
+                </edge>
+                <edge source="\CategoriaDTO" target="\EntityDTO">
+                  <point x="0.0" y="-214.0" />
+                  <point x="4104.5" y="92.0" />
+                  <point x="2868.961538461538" y="92.0" />
+                  <point x="50.46153846153857" y="26.0" />
+                </edge>
+                <edge source="\CuentaDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-258.0" />
+                  <point x="132.5" y="1785.0" />
+                  <point x="1437.0454545454545" y="1785.0" />
+                  <point x="-120.4545454545455" y="26.0" />
+                </edge>
+                <edge source="\UsuarioDTO" target="\EntityDTO">
+                  <point x="0.0" y="-214.0" />
+                  <point x="4648.5" y="72.0" />
+                  <point x="2894.1923076923076" y="72.0" />
+                  <point x="75.69230769230762" y="26.0" />
+                </edge>
+                <edge source="\PaginadorAbstracto" target="\Paginable">
+                  <point x="0.0" y="-489.0" />
+                  <point x="0.0" y="114.0" />
+                </edge>
+                <edge source="\SimpleSession" target="\Session">
+                  <point x="0.0" y="-280.0" />
+                  <point x="0.0" y="158.0" />
+                </edge>
+                <edge source="\UsuarioRequest" target="\Request">
+                  <point x="0.0" y="-126.0" />
+                  <point x="754.0" y="4003.0" />
+                  <point x="654.5" y="4003.0" />
+                  <point x="13.75" y="192.0" />
+                </edge>
+                <edge source="\ProductoDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-412.0" />
+                  <point x="2135.5" y="1815.0" />
+                  <point x="1605.6818181818182" y="1815.0" />
+                  <point x="48.181818181818244" y="26.0" />
+                </edge>
+                <edge source="\CategoriaRequest" target="\Request">
+                  <point x="0.0" y="-126.0" />
+                  <point x="114.5" y="3983.0" />
+                  <point x="572.0" y="3983.0" />
+                  <point x="-68.75" y="192.0" />
+                </edge>
+                <edge source="\BtnPaginacion" target="\Formato">
+                  <point x="49.0" y="-181.0" />
+                  <point x="758.0" y="2830.0" />
+                  <point x="1204.5714285714287" y="2830.0" />
+                  <point x="-57.42857142857133" y="48.0" />
+                </edge>
+                <edge source="\CategoriaController" target="\GenericController">
+                  <point x="-85.0" y="-192.0" />
+                  <point x="3350.0" y="2884.0" />
+                  <point x="2523.75" y="2884.0" />
+                  <point x="65.41666666666652" y="70.0" />
+                </edge>
+                <edge source="\PaginadorMemoria" target="\PaginadorAbstracto">
+                  <point x="0.0" y="-181.0" />
+                  <point x="0.0" y="489.0" />
+                </edge>
+                <edge source="\Content" target="\Maquetable">
+                  <point x="-5.6843418860808015E-14" y="-59.0" />
+                  <point x="0.0" y="26.0" />
+                </edge>
+                <edge source="\ProductoController" target="\GenericController">
+                  <point x="-71.5" y="-247.0" />
+                  <point x="3030.5" y="2904.0" />
+                  <point x="2497.5833333333335" y="2904.0" />
+                  <point x="39.25" y="70.0" />
+                </edge>
+                <edge source="\Boton" target="\Formato">
+                  <point x="0.0" y="-48.0" />
+                  <point x="1078.0" y="2850.0" />
+                  <point x="1242.857142857143" y="2850.0" />
+                  <point x="-19.14285714285711" y="48.0" />
+                </edge>
+                <edge source="\ProductoRequest" target="\Request">
+                  <point x="0.0" y="-115.0" />
+                  <point x="326.99999999999994" y="3993.0" />
+                  <point x="599.5" y="3993.0" />
+                  <point x="-41.25" y="192.0" />
+                </edge>
+                <edge source="\CuentaMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-48.0" />
+                  <point x="754.5" y="4434.0" />
+                  <point x="1028.5714285714284" y="4434.0" />
+                  <point x="-32.42857142857156" y="37.0" />
+                </edge>
+                <edge source="\FacturaDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-258.0" />
+                  <point x="1272.5" y="1825.0" />
+                  <point x="1533.409090909091" y="1825.0" />
+                  <point x="-24.09090909090901" y="26.0" />
+                </edge>
+                <edge source="\CloseBtn" target="\Formato">
+                  <point x="0.0" y="-71.0" />
+                  <point x="1570.0" y="2840.0" />
+                  <point x="1300.2857142857142" y="2840.0" />
+                  <point x="38.28571428571422" y="48.0" />
+                </edge>
+                <edge source="\FacturaMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-37.0" />
+                  <point x="1341.5" y="4434.0" />
+                  <point x="1093.4285714285713" y="4434.0" />
+                  <point x="32.42857142857133" y="37.0" />
+                </edge>
+                <edge source="\Alerta" target="\Formato">
+                  <point x="0.0" y="-59.5" />
+                  <point x="1416.0" y="2850.0" />
+                  <point x="1281.142857142857" y="2850.0" />
+                  <point x="19.14285714285711" y="48.0" />
+                </edge>
+                <edge source="\InventarioDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-159.0" />
+                  <point x="1842.5" y="1825.0" />
+                  <point x="1581.590909090909" y="1825.0" />
+                  <point x="24.09090909090901" y="26.0" />
+                </edge>
+                <edge source="\ProductoMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-114.0" />
+                  <point x="433.0" y="4424.0" />
+                  <point x="996.1428571428571" y="4424.0" />
+                  <point x="-64.85714285714289" y="37.0" />
+                </edge>
+                <edge source="\PagoDTO" target="\EntityDTO">
+                  <point x="0.0" y="-214.0" />
+                  <point x="3133.5" y="122.0" />
+                  <point x="2831.1153846153848" y="122.0" />
+                  <point x="12.615384615384755" y="26.0" />
+                </edge>
+                <edge source="\ItemCarritoDTO" target="\EntityDTO">
+                  <point x="0.0" y="-280.0" />
+                  <point x="3429.5" y="112.0" />
+                  <point x="2843.7307692307686" y="112.0" />
+                  <point x="25.230769230769056" y="26.0" />
+                </edge>
+                <edge source="\CuentaController" target="\Validable">
+                  <point x="69.5" y="-159.0" />
+                  <point x="2316.5" y="2934.0" />
+                  <point x="2799.6666666666665" y="2934.0" />
+                  <point x="-37.75" y="37.0" />
+                </edge>
+                <edge source="\CatalogoDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-115.0" />
+                  <point x="417.5" y="1795.0" />
+                  <point x="1461.1363636363637" y="1795.0" />
+                  <point x="-96.36363636363626" y="26.0" />
+                </edge>
+                <edge source="\CategoriaDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-225.0" />
+                  <point x="702.5" y="1805.0" />
+                  <point x="1485.2272727272727" y="1805.0" />
+                  <point x="-72.27272727272725" y="26.0" />
+                </edge>
+                <edge source="\FileUploadImage" target="\FileUpload">
+                  <point x="0.0" y="-71.0" />
+                  <point x="0.0" y="544.0" />
+                </edge>
+                <edge source="\DomicilioCuentaDTO" target="\EntityDTO">
+                  <point x="0.0" y="-280.0" />
+                  <point x="0.0" y="26.0" />
+                </edge>
+                <edge source="\CatalogoDTO" target="\EntityDTO">
+                  <point x="0.0" y="-214.0" />
+                  <point x="2212.0" y="112.0" />
+                  <point x="2793.2692307692305" y="112.0" />
+                  <point x="-25.230769230769056" y="26.0" />
+                </edge>
+                <edge source="\CategoriaMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-70.0" />
+                  <point x="1652.5" y="4424.0" />
+                  <point x="1125.857142857143" y="4424.0" />
+                  <point x="64.85714285714289" y="37.0" />
+                </edge>
+                <edge source="\InventarioController" target="\Validable">
+                  <point x="63.0" y="-214.0" />
+                  <point x="2025.0" y="2924.0" />
+                  <point x="2774.5" y="2924.0" />
+                  <point x="-62.916666666666515" y="37.0" />
+                </edge>
+                <edge source="\CuentaDTO" target="\EntityDTO">
+                  <point x="0.0" y="-313.0" />
+                  <point x="4407.0" y="82.0" />
+                  <point x="2881.576923076923" y="82.0" />
+                  <point x="63.07692307692287" y="26.0" />
+                </edge>
+                <edge source="\InventarioRequest" target="\Request">
+                  <point x="0.0" y="-126.0" />
+                  <point x="1218.5" y="3983.0" />
+                  <point x="709.5" y="3983.0" />
+                  <point x="68.75" y="192.0" />
+                </edge>
+                <edge source="\Exito" target="\Formato">
+                  <point x="0.0" y="-59.5" />
+                  <point x="0.0" y="48.0" />
+                </edge>
+                <edge source="\PagoDAO" target="\DAOPaginable">
+                  <point x="0.0" y="-181.0" />
+                  <point x="2998.5" y="1785.0" />
+                  <point x="1677.9545454545455" y="1785.0" />
+                  <point x="120.4545454545455" y="26.0" />
+                </edge>
+                <edge source="\CuentaController" target="\GenericController">
+                  <point x="-69.5" y="-159.0" />
+                  <point x="2177.5" y="2914.0" />
+                  <point x="2419.0833333333335" y="2914.0" />
+                  <point x="-39.25" y="70.0" />
+                </edge>
+                <edge source="\UsuarioController" target="\GenericController">
+                  <point x="-89.0" y="-280.0" />
+                  <point x="2672.0" y="2914.0" />
+                  <point x="2471.416666666667" y="2914.0" />
+                  <point x="13.083333333333485" y="70.0" />
+                </edge>
+                <edge source="\PedidoEntregaDTO" target="\EntityDTO">
+                  <point x="0.0" y="-412.0" />
+                  <point x="1067.4999999999998" y="72.0" />
+                  <point x="2742.8076923076924" y="72.0" />
+                  <point x="-75.69230769230762" y="26.0" />
+                </edge>
+                <edge source="\CarritoComprasDTO" target="\EntityDTO">
+                  <point x="2.2737367544323206E-13" y="-236.0" />
+                  <point x="1992.5" y="102.0" />
+                  <point x="2780.6538461538457" y="102.0" />
+                  <point x="-37.84615384615381" y="26.0" />
+                </edge>
+                <edge source="\Neutral" target="\Formato">
+                  <point x="0.0" y="-59.5" />
+                  <point x="1724.0" y="2830.0" />
+                  <point x="1319.4285714285713" y="2830.0" />
+                  <point x="57.42857142857133" y="48.0" />
+                </edge>
+                <edge source="\FacturaController" target="\GenericController">
+                  <point x="-39.25" y="-126.0" />
+                  <point x="-13.083333333333485" y="70.0" />
+                </edge>
+                <edge source="\CarritoComprasMaquetador" target="\GenericMaquetador">
+                  <point x="0.0" y="-59.0" />
+                  <point x="1963.5" y="4414.0" />
+                  <point x="1158.2857142857142" y="4414.0" />
+                  <point x="97.28571428571422" y="37.0" />
+                </edge>
+                <edge source="\ItemDTO" target="\EntityDTO">
+                  <point x="0.0" y="-214.0" />
+                  <point x="2482.5" y="122.0" />
+                  <point x="2805.8846153846152" y="122.0" />
+                  <point x="-12.615384615384755" y="26.0" />
+                </edge>
+                <edge source="\CuentaRequest" target="\Request">
+                  <point x="0.0" y="-126.0" />
+                  <point x="979.5" y="3993.0" />
+                  <point x="682.0" y="3993.0" />
+                  <point x="41.25" y="192.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="1.3254785197788177" x="1111.0478146460432" y="460.5611321481291" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Fields</Category>
+                <Category>Constructors</Category>
+                <Category>Methods</Category>
+              </Categories>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="698" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bc3dbdca-6665-4686-80b5-7ada37f70731" name="Default" comment="" />
+      <created>1508355674426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508355674426</updated>
+      <workItem from="1508355681321" duration="825000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="825000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="uml://PHP/C:/xampp/htdocs/PHP_RAPID_JACKETS/contenido/modelo">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$/contenido/modelo</OriginalElement>
+          <nodes>
+            <node x="" y="">\DomicilioCuentaDAO</node>
+            <node x="" y="">\FacturaDAO</node>
+            <node x="" y="">\ItemDAO</node>
+            <node x="" y="">\CatalogoDAO</node>
+            <node x="" y="">\CategoriaDTO</node>
+            <node x="" y="">\ProductoDTO</node>
+            <node x="" y="">\InventarioDTO</node>
+            <node x="" y="">\PagoDTO</node>
+            <node x="" y="">\CatalogoDTO</node>
+            <node x="" y="">\ItemCarritoDTO</node>
+            <node x="" y="">\DomicilioCuentaDTO</node>
+            <node x="" y="">\CarritoComprasDTO</node>
+            <node x="" y="">\PedidoEntregaDAO</node>
+            <node x="" y="">\ItemDTO</node>
+            <node x="" y="">\PreparedSQL</node>
+            <node x="" y="">\DAOPaginable</node>
+            <node x="" y="">\InventarioDAO</node>
+            <node x="" y="">\CuentaDTO</node>
+            <node x="" y="">\EntityDTO</node>
+            <node x="" y="">\ProductoDAO</node>
+            <node x="" y="">\FacturaDTO</node>
+            <node x="" y="">\CategoriaDAO</node>
+            <node x="" y="">\UsuarioDTO</node>
+            <node x="" y="">\Conexion</node>
+            <node x="" y="">\UsuarioDAO</node>
+            <node x="" y="">\PedidoEntregaDTO</node>
+            <node x="" y="">\PagoDAO</node>
+            <node x="" y="">\CuentaDAO</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7295719844357977" x="339.6346666666666" y="1329.6316384180789" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/C:/xampp/htdocs/PHP_RAPID_JACKETS/contenido">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$/contenido</OriginalElement>
+          <nodes>
+            <node x="1836.0" y="3030.0">\InventarioController</node>
+            <node x="271.0" y="4454.0">\ProductoMaquetador</node>
+            <node x="3308.0" y="4320.0">$PROJECT_DIR$/contenido/controlador/negocio</node>
+            <node x="437.0" y="2736.0">\Maquetable</node>
+            <node x="2379.8333333333335" y="2714.0">\GenericController</node>
+            <node x="2581.0" y="2054.0">\DomicilioCuentaDAO</node>
+            <node x="285.0" y="2142.0">\CatalogoDAO</node>
+            <node x="201.0" y="3326.5">\ModalSimple</node>
+            <node x="1571.9999999999998" y="208.0">\ProductoDTO</node>
+            <node x="2122.0" y="4320.0">\AutoCarga3</node>
+            <node x="497.0" y="0.0">\FileUpload</node>
+            <node x="2839.0" y="3579.0">\AutoCarga</node>
+            <node x="2627.0" y="4320.0">\AccesoPagina</node>
+            <node x="3281.0" y="274.0">\ItemCarritoDTO</node>
+            <node x="615.0" y="4520.0">\CuentaMaquetador</node>
+            <node x="1195.0" y="2991.5">\Exito</node>
+            <node x="0.0" y="4023.0">\CategoriaRequest</node>
+            <node x="2334.0" y="340.0">\ItemDTO</node>
+            <node x="248.99999999999994" y="4034.0">\ProductoRequest</node>
+            <node x="1195.0" y="2714.0">\Formato</node>
+            <node x="3265.0" y="3052.0">\CategoriaController</node>
+            <node x="1710.0" y="2098.0">\InventarioDAO</node>
+            <node x="400.0" y="2992.0">\Content</node>
+            <node x="611.0" y="2870.0">\BtnPaginacion</node>
+            <node x="567.5" y="1138.0">\FileUploadImage</node>
+            <node x="4276.754444515756" y="241.75444451575638">\CuentaDTO</node>
+            <node x="1475.0" y="4498.0">\CategoriaMaquetador</node>
+            <node x="424.99999999999994" y="4023.0">\FacturaRequest</node>
+            <node x="2736.5" y="0.0">\EntityDTO</node>
+            <node x="1850.0" y="4509.0">\CarritoComprasMaquetador</node>
+            <node x="2583.0" y="2964.0">\UsuarioController</node>
+            <node x="570.0" y="2032.0">\CategoriaDAO</node>
+            <node x="4558.0" y="340.0">\UsuarioDTO</node>
+            <node x="83.0" y="-61.86445029202233">\Paginable</node>
+            <node x="899.9999999999998" y="142.0">\PedidoEntregaDTO</node>
+            <node x="981.0" y="3003.0">\Boton</node>
+            <node x="1140.0" y="1999.0">\FacturaDAO</node>
+            <node x="3176.0" y="2079.0">\SimpleSession</node>
+            <node x="2108.0" y="3085.0">\CuentaController</node>
+            <node x="855.0" y="2065.0">\ItemDAO</node>
+            <node x="3953.0" y="340.0">\CategoriaDTO</node>
+            <node x="1349.0" y="2991.5">\Alerta</node>
+            <node x="1254.9999999999998" y="307.0">\InventarioDTO</node>
+            <node x="3006.0" y="340.0">\PagoDTO</node>
+            <node x="2110.0" y="340.0">\CatalogoDTO</node>
+            <node x="1955.0" y="3579.0">\ControlVistas</node>
+            <node x="2406.0" y="3118.0">\FacturaController</node>
+            <node x="2651.0" y="274.0">\DomicilioCuentaDTO</node>
+            <node x="1894.9999999999998" y="318.0">\CarritoComprasDTO</node>
+            <node x="1425.0" y="1845.0">\PedidoEntregaDAO</node>
+            <node x="2933.0" y="4320.0">\SetUpController</node>
+            <node x="827.0" y="2991.5">\Errado</node>
+            <node x="1503.0" y="2980.0">\CloseBtn</node>
+            <node x="1657.0" y="2991.5">\Neutral</node>
+            <node x="3161.0" y="4320.0">\PreparedSQL</node>
+            <node x="3430.0" y="4320.0">$PROJECT_DIR$/contenido/controlador/controllers/cookies</node>
+            <node x="109.49107142857156" y="2992.0">\Modal</node>
+            <node x="650.0" y="4023.0">\UsuarioRequest</node>
+            <node x="1425.0" y="1713.0">\DAOPaginable</node>
+            <node x="0.0" y="4520.0">\InventarioMaquetador</node>
+            <node x="558.25" y="3579.0">\Request</node>
+            <node x="0.0" y="1306.0">\PaginadorMemoria</node>
+            <node x="0.0" y="3360.0">\DialogModal</node>
+            <node x="2590.0" y="3579.0">\DateManager</node>
+            <node x="400.00000000000006" y="3282.0">\ContentManager</node>
+            <node x="914.0" y="4454.0">\UsuarioMaquetador</node>
+            <node x="2761.9166666666665" y="2747.0">\Validable</node>
+            <node x="2263.0" y="3579.0">\CarritoComprasController</node>
+            <node x="1615.0" y="3579.0">\CriptManager</node>
+            <node x="3180.5" y="1713.0">\Session</node>
+            <node x="80.5" y="278.0">\PaginadorAbstracto</node>
+            <node x="1995.0" y="1845.0">\ProductoDAO</node>
+            <node x="1101.0" y="4023.0">\InventarioRequest</node>
+            <node x="2959.0" y="2997.0">\ProductoController</node>
+            <node x="2362.0" y="4320.0">\Validador</node>
+            <node x="3598.0" y="208.0">\FacturaDTO</node>
+            <node x="1381.0" y="3579.0">\Conexion</node>
+            <node x="1228.0" y="4531.0">\FacturaMaquetador</node>
+            <node x="2296.0" y="1988.0">\UsuarioDAO</node>
+            <node x="947.5" y="4320.0">\GenericMaquetador</node>
+            <node x="2866.0" y="2076.0">\PagoDAO</node>
+            <node x="878.0" y="4023.0">\CuentaRequest</node>
+            <node x="0.0" y="1999.0">\CuentaDAO</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\FacturaDTO" target="\EntityDTO">
+              <point x="0.0" y="-346.0" />
+              <point x="3765.5" y="102.0" />
+              <point x="2856.3461538461534" y="102.0" />
+              <point x="37.84615384615381" y="26.0" />
+            </edge>
+            <edge source="\InventarioMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-48.0" />
+              <point x="125.5" y="4414.0" />
+              <point x="963.7142857142857" y="4414.0" />
+              <point x="-97.28571428571433" y="37.0" />
+            </edge>
+            <edge source="\Modal" target="\Maquetable">
+              <point x="0.0" y="-59.0" />
+              <point x="198.99107142857156" y="2850.0" />
+              <point x="456.5" y="2850.0" />
+              <point x="-39.0" y="26.0" />
+            </edge>
+            <edge source="\InventarioDTO" target="\EntityDTO">
+              <point x="0.0" y="-247.0" />
+              <point x="1403.4999999999998" y="82.0" />
+              <point x="2755.423076923077" y="82.0" />
+              <point x="-63.07692307692287" y="26.0" />
+            </edge>
+            <edge source="\CategoriaController" target="\Validable">
+              <point x="85.0" y="-192.0" />
+              <point x="3520.0" y="2874.0" />
+              <point x="2900.333333333333" y="2874.0" />
+              <point x="62.916666666666515" y="37.0" />
+            </edge>
+            <edge source="\ModalSimple" target="\Modal">
+              <point x="0.0" y="-81.5" />
+              <point x="290.5" y="3257.0" />
+              <point x="243.74107142857156" y="3257.0" />
+              <point x="44.75" y="59.0" />
+            </edge>
+            <edge source="\UsuarioDAO" target="\DAOPaginable">
+              <point x="0.0" y="-269.0" />
+              <point x="2428.5" y="1805.0" />
+              <point x="1629.7727272727273" y="1805.0" />
+              <point x="72.27272727272725" y="26.0" />
+            </edge>
+            <edge source="\BtnPaginacion" target="\Maquetable">
+              <point x="-49.0" y="-181.0" />
+              <point x="660.0" y="2850.0" />
+              <point x="534.5" y="2850.0" />
+              <point x="38.99999999999994" y="26.0" />
+            </edge>
+            <edge source="\InventarioController" target="\GenericController">
+              <point x="-63.0" y="-214.0" />
+              <point x="1899.0" y="2904.0" />
+              <point x="2392.916666666667" y="2904.0" />
+              <point x="-65.41666666666652" y="70.0" />
+            </edge>
+            <edge source="\UsuarioController" target="\Validable">
+              <point x="89.0" y="-280.0" />
+              <point x="12.583333333333485" y="37.0" />
+            </edge>
+            <edge source="\ProductoController" target="\Validable">
+              <point x="71.5" y="-247.0" />
+              <point x="3173.5" y="2894.0" />
+              <point x="2875.1666666666665" y="2894.0" />
+              <point x="37.75" y="37.0" />
+            </edge>
+            <edge source="\PedidoEntregaDAO" target="\DAOPaginable">
+              <point x="0.0" y="-412.0" />
+              <point x="0.0" y="26.0" />
+            </edge>
+            <edge source="\FacturaController" target="\Validable">
+              <point x="39.25" y="-126.0" />
+              <point x="2523.75" y="2944.0" />
+              <point x="2824.833333333333" y="2944.0" />
+              <point x="-12.583333333333485" y="37.0" />
+            </edge>
+            <edge source="\DialogModal" target="\Modal">
+              <point x="0.0" y="-48.0" />
+              <point x="90.5" y="3257.0" />
+              <point x="154.24107142857156" y="3257.0" />
+              <point x="-44.75" y="59.0" />
+            </edge>
+            <edge source="\DomicilioCuentaDAO" target="\DAOPaginable">
+              <point x="0.0" y="-203.0" />
+              <point x="2713.5" y="1795.0" />
+              <point x="1653.8636363636365" y="1795.0" />
+              <point x="96.36363636363649" y="26.0" />
+            </edge>
+            <edge source="\UsuarioMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-114.0" />
+              <point x="0.0" y="37.0" />
+            </edge>
+            <edge source="\Errado" target="\Formato">
+              <point x="0.0" y="-59.5" />
+              <point x="894.0" y="2840.0" />
+              <point x="1223.7142857142858" y="2840.0" />
+              <point x="-38.28571428571422" y="48.0" />
+            </edge>
+            <edge source="\ContentManager" target="\Content">
+              <point x="-5.6843418860808015E-14" y="-126.0" />
+              <point x="0.0" y="59.0" />
+            </edge>
+            <edge source="\FacturaRequest" target="\Request">
+              <point x="0.0" y="-126.0" />
+              <point x="527.5" y="4003.0" />
+              <point x="627.0" y="4003.0" />
+              <point x="-13.75" y="192.0" />
+            </edge>
+            <edge source="\ProductoDTO" target="\EntityDTO">
+              <point x="0.0" y="-346.0" />
+              <point x="1723.4999999999998" y="92.0" />
+              <point x="2768.038461538461" y="92.0" />
+              <point x="-50.46153846153857" y="26.0" />
+            </edge>
+            <edge source="\ItemDAO" target="\DAOPaginable">
+              <point x="0.0" y="-192.0" />
+              <point x="987.5" y="1815.0" />
+              <point x="1509.3181818181818" y="1815.0" />
+              <point x="-48.181818181818244" y="26.0" />
+            </edge>
+            <edge source="\CategoriaDTO" target="\EntityDTO">
+              <point x="0.0" y="-214.0" />
+              <point x="4104.5" y="92.0" />
+              <point x="2868.961538461538" y="92.0" />
+              <point x="50.46153846153857" y="26.0" />
+            </edge>
+            <edge source="\CuentaDAO" target="\DAOPaginable">
+              <point x="0.0" y="-258.0" />
+              <point x="132.5" y="1785.0" />
+              <point x="1437.0454545454545" y="1785.0" />
+              <point x="-120.4545454545455" y="26.0" />
+            </edge>
+            <edge source="\UsuarioDTO" target="\EntityDTO">
+              <point x="0.0" y="-214.0" />
+              <point x="4648.5" y="72.0" />
+              <point x="2894.1923076923076" y="72.0" />
+              <point x="75.69230769230762" y="26.0" />
+            </edge>
+            <edge source="\PaginadorAbstracto" target="\Paginable">
+              <point x="0.0" y="-489.0" />
+              <point x="0.0" y="114.0" />
+            </edge>
+            <edge source="\SimpleSession" target="\Session">
+              <point x="0.0" y="-280.0" />
+              <point x="0.0" y="158.0" />
+            </edge>
+            <edge source="\UsuarioRequest" target="\Request">
+              <point x="0.0" y="-126.0" />
+              <point x="754.0" y="4003.0" />
+              <point x="654.5" y="4003.0" />
+              <point x="13.75" y="192.0" />
+            </edge>
+            <edge source="\ProductoDAO" target="\DAOPaginable">
+              <point x="0.0" y="-412.0" />
+              <point x="2135.5" y="1815.0" />
+              <point x="1605.6818181818182" y="1815.0" />
+              <point x="48.181818181818244" y="26.0" />
+            </edge>
+            <edge source="\CategoriaRequest" target="\Request">
+              <point x="0.0" y="-126.0" />
+              <point x="114.5" y="3983.0" />
+              <point x="572.0" y="3983.0" />
+              <point x="-68.75" y="192.0" />
+            </edge>
+            <edge source="\BtnPaginacion" target="\Formato">
+              <point x="49.0" y="-181.0" />
+              <point x="758.0" y="2830.0" />
+              <point x="1204.5714285714287" y="2830.0" />
+              <point x="-57.42857142857133" y="48.0" />
+            </edge>
+            <edge source="\CategoriaController" target="\GenericController">
+              <point x="-85.0" y="-192.0" />
+              <point x="3350.0" y="2884.0" />
+              <point x="2523.75" y="2884.0" />
+              <point x="65.41666666666652" y="70.0" />
+            </edge>
+            <edge source="\PaginadorMemoria" target="\PaginadorAbstracto">
+              <point x="0.0" y="-181.0" />
+              <point x="0.0" y="489.0" />
+            </edge>
+            <edge source="\Content" target="\Maquetable">
+              <point x="-5.6843418860808015E-14" y="-59.0" />
+              <point x="0.0" y="26.0" />
+            </edge>
+            <edge source="\ProductoController" target="\GenericController">
+              <point x="-71.5" y="-247.0" />
+              <point x="3030.5" y="2904.0" />
+              <point x="2497.5833333333335" y="2904.0" />
+              <point x="39.25" y="70.0" />
+            </edge>
+            <edge source="\Boton" target="\Formato">
+              <point x="0.0" y="-48.0" />
+              <point x="1078.0" y="2850.0" />
+              <point x="1242.857142857143" y="2850.0" />
+              <point x="-19.14285714285711" y="48.0" />
+            </edge>
+            <edge source="\ProductoRequest" target="\Request">
+              <point x="0.0" y="-115.0" />
+              <point x="326.99999999999994" y="3993.0" />
+              <point x="599.5" y="3993.0" />
+              <point x="-41.25" y="192.0" />
+            </edge>
+            <edge source="\CuentaMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-48.0" />
+              <point x="754.5" y="4434.0" />
+              <point x="1028.5714285714284" y="4434.0" />
+              <point x="-32.42857142857156" y="37.0" />
+            </edge>
+            <edge source="\FacturaDAO" target="\DAOPaginable">
+              <point x="0.0" y="-258.0" />
+              <point x="1272.5" y="1825.0" />
+              <point x="1533.409090909091" y="1825.0" />
+              <point x="-24.09090909090901" y="26.0" />
+            </edge>
+            <edge source="\CloseBtn" target="\Formato">
+              <point x="0.0" y="-71.0" />
+              <point x="1570.0" y="2840.0" />
+              <point x="1300.2857142857142" y="2840.0" />
+              <point x="38.28571428571422" y="48.0" />
+            </edge>
+            <edge source="\FacturaMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-37.0" />
+              <point x="1341.5" y="4434.0" />
+              <point x="1093.4285714285713" y="4434.0" />
+              <point x="32.42857142857133" y="37.0" />
+            </edge>
+            <edge source="\Alerta" target="\Formato">
+              <point x="0.0" y="-59.5" />
+              <point x="1416.0" y="2850.0" />
+              <point x="1281.142857142857" y="2850.0" />
+              <point x="19.14285714285711" y="48.0" />
+            </edge>
+            <edge source="\InventarioDAO" target="\DAOPaginable">
+              <point x="0.0" y="-159.0" />
+              <point x="1842.5" y="1825.0" />
+              <point x="1581.590909090909" y="1825.0" />
+              <point x="24.09090909090901" y="26.0" />
+            </edge>
+            <edge source="\ProductoMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-114.0" />
+              <point x="433.0" y="4424.0" />
+              <point x="996.1428571428571" y="4424.0" />
+              <point x="-64.85714285714289" y="37.0" />
+            </edge>
+            <edge source="\PagoDTO" target="\EntityDTO">
+              <point x="0.0" y="-214.0" />
+              <point x="3133.5" y="122.0" />
+              <point x="2831.1153846153848" y="122.0" />
+              <point x="12.615384615384755" y="26.0" />
+            </edge>
+            <edge source="\ItemCarritoDTO" target="\EntityDTO">
+              <point x="0.0" y="-280.0" />
+              <point x="3429.5" y="112.0" />
+              <point x="2843.7307692307686" y="112.0" />
+              <point x="25.230769230769056" y="26.0" />
+            </edge>
+            <edge source="\CuentaController" target="\Validable">
+              <point x="69.5" y="-159.0" />
+              <point x="2316.5" y="2934.0" />
+              <point x="2799.6666666666665" y="2934.0" />
+              <point x="-37.75" y="37.0" />
+            </edge>
+            <edge source="\CatalogoDAO" target="\DAOPaginable">
+              <point x="0.0" y="-115.0" />
+              <point x="417.5" y="1795.0" />
+              <point x="1461.1363636363637" y="1795.0" />
+              <point x="-96.36363636363626" y="26.0" />
+            </edge>
+            <edge source="\CategoriaDAO" target="\DAOPaginable">
+              <point x="0.0" y="-225.0" />
+              <point x="702.5" y="1805.0" />
+              <point x="1485.2272727272727" y="1805.0" />
+              <point x="-72.27272727272725" y="26.0" />
+            </edge>
+            <edge source="\FileUploadImage" target="\FileUpload">
+              <point x="0.0" y="-71.0" />
+              <point x="0.0" y="544.0" />
+            </edge>
+            <edge source="\DomicilioCuentaDTO" target="\EntityDTO">
+              <point x="0.0" y="-280.0" />
+              <point x="0.0" y="26.0" />
+            </edge>
+            <edge source="\CatalogoDTO" target="\EntityDTO">
+              <point x="0.0" y="-214.0" />
+              <point x="2212.0" y="112.0" />
+              <point x="2793.2692307692305" y="112.0" />
+              <point x="-25.230769230769056" y="26.0" />
+            </edge>
+            <edge source="\CategoriaMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-70.0" />
+              <point x="1652.5" y="4424.0" />
+              <point x="1125.857142857143" y="4424.0" />
+              <point x="64.85714285714289" y="37.0" />
+            </edge>
+            <edge source="\InventarioController" target="\Validable">
+              <point x="63.0" y="-214.0" />
+              <point x="2025.0" y="2924.0" />
+              <point x="2774.5" y="2924.0" />
+              <point x="-62.916666666666515" y="37.0" />
+            </edge>
+            <edge source="\CuentaDTO" target="\EntityDTO">
+              <point x="0.0" y="-313.0" />
+              <point x="4407.0" y="82.0" />
+              <point x="2881.576923076923" y="82.0" />
+              <point x="63.07692307692287" y="26.0" />
+            </edge>
+            <edge source="\InventarioRequest" target="\Request">
+              <point x="0.0" y="-126.0" />
+              <point x="1218.5" y="3983.0" />
+              <point x="709.5" y="3983.0" />
+              <point x="68.75" y="192.0" />
+            </edge>
+            <edge source="\Exito" target="\Formato">
+              <point x="0.0" y="-59.5" />
+              <point x="0.0" y="48.0" />
+            </edge>
+            <edge source="\PagoDAO" target="\DAOPaginable">
+              <point x="0.0" y="-181.0" />
+              <point x="2998.5" y="1785.0" />
+              <point x="1677.9545454545455" y="1785.0" />
+              <point x="120.4545454545455" y="26.0" />
+            </edge>
+            <edge source="\CuentaController" target="\GenericController">
+              <point x="-69.5" y="-159.0" />
+              <point x="2177.5" y="2914.0" />
+              <point x="2419.0833333333335" y="2914.0" />
+              <point x="-39.25" y="70.0" />
+            </edge>
+            <edge source="\UsuarioController" target="\GenericController">
+              <point x="-89.0" y="-280.0" />
+              <point x="2672.0" y="2914.0" />
+              <point x="2471.416666666667" y="2914.0" />
+              <point x="13.083333333333485" y="70.0" />
+            </edge>
+            <edge source="\PedidoEntregaDTO" target="\EntityDTO">
+              <point x="0.0" y="-412.0" />
+              <point x="1067.4999999999998" y="72.0" />
+              <point x="2742.8076923076924" y="72.0" />
+              <point x="-75.69230769230762" y="26.0" />
+            </edge>
+            <edge source="\CarritoComprasDTO" target="\EntityDTO">
+              <point x="2.2737367544323206E-13" y="-236.0" />
+              <point x="1992.5" y="102.0" />
+              <point x="2780.6538461538457" y="102.0" />
+              <point x="-37.84615384615381" y="26.0" />
+            </edge>
+            <edge source="\Neutral" target="\Formato">
+              <point x="0.0" y="-59.5" />
+              <point x="1724.0" y="2830.0" />
+              <point x="1319.4285714285713" y="2830.0" />
+              <point x="57.42857142857133" y="48.0" />
+            </edge>
+            <edge source="\FacturaController" target="\GenericController">
+              <point x="-39.25" y="-126.0" />
+              <point x="-13.083333333333485" y="70.0" />
+            </edge>
+            <edge source="\CarritoComprasMaquetador" target="\GenericMaquetador">
+              <point x="0.0" y="-59.0" />
+              <point x="1963.5" y="4414.0" />
+              <point x="1158.2857142857142" y="4414.0" />
+              <point x="97.28571428571422" y="37.0" />
+            </edge>
+            <edge source="\ItemDTO" target="\EntityDTO">
+              <point x="0.0" y="-214.0" />
+              <point x="2482.5" y="122.0" />
+              <point x="2805.8846153846152" y="122.0" />
+              <point x="-12.615384615384755" y="26.0" />
+            </edge>
+            <edge source="\CuentaRequest" target="\Request">
+              <point x="0.0" y="-126.0" />
+              <point x="979.5" y="3993.0" />
+              <point x="682.0" y="3993.0" />
+              <point x="41.25" y="192.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.3254785197788177" x="1111.0478146460432" y="460.5611321481291" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
