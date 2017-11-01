@@ -131,6 +131,7 @@ class ProductoDAOTest extends TestCase {
         $this->assertInstanceOf(ProductoDTO::class, $proF);
         echo(var_dump($proF));
     }
+    
 
     public function tesFindAll() {
         echo("\n Test del metodo findAll para obtener la tabla completa.\n");
