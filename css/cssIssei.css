@@ -1,0 +1,784 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01-nov-2017, 8:05:45
+    Author     : SOPORTE
+*/
+
+.is-navbar-XD{
+    background-color: #000033; 
+}
+.is-logo{
+    width: 60%;
+    height: auto;
+}
+
+.is-logoAdmin{
+    width: 30%;
+    height: auto;
+}
+
+.is-Textarea-XD{
+    width: 95%;
+    height: 90px;
+    font-size: medium;
+    resize: vertical;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 8px;
+    text-align: left;
+    font-size: 0.925em;
+    line-height: 1.5em;
+    transition: all 0.5s;
+    -web-kit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+.is-Textarea-OtraCosa{
+    font-family:"Arial",Calibri;
+    font-size: medium;
+    width: 95%;
+    height: 90px;
+    resize: none;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 8px;
+    text-align: left;
+    font-size: 0.925em;
+    line-height: 1.5em;
+    transition: all 0.5s;
+    -web-kit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+.is-Textarea-XD,.is-Textarea-OtraCosa:focus{
+    width: 100%;
+    box-shadow: 2px 2px 6px #000;
+    background-color: #ffffff;
+    color: #000;
+    border-color: #ff6600;
+}
+
+.is-Tamaño-ContainerXD {
+    width: 90%;
+}
+.is-Tamaño-LetraCarrito{
+    font-size: 13px;
+}
+
+.is-Color01,.is-hover-Color01:hover{
+    color:#8F8787!important;
+    background-color:#EBCBAE!important
+}
+.is-Color02,.is-hover-Color02:hover{
+    color:#000!important;
+    background-color:#8F8787!important
+}
+.is-Color03,.is-hover-Color03:hover{
+    color:#FFF!important;
+    background-color:#FFBF87!important
+}
+.is-Color04,.is-hover-Color04:hover{
+    color:#FFF!important;
+    background-color:#F9F9F9!important
+}
+.is-Color05,.is-hover-Color05:hover{
+    color:#8F8787!important;
+    background-color:#B8FFAA!important
+}
+.is-Color06,.is-hover-Color06:hover{
+    color:#8F8787!important;
+    background-color:#FFDB9C!important
+}
+.is-Color07,.is-hover-Color07:hover{
+    color:#8F8787!important;
+    background-color:#FFFA99!important
+}
+.is-Color08,.is-hover-Color08:hover{
+    color:#FFF!important;
+    background-color:#1A5276!important
+}
+.is-Color09,.is-hover-Color09:hover{
+    color:#FFF!important;
+    background-color:#0033CC!important
+}
+.is-Color10,.is-hover-Color10:hover{
+    color:#FFF!important;
+    background-color:#000033!important
+}
+.is-Color11,.is-hover-Color11:hover{
+    color:#FFF!important;
+    background-color:#626567!important
+}
+.is-Color12,.is-hover-Color12:hover{
+    color:#FFF!important;
+    background-color:#330099!important
+}
+.is-Color13,.is-hover-Color13:hover{
+    color:#1A5276!important;
+    background-color:#FFFFFF!important
+}
+.is-Color14,.is-hover-Color14:hover{
+    color:#FFF!important;
+    background-color:#0033FF!important
+}
+.is-Color15,.is-hover-Color15:hover{
+    color:#FFF!important;
+    background-color:#196F3D!important
+}
+.is-Color16,.is-hover-Color16:hover{
+    color:#FFF!important;
+    background-color:#66BB6A!important
+}
+.is-Color17,.is-hover-Color17:hover{
+    color:#FFF!important;
+    background-color:#FF7043!important
+}
+.is-Color18,.is-hover-Color18:hover{
+    color:#FFF!important;
+    background-color:#F2F3F4!important
+}
+.is-Color19,.is-hover-Color19:hover{
+    color:#FFF!important;
+    background-color:#3333FF!important
+}
+.is-Color20,.is-hover-Color20:hover{
+    color:#FFF!important;
+    background-color:#4FC3F7!important
+}
+.is-Color21,.is-hover-Color21:hover{
+    color:#FFF!important;
+    background-color:#4527A0!important
+}
+.is-Color22,.is-hover-Color22:hover{
+    color:#FFF!important;
+    background-color:#7C4DFF!important
+}
+.is-Color23,.is-hover-Color23:hover{
+    color:#FFF!important;
+    background-color:#FF66FF!important
+}
+.is-Color24,.is-hover-Color24:hover{
+    color:#FFF!important;
+    background-color:#006633!important
+}
+.is-Color25,.is-hover-Color25:hover{
+    color:#FFF!important;
+    background-color:#673AB7!important
+}
+.is-Color26,.is-hover-Color26:hover{
+    color:#FFF!important;
+    background-color:#239B56!important
+}
+.is-Color27,.is-hover-Color27:hover{
+    color:#FFF!important;
+    background-color:#F57C00!important
+}
+.is-Color28,.is-hover-Color28:hover{
+    color:#FFF!important;
+    background-color:#43A047!important
+}
+.is-Color29,.is-hover-Color29:hover{
+    color:#FFF!important;
+    background-color:#66BB6A!important
+}
+
+
+
+.is-TipodeLetra-01{
+    font-family:"Comic Sans MS",sans-serif;
+}
+.is-SectionColor{
+    background-color: #d5e1f0;
+    width: 100%;
+    margin: auto;
+}
+.is-LetraColor01{
+    color: #FFF;
+}
+.is-LetraColor02{
+    color: #1A5276;
+}
+.is-LetraColor03{
+    color: #0033CC;
+}
+.is-LetraColor04{
+    color: #0033FF;
+}
+.is-LetraColor06{
+    font-weight: bold;
+    color: #0033CC;
+}
+.is-LetraColor07{
+    font-weight: bold;
+    color: #FF7043;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+.is-LetraColor08{
+    color : #76448a;
+}
+.is-LetraColor05{
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    color: #196F3D!important
+}
+.is-LetraColor06-Error{
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    color: #922B21!important
+}
+.is-LetraColor09{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    color: #3949AB!important; 
+}
+
+
+.is-Letra01,.is-hover-Letra01:hover{
+    font-weight: bold;
+    color:#FFF!important;
+    background-color:#303F9F!important
+}
+
+.is-PoscisionXD{
+    position:absolute; 
+    top:50%; 
+    left:50%;
+
+}
+
+
+.is-Producto-view-1-img{
+    width: 100%;
+    height: 280px;
+    cursor: pointer;
+    border-top: #303F9F 3px solid;
+    border-bottom: #303F9F 3px solid;
+}
+.is-Producto-view-1-img:hover{
+    border-top: #0033CC 3px solid;
+    border-bottom:#0033CC 3px solid;
+    cursor: pointer;
+}
+.m-producto-card{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #229954;
+    border-radius: 5px;
+}
+.m-producto-name{
+    height: 60px;
+    font-size: 0.85em;
+    font-weight:bolder;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    /*    text-align: center;*/
+}
+
+.is-Size01{
+    max-height: 200px; 
+}
+
+.is-Tamaño-Letra01{
+    font-size: 40px;
+    color:#76448a;
+    display: block;
+    text-align: center;
+}
+.is-Tamaño-Letra05{
+    font-size: 35px;
+    font-family: "Arial","Elephant","Britannic Bold";
+    font-weight: bold;
+    color:#5B2C6F;
+    display: block;
+    text-align: center;
+}
+
+.is-Tamaño-Letra09{
+    font-size: 60px;
+    font-family: "Jokerman","Arial","Elephant","Britannic Bold";
+    font-weight: bold;
+    color:#1B4F72;
+    display: block;
+    text-align: center;
+}
+
+
+.is-Tamaño-Letra04{
+    font-size: 12px;
+    display: block;
+}
+
+.is-Tamaño-Letra01-1{
+    font-size: 25px;
+    color:#0033CC;
+    display: block;
+    line-height: 25px;
+    text-align: center;
+}
+.is-Tamaño-Letra02{
+
+    font-size: 20px;
+    color:#1A5276;
+    display: block;
+    text-align: center;
+}
+.is-Tamaño-Letra06{
+
+    font-size: 25px;
+    color:#EF6C00;
+    display: block;
+    text-align: center;
+}
+.is-Tamaño-Letra08{
+    font-size: 30px;
+    color:#388E3C;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+
+
+.is-Border-XD{
+    border-left : 2px solid #006633;
+    border-right: 2px solid #006633;
+    border-bottom: 2px solid #006633;
+}
+.is-Footer-List{
+    color: #1A5276;
+    font-size: 75%;
+    text-align: justify;
+    border-bottom: 1px solid #FF5733;
+}
+
+.is-Fondo-01{
+    background-color: #D6DBDF;
+    width: 100%;
+    margin: auto;
+}
+.is-Fondo-02{
+    background-color: #D0D3D4;
+    width: 100%;
+    margin: auto;
+}
+
+.is-Fondo-03{
+    background-color: #BDBDBD;
+    width: 100%;
+    margin: auto
+
+}
+
+.is-Table{
+    background-color: #FFCA28;
+    border-radius: 10px;
+}
+
+.is-FooterXD{
+    background-color: #000;
+    width: 100%;
+    padding: 10px;
+    height: auto;
+    margin:auto;
+    color: #ffffff;
+}
+
+.is-Button-up{
+    opacity: 0.3;
+    position: fixed;
+    background-color: #333333;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    right:3%;bottom:3%;
+    z-index: 10;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    -o-transition: all 0.7s;
+    transition: all 0.7s;
+}
+.is-Button-up:hover{
+    opacity: 1;
+    color: white;
+    background-color: #0033CC;
+    cursor: pointer;
+}
+
+.is-Button-a{
+    width: auto;
+    font-size: 1em;
+    background-color: #244063;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #000;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-a:hover{
+    background-color: #fff;
+    border-color: #244063;
+    color: #244063;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+.is-Button-CarritoXD{
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-CarritoXD:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-CarritoXD-Inverted{
+    width: auto;
+    font-size: 1em;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-CarritoXD-Inverted:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-BorrarXD{
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-BorrarXD:hover{
+    background-color: #424949;
+    border-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-BorrarXD-Inverted{
+    width: auto;
+    font-size: 1em;
+    background-color: #000;
+    color: #FFF;
+    border: 1px solid #FFF;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-BorrarXD-Inverted:hover{
+    background-color: #424949;
+    border-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-CancelarXD{
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-CancelarXD:hover{
+    background-color: #FF66FF;
+    border-color: #CC00FF;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-CancelarXD-Inverted{
+    width: auto;
+    font-size: 1em;
+    background-color: #000;
+    color: #FFF;
+    border: 1px solid #FFF;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-CancelarXD-Inverted:hover{
+    background-color: #FF66FF;
+    border-color: #CC00FF;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-AdminCarr{
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+.is-Button-AdminCarr:hover{
+    background-color: #FFCA28;
+    border: 2px solid #EF6C00;
+    color: #fff;
+    cursor: pointer;
+}
+
+.is-Button-Pag{
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+.is-Button-Pag:hover{
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.is-Button-Nothing{
+    width: 40%;
+    height: 40px;
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+.is-Button-Nothing:hover{
+    background-color: #43A047;
+    border: 2px solid #1B5E20;
+    color: #fff;
+    cursor: pointer;
+}
+
+.is-Button-CompraCarr{
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+.is-Button-CompraCarr:hover{
+    background-color: #239B56;
+    border: 2px solid #1B5E20;
+    color: #fff;
+    cursor: pointer;
+}
+
+.is-Button-Carrito{
+    width: 85%;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: black; 
+    height: auto;
+    padding: 2px;
+    outline: none;
+    border: 1px #239B56 solid;
+    vertical-align: middle;
+    font-size: 0.8em;
+    border-radius: 5px;
+    transition:all 0.36s ease-in-out;
+}
+.is-Button-Carrito:hover{
+    width: 90%;
+    background-color: #239B56;
+    color: white;
+    border-color: #ffffff;
+    box-shadow: 2px 2px 5px #006633;
+    cursor: pointer;
+}
+
+.is-Button-CarritoXDXD{
+    width: 85%;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: black; 
+    height: auto;
+    padding: 2px;
+    outline: none;
+    border: 1px #239B56 solid;
+    vertical-align: middle;
+    font-size: 0.8em;
+    border-radius: 5px;
+    transition:all 0.36s ease-in-out;
+}
+.is-Button-CarritoXDXD:hover{
+    width: 90%;
+    background-color: #239B56;
+    color: white;
+    border-color: #ffffff;
+    box-shadow: 2px 2px 5px #006633;
+    cursor: pointer;
+}
+
+.is-Tamaño-Span{
+    width: 100%;
+    height: auto;
+}
+
+.is-Selects{
+    border: 0px;
+    border-radius: 6px;
+    color: #333333;
+    width: 80%;
+    padding: 5px 10px;
+    outline: none;
+    box-shadow: 2px 2px 6px #000;
+    margin-bottom: 25px;;
+    -webkit-transition: width 0.36s, box-shadow 0.5s;
+    -moz-transition: width 0.36s, box-shadow 0.5s;
+    -o-transition: width 0.36s, box-shadow 0.5s;
+    transition: width 0.36s, box-shadow 0.5s;
+}
+.is-Selects:hover{
+    width: 100%;
+    box-shadow: 2px 2px 6px #000;
+}
+
+.is-Producto-PantallaCompleta{
+    width: 45%;
+    border-radius: 2%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+
+.is-Button-EscojerProXD{
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+.is-Button-EscojerProXD:hover{
+    background-color: #303F9F;
+    border: 2px solid #1A237E;
+    color: #fff;
+    cursor: pointer;
+}
+.is-Heidy-XD{
+    border: 2px solid #006633;
+    border-radius: 50px;
+}
+
+input[id^="EsteXDXD"]{
+    display: none;
+}
+input[id^="EsteXDXD"] + label {
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+input[id^="EsteXDXD"] + label:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+input[id^="EsteXDXD"]:checked + label {
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+}
+input[id^="EsteXDXD"] ~ .EsteXDXD {
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 10px auto 0; 
+}
+input[id^="EsteXDXD"]:checked + label + .EsteXDXD{
+    height: auto;
+    opacity: 1;
+}
+

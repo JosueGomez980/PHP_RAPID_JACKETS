@@ -132,12 +132,6 @@ class ProductoDAOTest extends TestCase {
         echo(var_dump($proF));
     }
     
-    public function testHoliwi() {
-        
-        echo "Hola Q Hace";
-        
-    }
-
 }
 
 //$test = new ProductoDAOTest();
