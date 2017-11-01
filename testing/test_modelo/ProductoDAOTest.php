@@ -131,7 +131,17 @@ class ProductoDAOTest extends TestCase {
         $this->assertInstanceOf(ProductoDTO::class, $proF);
         echo(var_dump($proF));
     }
-    
+
+    public function testFindByCategoria() {
+        echo("\n Test del metodo find para buscar por Id.\n");
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setCategoriaIdCategoria(5);
+        $tablaPro = $proDAO->findByCategoria($proDTO);
+        echo("Catidad de productos por categoria 05: -> " . count($tablaPro));
+        $this->assertInstanceOf(ProductoDTO::class, $tablaPro[0]);
+    }
+
 }
 
 //$test = new ProductoDAOTest();
