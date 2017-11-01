@@ -141,6 +141,7 @@ class ProductoDAOTest extends TestCase {
         echo("Catidad de productos por categoria 05: -> " . count($tablaPro));
         $this->assertInstanceOf(ProductoDTO::class, $tablaPro[0]);
     }
+    public function testFind
 
 }
 
