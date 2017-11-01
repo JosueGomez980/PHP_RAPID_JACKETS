@@ -132,20 +132,6 @@ class ProductoDAOTest extends TestCase {
         echo(var_dump($proF));
     }
     
-
-    public function tesFindAll() {
-        echo("\n Test del metodo findAll para obtener la tabla completa.\n");
-        $proDAO = new ProductoDAO();
-        $tablaPro = $proDAO->findAll();
-        echo("Total de productos registrados: ". count($tablaPro));
-        $this->assertInstanceOf(ProductoDTO::class, $tablaPro[0]);
-    }
-    public function testFindByCategoria(){
-        $proDAO = new ProductoDAO();
-        $proDTO = new ProductoDTO();
-        $proDTO->setCategoriaIdCategoria(5);
-    }
-
 }
 
 //$test = new ProductoDAOTest();
