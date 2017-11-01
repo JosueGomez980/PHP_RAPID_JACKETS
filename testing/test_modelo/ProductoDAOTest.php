@@ -131,6 +131,12 @@ class ProductoDAOTest extends TestCase {
         $this->assertInstanceOf(ProductoDTO::class, $proF);
         echo(var_dump($proF));
     }
+    
+    public function testHoliwi() {
+        
+        echo "Hola Q Hace";
+        
+    }
 
 }
 
