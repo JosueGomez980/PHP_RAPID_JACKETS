@@ -122,7 +122,7 @@ class ProductoDAOTest extends TestCase {
         echo(var_dump($proF));
     }
 
-    public function testFind() {
+    public function tesFind() {
         echo("\n Test del metodo find para buscar por Id.\n");
         $proDAO = new ProductoDAO();
         $proDTO = new ProductoDTO();
@@ -131,11 +131,18 @@ class ProductoDAOTest extends TestCase {
         $this->assertInstanceOf(ProductoDTO::class, $proF);
         echo(var_dump($proF));
     }
-    
-    public function testHoliwi() {
-        
-        echo "Hola Q Hace";
-        
+
+    public function tesFindAll() {
+        echo("\n Test del metodo findAll para obtener la tabla completa.\n");
+        $proDAO = new ProductoDAO();
+        $tablaPro = $proDAO->findAll();
+        echo("Total de productos registrados: ". count($tablaPro));
+        $this->assertInstanceOf(ProductoDTO::class, $tablaPro[0]);
+    }
+    public function testFindByCategoria(){
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setCategoriaIdCategoria(5);
     }
 
 }
