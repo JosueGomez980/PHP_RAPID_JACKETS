@@ -97,8 +97,8 @@ class ProductoDAOTest extends TestCase {
         echo(var_dump($proDTO));
     }
 
-    public function testDelete() {
-        echo("\n Test del metodo update cantidad.");
+    public function tesDelete() {
+        echo("\n Test del metodo update cantidad.\n");
         $proDAO = new ProductoDAO();
         $proDTO = new ProductoDTO();
         $proDTO->setIdProducto("pro0000040");
@@ -106,6 +106,17 @@ class ProductoDAOTest extends TestCase {
         $proF = $proDAO->find($proDTO);
         $this->assertInstanceOf(ProductoDTO::class, $proF);
         $rta = $proDAO->delete($proDTO);
+        $this->assertEquals(1, $rta);
+        echo(var_dump($proF));
+    }
+    public function testDisableEnable(){
+        echo("\n Test del metodo disableEnable.\n");
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setIdProducto("pro0000030");
+        $rta = $proDAO->disable_enable($proDTO, true);
+        $proF = $proDAO->find($proDTO);
+        $this->assertInstanceOf(ProductoDTO::class, $proF);
         $this->assertEquals(1, $rta);
         echo(var_dump($proF));
     }

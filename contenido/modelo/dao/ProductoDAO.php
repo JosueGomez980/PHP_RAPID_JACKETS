@@ -319,21 +319,21 @@ final class ProductoDAO implements DAOPaginable {
         return $tablaProducto;
     }
 
-    public function findByPrecio($precio) {
-        
-    }
-
-    public function findByPrecioRango($precioFrom, $precioTo) {
-        
-    }
-
-    public function findByPrecioAsc() {
-        
-    }
-
-    public function findByPrecioDesc() {
-        
-    }
+//    public function findByPrecio($precio) {
+//        
+//    }
+//
+//    public function findByPrecioRango($precioFrom, $precioTo) {
+//        
+//    }
+//
+//    public function findByPrecioAsc() {
+//        
+//    }
+//
+//    public function findByPrecioDesc() {
+//        
+//    }
 
     public function findDinamic(ProductoDTO $proFind, array $rangPrecio) {
         $tablaProductos = null;
