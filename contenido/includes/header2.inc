@@ -12,7 +12,7 @@
         <a href="gestion_usuarios_crud.php" class="w3-padding-4 w3-hover-yellow">Gestión de Usuarios</a>
         <!--<a href="#" class="w3-padding-4 w3-hover-green">Gestión de Pedidos</a>-->
         <!--<a href="#" class="w3-padding-4 w3-hover-lime">Gestión de Facturas</a>-->
-        <!--<a href="#" class="w3-padding-4 w3-hover-black">Gestión de Reportes</a>-->
+        <a href="gestion_reportes.php" class="w3-padding-4 w3-hover-black">Gestión de Reportes</a>
         <a href="inicio.php" class="w3-padding-4 w3-hover-aqua">Pagina de Inicio</a>
     </div>
 
@@ -41,7 +41,7 @@
             <li><a href="gestion_usuarios_crud.php" class="w3-padding-4 w3-hover-yellow">Gestión de Usuarios</a></li>
             <!--<li><a href="#" class="w3-padding-4 w3-hover-green">Gestión de Pedidos</a></li>-->
             <!--<li><a href="#" class="w3-padding-4 w3-hover-lime">Gestión de Facturas</a></li>-->
-            <!--<li><a href="#" class="w3-padding-4 w3-hover-black">Gestión de Reportes</a></li>-->
+            <li><a href="gestion_reportes.php" class="w3-padding-4 w3-hover-black">Gestión de Reportes</a></li>
             <li><a href="inicio.php" class="w3-padding-4 w3-hover-aqua">Pagina de Inicio</a></li>
         </ul>
     </nav>

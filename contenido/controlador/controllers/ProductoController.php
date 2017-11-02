@@ -284,12 +284,36 @@ class ProductoController implements GenericController, Validable {
         }
     }
 
+    public function listarPorNombreLikeAdmin(ProductoDTO $proFind) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $pager = $sesion->get(Session::PAGINADOR);
+        $pager instanceof PaginadorMemoria;
+        $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
+        $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
+        if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
+            $this->contentMGR->setFormato(new Exito());
+            $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            $this->productoMQT->maquetaProductoTablaCrud($arrayProductos);
+        } else {
+            $neu = new Neutral();
+            $neu->setValor("No se encontró ningun producto que coincida con el nombre que has escrito :( ");
+            echo($neu->toString($neu->getValor()));
+        }
+    }
+
     public function mostrarFormDisEnable(ProductoDTO $producto) {
         $this->productoMQT->maquetaProductoDisableEnable($producto);
     }
 
     public function mostrarCrudTable(array $productos) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $pager = $sesion->get(Session::PAGINADOR);
+        $pager instanceof PaginadorMemoria;
+        $pager->maquetarBarraPaginacion();
         $this->productoMQT->maquetaProductoTablaCrud($productos);
+        $pager->maquetarBarraPaginacion();
     }
 
     public function mostrarCrudTableForInventario(array $productos) {
@@ -350,10 +374,32 @@ class ProductoController implements GenericController, Validable {
                 echo($err->toString($err->getValor()));
             } else {
                 $err = new Exito();
-                $err->setValor("Encontrados ". count($tablaProductos)." productos con los parámetros indicados.");
+                $err->setValor("Encontrados " . count($tablaProductos) . " productos con los parámetros indicados.");
                 echo($err->toString($err->getValor()));
-                
+
                 $this->productoMQT->maquetaArrayObject($tablaProductos);
+            }
+        }
+    }
+
+    public function encontrarPorBusquedaAvanzadaByAdmin(ProductoDTO $profind, array $rangoPrecio) {
+        $profind->setDescripcion(Validador::textoParaBuscar($profind->getDescripcion()));
+        if ($rangoPrecio["MAX"] < $rangoPrecio["MIN"]) {
+            $err = new Errado();
+            $err->setValor("Datos del precio incorrectos");
+            echo($err->toString($err->getValor()));
+        } else {
+            $tablaProductos = $this->productoDAO->findDinamic($profind, $rangoPrecio);
+            if (is_null($tablaProductos) || count($tablaProductos) <= 0) {
+                $err = new Neutral();
+                $err->setValor("No se encontró ningun producto con los parámetros que estableciste.");
+                echo($err->toString($err->getValor()));
+            } else {
+                $err = new Exito();
+                $err->setValor("Encontrados " . count($tablaProductos) . " productos con los parámetros indicados.");
+                echo($err->toString($err->getValor()));
+
+                $this->mostrarCrudTable($tablaProductos);
             }
         }
     }

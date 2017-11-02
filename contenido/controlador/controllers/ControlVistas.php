@@ -167,6 +167,13 @@ class ControlVistas {
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLike($proDTO);
     }
+    
+    public function vista_productos_ver_por_nombre_like_admin() {
+        $productoControl = new ProductoController();
+        $proReques = new ProductoRequest();
+        $proDTO = $proReques->getProductoDTO();
+        $productoControl->listarPorNombreLikeAdmin($proDTO);
+    }
 
     public function vista_inventario_ver_nuevo() {
         $inventarioControl = InventarioController::getInstancia();
@@ -208,7 +215,8 @@ class ControlVistas {
             $acceso->irPagina(AccesoPagina::NEG_TO_PER_DATA);
         }
     }
-    public function producto_busqueda_avanzada_user(){
+
+    public function producto_busqueda_avanzada_user() {
         $productoControl = ProductoController::getInstancia();
         $productoControl instanceof ProductoController;
         $proRequest = new ProductoRequest();
@@ -216,9 +224,22 @@ class ControlVistas {
         $productoPost instanceof ProductoDTO;
         $productoPost->setCategoriaIdCategoria(CriptManager::urlVarDecript(filter_input(INPUT_POST, ProductoRequest::pro_id_cat)));
         $rangoPrecio = array();
-        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT); 
-        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT); 
+        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
+        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
         $productoControl->encontrarPorBusquedaAvanzadaByUser($productoPost, $rangoPrecio);
+    }
+
+    public function producto_busqueda_avanzada_admin() {
+        $productoControl = ProductoController::getInstancia();
+        $productoControl instanceof ProductoController;
+        $proRequest = new ProductoRequest();
+        $productoPost = $proRequest->getProductoDTO();
+        $productoPost instanceof ProductoDTO;
+        $productoPost->setCategoriaIdCategoria(CriptManager::urlVarDecript(filter_input(INPUT_POST, ProductoRequest::pro_id_cat)));
+        $rangoPrecio = array();
+        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
+        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
+        $productoControl->encontrarPorBusquedaAvanzadaByAdmin($productoPost, $rangoPrecio);
     }
 
 }

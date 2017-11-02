@@ -254,6 +254,17 @@ function mostrarProductosPorNombre() {
         }
     });
 }
+function mostrarProductosPorNombreAdmin() {
+    var nombreLike = $("#producto_name").val();
+    $.ajax({
+        type: 'get',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: {m: "vista_productos_ver_por_nombre_like_admin", producto_name: nombreLike},
+        success(response) {
+                $("#TABLA_CRUD").html(response);
+        }
+    });
+}
 
 
 //Funciones para la Gestion de Categorias

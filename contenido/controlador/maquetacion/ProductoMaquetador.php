@@ -123,6 +123,10 @@ class ProductoMaquetador implements GenericMaquetador {
                 <div class="w3-row">
                     <div class="w3-quarter w3-card-4">
                         <img class="m-producto-mq-image" src="' . $urlFoto . '" alt="' . $nombre . '" title="' . $nombre . '" onclick="show_modal(\'modal_pro_full_image\');">
+                        <div class="w3-container w3-theme-d3 w3-padding-8 w3-center">
+                        ' . $botonCarrito . '
+                        ' . $inputCarrito . '
+                        </div>
                     </div>
                     <div class="w3-threequarter w3-container w3-card-4">
                         <div class=" m-producto-big-name">' . $nombre . '</div><br>
@@ -140,12 +144,6 @@ class ProductoMaquetador implements GenericMaquetador {
                         <p class="w3-justify w3-theme-light w3-large">
                             ' . $descripcion . '
                         </p>
-                    </div>
-                </div>
-                <div class="w3-row">
-                    <div class="w3-quarter w3-container w3-theme-d3 w3-padding-8 w3-center">
-                        ' . $botonCarrito . '
-                        ' . $inputCarrito . '
                     </div>
                 </div>
             </div>');
@@ -446,9 +444,7 @@ class ProductoMaquetador implements GenericMaquetador {
                 <footer class="w3-container w3-theme-d1">
                     <div class="w3-center w3-padding-16">
                         <button class="w3-btn w3-border w3-white w3-border-blue w3-round-medium" onclick="closeE('modal_busqueda'); productoBusquedaAvanzada('<?php echo($idRTA); ?>', '<?php echo($method); ?>');">Buscar</button>
-                        <a href="productos.php">
-                            <button class="w3-btn w3-white w3-border w3-border-red w3-round-medium">Cancelar</button>
-                        </a>
+                        <button class="w3-btn w3-white w3-border w3-border-red w3-round-medium" onclick="window.location.reload();">Cancelar</button>
                     </div>
                 </footer>
                 <script>
