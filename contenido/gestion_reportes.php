@@ -99,6 +99,7 @@ if (isset($_GET['report'])) {
         $pdf->render();
         $doc = $pdf->output();
         $pdf->stream($nameOfFile . ".pdf");
+        //////////////
     }
 }
 
