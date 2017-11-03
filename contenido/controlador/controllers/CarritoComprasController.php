@@ -82,12 +82,12 @@ class CarritoComprasController {
         }
         $carrito->setItems($newItems);
         $impuestosCarrito = ($subTotalCarrito * self::IVA);
-        if($conImpuesto){
+        if ($conImpuesto) {
             $totalCarrito = $subTotalCarrito + $impuestosCarrito;
-        }else{
+        } else {
             $totalCarrito = $subTotalCarrito;
         }
-        
+
 
         $carrito->setSubtotal($subTotalCarrito);
         $carrito->setImpuestos($impuestosCarrito);
@@ -99,10 +99,11 @@ class CarritoComprasController {
     public function mostrarCarritoCompleto(CarritoComprasDTO $carrito) {
         $this->carritoMQT->maquetaObject($carrito);
     }
-    public function mostrarItemCarritoToEdit(ItemCarritoDTO $itemDisplay){
+
+    public function mostrarItemCarritoToEdit(ItemCarritoDTO $itemDisplay) {
         $this->carritoMQT->maquetaItemCarrito($itemDisplay);
     }
-    
+
     public function existeEnCarrito(CarritoComprasDTO $carrito, ProductoDTO $prod) {
         $ok = FALSE;
         $items = $carrito->getItems();
@@ -117,7 +118,8 @@ class CarritoComprasController {
         }
         return $ok;
     }
-    public function findItemByIdProducto(CarritoComprasDTO $carrito, $idProducto){
+
+    public function findItemByIdProducto(CarritoComprasDTO $carrito, $idProducto) {
         $itemFinded = NULL;
         $items = $carrito->getItems();
         foreach ($items as $it) {
@@ -131,7 +133,8 @@ class CarritoComprasController {
         }
         return $itemFinded;
     }
-    public function getIndxOf(CarritoComprasDTO $carrito, ItemCarritoDTO $item){
+
+    public function getIndxOf(CarritoComprasDTO $carrito, ItemCarritoDTO $item) {
         $idx = 0;
         $items = $carrito->getItems();
         $proSearch = $item->getProducto();
@@ -141,7 +144,7 @@ class CarritoComprasController {
             $it instanceof ItemCarritoDTO;
             $prodItem = $it->getProducto();
             $prodItem instanceof ProductoDTO;
-            if($proSearch->getIdProducto() == $prodItem->getIdProducto()){
+            if ($proSearch->getIdProducto() == $prodItem->getIdProducto()) {
                 $idx = $index;
                 break;
             }
@@ -165,10 +168,40 @@ class CarritoComprasController {
         }
         return $in;
     }
-    public function vaciarCarrito(){
+
+    public function validaCantidadToAddCarrito(CarritoComprasDTO $carrito, ProductoDTO $producto) {
+        $ok = true;
+        $proDAO = ProductoDAO::getInstancia();
+        $proInCart = null;
+        $proDAO instanceof ProductoDAO;
+        $proinDB = $proDAO->find($producto);
+        if (is_null($proinDB)) {
+            $ok = false;
+        }
+        $proinDB instanceof ProductoDTO;
+        $itemInCart = $this->findItemByIdProducto($carrito, $producto->getIdProducto());
+        if (!is_null($itemInCart)) {
+            $itemInCart instanceof ItemCarritoDTO;
+            $proInCart = $itemInCart->getProducto();
+            $proInCart instanceof ProductoDTO;
+            $cantDisponible = $proinDB->getCantidad();
+            $catidadActualCarrito = $proInCart->getCantidad();
+            $cantToAdd = $producto->getCantidad();
+            if ($cantDisponible < ($catidadActualCarrito + $cantToAdd)) {
+                $ok = true;
+            } else {
+                $ok = false;
+            }
+        } else {
+            $ok = false;
+        }
+        return $ok;
+    }
+
+    public function vaciarCarrito() {
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;
-        if($sesion->existe(Session::CART_USER)){
+        if ($sesion->existe(Session::CART_USER)) {
             $sesion->removeEntidad(Session::CART_USER);
         }
     }

@@ -31,14 +31,18 @@ if ($carritoManager->existeEnCarrito($carrito, $procustoPost)) {
     $msg->setValor("Este producto ya fue añanido al carrito. Para modificarlo ve al botón de carrito.");
     $modal->addElemento($msg);
 } else {
-    $newItem = new ItemCarritoDTO($procustoPost);
-    $newItem->setCantidad($procustoPost->getCantidad());
-    $newItem->setCostoUnitario($procustoPost->getPrecio());
-    $newItem->setCostoTotal($procustoPost->getPrecio() * $procustoPost->getCantidad());
-    $carrito->setItem($newItem);
-    $msg = new Exito();
-    $msg->setValor("Añadiste un producto al carrito. Para ver el carrito ve al botón de carrito");
-    $modal->addElemento($msg);
+    if ($carritoManager->validaCantidadToAddCarrito($carrito, $procustoPost)) {
+        $newItem = new ItemCarritoDTO($procustoPost);
+        $newItem->setCantidad($procustoPost->getCantidad());
+        $newItem->setCostoUnitario($procustoPost->getPrecio());
+        $newItem->setCostoTotal($procustoPost->getPrecio() * $procustoPost->getCantidad());
+        $carrito->setItem($newItem);
+        $msg = new Exito();
+        $msg->setValor("Añadiste un producto al carrito. Para ver el carrito ve al botón de carrito");
+        $modal->addElemento($msg);
+    } else {
+        
+    }
 }
 
 //Actualizar la variable de sesion con el nuevo carrito de Compras

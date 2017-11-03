@@ -17,6 +17,8 @@ AutoCarga3::init();
 class PaginadorMemoria extends PaginadorAbstracto {
 
     private $subTablas = array();
+    private $urlServer = "";
+    private $idRtaTarget = "";
 
     public function __construct($numElementsByPage, $limiteBotones, array $tablaCompletaEntidades) {
         parent::__construct($numElementsByPage, $limiteBotones);
@@ -25,7 +27,32 @@ class PaginadorMemoria extends PaginadorAbstracto {
         $this->calcularSubTablas();
     }
 
+    public function getUrlServer() {
+        return $this->urlServer;
+    }
+
+    public function getIdRtaTarget() {
+        return $this->idRtaTarget;
+    }
+
+    public function setUrlServer($urlServer) {
+        $this->urlServer = $urlServer;
+    }
+
+    public function setIdRtaTarget($idRtaTarget) {
+        $this->idRtaTarget = $idRtaTarget;
+    }
+
     public function init($urlServer, $targetRta) {
+        if (is_null($urlServer) || is_null($targetRta)) {
+            $urlServer = $this->urlServer;
+            $targetRta = $this->idRtaTarget;
+        } else {
+            $this->urlServer = $urlServer;
+            $this->idRtaTarget = $targetRta;
+        }
+        $this->urlServer = $urlServer;
+        $this->idRtaTarget = $targetRta;
         $this->generarListaBotones($urlServer, $targetRta);
         $this->setBtnFirstPage(new BtnPaginacion("<<", "firstPage('" . $urlServer . "', '" . $targetRta . "');"));
         $this->setBtnLastPage(new BtnPaginacion(">>", "lastPage('" . $urlServer . "', '" . $targetRta . "');"));
@@ -114,6 +141,7 @@ class PaginadorMemoria extends PaginadorAbstracto {
     }
 
     public function generarListaBotones($urlNegocio, $targetRta) {
+        $this->listaBotones = array();
         for ($index = 1; $index <= $this->numeroPaginas; $index++) {
             $eventoOnclick = 'goPage(\'' . $urlNegocio . '\', \'' . $targetRta . '\', ' . $index . ');';
             $boton = new BtnPaginacion($index, $eventoOnclick);

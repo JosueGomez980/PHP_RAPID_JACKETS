@@ -229,6 +229,7 @@ function disable_enable_producto(divRTA, yn) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function disable_enable_producto(divRTA, yn, idProducto) {
@@ -241,6 +242,7 @@ function disable_enable_producto(divRTA, yn, idProducto) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function mostrarProductosPorNombre() {
@@ -261,10 +263,23 @@ function mostrarProductosPorNombreAdmin() {
         url: 'controlador/controllers/ControlVistas.php',
         data: {m: "vista_productos_ver_por_nombre_like_admin", producto_name: nombreLike},
         success(response) {
-                $("#TABLA_CRUD").html(response);
+            $("#TABLA_CRUD").html(response);
         }
     });
 }
+function mostrarProductosPorNombreAdminInv() {
+    var nombreLike = $("#producto_name").val();
+    $.ajax({
+        type: 'get',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: {m: "vista_productos_ver_por_nombre_like_admin_inv", producto_name: nombreLike},
+        success(response) {
+            $("#TABLA_CRUD").html(response);
+        }
+    });
+}
+
+
 
 
 //Funciones para la Gestion de Categorias

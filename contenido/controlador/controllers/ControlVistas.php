@@ -167,12 +167,19 @@ class ControlVistas {
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLike($proDTO);
     }
-    
+
     public function vista_productos_ver_por_nombre_like_admin() {
         $productoControl = new ProductoController();
         $proReques = new ProductoRequest();
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLikeAdmin($proDTO);
+    }
+
+    public function vista_productos_ver_por_nombre_like_admin_inv() {
+        $productoControl = new ProductoController();
+        $proReques = new ProductoRequest();
+        $proDTO = $proReques->getProductoDTO();
+        $productoControl->listarPorNombreLikeAdminInv($proDTO);
     }
 
     public function vista_inventario_ver_nuevo() {
@@ -240,6 +247,19 @@ class ControlVistas {
         $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
         $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
         $productoControl->encontrarPorBusquedaAvanzadaByAdmin($productoPost, $rangoPrecio);
+    }
+    
+    public function producto_busqueda_avanzada_admin_inv() {
+        $productoControl = ProductoController::getInstancia();
+        $productoControl instanceof ProductoController;
+        $proRequest = new ProductoRequest();
+        $productoPost = $proRequest->getProductoDTO();
+        $productoPost instanceof ProductoDTO;
+        $productoPost->setCategoriaIdCategoria(CriptManager::urlVarDecript(filter_input(INPUT_POST, ProductoRequest::pro_id_cat)));
+        $rangoPrecio = array();
+        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
+        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
+        $productoControl->encontrarPorBusquedaAvanzadaByAdminInventario($productoPost, $rangoPrecio);
     }
 
 }
