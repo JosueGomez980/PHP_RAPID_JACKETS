@@ -18,18 +18,25 @@ $sesion instanceof SimpleSession;
 $carritoCompras = $sesion->getEntidad(Session::CART_USER);
 $carritoCompras instanceof CarritoComprasDTO;
 $productoId = CriptManager::urlVarDecript($productoPost->getIdProducto());
+$productoPost->setIdProducto($productoId);
+//Validar que la catidad a actualizar sea menor o igual a la disponible en la base de datos
 
-$itemToReplace = $carritoManager->findItemByIdProducto($carritoCompras, $productoId);
-$indexToReplace = $carritoManager->getIndxOf($carritoCompras, $itemToReplace);
-$newItem = $itemToReplace;
-$newItem->setCantidad($productoPost->getCantidad());
+if ($carritoManager->validaCantidadToAddCarrito($carritoCompras, $productoPost)) {
+    $itemToReplace = $carritoManager->findItemByIdProducto($carritoCompras, $productoId);
+    $indexToReplace = $carritoManager->getIndxOf($carritoCompras, $itemToReplace);
+    $newItem = $itemToReplace;
+    $newItem->setCantidad($productoPost->getCantidad());
 
-$newListaItems = $carritoCompras->getItems();
-$newListaItems[$indexToReplace] = $newItem;
+    $newListaItems = $carritoCompras->getItems();
+    $newListaItems[$indexToReplace] = $newItem;
 
-$carritoCompras->setItems($newListaItems);
-$newCarritoCompras = $carritoManager->calcularCarrito($carritoCompras, true);
+    $carritoCompras->setItems($newListaItems);
+    $newCarritoCompras = $carritoManager->calcularCarrito($carritoCompras, true);
 
-$sesion->addEntidad($newCarritoCompras, Session::CART_USER);
+    $sesion->addEntidad($newCarritoCompras, Session::CART_USER);
+} else {
+    
+}
+
 
 $acceso->irPagina(AccesoPagina::NEG_TO_CART_GES);

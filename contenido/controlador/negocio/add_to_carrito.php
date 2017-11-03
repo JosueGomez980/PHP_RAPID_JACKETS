@@ -26,10 +26,26 @@ $procustoPost->setPrecio($productoTemp->getPrecio());
 
 $carrito = $sesion->getEntidad(Session::CART_USER);
 $carrito instanceof CarritoComprasDTO;
+$modal->open();
 if ($carritoManager->existeEnCarrito($carrito, $procustoPost)) {
-    $msg = new Neutral();
-    $msg->setValor("Este producto ya fue añanido al carrito. Para modificarlo ve al botón de carrito.");
-    $modal->addElemento($msg);
+    if ($carritoManager->validaCantidadToAddCarrito($carrito, $procustoPost)) {
+        $nuevaListaItems = $carrito->getItems();
+        $itemExistente = $carritoManager->findItemByIdProducto($carrito, $productoTemp->getIdProducto());
+        $indexToReplace = $carritoManager->getIndxOf($carrito, $itemExistente);
+        $newItem = new ItemCarritoDTO($procustoPost);
+        $newItem->setCantidad($itemExistente->getCantidad() + $procustoPost->getCantidad());
+        $newItem->setCostoUnitario($procustoPost->getPrecio());
+        $newItem->setCostoTotal($procustoPost->getPrecio() * $procustoPost->getCantidad());
+        $nuevaListaItems[$indexToReplace] = $newItem;
+        $carrito->setItems($nuevaListaItems);
+        $msg = new Exito();
+        $msg->setValor("Agregaste a tu carrito " . $procustoPost->getCantidad() . "  unidades para el producto: " . Validador::fixTexto($productoTemp->getNombre()) . " Actual (" . $newItem->getCantidad() . ") ");
+        $modal->addElemento($msg);
+    } else {
+        $msg = new Errado();
+        $msg->setValor("La cantidad ingresada supera la cantidad disponible actual");
+        $modal->addElemento($msg);
+    }
 } else {
     if ($carritoManager->validaCantidadToAddCarrito($carrito, $procustoPost)) {
         $newItem = new ItemCarritoDTO($procustoPost);
@@ -41,7 +57,9 @@ if ($carritoManager->existeEnCarrito($carrito, $procustoPost)) {
         $msg->setValor("Añadiste un producto al carrito. Para ver el carrito ve al botón de carrito");
         $modal->addElemento($msg);
     } else {
-        
+        $msg = new Errado();
+        $msg->setValor("La cantidad ingresada supera la cantidad disponible actual");
+        $modal->addElemento($msg);
     }
 }
 
@@ -52,6 +70,6 @@ $sesion->addEntidad($nuevoCarrito, Session::CART_USER);
 $btnClose = new CloseBtn();
 $btnClose->setValor("OK");
 $modal->addElemento($btnClose);
-$modal->open();
+//---
 $modal->maquetar();
 $modal->close();

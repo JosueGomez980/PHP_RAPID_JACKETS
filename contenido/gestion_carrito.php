@@ -25,12 +25,13 @@ and open the template in the editor.
 <html>
     <?php
     $contenido = ContenidoPagina::getInstancia();
+    $contenido instanceof ContenidoPagina;
     $contenido->getHead();
     ?>
     <body>
         <?php
         $contenido->getHeader();
-
+        $contenido->mostrarRespuestaNegocio();
         // Seccion para mostrar los datos, iconos del usuario que está logeado y el menu 
         ?>
         <section class="m-section">

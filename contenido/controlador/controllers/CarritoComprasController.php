@@ -175,27 +175,46 @@ class CarritoComprasController {
         $proInCart = null;
         $proDAO instanceof ProductoDAO;
         $proinDB = $proDAO->find($producto);
+        $proinDB instanceof ProductoDTO;
         if (is_null($proinDB)) {
             $ok = false;
-        }
-        $proinDB instanceof ProductoDTO;
-        $itemInCart = $this->findItemByIdProducto($carrito, $producto->getIdProducto());
-        if (!is_null($itemInCart)) {
-            $itemInCart instanceof ItemCarritoDTO;
-            $proInCart = $itemInCart->getProducto();
-            $proInCart instanceof ProductoDTO;
-            $cantDisponible = $proinDB->getCantidad();
-            $catidadActualCarrito = $proInCart->getCantidad();
-            $cantToAdd = $producto->getCantidad();
-            if ($cantDisponible < ($catidadActualCarrito + $cantToAdd)) {
-                $ok = true;
-            } else {
-                $ok = false;
-            }
         } else {
-            $ok = false;
+            if (count($carrito->getItems()) == 0) {
+                $cantDisponible = $proinDB->getCantidad();
+                if (($producto->getCantidad()) <= $cantDisponible) {
+                    $ok = true;
+                } else {
+                    $ok = false;
+                }
+            } else {
+                $itemInCart = $this->findItemByIdProducto($carrito, $proinDB->getIdProducto());
+                if (is_null($itemInCart)) {
+                    $cantDisponible = $proinDB->getCantidad();
+                    if (($producto->getCantidad()) <= $cantDisponible) {
+                        $ok = true;
+                    } else {
+                        $ok = false;
+                    }
+                } else {
+                    $itemInCart instanceof ItemCarritoDTO;
+                    $proInCart = $itemInCart->getProducto();
+                    $proInCart instanceof ProductoDTO;
+                    $cantDisponible = $proinDB->getCantidad();
+                    $catidadActualCarrito = $itemInCart->getCantidad();
+                    $cantToAdd = $producto->getCantidad();
+                    if (($catidadActualCarrito + $cantToAdd) <= $cantDisponible) {
+                        $ok = true;
+                    } else {
+                        $ok = false;
+                    }
+                }
+            }
         }
         return $ok;
+    }
+
+    public function validaCantidadToUpdateItem(CarritoComprasDTO $carrito, ProductoDTO $proUpdate) {
+        
     }
 
     public function vaciarCarrito() {
