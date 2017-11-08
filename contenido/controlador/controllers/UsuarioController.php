@@ -520,7 +520,8 @@ class UsuarioController implements Validable, GenericController {
             $modal->close();
         }
     }
-    public function mostrarNavBarUser(){
+
+    public function mostrarNavBarUser() {
         $this->usuarioMQT->maquetaLogedUserMenu();
     }
 
@@ -544,6 +545,18 @@ class UsuarioController implements Validable, GenericController {
         }
     }
 
+    public function enviarEmailAccountVerificacion(UsuarioDTO $user) {
+        
+    }
+
+    public function generateEstadoEncriptado(UsuarioDTO $user) {
+        $cripter = CriptManager::getInstacia();
+        $cripter instanceof CriptManager;
+        $estadoA = $user->getIdUsuario() . UsuarioDAO::EST_NO_VALID;
+        $estadoB = CriptManager::urlVarEncript($estadoA);
+        $estadoC = $cripter->simpleEncriptDF($estadoB);
+        return $estadoC;
+    }
 
     public function validaManagerLogin(UsuarioDTO $user) {
         $ok = FALSE;

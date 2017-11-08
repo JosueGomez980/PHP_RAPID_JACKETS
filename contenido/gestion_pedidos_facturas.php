@@ -38,7 +38,6 @@ and open the template in the editor.
                     'allow_self_signed' => true
             ));
             $mail = new PHPMailer();
-            $mail->SMTPDebug = 2;
             $mail->isSMTP();
             $mail->Host = gethostbyname('smtp.gmail.com');
             $mail->SMTPOptions = $smtpOpt;
@@ -48,7 +47,7 @@ and open the template in the editor.
             $mail->Username = 'creacionesjulieth123@gmail.com';
             $mail->Password = 'losjaponeses123';
             $mail->setFrom('creacionesjulieth123@gmail.com', 'Creaciones Julieth');
-            $mail->addAddress('jfgomez9095@misena.edu.co');
+            $mail->addAddress('creacionesjulieth123@gmail.com');
             $mail->Subject = 'Hello from PHPMailer!';
 //            $mail->Body = 'This is a test.';
             $mail->isHTML(true);

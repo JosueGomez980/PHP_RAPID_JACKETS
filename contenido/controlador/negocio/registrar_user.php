@@ -26,9 +26,6 @@ $ok = TRUE; //Esta variable es la que al final del flujo dirá si se hace o no l
 //-------------------------------------
 //-------------------------------------
 //Completar campos de cada entidad (Aquellos que no debe ser gestionables por el usuario simple) //Ok??
-$userDTO->setEstado(UsuarioDAO::EST_ACTIVO); //Esos dos puntos signican acceso a una constante o propiedad estatica de la clase
-$userDTO->setRol(UsuarioDAO::ROL_USER);
-//Validador es una clase con metodos estaticos que hice para validar basicamente cualquier dato.
 
 $cuentaDTO->setSegundoNombre(Validador::nullable($cuentaDTO->getSegundoNombre()));
 $cuentaDTO->setSegundoApellido(Validador::nullable($cuentaDTO->getSegundoApellido()));
@@ -115,11 +112,15 @@ if ($cuetaManager->validaPK($cuentaDTO)) {
 //$cuentaDTO->setPrimerApellido(Validador::fixTexto($cuentaDTO->getPrimerApellido()));
 //$cuentaDTO->setSegundoApellido(Validador::fixTexto($cuentaDTO->getSegundoApellido()));
 
+$userDTO->setEstado(UsuarioDAO::EST_ACTIVO); //Esos dos puntos signican acceso a una constante o propiedad estatica de la clase
+$userDTO->setRol(UsuarioDAO::ROL_USER);
+//Validador es una clase con metodos estaticos que hice para validar basicamente cualquier dato.
 
 
 if ($ok) {
     if ($userManager->insertar($userDTO)) {
         if ($cuetaManager->insertar($cuentaDTO)) {
+            $userManager->generateEstadoEncriptado($userDTO);
             $error = new Exito();
             $error->setValor("¡Los datos de usuario han sido registrados exitosamente <br>Ahora puedes Iniciar sesión con los datos que has enviado <a href='iniciar_sesion.php'><h4>Log In</h4></a>");
             $modal->addElemento($error);

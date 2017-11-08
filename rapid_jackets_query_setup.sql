@@ -50,7 +50,7 @@ CREATE TABLE RAPID_JACKETS.USUARIO (
   ID_USUARIO VARCHAR(255) NOT NULL COMMENT 'Esta es la llave promaria de la tabla usuario. Corresponde al nombre digitado por el usuario que se reguistre como cliente en el sistema. Se optará por mantener este campo encriptado por seguridad',
   CONTRASENA VARCHAR(255) NOT NULL COMMENT 'Esta campo es para la contraseña del usuario. ',
   ROL VARCHAR(50) NOT NULL DEFAULT 'USER' COMMENT 'Este espacio es para que el usuario diga su rol.',
-  ESTADO VARCHAR(20) NOT NULL DEFAULT 'ENABLED' COMMENT 'Este campo es para que el usuario tenga conocimiento de su estado bien sea activo o inactivo.',
+  ESTADO VARCHAR(100) NOT NULL DEFAULT 'ENABLED' COMMENT 'Este campo es para que el usuario tenga conocimiento de su estado bien sea activo o inactivo.',
   EMAIL VARCHAR(255) UNIQUE NOT NULL COMMENT 'Este campo es para el correo electronico del usuario,donde se le enviara la informacion de la empresa.',
   PRIMARY KEY (ID_USUARIO)
 )COMMENT 'Esta tabla almacena todos los usuarios del sistema, tanto clientes como administradores';
