@@ -520,6 +520,9 @@ class UsuarioController implements Validable, GenericController {
             $modal->close();
         }
     }
+    public function mostrarNavBarUser(){
+        $this->usuarioMQT->maquetaLogedUserMenu();
+    }
 
     public function mostrarCrudPorIdUsuario(UsuarioDTO $user) {
         $user->setIdUsuario(Validador::textoParaBuscar($user->getIdUsuario()));

@@ -28,11 +28,6 @@ and open the template in the editor.
             <?php
             $userManager->mostrarManagerLink();
             ?>
-            <div id="cardUser">
-                <?php
-                $userManager->mostrarCardUsuario();
-                ?>
-            </div>
             <div class="slider"> 
                 <ul>
                     <img src="../media/img/imagen1.png" alt="">

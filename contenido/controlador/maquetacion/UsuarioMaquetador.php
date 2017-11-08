@@ -333,4 +333,21 @@ class UsuarioMaquetador implements GenericMaquetador {
             </div>');
     }
 
+    public function maquetaLogedUserMenu() {
+        //Metodo a ubicar en el header de la página
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        if ($sesion->existe(Session::US_LOGED)) {
+            $userS = $sesion->getEntidad(Session::US_LOGED);
+            $userS instanceof UsuarioDTO;
+            $idUser = Validador::fixTexto($userS->getIdUsuario());
+            echo('<li class="w3-right"><a class="w3-theme-dark w3-hover-red" href="controlador/negocio/unlog.php">Salir <img class="m-user-admin-icons" src="../media/img/icons_users/logout.png" ></a></li>
+            <li class="w3-right"><a class="w3-theme-l1 w3-hover-green" href="configurar_cuenta.php">Tu Perfil: <b>' . $idUser . '</b> <img class="m-user-admin-icons" src="../media/img/icons_users/config_cuenta.png" ></a></li>');
+            echo('<li class="w3-right"><a class="w3-theme-d3 w3-hover-pink" href="#">Tus compras  <img class="m-user-admin-icons" src="../media/img/icons_clothes/hand-bag-5.png"> </a></li>');
+        } else {
+            echo('<li class="w3-right"><a class="w3-hover-green" href="iniciar_sesion.php">Inicie Sesion</a></li>
+            <li class="w3-right"><a class="w3-hover-orange" href="registro_usuarios.php">Registrarse</a></li>');
+        }
+    }
+
 }

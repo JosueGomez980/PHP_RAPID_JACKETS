@@ -47,6 +47,7 @@ class AutoCarga {
         if (file_exists('modelo/dao/EntityDTO.php')) {
             include_once 'modelo/dao/EntityDTO.php';
         }
+        require_once 'controlador/PHPMailer-master/PHPMailerAutoload.php';
     }
 
     public function modelo() {

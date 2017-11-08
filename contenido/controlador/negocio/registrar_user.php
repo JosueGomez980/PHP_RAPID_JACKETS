@@ -116,20 +116,34 @@ if ($cuetaManager->validaPK($cuentaDTO)) {
 //$cuentaDTO->setSegundoApellido(Validador::fixTexto($cuentaDTO->getSegundoApellido()));
 
 
-$modal->open();
-$modal->maquetar();
+
 if ($ok) {
     if ($userManager->insertar($userDTO)) {
-        $cuetaManager->insertar($cuentaDTO);
+        if ($cuetaManager->insertar($cuentaDTO)) {
+            $error = new Exito();
+            $error->setValor("¡Los datos de usuario han sido registrados exitosamente <br>Ahora puedes Iniciar sesión con los datos que has enviado <a href='iniciar_sesion.php'><h4>Log In</h4></a>");
+            $modal->addElemento($error);
+        } else {
+            $error = new Errado();
+            $error->setValor("Hubo un error grave al guardar. Intente de nuevo.");
+            $modal->addElemento($error);
+        }
+    } else {
+        $error = new Errado();
+        $error->setValor("Hubo un error grave al guardar. Intente de nuevo.");
+        $modal->addElemento($error);
     }
 } else {
     $error = new Errado();
     $error->setValor("No se pudo hacer el registro de los datos correctamente.");
-    echo ($error->toString($error->getValor()));
+    $modal->addElemento($error);
 }
+
 $closeBtn = new CloseBtn();
 $closeBtn->setValor("Aceptar");
-echo($closeBtn->toString($closeBtn->getValor()));
+$modal->addElemento($closeBtn);
+$modal->open();
+$modal->maquetar();
 $modal->close();
 //Procesado de los datos informacion Personal
 

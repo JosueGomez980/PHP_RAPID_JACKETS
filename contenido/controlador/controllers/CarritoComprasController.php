@@ -214,7 +214,21 @@ class CarritoComprasController {
     }
 
     public function validaCantidadToUpdateItem(CarritoComprasDTO $carrito, ProductoDTO $proUpdate) {
-        
+        $ok = true;
+        $proDAO = ProductoDAO::getInstancia();
+        $proDAO instanceof ProductoDAO;
+        $proinDB = $proDAO->find($proUpdate);
+        $proinDB instanceof ProductoDTO;
+        if (is_null($proinDB)) {
+            $ok = false;
+        } else {
+            if ($proUpdate->getCantidad() <= $proinDB->getCantidad() && $proUpdate->getCantidad() >= 1) {
+                $ok = true;
+            } else {
+                $ok = false;
+            }
+        }
+        return $ok;
     }
 
     public function vaciarCarrito() {

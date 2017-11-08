@@ -107,7 +107,7 @@ CREATE TABLE RAPID_JACKETS.FACTURA (
   PRIMARY KEY (ID_FACTURA),
   FOREIGN KEY (CUENTA_TIPO_DOCUMENTO , CUENTA_NUM_DOCUMENTO)
   REFERENCES RAPID_JACKETS.CUENTA (TIPO_DOCUMENTO , NUM_DOCUMENTO)
-)COMMENT 'Esta tabla es para guardar informacion acerca de una factura. Solo el cliente puede hacer una compra y hacer que el sistema le genere una factura';
+) COMMENT 'Esta tabla es para guardar informacion acerca de una factura. Solo el cliente puede hacer una compra y hacer que el sistema le genere una factura';
 
 CREATE TABLE RAPID_JACKETS.ITEM_FACTURA (
   PRODUCTO_ID_PRODUCTO VARCHAR(50) NOT NULL COMMENT 'Esta es la llave primaria de la tabla.',
@@ -153,7 +153,7 @@ CREATE TABLE RAPID_JACKETS.PAGO (
   PRIMARY KEY (FACTURA_ID_FACTURA),
   FOREIGN KEY (FACTURA_ID_FACTURA)
   REFERENCES RAPID_JACKETS.FACTURA (ID_FACTURA)
-)COMMENT 'Esta tabla es para guardar informacion acerca del tipo de pago que efectua el cliente para un determinado pedido.';
+) COMMENT 'Esta tabla es para guardar informacion acerca del tipo de pago que efectua el cliente para un determinado pedido.';
 
 -- --------------------PROCEDIMIENTOS Y FUNCIONES-----------------------------
 -- AUTO incrmentar el id de un producto. Permitirá inicicialmente hasta 9.999.999 de productos

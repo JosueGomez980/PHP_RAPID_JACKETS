@@ -97,7 +97,7 @@ class ProductoMaquetador implements GenericMaquetador {
 
         $idProducto = base64_encode($entidad->getIdProducto());
         $categoriaNombre = $cateDTO->getNombre();
-        $nombre = $entidad->getNombre();
+        $nombre = ($entidad->getNombre());
         $precio = Validador::formatPesos($entidad->getPrecio());
         $descripcion = $entidad->getDescripcion();
         $cantidadDisponible = $entidad->getCantidad();
@@ -155,7 +155,7 @@ class ProductoMaquetador implements GenericMaquetador {
         $catDAO = new CategoriaDAO();
         $catFinded = $catDAO->find($catDTO);
         $categoriaManager = new CategoriaController();
-        $descripcion = Validador::fixTexto($producto->getDescripcion());
+        $descripcion = ($producto->getDescripcion());
         $nombre = Validador::fixTexto($producto->getNombre());
         $urlFoto = $this->urlFoto($producto->getFoto());
         $precio = $producto->getPrecio();

@@ -44,6 +44,9 @@ class AutoCarga3 {
         if (file_exists('../../modelo/dao/EntityDTO.php')) {
             include_once '../../modelo/dao/EntityDTO.php';
         }
+        if (file_exists('../PHPMailer-master/PHPMailerAutoload.php')) {
+            require_once '../PHPMailer-master/PHPMailerAutoload.php';
+        }
     }
 
     public function modelo() {
