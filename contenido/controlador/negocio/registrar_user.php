@@ -124,7 +124,7 @@ if ($ok) {
                 $error->setValor("¡Los datos de usuario han sido registrados exitosamente <br> Ahora debes activar tu usuario. Para ello debes al correo que registraste (" . $userDTO->getEmail() . ") y mirar tu bozon de entrada.");
                 $modal->addElemento($error);
             } else {
-                $error = new Error();
+                $error = new Errado();
                 $error->setValor("El correo de confirmación no pudo ser enviado. Asegurate de que el email digitado es válido");
                 $modal->addElemento($error);
             }

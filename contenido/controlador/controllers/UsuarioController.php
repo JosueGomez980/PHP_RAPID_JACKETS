@@ -554,12 +554,15 @@ class UsuarioController implements Validable, GenericController {
 
     public function enviarEmailAccountVerificacion(UsuarioDTO $user) {
         $ok = true;
+        $idUserCrip = base64_encode($user->getIdUsuario());
         $mailer = EmailManager::getInstancia();
         $mailer instanceof EmailManager;
-        $msg = "Bienvenido a Rapid Jackets - Verificar cuenta";
         $mailer->setSubjet(EmailManager::SJ_ACC_ACT);
         $mailer->oneAddress($user->getEmail());
-        $mailer->setContenido(Validador::fixTexto($msg));
+        $msgHtml = file_get_contents("../../includes/mails/acc_verif_html_msg.html");
+        $msgHtml .= "";
+        //$mailer->setAltCont("");
+        $mailer->html($msgHtml);
         if (!$mailer->enviar()) {
             $ok = false;
         }

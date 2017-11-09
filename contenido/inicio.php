@@ -12,9 +12,9 @@ and open the template in the editor.
     $contenido = ContenidoPagina::getInstancia();
     $contenido instanceof ContenidoPagina;
     $contenido->getHead();
-    
+
     AutoCarga::init();
-    
+
     $sesion = SimpleSession::getInstancia();
     $userManager = new UsuarioController();
     ?>
@@ -37,6 +37,8 @@ and open the template in the editor.
             </div>
         </section>
         <?php
+        $url = $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . "/contenido/controlador/negocio/";
+        echo($url);
         $contenido->getFooter();
         ?>
     </body>
