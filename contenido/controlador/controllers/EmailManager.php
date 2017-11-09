@@ -44,7 +44,7 @@ class EmailManager {
 
     public function __construct() {
         $this->mail = new PHPMailer();
-        $this->initDefault();
+        $this->initDefault(self::SMTP_OPTS);
     }
 
     public function html($htmlText) {
@@ -56,6 +56,8 @@ class EmailManager {
     }
 
     public function initDefault(array $smtpOps) {
+        $this->mail->isSMTP();
+        $this->mail->CharSet = "UTF-8";
         $this->userAccount = $this->mail->Username = self::DEFAULT_EMAIL;
         $this->password = $this->mail->Password = self::DEFAULT_PASS;
         $this->mail->Host = self::DEFAULT_HOST;
@@ -79,7 +81,14 @@ class EmailManager {
         return false;
     }
 
+    public function oneAddress($email) {
+        $this->mail->clearAddresses();
+        $this->mail->addAddress($email);
+        $this->address = $email;
+    }
+
     public function colocarListaEmails(array $emails) {
+        $this->mail->clearAddresses();
         $numEmails = count($emails);
         $numOk = 0;
         foreach ($emails as $em) {
@@ -169,7 +178,12 @@ class EmailManager {
     public function enviar() {
         $ok = false;
         try {
-            
+            if ($this->mail->send()) {
+                $ok = true;
+            } else {
+                echo($this->mail->ErrorInfo);
+                $ok = false;
+            }
         } catch (phpmailerException $exc) {
             echo $exc->getMessage();
             $ok = false;

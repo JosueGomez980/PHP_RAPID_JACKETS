@@ -177,6 +177,13 @@ class UsuarioController implements Validable, GenericController {
         return $strRol;
     }
 
+    public function usuarioIsNotVerified(UsuarioDTO $user) {
+        if ((strlen($user->getEstado()) == 60) && (password_get_info($user->getEstado())["algoName"] == "bcrypt")) {
+            return true;
+        }
+        return false;
+    }
+
     public function insertar(EntityDTO $entidad) {
         $rta = FALSE;
         $entidad instanceof UsuarioDTO;
@@ -546,7 +553,17 @@ class UsuarioController implements Validable, GenericController {
     }
 
     public function enviarEmailAccountVerificacion(UsuarioDTO $user) {
-        
+        $ok = true;
+        $mailer = EmailManager::getInstancia();
+        $mailer instanceof EmailManager;
+        $msg = "Bienvenido a Rapid Jackets - Verificar cuenta";
+        $mailer->setSubjet(EmailManager::SJ_ACC_ACT);
+        $mailer->oneAddress($user->getEmail());
+        $mailer->setContenido(Validador::fixTexto($msg));
+        if (!$mailer->enviar()) {
+            $ok = false;
+        }
+        return $ok;
     }
 
     public function generateEstadoEncriptado(UsuarioDTO $user) {

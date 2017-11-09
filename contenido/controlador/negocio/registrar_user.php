@@ -58,7 +58,6 @@ if (!Validador::validaUserName($userDTO->getIdUsuario())) {
     $modal->addElemento($error);
     $ok = FALSE;
 }
-//$userDTO->setIdUsuario(Validador::fixTexto($userDTO->getIdUsuario())); //Arregla el idUsuario
 
 if (!Validador::validaEmail($userDTO->getEmail())) {
     $error = new Errado();
@@ -72,9 +71,6 @@ if (!is_null($userManager->encontrarByEmail($userDTO))) {
     $modal->addElemento($error);
     $ok = FALSE;
 }
-//$userDTO->setEmail(Validador::fixTexto($userDTO->getEmail())); //Arregla el email
-//
-//Validacion de datos de la entidad CuentaDTO
 
 if (!Validador::validaNumDoc($cuentaDTO->getNumDocumento())) {
     $error = new Errado();
@@ -112,18 +108,26 @@ if ($cuetaManager->validaPK($cuentaDTO)) {
 //$cuentaDTO->setPrimerApellido(Validador::fixTexto($cuentaDTO->getPrimerApellido()));
 //$cuentaDTO->setSegundoApellido(Validador::fixTexto($cuentaDTO->getSegundoApellido()));
 
-$userDTO->setEstado(UsuarioDAO::EST_ACTIVO); //Esos dos puntos signican acceso a una constante o propiedad estatica de la clase
+
 $userDTO->setRol(UsuarioDAO::ROL_USER);
 //Validador es una clase con metodos estaticos que hice para validar basicamente cualquier dato.
-
 
 if ($ok) {
     if ($userManager->insertar($userDTO)) {
         if ($cuetaManager->insertar($cuentaDTO)) {
-            $userManager->generateEstadoEncriptado($userDTO);
-            $error = new Exito();
-            $error->setValor("¡Los datos de usuario han sido registrados exitosamente <br>Ahora puedes Iniciar sesión con los datos que has enviado <a href='iniciar_sesion.php'><h4>Log In</h4></a>");
-            $modal->addElemento($error);
+            $userDTO->setEstado($userManager->generateEstadoEncriptado($userDTO));
+            $userDAO = UsuarioDAO::getInstancia();
+            $userDAO instanceof UsuarioDAO;
+            $userDAO->putEstado($userDTO);
+            if ($userManager->enviarEmailAccountVerificacion($userDTO)) {
+                $error = new Exito();
+                $error->setValor("¡Los datos de usuario han sido registrados exitosamente <br> Ahora debes activar tu usuario. Para ello debes al correo que registraste (" . $userDTO->getEmail() . ") y mirar tu bozon de entrada.");
+                $modal->addElemento($error);
+            } else {
+                $error = new Error();
+                $error->setValor("El correo de confirmación no pudo ser enviado. Asegurate de que el email digitado es válido");
+                $modal->addElemento($error);
+            }
         } else {
             $error = new Errado();
             $error->setValor("Hubo un error grave al guardar. Intente de nuevo.");
