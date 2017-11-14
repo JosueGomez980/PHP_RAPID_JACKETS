@@ -181,7 +181,7 @@ class CarritoComprasController {
         } else {
             if (count($carrito->getItems()) == 0) {
                 $cantDisponible = $proinDB->getCantidad();
-                if (($producto->getCantidad()) <= $cantDisponible) {
+                if (($producto->getCantidad()) <= $cantDisponible && $producto->getCantidad() >= 1) {
                     $ok = true;
                 } else {
                     $ok = false;
@@ -190,7 +190,7 @@ class CarritoComprasController {
                 $itemInCart = $this->findItemByIdProducto($carrito, $proinDB->getIdProducto());
                 if (is_null($itemInCart)) {
                     $cantDisponible = $proinDB->getCantidad();
-                    if (($producto->getCantidad()) <= $cantDisponible) {
+                    if (($producto->getCantidad()) <= $cantDisponible && $producto->getCantidad() >= 1) {
                         $ok = true;
                     } else {
                         $ok = false;
@@ -202,7 +202,7 @@ class CarritoComprasController {
                     $cantDisponible = $proinDB->getCantidad();
                     $catidadActualCarrito = $itemInCart->getCantidad();
                     $cantToAdd = $producto->getCantidad();
-                    if (($catidadActualCarrito + $cantToAdd) <= $cantDisponible) {
+                    if ((($catidadActualCarrito + $cantToAdd) <= $cantDisponible) && ($cantToAdd >= 1)) {
                         $ok = true;
                     } else {
                         $ok = false;

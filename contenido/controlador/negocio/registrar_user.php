@@ -110,8 +110,6 @@ if ($cuetaManager->validaPK($cuentaDTO)) {
 
 
 $userDTO->setRol(UsuarioDAO::ROL_USER);
-//Validador es una clase con metodos estaticos que hice para validar basicamente cualquier dato.
-
 if ($ok) {
     if ($userManager->insertar($userDTO)) {
         if ($cuetaManager->insertar($cuentaDTO)) {
@@ -150,7 +148,6 @@ $modal->addElemento($closeBtn);
 $modal->open();
 $modal->maquetar();
 $modal->close();
-//Procesado de los datos informacion Personal
 
 
 

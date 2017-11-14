@@ -45,6 +45,16 @@ final class DateManager {
         $this->date->setTimeZone($this->zonaHoraria);
     }
 
+    public function mkdate($str) {
+        try {
+            $newDate = new DateTime($str, $this->zonaHoraria);
+            return $newDate;
+        } catch (ErrorException $exc) {
+            return null;
+        }
+        return null;
+    }
+
     public function getSQLDate() {
         return $this->date->format(self::SQL_DATE);
     }
@@ -76,11 +86,41 @@ final class DateManager {
     }
 
     public function getDate() {
+        $this->update();
         return $this->date;
     }
 
     public function getTime() {
         return $this->date->format(self::HORA_AM_PM);
+    }
+
+    public function unixToDate($unix) {
+        if (is_int((int)$unix)) {
+            try {
+                $date = new DateTime("now", $this->zonaHoraria);
+                $date->setTimestamp((int) $unix);
+                return $date;
+            } catch (Exception $ex) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function agregar(DateTime $fecha, $strDateInterval) {
+        try {
+            $interval = DateInterval::createFromDateString($strDateInterval);
+            if ($interval instanceof DateInterval) {
+                $fecha->add($interval);
+                return $fecha;
+            } else {
+                return null;
+            }
+        } catch (ErrorException $exc) {
+            echo $exc->getMessage();
+            return null;
+        }
     }
 
     public function dateSpa1() {
@@ -238,6 +278,3 @@ final class DateManager {
     }
 
 }
-
-
-

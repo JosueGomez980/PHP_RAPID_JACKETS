@@ -10,10 +10,40 @@
  *
  * @author Josué Francisco
  */
-interface EntityDTO extends JsonSerializable{
+interface EntityDTO extends JsonSerializable {
+
     public static function stdClassToDTO(stdClass $obj);
 }
 
-interface DAOPaginable{
+interface DAOPaginable {
+
     public function findByPaginationLimit($inicio, $cantidad);
+}
+
+interface GenericDAO {
+
+    public static function getInstancia();
+
+    public function resultToArray(mysqli_result $resultado);
+
+    public function resultToObject(mysqli_result $resultado);
+
+    public function insert(EntityDTO $entidad);
+
+    public function update(EntityDTO $entidad);
+
+    public function delete(EntityDTO $entidad);
+
+    public function find(EntityDTO $entidad);
+
+    public function findAll();
+}
+
+interface MultiCrudDAO extends GenericDAO {
+
+    public function inserts(array $entidades);
+
+    public function updates(array $entidades);
+
+    public function deletes(array $entidades);
 }

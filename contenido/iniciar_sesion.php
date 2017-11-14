@@ -20,6 +20,7 @@ and open the template in the editor.
         <?php
         $contenido->getHeader();
         $userManager->mostrarManagerLink();
+        $contenido->mostrarRespuestaNegocio();
         if (!$sesion->existe(Session::US_LOGED)) {
             ?>
             <section class="m-section">

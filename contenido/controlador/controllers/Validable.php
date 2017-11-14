@@ -65,7 +65,7 @@ final class Validador {
     public static function validaUserName($userName) {
         $r = TRUE;
         $arr = str_split($userName);
-        if (strlen($userName) < 8) {
+        if (strlen($userName) < 8 || strlen($userName > 255)) {
             $r = FALSE;
         }
         $cont = 0;

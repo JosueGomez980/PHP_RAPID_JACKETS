@@ -178,10 +178,30 @@ class UsuarioController implements Validable, GenericController {
     }
 
     public function usuarioIsNotVerified(UsuarioDTO $user) {
-        if ((strlen($user->getEstado()) == 60) && (password_get_info($user->getEstado())["algoName"] == "bcrypt")) {
-            return true;
+        $crip = CriptManager::getInstacia();
+        $crip instanceof CriptManager;
+        $rta = false;
+        switch ($user->getEstado()) {
+            case UsuarioDAO::EST_ACTIVO:
+                break;
+            case UsuarioDAO::EST_ELIMINADO:
+                break;
+            case UsuarioDAO::EST_INACTIVO:
+                break;
+            case UsuarioDAO::EST_NO_VALID:
+                $rta = true;
+                break;
+            default : {
+                    $estadoCrip = $user->getEstado();
+                    $estaNoCrip = $crip->AES_Decript($estadoCrip, UsuarioDAO::EST_NO_VALID);
+                    $estArr = explode("|", $estaNoCrip);
+                    if ($estArr[1] == UsuarioDAO::EST_NO_VALID) {
+                        $rta = true;
+                    }
+                    break;
+                }
         }
-        return false;
+        return $rta;
     }
 
     public function insertar(EntityDTO $entidad) {
@@ -554,14 +574,35 @@ class UsuarioController implements Validable, GenericController {
 
     public function enviarEmailAccountVerificacion(UsuarioDTO $user) {
         $ok = true;
+        $cuentaDAO = CuentaDAO::getInstancia();
+        $cuentaDAO instanceof CuentaDAO;
+        $cueS = new CuentaDTO();
+        $cueS->setUsuarioIdUsuario($user->getIdUsuario());
+        $cuentaFinded = $cuentaDAO->findByUsuario($cueS);
         $idUserCrip = base64_encode($user->getIdUsuario());
+        $estadoUserCrip = base64_encode($user->getEstado());
         $mailer = EmailManager::getInstancia();
         $mailer instanceof EmailManager;
         $mailer->setSubjet(EmailManager::SJ_ACC_ACT);
         $mailer->oneAddress($user->getEmail());
-        $msgHtml = file_get_contents("../../includes/mails/acc_verif_html_msg.html");
-        $msgHtml .= "";
-        //$mailer->setAltCont("");
+        $msgHtml = "";
+        $link = "";
+        if ($_SERVER["SERVER_NAME"] == "localhost") {
+            $prt = "";
+            if ($_SERVER["SERVER_PORT"] != "80") {
+                $prt = ":" . $_SERVER["SERVER_PORT"];
+            }
+            $link = $_SERVER["SERVER_NAME"] . $prt . "/PHP_RAPID_JACKETS/contenido/controlador/negocio/account_verify.php";
+        } else {
+            $link = $_SERVER["SERVER_NAME"] . "/contenido/controlador/negocio/account_verify.php";
+        }
+        $link .= ("?" . UsuarioRequest::us_id . "=" . $idUserCrip . "&" . UsuarioRequest::us_estado . "=" . $estadoUserCrip);
+        if (is_readable("../../includes/mails/acc_verif_html_msg.html")) {
+            $msgHtml = file_get_contents("../../includes/mails/acc_verif_html_msg.html");
+            $msgHtml = str_replace("#LK#", $link, $msgHtml);
+            $msgHtml = str_replace("#US#", ($cuentaFinded->getPrimerNombre()." ".$cuentaFinded->getPrimerApellido()), $msgHtml);
+        }
+
         $mailer->html($msgHtml);
         if (!$mailer->enviar()) {
             $ok = false;
@@ -569,12 +610,98 @@ class UsuarioController implements Validable, GenericController {
         return $ok;
     }
 
+    public function activarCuentaUsuario(UsuarioDTO $userAct) {
+        $modalRTA = new ModalSimple();
+        $ok = true;
+        $crip = new CriptManager();
+        $dater = new DateManager();
+        $nowDate = $dater->getDate();
+        $nowDate instanceof DateTime;
+        $userFinded = $this->usuarioDAO->find($userAct);
+        if (is_null($userFinded)) {
+            $ok = false;
+            $err = new Errado();
+            $err->setValor("Información requerida no fue encontrada");
+            $modalRTA->addElemento($err);
+        } else {
+            $userFinded instanceof UsuarioDTO;
+            //Valida exactitud de la cadena encriptada
+            $cadenaNoAes = $crip->AES_Decript($userAct->getEstado(), UsuarioDAO::EST_NO_VALID);
+            $arrayCadena = explode("|", $cadenaNoAes);
+            $fechaInCadena = $dater->unixToDate($arrayCadena[2]);
+            $fechaMasUnDia = $dater->agregar($fechaInCadena, "1 day");
+            $fechaMasUnDia instanceof DateTime;
+            //Validar que el usuario ya ha sido activado.
+            if ($this->usuarioIsNotVerified($userFinded)) {
+                if ($userAct->getEstado() !== $userFinded->getEstado()) {
+                    $ok = false;
+                    $err = new Errado();
+                    $err->setValor("Los parametros del enlace están alterados o dañados");
+                    $modalRTA->addElemento($err);
+                }
+                if ($arrayCadena[0] == $userFinded->getIdUsuario() && $arrayCadena[1] == UsuarioDAO::EST_NO_VALID) {
+                    $ok = true;
+                } else {
+                    $ok = false;
+                    $err = new Errado();
+                    $err->setValor("Los parametros del enlace están alterados o dañados");
+                    $modalRTA->addElemento($err);
+                }
+                if ($nowDate >= $fechaMasUnDia) {
+                    $ok = false;
+                    $err = new Errado();
+                    $err->setValor("El plazo para hacer la activación se ha vencido. Ahora tu cuenta ha sido borrada. ¡Lo sentimos! :(");
+                    $modalRTA->addElemento($err);
+                    $this->borrarCuentaCompleta($userFinded);
+                }
+            } else {
+                $ok = false;
+                $err = new Errado();
+                $err->setValor("Esta cuenta no necesita ser activada. Pues ya lo está.");
+                $modalRTA->addElemento($err);
+            }
+        }
+        if ($ok) {
+            $userFinded->setEstado(UsuarioDAO::EST_ACTIVO);
+            $upRta = $this->usuarioDAO->putEstado($userFinded);
+            if ($upRta == 1) {
+                $err = new Exito();
+                $err->setValor("Tu cuenta ha sido activada correctamente. Ya puedes iniciar sesión.");
+                $modalRTA->addElemento($err);
+            } else {
+                $err = new Errado();
+                $err->setValor("Hubo un error grave al activar tu cuenta. Lo sentimos :(");
+                $modalRTA->addElemento($err);
+            }
+        } else {
+            $err = new Errado();
+            $err->setValor("La operacion no fue exitosa. Lo sentimos");
+            $modalRTA->addElemento($err);
+        }
+        $modalRTA->setClosebtn("Aceptar");
+        return $modalRTA;
+    }
+
+    private function borrarCuentaCompleta(UsuarioDTO $usDelete) {
+        $cuDAO = new CuentaDAO();
+        $cudto = new CuentaDTO();
+        $cudto->setUsuarioIdUsuario($usDelete->getIdUsuario());
+        $cutodel = $cuDAO->findByUsuario($cudto);
+        $rta1 = $cuDAO->delete($cutodel);
+        $rta2 = $this->usuarioDAO->delete($usDelete);
+        if ($rta1 == 1 && $rta2 == 1) {
+            return true;
+        }
+        return false;
+    }
+
     public function generateEstadoEncriptado(UsuarioDTO $user) {
         $cripter = CriptManager::getInstacia();
+        $dater = new DateManager();
+        $fechaS = $dater->formatNowDate(DateManager::UTC);
         $cripter instanceof CriptManager;
-        $estadoA = $user->getIdUsuario() . UsuarioDAO::EST_NO_VALID;
-        $estadoB = CriptManager::urlVarEncript($estadoA);
-        $estadoC = $cripter->simpleEncriptDF($estadoB);
+        $estadoA = $user->getIdUsuario() . "|" . UsuarioDAO::EST_NO_VALID . "|" . $fechaS;
+        $estadoC = $cripter->AES_Encript($estadoA, UsuarioDAO::EST_NO_VALID);
         return $estadoC;
     }
 

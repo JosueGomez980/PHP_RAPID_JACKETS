@@ -36,10 +36,8 @@ and open the template in the editor.
                 </ul>
             </div>
         </section>
-        <?php
-        $url = $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . "/contenido/controlador/negocio/";
-        echo($url);
-        $contenido->getFooter();
-        ?>
+           <?php
+           $contenido->getFooter();
+           ?>
     </body>
 </html>
