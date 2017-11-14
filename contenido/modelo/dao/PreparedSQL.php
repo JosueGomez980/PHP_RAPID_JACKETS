@@ -170,6 +170,13 @@ final class PreparedSQL {
     // --ADMIN
     const pedido_find_by_fecha_solicitud = "SELECT * FROM PEDIDO_ENTREGA WHERE DATE(FECHA_SOLICITUD) = ? ORDER BY FECHA_SOLICITUD DESC ;";
     
+    //------------------QUERYS PARA LA TABLA DE CUENTA_RESCUE -----------------
+    const cueta_res_insertA = "INSERT INTO CUENTA_RESCUE (USUARIO_ID_USUARIO, CODIGO, TOKEN) VALUES (?, ?, ?) ;";
+    const cueta_res_insertB = "INSERT INTO CUENTA_RESCUE VALUES ( ?, ?, ?, ?, ? ) ;";
+    const cueta_res_update = "UPDATE CUENTA_RESCUE cr SET cr.ESTADO = ?, cr.CODIGO = ?, TOKEN = ?, LAST_RECOVER = ? WHERE cr.USUARIO_ID_USUARIO = ? ;";
+    const cueta_res_delete = "DELETE FROM CUENTA_RESCUE WHERE USUARIO_ID_USUARIO = ? ;";
+    const cueta_res_find = "SELECT * FROM CUENTA_RESCUE WHERE USUARIO_ID_USUARIO = ? ;";
+    const cueta_res_find_all = "SELECT * FROM CUENTA_RESCUE ;";
     //----------------QUERY PARA LLAMAR FUNCIONES Y PROCEDIMIENTOS
     const get_new_producto_id = "SELECT GET_NEW_ID_PRODUCTO() AS 'NEW_ID';";
     const get_new_inventario_id = "SELECT GET_NEW_ID_INVENTARIO() AS 'NEW_ID';";

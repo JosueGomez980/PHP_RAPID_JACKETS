@@ -22,6 +22,14 @@ AutoCarga::init();
         $contenido->getHeader();
         ?>
         <section class="m-section">
+            <div id="RESPUESTA"></div>
+            <div class="w3-row w3-padding-12 w3-theme-l4">
+                <div class="w3-quarter w3-container"></div>
+                <div class="w3-half w3-center w3-card-8">
+                    <h3 class="w3-text-shadow">Recupera tu contraseña</h3>
+                </div>
+                <div class="w3-quarter w3-container"></div>
+            </div>
         </section>
         <?php
         $contenido->getFooter();

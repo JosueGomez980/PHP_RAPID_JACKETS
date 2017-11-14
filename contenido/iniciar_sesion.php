@@ -48,7 +48,7 @@ and open the template in the editor.
                             <a href="inicio.php"><button class="m-boton-a">Cancelar</button></a>
                             <br><br>
                             <div class="w3-center">
-                                <a href="#"><span class="w3-tag w3-yellow">Olvidé mi contraseña</span></a>
+                                <a href="recuperar_contrasena.php"><span class="w3-tag w3-yellow">Olvidé mi contraseña</span></a>
                                 <a href="registro_usuarios.php"><span class="w3-tag w3-green">¿No tienes cuenta? Regístrate</span></a>
                             </div>
                         </div>
