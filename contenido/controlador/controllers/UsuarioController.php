@@ -121,6 +121,7 @@ class UsuarioController implements Validable, GenericController {
     public function __construct() {
         $this->usuarioDAO = UsuarioDAO::getInstancia();
         $this->usuarioDAO instanceof UsuarioDAO;
+        $this->usuarioDAO = new UsuarioDAO();
         $this->contentMgr = ContentManager::getInstancia();
         $this->usuarioMQT = new UsuarioMaquetador();
     }
@@ -600,13 +601,43 @@ class UsuarioController implements Validable, GenericController {
         if (is_readable("../../includes/mails/acc_verif_html_msg.html")) {
             $msgHtml = file_get_contents("../../includes/mails/acc_verif_html_msg.html");
             $msgHtml = str_replace("#LK#", $link, $msgHtml);
-            $msgHtml = str_replace("#US#", ($cuentaFinded->getPrimerNombre()." ".$cuentaFinded->getPrimerApellido()), $msgHtml);
+            $msgHtml = str_replace("#US#", ($cuentaFinded->getPrimerNombre() . " " . $cuentaFinded->getPrimerApellido()), $msgHtml);
         }
 
         $mailer->html($msgHtml);
         if (!$mailer->enviar()) {
             $ok = false;
         }
+        return $ok;
+    }
+
+    public function accountRecoveryA(UsuarioDTO $user) {
+        $ok = true;
+        $modal = new ModalSimple();
+        if (!Validador::validaUserName($user->getIdUsuario())) {
+            $ok = false;
+            $err = new Errado();
+            $err->setValor("El id del usuario no cumple con los parámetros. Verifique e intente de nuevo.");
+            $modal->addElemento($err);
+        }
+        if (!Validador::validaEmail($user->getEmail())) {
+            $ok = false;
+            $err = new Errado();
+            $err->setValor("El correo electrónico digitado no se reconoce como un email válido. Verifique e intente de nuevo.");
+            $modal->addElemento($err);
+        }
+        if ($ok) {
+            $userFinded = $this->usuarioDAO->find($user);
+            echo(var_dump($userFinded));
+        } else {
+            $err = new Errado();
+            $err->setValor("No hemos podido hacer nada para recuperar tu cuenta. Los sentimos :(");
+            $modal->addElemento($err);
+        }
+        $modal->setClosebtn("Aceptar");
+        $modal->open();
+        $modal->maquetar();
+        $modal->close();
         return $ok;
     }
 

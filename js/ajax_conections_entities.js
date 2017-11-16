@@ -523,6 +523,31 @@ function productoBusquedaAvanzada(idRta, method) {
     });
 }
 
+function accountRescuePasoA() {
+    var inA = document.getElementById("user_id");
+    var inB = document.getElementById("user_email");
+    console.log(inA);
+    console.log(inB);
+//    var id_user = $('user_id').val();
+//    var email_user = $('user_email').val();
+    var txtinA = inA.value;
+    var txtinB = inA.value;
+    var ee = new Object();
+    ee.m = "password_recovery_part_a";
+    ee.user_id = "sdfsdfsdf";
+    ee.user_email = "sdfsdf";
+//    var datos = {m : "password_recovery_part_a", user_id: id_user, user_email: email_user};
+    var datos = {m : "password_recovery_part_a", user_id: txtinA, user_email: txtinB};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RESPUESTA").html(response);
+        }
+    });
+}
+
 
 
 

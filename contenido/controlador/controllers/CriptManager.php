@@ -123,6 +123,23 @@ final class CriptManager {
         return trim($url);
     }
 
+    public static function generateRandomText($size) {
+        $allChars = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz1234567890*/!@-+=()&%$#|_-{}?<>";
+//        $letras = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz";
+//        $numeros = "1234567890";
+//        $especial = "*/\!@-+=()&%$#|_-{}?<>";
+        $lenAll = strlen($allChars);
+        $txtRta = "";
+        $arrayAll = str_split($allChars);
+//        $arrayletras = str_split($letras);
+//        $arraynums = str_split($numeros);
+        for ($i = 1; $i <= $size; $i++) {
+            $idxR = rand(0, ($lenAll - 1));
+            $txtRta .= $arrayAll[$idxR];
+        }
+        return $txtRta;
+    }
+
     public function AES_Encript($string, $key) {
         $td = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, '');
         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_DEV_URANDOM);

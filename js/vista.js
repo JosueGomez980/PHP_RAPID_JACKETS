@@ -109,7 +109,6 @@ function valida_id_user() {
         inputUserID.style.boxShadow = "0px 0px 10px green";
         res.innerHTML = "";
     } else {
-        inputUserID.
         inputUserID.style.boxShadow = "0px 0px 10px red";
         res.innerHTML = "El nombre de usuario debe tener mínimo 8 caracteres, incluyendo al menos 3 números";
     }

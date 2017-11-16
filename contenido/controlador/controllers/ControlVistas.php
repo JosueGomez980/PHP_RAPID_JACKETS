@@ -248,7 +248,7 @@ class ControlVistas {
         $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
         $productoControl->encontrarPorBusquedaAvanzadaByAdmin($productoPost, $rangoPrecio);
     }
-    
+
     public function producto_busqueda_avanzada_admin_inv() {
         $productoControl = ProductoController::getInstancia();
         $productoControl instanceof ProductoController;
@@ -260,6 +260,16 @@ class ControlVistas {
         $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
         $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
         $productoControl->encontrarPorBusquedaAvanzadaByAdminInventario($productoPost, $rangoPrecio);
+    }
+
+    public function password_recovery_part_a() {
+        $modal = null;
+        $userControl = UsuarioController::getInstancia();
+        $userControl instanceof UsuarioController;
+        $userRequest = new UsuarioRequest();
+        $userDTO = $userRequest->getUsuarioDTO();
+        echo(var_dump($_POST));
+        $userControl->accountRecoveryA($userDTO);
     }
 
 }
