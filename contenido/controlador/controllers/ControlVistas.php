@@ -268,7 +268,6 @@ class ControlVistas {
         $userControl instanceof UsuarioController;
         $userRequest = new UsuarioRequest();
         $userDTO = $userRequest->getUsuarioDTO();
-        echo(var_dump($_POST));
         $userControl->accountRecoveryA($userDTO);
     }
 

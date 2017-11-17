@@ -524,6 +524,7 @@ function productoBusquedaAvanzada(idRta, method) {
 }
 
 function accountRescuePasoA() {
+    loadingGif("RTA2");
     var inA = document.getElementById("user_id");
     var inB = document.getElementById("user_email");
     console.log(inA);
@@ -531,7 +532,7 @@ function accountRescuePasoA() {
 //    var id_user = $('user_id').val();
 //    var email_user = $('user_email').val();
     var txtinA = inA.value;
-    var txtinB = inA.value;
+    var txtinB = inB.value;
     var ee = new Object();
     ee.m = "password_recovery_part_a";
     ee.user_id = "sdfsdfsdf";
@@ -543,7 +544,8 @@ function accountRescuePasoA() {
         url: 'controlador/controllers/ControlVistas.php',
         data: datos,
         success(response) {
-            $("#RESPUESTA").html(response);
+            $("#RTA2").html(response);
+           // window.location.reload();
         }
     });
 }

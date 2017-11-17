@@ -116,6 +116,7 @@ class UsuarioController implements Validable, GenericController {
     private $usuarioDAO;
     protected $contentMgr;
     private $usuarioMQT;
+    private $cuentaRescueDAO;
     public static $instance;
 
     public function __construct() {
@@ -124,6 +125,7 @@ class UsuarioController implements Validable, GenericController {
         $this->usuarioDAO = new UsuarioDAO();
         $this->contentMgr = ContentManager::getInstancia();
         $this->usuarioMQT = new UsuarioMaquetador();
+        $this->cuentaRescueDAO = new CuentaRescueDAO();
     }
 
     public static function getInstancia() {
@@ -610,6 +612,31 @@ class UsuarioController implements Validable, GenericController {
         }
         return $ok;
     }
+    
+
+    public function createUpdateCuentaRescue(UsuarioDTO $userToRescue) {
+        $rta = 0;
+        $dater = new DateManager();
+        $cuenRes = null;
+        $cuenRes = new CuentaRescueDTO();
+        $cuenRes->setUsuarioIdUsuario($userToRescue->getIdUsuario());
+        $cuenRes->setEstado(CuentaRescueDAO::EST_LP);
+        $cuenRes->setCodigo(CriptManager::generateRandomText(10));
+        $cuenRes->setLastRecover($dater->formatNowDate(DateManager::SQL_DATETIME));
+        $cuenRes->setToken($this->generateAccRecoveryToken($cuenRes));
+        //Validar que si ya existe un registro, este se acuralize
+        $cuentaFinded = $this->cuentaRescueDAO->find($cuenRes);
+        if (is_null($cuentaFinded)) {
+            $rta = $this->cuentaRescueDAO->insert($cuenRes);
+        } else {
+            $rta = $this->cuentaRescueDAO->update($cuenRes);
+        }
+        if ($rta == 1) {
+            return $cuenRes;
+        } else {
+            return null;
+        }
+    }
 
     public function accountRecoveryA(UsuarioDTO $user) {
         $ok = true;
@@ -628,7 +655,28 @@ class UsuarioController implements Validable, GenericController {
         }
         if ($ok) {
             $userFinded = $this->usuarioDAO->find($user);
-            echo(var_dump($userFinded));
+            if (!is_null($userFinded)) {
+                $userFinded instanceof UsuarioDTO;
+                if ($userFinded->getEmail() != $user->getEmail()) {
+                    $err = new Errado();
+                    $err->setValor("El correo digitado no es el mismo que está registrado para el usuario (" . Validador::fixTexto($userFinded->getIdUsuario()) . ")");
+                    $modal->addElemento($err);
+                } else {
+                    //Añadir el nuevo registro en la tabla cuentaRescue
+                    $cueRetorned = $this->createUpdateCuentaRescue($userFinded);
+                    if ($cueRetorned instanceof CuentaRescueDTO) {
+                        
+                    } else {
+                        $err = new Errado();
+                        $err->setValor("Hubo un error grave. Intente de nuevo o  contacte al administrador");
+                        $modal->addElemento($err);
+                    }
+                }
+            } else {
+                $err = new Errado();
+                $err->setValor("El usuario (" . Validador::fixTexto($user->getIdUsuario()) . ") no está registrado en el este sistema.");
+                $modal->addElemento($err);
+            }
         } else {
             $err = new Errado();
             $err->setValor("No hemos podido hacer nada para recuperar tu cuenta. Los sentimos :(");
@@ -638,6 +686,11 @@ class UsuarioController implements Validable, GenericController {
         $modal->open();
         $modal->maquetar();
         $modal->close();
+        return $ok;
+    }
+
+    public function enviarEmailAccountRecovery(CuentaRescueDTO $cuentaRescue, UsuarioDTO $userToRescue) {
+        $ok = true;
         return $ok;
     }
 
@@ -734,6 +787,16 @@ class UsuarioController implements Validable, GenericController {
         $estadoA = $user->getIdUsuario() . "|" . UsuarioDAO::EST_NO_VALID . "|" . $fechaS;
         $estadoC = $cripter->AES_Encript($estadoA, UsuarioDAO::EST_NO_VALID);
         return $estadoC;
+    }
+
+    public function generateAccRecoveryToken(CuentaRescueDTO $cuentaRescue) {
+        $cripter = CriptManager::getInstacia();
+        $dater = new DateManager();
+        $fechaS = $dater->formatNowDate(DateManager::UTC);
+        $cripter instanceof CriptManager;
+        $tokenA = $cuentaRescue->getUsuarioIdUsuario() . "|" . CuentaRescueDAO::EST_LP . "|" . $cuentaRescue->getCodigo() . "|" . $fechaS;
+        $token = $cripter->AES_Encript($tokenA, $cuentaRescue->getCodigo());
+        return $token;
     }
 
     public function validaManagerLogin(UsuarioDTO $user) {

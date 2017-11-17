@@ -20,6 +20,9 @@ class CuentaRescueDAO implements GenericDAO {
     private static $code = "CODIGO";
     private static $token = "TOKEN";
     private static $last_rec = "LAST_RECOVER";
+    
+    const EST_LP = "LOST_PASSWORD";
+    const EST_RP = "RESCUED_PASSWORD";
 
     public function __construct() {
         $this->db = new Conexion();

@@ -22,6 +22,7 @@ AutoCarga::init();
         $contenido->getHeader();
         ?>
         <section class="m-section">
+            <div id="RTA2"></div>
             <div id="RESPUESTA">
                 <div class="w3-row w3-theme-l4">
                     <div class="w3-quarter w3-container"></div>
