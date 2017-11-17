@@ -612,7 +612,6 @@ class UsuarioController implements Validable, GenericController {
         }
         return $ok;
     }
-    
 
     public function createUpdateCuentaRescue(UsuarioDTO $userToRescue) {
         $rta = 0;
@@ -691,6 +690,15 @@ class UsuarioController implements Validable, GenericController {
 
     public function enviarEmailAccountRecovery(CuentaRescueDTO $cuentaRescue, UsuarioDTO $userToRescue) {
         $ok = true;
+        if (is_readable("../../includes/mails/acc_verif_html_msg.html")) {
+            $msgHtml = file_get_contents("../../includes/mails/acc_rescue_html_msg.html");
+            $msgHtml = str_replace("#LK#", $link, $msgHtml);
+            $msgHtml = str_replace("#US#", ($cuentaFinded->getPrimerNombre() . " " . $cuentaFinded->getPrimerApellido()), $msgHtml);
+        }
+        $emailMg = EmailManager::getInstancia();
+        $emailMg instanceof EmailManager;
+        $emailMg->oneAddress($userToRescue->getEmail());
+        $emailMg->setHtmlCont($html);
         return $ok;
     }
 
