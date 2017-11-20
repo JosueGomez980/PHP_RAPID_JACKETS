@@ -538,14 +538,30 @@ function accountRescuePasoA() {
     ee.user_id = "sdfsdfsdf";
     ee.user_email = "sdfsdf";
 //    var datos = {m : "password_recovery_part_a", user_id: id_user, user_email: email_user};
-    var datos = {m : "password_recovery_part_a", user_id: txtinA, user_email: txtinB};
+    var datos = {m: "password_recovery_part_a", user_id: txtinA, user_email: txtinB};
     $.ajax({
         type: 'POST',
         url: 'controlador/controllers/ControlVistas.php',
         data: datos,
         success(response) {
             $("#RTA2").html(response);
-           // window.location.reload();
+        }
+    });
+}
+function accountRescuePasoB() {
+    loadingGif("RTA_NEGOCIO");
+    var txtCodigo = $("#codigo");
+    var txtIdUser = $("#user_id");
+    var userIdValue = txtIdUser.val();
+    var codeValue = txtCodigo.val();
+    var datos = {m: "password_recovery_part_b", user_id: userIdValue, codigo: codeValue};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RTA_NEGOCIO").html("");
+            $("#RESPUESTA").html(response);
         }
     });
 }

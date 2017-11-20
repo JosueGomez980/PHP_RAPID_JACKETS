@@ -20,9 +20,10 @@ class CuentaRescueDAO implements GenericDAO {
     private static $code = "CODIGO";
     private static $token = "TOKEN";
     private static $last_rec = "LAST_RECOVER";
-    
+
     const EST_LP = "LOST_PASSWORD";
     const EST_RP = "RESCUED_PASSWORD";
+    const EST_AT = "ACCOUNT_TIME_OUT";
 
     public function __construct() {
         $this->db = new Conexion();
@@ -58,7 +59,7 @@ class CuentaRescueDAO implements GenericDAO {
             $stmt->bind_param("s", $userId);
             $stmt->execute();
             $resultado = $stmt->get_result();
-            if ($resultado->num_rows != 0) {
+            if ($resultado->num_rows > 0) {
                 $cueResFinded = $this->resultToObject($resultado);
             }
             $stmt->close();
@@ -75,7 +76,7 @@ class CuentaRescueDAO implements GenericDAO {
         try {
             $conexion = $this->db->creaConexion();
             $resultado = $conexion->query(PreparedSQL::cueta_res_find_all);
-            if ($resultado->num_rows != 0) {
+            if ($resultado->num_rows > 0) {
                 $tablaCuentaRescue = $this->resultToArray($resultado);
             }
             $resultado->close();
@@ -138,21 +139,20 @@ class CuentaRescueDAO implements GenericDAO {
             $cuentaRes->setEstado($fila[self::$est]);
             $cuentaRes->setCodigo($fila[self::$code]);
             $cuentaRes->setToken($fila[self::$token]);
-            $cuentaRes->setLastRecover(self::$last_rec);
+            $cuentaRes->setLastRecover($fila[self::$last_rec]);
             $tablaCuentaRes[] = $cuentaRes;
         }
         return $tablaCuentaRes;
     }
 
     public function resultToObject(mysqli_result $resultado) {
-        $resultado->data_seek(0);
         $fila = $resultado->fetch_array();
         $cuentaRes = new CuentaRescueDTO();
         $cuentaRes->setUsuarioIdUsuario($fila[self::$us_id_us]);
         $cuentaRes->setEstado($fila[self::$est]);
         $cuentaRes->setCodigo($fila[self::$code]);
         $cuentaRes->setToken($fila[self::$token]);
-        $cuentaRes->setLastRecover(self::$last_rec);
+        $cuentaRes->setLastRecover($fila[self::$last_rec]);
         return $cuentaRes;
     }
 

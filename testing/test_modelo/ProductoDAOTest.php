@@ -132,7 +132,7 @@ class ProductoDAOTest extends TestCase {
         echo(var_dump($proF));
     }
 
-    public function testFindByCategoria() {
+    public function tesFindByCategoria() {
         echo("\n Test del metodo find para buscar por Id.\n");
         $proDAO = new ProductoDAO();
         $proDTO = new ProductoDTO();
@@ -141,8 +141,16 @@ class ProductoDAOTest extends TestCase {
         echo("Catidad de productos por categoria 05: -> " . count($tablaPro));
         $this->assertInstanceOf(ProductoDTO::class, $tablaPro[0]);
     }
-    public function testFindByForeignKey(){
-        
+
+    public function testFindByForeignKey() {
+        echo("\n Test del metodo find para buscar por Id.\n");
+        $proDAO = new ProductoDAO();
+        $proDTO = new ProductoDTO();
+        $proDTO->setCategoriaIdCategoria(5);
+        $proDTO->setCatalogoIdCatalogo(1);
+        $tablaProst = $proDAO->findByFK($proDTO);
+        echo("Cantidad de productos por categoria 05 y catalogo 1: -> " . count($tablaProst));
+        $this->assertInstanceOf(ProductoDTO::class, $tablaProst[0]);
     }
 
 }

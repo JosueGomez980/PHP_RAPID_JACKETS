@@ -268,7 +268,39 @@ class ControlVistas {
         $userControl instanceof UsuarioController;
         $userRequest = new UsuarioRequest();
         $userDTO = $userRequest->getUsuarioDTO();
-        $userControl->accountRecoveryA($userDTO);
+        $userControl->accountRecoveryEnvioEmail($userDTO);
+    }
+
+    public function password_recovery_part_b() {
+        $userControl = new UsuarioController();
+        $userMQT = new UsuarioMaquetador();
+        $userDAO = UsuarioDAO::getInstancia();
+        $userDAO instanceof UsuarioDAO;
+        $cuentaRescueCode = new CuentaRescueDTO();
+        $cuentaRescueCode->setCodigo(filter_input(INPUT_POST, "codigo"));
+        $userIdCripted = filter_input(INPUT_POST, UsuarioRequest::us_id);
+        $userIdValue = base64_decode((filter_input(INPUT_POST, UsuarioRequest::us_id)));
+        $userIdValue = CriptManager::urlVarDecript($userIdValue);
+        $cuentaRescueCode->setUsuarioIdUsuario($userIdValue);
+
+        if ($userControl->validarCodigoAccountRescue($cuentaRescueCode)) {
+            $userMQT->maquetaFormAccoutRecoveryChangePassword($userIdCripted);
+        }
+    }
+
+    public function password_recovery_part_final() {
+        $acceso = new AccesoPagina();
+        $userControl = new UsuarioController();
+        
+        $acceso->validaEnviode(UsuarioRequest::us_id, AccesoPagina::NEG_TO_IN_SESION);
+        $acceso->validaEnviode(UsuarioRequest::us_pass, AccesoPagina::NEG_TO_IN_SESION);
+        
+        $userRequest = new UsuarioRequest();
+        $userDTOPost = $userRequest->getUsuarioDTO();
+        $userDTOPost instanceof UsuarioDTO;
+        $passwordB = filter_input(INPUT_POST, "user_passwordB");
+        
+        $userControl->accountRescueConsolidar($userDTOPost, $passwordB);
     }
 
 }

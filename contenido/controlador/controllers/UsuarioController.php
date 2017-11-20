@@ -626,7 +626,7 @@ class UsuarioController implements Validable, GenericController {
         //Validar que si ya existe un registro, este se acuralize
         $cuentaFinded = $this->cuentaRescueDAO->find($cuenRes);
         if (is_null($cuentaFinded)) {
-            $rta = $this->cuentaRescueDAO->insert($cuenRes);
+            $rta = $this->cuentaRescueDAO->insert2($cuenRes);
         } else {
             $rta = $this->cuentaRescueDAO->update($cuenRes);
         }
@@ -637,7 +637,117 @@ class UsuarioController implements Validable, GenericController {
         }
     }
 
-    public function accountRecoveryA(UsuarioDTO $user) {
+    public function usuarioInPassRecovery(UsuarioDTO $userChk) {
+        $curesDTO = new CuentaRescueDTO();
+        $curesDTO->setUsuarioIdUsuario($userChk->getIdUsuario());
+        $curesRTA = $this->cuentaRescueDAO->find($curesDTO);
+        if (is_null($curesRTA)) {
+            return FALSE;
+        } else {
+            $curesRTA instanceof CuentaRescueDTO;
+            if ($curesRTA->getEstado() == CuentaRescueDAO::EST_LP) {
+                return TRUE;
+            }
+            return FALSE;
+        }
+    }
+
+    public function validarLinkAccountRecovery(CuentaRescueDTO $cuentaRescue) {
+        $ok = true;
+        $okParams = true;
+        $modal = new ModalSimple();
+        $cripter = CriptManager::getInstacia();
+        $cripter instanceof CriptManager;
+        $cuentaRescue->setUsuarioIdUsuario(CriptManager::urlVarDecript($cuentaRescue->getUsuarioIdUsuario()));
+        $cuentaRescueDB = $this->cuentaRescueDAO->find($cuentaRescue);
+        $cuentaRescueDB instanceof CuentaRescueDTO;
+        if (is_null($cuentaRescueDB)) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("La url requerida para acceder ha sido alterada. Imposible accder al módulo");
+            $modal->addElemento($err);
+        } else {
+            $userDTO = new UsuarioDTO();
+            $userDTO->setIdUsuario($cuentaRescueDB->getUsuarioIdUsuario());
+            $userFinded = $this->usuarioDAO->find($userDTO);
+            if (!$this->usuarioInPassRecovery($userFinded)) {
+                //Validar que no se pueda llevar a cabo el proceso mas de una vez mediante este enlace
+                $ok = FALSE;
+                $err = new Errado();
+                $err->setValor("La cuenta que se intenta recuperar ya no está disponible para esta operación");
+                $modal->addElemento($err);
+            } else {
+                //Descifrar el token y separarlo en sus cuatro componentes
+                $tokenObtenido = $cuentaRescue->getToken();
+                if (is_null($tokenObtenido) || $tokenObtenido !== $cuentaRescueDB->getToken()) {
+                    $okParams = FALSE;
+                    $ok = FALSE;
+                } else {
+                    $tokenObtenido = $cripter->AES_Decript($cuentaRescue->getToken(), $cuentaRescueDB->getCodigo());
+                    $arrayToken = explode("|", $tokenObtenido);
+                    $userIdToken = $arrayToken[0];
+                    $estadoToken = $arrayToken[1];
+                    $codigoToken = $arrayToken[2];
+                    $utcToken = $arrayToken[3];
+                    //Validar el id de usuario.
+                    if ($cuentaRescueDB->getUsuarioIdUsuario() !== $userIdToken) {
+                        $ok = FALSE;
+                        $okParams = FALSE;
+                    }
+                    //Validar el token recibido por url
+                    if ($cuentaRescueDB->getToken() !== $cuentaRescue->getToken()) {
+                        $ok = FALSE;
+                        $okParams = FALSE;
+                    }
+                    //Validar estado contenido en el token
+                    if ($cuentaRescueDB->getEstado() !== $estadoToken || ($estadoToken !== CuentaRescueDAO::EST_LP)) {
+                        $ok = FALSE;
+                        $okParams = FALSE;
+                    }
+                    //Validar el coodigo del token
+                    if ($codigoToken !== $cuentaRescueDB->getCodigo()) {
+                        $ok = FALSE;
+                        $okParams = FALSE;
+                    }
+                    //Validar la fecha del token y comprobar que no haya superado el tiempo permitido para acceder.
+                    $dater = new DateManager();
+                    $fechaActual = $dater->getDate();
+                    $fechaInToken = $dater->unixToDate($utcToken);
+                    if (is_null($fechaInToken)) {
+                        $okParams = FALSE;
+                        $ok = FALSE;
+                    } else {
+                        $fechaTokenPlusDay = $dater->agregar($fechaInToken, "1 day");
+                        if ($fechaActual >= $fechaTokenPlusDay) {
+                            $ok = FALSE;
+                            $err = new Errado();
+                            $err->setValor("El tiempo máximo permitido para acceder a cambiar tu contraseña ha expirado");
+                            $modal->addElemento($err);
+                            //Actualizar cuentaRescu para permitir otro intento de envio de correo de restauracion
+                            $cuentaRescueDB->setEstado(CuentaRescueDAO::EST_AT);
+                            $this->cuentaRescueDAO->update($cuentaRescueDB);
+                        }
+                    }
+                }
+            }
+        }
+        if ($okParams == FALSE) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("Los parametros de la url para acceder han sido alterados. Imposible acceder al módulo");
+            $modal->addElemento($err);
+        }
+        if ($ok == FALSE) {
+            $sesion = new SimpleSession();
+            $acceso = new AccesoPagina();
+
+            $modal->setClosebtn("Cerrar");
+            $sesion->add(Session::NEGOCIO_RTA, $modal);
+            $acceso->irPagina(AccesoPagina::INICIO);
+        }
+    }
+
+    public function accountRecoveryEnvioEmail(UsuarioDTO $user) {
         $ok = true;
         $modal = new ModalSimple();
         if (!Validador::validaUserName($user->getIdUsuario())) {
@@ -656,19 +766,41 @@ class UsuarioController implements Validable, GenericController {
             $userFinded = $this->usuarioDAO->find($user);
             if (!is_null($userFinded)) {
                 $userFinded instanceof UsuarioDTO;
-                if ($userFinded->getEmail() != $user->getEmail()) {
+                if ($this->usuarioInPassRecovery($userFinded)) {
+                    $ok = false;
                     $err = new Errado();
-                    $err->setValor("El correo digitado no es el mismo que está registrado para el usuario (" . Validador::fixTexto($userFinded->getIdUsuario()) . ")");
+                    $err->setValor("Este usuario actualmente ya está en proceso de recuperación de contraseña");
                     $modal->addElemento($err);
                 } else {
-                    //Añadir el nuevo registro en la tabla cuentaRescue
-                    $cueRetorned = $this->createUpdateCuentaRescue($userFinded);
-                    if ($cueRetorned instanceof CuentaRescueDTO) {
-                        
-                    } else {
+                    if ($userFinded->getEmail() != $user->getEmail()) {
                         $err = new Errado();
-                        $err->setValor("Hubo un error grave. Intente de nuevo o  contacte al administrador");
+                        $err->setValor("El correo digitado no es el mismo que está registrado para el usuario (" . Validador::fixTexto($userFinded->getIdUsuario()) . ")");
                         $modal->addElemento($err);
+                    } else {
+                        //Añadir el nuevo registro en la tabla cuentaRescue
+                        $cueRetorned = $this->createUpdateCuentaRescue($userFinded);
+                        if ($cueRetorned instanceof CuentaRescueDTO) {
+                            //All legar a este punto se ha de enviar el correo electronico de recuperacion
+                            if ($this->enviarEmailAccountRecovery($cueRetorned, $userFinded)) {
+                                $exit = new Exito();
+                                $exit->setValor("Se ha enviado un email para que puedas acceder a cambiar tu contraseña. Ve y revisa tu buzón de entrada o tu buzón de spam.");
+                                $modal->addElemento($exit);
+                                //Añadir a sesion el usuario que está en proceso de recuperacion de cuenta
+                                $sesion = SimpleSession::getInstancia();
+                                $sesion instanceof SimpleSession;
+                                $user->setIdUsuario(CriptManager::urlVarEncript($userFinded->getIdUsuario()));
+                                $user->setEmail(CriptManager::urlVarEncript($userFinded->getEmail()));
+                                $sesion->addEntidad($user, Session::USER_RESCUE);
+                            } else {
+                                $err = new Errado();
+                                $err->setValor("Hubo un error grave al enviarte un correo . Verifica que tu email sea válido.");
+                                $modal->addElemento($err);
+                            }
+                        } else {
+                            $err = new Errado();
+                            $err->setValor("Hubo un error grave. Intente de nuevo o  contacte al administrador");
+                            $modal->addElemento($err);
+                        }
                     }
                 }
             } else {
@@ -690,16 +822,146 @@ class UsuarioController implements Validable, GenericController {
 
     public function enviarEmailAccountRecovery(CuentaRescueDTO $cuentaRescue, UsuarioDTO $userToRescue) {
         $ok = true;
-        if (is_readable("../../includes/mails/acc_verif_html_msg.html")) {
+        $codigoMsg = $cuentaRescue->getCodigo();
+        $token = $cuentaRescue->getToken();
+        $userIDUrl = CriptManager::urlVarEncript($userToRescue->getIdUsuario());
+        $userIDUrl = base64_encode($userIDUrl);
+        $msgHtml = "";
+        $link = "";
+        $cuDAO = new CuentaDAO();
+        $cuDto = new CuentaDTO();
+        $cuDto->setUsuarioIdUsuario($userToRescue->getIdUsuario());
+        $cuentaFinded = $cuDAO->findByUsuario($cuDto);
+        $cuentaFinded instanceof CuentaDTO;
+        if ($_SERVER["SERVER_NAME"] == "localhost") {
+            $prt = "";
+            if ($_SERVER["SERVER_PORT"] != "80") {
+                $prt = ":" . $_SERVER["SERVER_PORT"];
+            }
+            $link = $_SERVER["SERVER_NAME"] . $prt . "/PHP_RAPID_JACKETS/contenido/";
+        } else {
+            $link = $_SERVER["SERVER_NAME"] . "/contenido/";
+        }
+        //Crear las variables a enviar por url
+        $link .= ("cambiar_password.php?token=" . $token . "&" . UsuarioRequest::us_id . "=" . $userIDUrl);
+
+        if (is_readable("../../includes/mails/acc_rescue_html_msg.html")) {
             $msgHtml = file_get_contents("../../includes/mails/acc_rescue_html_msg.html");
             $msgHtml = str_replace("#LK#", $link, $msgHtml);
             $msgHtml = str_replace("#US#", ($cuentaFinded->getPrimerNombre() . " " . $cuentaFinded->getPrimerApellido()), $msgHtml);
+            $msgHtml = str_replace("#CD#", $codigoMsg, $msgHtml);
         }
         $emailMg = EmailManager::getInstancia();
         $emailMg instanceof EmailManager;
+        $emailMg->setSubjet(EmailManager::SJ_PASS_RE);
         $emailMg->oneAddress($userToRescue->getEmail());
-        $emailMg->setHtmlCont($html);
+        $emailMg->html($msgHtml);
+
+        if ($emailMg->enviar()) {
+            $ok = true;
+        } else {
+            $ok = false;
+        }
         return $ok;
+    }
+
+    public function validarCodigoAccountRescue(CuentaRescueDTO $accRescue) {
+        $ok = TRUE;
+        $modalRTA = new ModalSimple();
+        $accRescueDB = $this->cuentaRescueDAO->find($accRescue);
+        if (!Validador::validaText($accRescue->getCodigo(), 10, 10)) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("El código ingresado debe tener 10 caracteres exactamente");
+            $modalRTA->addElemento($err);
+        }
+        if (!is_null($accRescueDB)) {
+            if ($accRescue->getCodigo() == $accRescueDB->getCodigo()) {
+                $ok = TRUE;
+            } else {
+                $ok = FALSE;
+                $err = new Errado();
+                $err->setValor("El código ingresado no corresponde con el código que se ha enviado a tu correo electrónico");
+                $modalRTA->addElemento($err);
+            }
+        } else {
+            $ok = FALSE;
+        }
+        if ($ok == FALSE) {
+            $modalRTA->open();
+            $modalRTA->maquetar();
+            echo(' <div class="w3-panel w3-blue-gray">
+                    <h4>El proceso no se pudo completar.</h4>
+                    <p><button class="w3-btn w3-theme-dark" onclick="window.location.reload()">Intentar de nuevo</button></p>
+                </div>');
+            $modalRTA->close();
+        }
+        return $ok;
+    }
+
+    public function accountRescueConsolidar(UsuarioDTO $usuarioPost, $passwordB) {
+        $ok = TRUE;
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $cripter = new CriptManager();
+        $modal = new ModalSimple();
+        $idUser = $usuarioPost->getIdUsuario();
+        $idUser = base64_decode($idUser);
+        $idUser = CriptManager::urlVarDecript($idUser);
+        $usuarioPost->setIdUsuario($idUser);
+        if (!Validador::validaPassword($usuarioPost->getPassword())) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("La contraseña 1 ingresada no tiene el formato correcto.");
+            $modal->addElemento($err);
+        }
+        if (!Validador::validaPassword($passwordB)) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("La contraseña 2 ingresada no tiene el formato correcto.");
+            $modal->addElemento($err);
+        }
+        if ($passwordB !== $usuarioPost->getPassword()) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("Las contraseñas no coinciden.");
+            $modal->addElemento($err);
+        }
+        if (!$this->usuarioInPassRecovery($usuarioPost)) {
+            $ok = FALSE;
+            $err = new Errado();
+            $err->setValor("Este usuario no tiene permisos para cambiar su contraseña.");
+            $modal->addElemento($err);
+        }
+
+        if ($ok) {
+            $newPassword = $cripter->complexEncriptDF($usuarioPost->getPassword());
+            $userInDB = $this->usuarioDAO->find($usuarioPost);
+            $userInDB->setPassword($newPassword);
+            $rta = $this->usuarioDAO->updatePassword($userInDB);
+            if ($rta == 1 || $rta == 0) {
+                $dater = new DateManager();
+                $fechaStrNow = $dater->formatNowDate(DateManager::SQL_DATETIME);
+                $cueResDTO = new CuentaRescueDTO();
+                $cueResDTO->setUsuarioIdUsuario($userInDB->getIdUsuario());
+                $cuentaRescueDB = $this->cuentaRescueDAO->find($cueResDTO);
+                $cuentaRescueDB instanceof CuentaRescueDTO;
+                $cuentaRescueDB->setEstado(CuentaRescueDAO::EST_RP);
+                $cuentaRescueDB->setLastRecover($fechaStrNow);
+                $this->cuentaRescueDAO->update($cuentaRescueDB);
+                $sesion->removeEntidad(Session::USER_RESCUE);
+                //_--
+                $ex = new Exito();
+                $ex->setValor("Tu contraseña ha sido cambiada correctamente. Ya puedes iniciar sesión");
+                $modal->addElemento($ex);
+            }
+        }
+        $modal->setClosebtn("Cerrar");
+
+        $sesion->add(Session::NEGOCIO_RTA, $modal);
+        $acceso = AccesoPagina::getInstacia();
+        $acceso instanceof AccesoPagina;
+        $acceso->irPagina(AccesoPagina::NEG_TO_IN_SESION);
     }
 
     public function activarCuentaUsuario(UsuarioDTO $userAct) {
