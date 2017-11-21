@@ -10,9 +10,9 @@
  *
  * @author Josué Francisco
  */
-include_once 'cargar_clases3.php';
-
-AutoCarga3::init();
+//include_once 'cargar_clases3.php';
+//
+//AutoCarga3::init();
 
 class UsuarioRequest extends Request {
 
