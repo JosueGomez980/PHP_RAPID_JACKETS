@@ -11,7 +11,7 @@
  *
  * @author SOPORTE
  */
-include_once 'cargar_clases3.php';
+//include_once 'cargar_clases3.php';
 
 class CuentaRequest extends Request {
 

@@ -12,7 +12,6 @@
  * @author JosueFrancisco
  */
 include_once 'cargar_clases3.php';
-
 AutoCarga3::init();
 
 class ControlVistas {

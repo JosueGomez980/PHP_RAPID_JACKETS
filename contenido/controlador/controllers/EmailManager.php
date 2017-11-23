@@ -1,7 +1,7 @@
 <?php
 
-require_once 'cargar_clases3.php';
-AutoCarga3::init();
+//require_once 'cargar_clases3.php';
+//AutoCarga3::init();
 
 class EmailManager {
 
