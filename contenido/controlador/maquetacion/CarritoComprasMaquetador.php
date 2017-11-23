@@ -20,18 +20,24 @@ class CarritoComprasMaquetador implements GenericMaquetador {
         $totalCarrito = Validador::formatPesos($carrito->getTotal());
         $impuestosCarrito = Validador::formatPesos($carrito->getImpuestos());
         $subTotalCarrito = Validador::formatPesos($carrito->getSubtotal());
-        echo('<div class="w3-row">
-                <div class="w3-center w3-container w3-padding-8 w3-theme-dark"><span class="tit4">Tu carrito de compras</span></div>
-                <div class="w3-container w3-theme-l2"></div>
-            </div>
-            <div class="w3-row w3-theme-light w3-responsive">
-                <table class="w3-table-all w3-small">
-                    <tr class="w3-lime w3-border-blue w3-center">
-                        <th style="width: 40%">PRODUCTO</th>
-                        <th style="width: 15%">PRECIO</th>
+        echo('<br><br><br><div class="w3-row">
+            <div class="container-fluid is-Tamaño-ContainerXD w3-white" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <br>
+                <div class="w3-center w3-container w3-padding-8 w3-white">
+                    <span class="is-LetraColor09">Tu Carrito de Compras</span>
+                </div>
+                <div class="w3-container"></div>
+            </div></div>
+            <div class="container-fluid is-Tamaño-ContainerXD w3-white" style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+            <br>
+            <div class="container-fluid" style="width: 70%;">
+                <table class="w3-table-all w3-small is-Heidy-XD">
+                    <tr class="w3-large is-Color16 w3-border-green w3-center">
+                        <th style="width: 30%">PRODUCTO</th>
+                        <th style="width: 10%">PRECIO</th>
                         <th style="width: 10%">CANTIDAD</th>
-                        <th style="width: 15%">TOTAL</th>
-                        <th style="width: 20%">ELIMINAR/EDITAR</th>
+                        <th style="width: 10%">TOTAL</th>
+                        <th style="width: 15%">ELIMINAR/EDITAR</th>
              </tr>');
 
         foreach ($items as $it) {
@@ -44,23 +50,23 @@ class CarritoComprasMaquetador implements GenericMaquetador {
             $total = Validador::formatPesos($it->getCostoTotal());
             $prodName = $pro->getNombre();
 
-            echo('<tr>
-                    <td  style="width: 40%">' . $prodName . '</td>
-                    <td  style="width: 15%">' . $precioU . '</td>
+            echo('<tr class="is-Tamaño-LetraCarrito">
+                    <td  style="width: 30%">' . $prodName . '</td>
+                    <td  style="width: 10%">' . $precioU . '</td>
                     <td  style="width: 10%">' . $cantidad . '</td>
-                    <td  style="width: 15%">' . $total . '</td>
-                    <td  style="width: 20%">
-                        <a href="controlador/negocio/delete_from_carrito.php?producto_id=' . $idProducto . '"><img src="../media/img/delete_icon.png" class="m-crud_icons"/></a>
-                        <img src="../media/img/update_icon.png" class="m-crud_icons" onclick="mostrarItemCarritoInModal(\'' . $idProducto . '\');" />
+                    <td  style="width: 10%">' . $total . '</td>
+                    <td class="w3-center" style="width: 15%">
+                        <a href="controlador/negocio/delete_from_carrito.php?producto_id=' . $idProducto . '"><img src="../media/img/OtroCarritoEliminarXD.png" class="m-crud_icons"/></a>
+                        <img src="../media/img/ModificarXD.png" class="m-crud_icons" onclick="mostrarItemCarritoInModal(\'' . $idProducto . '\');" />
                     </td>
                 </tr>');
         }
 
 
-        echo('<tr class="w3-large"><td colspan = 5><b>SUBTOTAL</b> = ' . $subTotalCarrito . '<br><b>IMPUESTOS</b> = ' . $impuestosCarrito . '
-        <br><b>TOTAL</b> = ' . $totalCarrito . '</td></tr>');
+        echo('<tr><td colspan = 5><b>SUBTOTAL : </b>' . $subTotalCarrito . '<br><b>IMPUESTOS : </b>' . $impuestosCarrito . '
+        <br><b>TOTAL : </b>' . $totalCarrito . '</td></tr>');
 
-        echo('</table></div>');
+        echo('</table><br><br></div></div></div>><br><br><br>');
     }
 
     public function maquetaItemCarrito(ItemCarritoDTO $item) {

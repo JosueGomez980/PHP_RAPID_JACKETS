@@ -7,6 +7,7 @@ $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
 $contenido = ContenidoPagina::getInstancia();
 $contenido instanceof ContenidoPagina;
+$userManager = new UsuarioController();
 
 $setupController = new SetUpController();
 
@@ -24,6 +25,9 @@ if ($setupController->existeTabla("USUARIO")) {
         $contenido->getHeaderPre();
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div class="container-fluid">
                 <div class="jumbotron">
                     <h2>Bienvenido al asistente de instalacion de la base de datos</h2>

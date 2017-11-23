@@ -38,6 +38,9 @@ and open the template in the editor.
         $contenido->mostrarRespuestaNegocio();
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div id="RTA_NEGOCIO"></div>
             <div id="RESPUESTA">
                 <div class="w3-row w3-theme-l1">

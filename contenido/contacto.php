@@ -10,19 +10,22 @@ and open the template in the editor.
     include_once 'cargar_clases.php';
 
     AutoCarga::init();
-    ?>
-    <?php
+    
+    $sesion = SimpleSession::getInstancia();
     $contenido = ContenidoPagina::getInstancia();
     $contenido->getHead();
     $userManager = new UsuarioController();
+    $userMQT = new UsuarioMaquetador();
     ?>
     <body>
         <?php
-        $userManager->mostrarManagerLink();
-
         $contenido->getHeader();
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            $userMQT->maquetarNothingXD();
+            ?>
         </section>
         <?php
         $contenido->getFooter();

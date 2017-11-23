@@ -12,6 +12,7 @@ $contenido instanceof ContenidoPagina;
 
 $sesion = SimpleSession::getInstancia();
 $sesion instanceof SimpleSession;
+$userManager = new UsuarioController();
 $user = $sesion->getEntidad(Session::US_LOGED);
 $cuenta = $sesion->getEntidad(Session::CU_LOGED);
 $user instanceof UsuarioDTO;
@@ -45,6 +46,9 @@ and open the template in the editor.
         $contenido->mostrarRespuestaNegocio();
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div class="w3-container w3-card-8 w3-theme-d4" id="RTA"></div>
             <div class="w3-container w3-padding-12">
                 <div class="w3-btn-group w3-medium">

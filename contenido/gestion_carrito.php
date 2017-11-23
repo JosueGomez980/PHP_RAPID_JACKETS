@@ -35,12 +35,11 @@ and open the template in the editor.
         // Seccion para mostrar los datos, iconos del usuario que está logeado y el menu 
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarManagerLink();
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div id="item_carrito"></div>
-            <div id="cardUser">
-                <?php
-                $userManager->mostrarCardUsuario();
-                ?>
-            </div>
             <?php
             $carritoManager->mostrarCarritoCompleto($carritoCompras);
             ?>

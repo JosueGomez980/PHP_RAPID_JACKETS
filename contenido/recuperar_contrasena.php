@@ -25,6 +25,9 @@ $acceso instanceof AccesoPagina;
         $contenido->getHeader();
         ?>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div id="RTA2"></div>
             <div id="RESPUESTA">
                 <div class="w3-row w3-theme-l4">

@@ -15,13 +15,18 @@ AutoCarga::init();
     $contenido = ContenidoPagina::getInstancia();
     $contenido->getHead();
     $userManager = new UsuarioController();
+    $userMQT = new UsuarioMaquetador();
     ?>
     <body>
         <?php
         $userManager->mostrarManagerLink();
         $contenido->getHeader();
         ?>
-        <section class="m-section">
+        <section class="is-Fondo-02">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            $userMQT->maquetarNothingXD();
+            ?>
         </section>
         <?php
         $contenido->getFooter();

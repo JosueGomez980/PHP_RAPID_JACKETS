@@ -1,4 +1,8 @@
-<span style='color: #000'>94 frames</span>	<span style='color: #900'>19,200 KB</span>	<span style='color: #090'>1,393.33 ms</span>	<span style='color: #009' title='Quirksmode'><span style='color: #c00'>ON</span></span><br />        <section class="m-section">
+<span style='color: #000'>120 frames</span>	<span style='color: #900'>14,336 KB</span>	<span style='color: #090'>920.15 ms</span>	<span style='color: #009' title='Quirksmode'><span style='color: #c00'>ON</span></span><br /><div class="w3-modal" style="display: block" id="modal">
+            <div class="w3-modal-content w3-animate-top"><div class="w3-container w3-theme w3-card-8">
+                    <span class="w3-closebtn" onclick="hide_closebtn(this);">&Chi;</span>
+                    <p>No se hallaron productos que esté asociados a esa categoría</p>
+                  </div><button class="w3-btn w3-white w3-border w3-border-blue w3-round w3-large w3-block w3-center" onclick="close_modal(this)">Aceptar</button></div></div>        <section class="m-section">
             <div id="RESPUESTA"></div>
             <div class="w3-row">
                 <div class="w3-quarter w3-container"></div>
@@ -8,7 +12,7 @@
                     <hr class="w3-lime w3-padding-4">
                     <form method="GET" name="pdf" action="gestion_reportes.php">
                         <input type="hidden" value="B" name="report">
-                        <select name="idCat" id="idCat" class="m-selects">\n\t<option value="NDh8" selected>Seleccionar</option>\n\t<option value="NTB8">UNIFORMES PARA APRENDICES SENA</option>\n\t<option value="NTF8">UNIFORMES PARA INSTRUCTORES SENA</option>\n\t<option value="NTJ8">UNIFORMES PARA ESTUDIANTES DE COLEGIO</option>\n\t<option value="NTN8">CHAQUETAS</option>\n\t<option value="NTR8">OVEROLES DE TODOS MATERIALES</option>\n\t<option value="NTV8">UNIFORMES FORMALES</option>\n\t<option value="NTZ8">SUDADERAS PARA DEPPORTES SENA</option>\n\t<option value="NTd8">BATAS DE EDUCACION</option>\n\t<option value="NDl8NDh8">ELEMENTOS DE PROTECCION</option>\n\t<option value="NDl8NDl8">SUDADERAS DAMA Y CABALLERO</option>\n\t<option value="NDl8NTB8">UNIFORMES DE DIARIO</option>\n\t<option value="NDl8NTF8">Musica Pop/Rock</option>\n</select>                        <input type="submit" class="w3-btn w3-green w3-large w3-round-medium" value="Imprimir por categoria">
+                        <select name="idCat" id="idCat" class="m-selects">\n\t<option value="NDh8" selected>Seleccionar</option>\n\t<option value="NTB8">UNIFORMES PARA APRENDICES SENA</option>\n\t<option value="NTF8">UNIFORMES PARA INSTRUCTORES SENA</option>\n\t<option value="NTJ8">UNIFORMES PARA ESTUDIANTES DE COLEGIO</option>\n\t<option value="NTN8">CHAQUETAS</option>\n\t<option value="NTR8">OVEROLES DE TODOS MATERIALES</option>\n\t<option value="NTV8">UNIFORMES FORMALES</option>\n\t<option value="NTZ8">SUDADERAS PARA DEPPORTES SENA</option>\n\t<option value="NTd8">BATAS DE EDUCACION</option>\n\t<option value="NDl8NDh8">ELEMENTOS DE PROTECCION</option>\n\t<option value="NDl8NDl8">SUDADERAS DAMA Y CABALLERO</option>\n\t<option value="NDl8NTB8">UNIFORMES DE DIARIO</option>\n</select>                        <input type="submit" class="w3-btn w3-green w3-large w3-round-medium" value="Imprimir por categoria">
                     </form>
                     <hr class="w3-lime w3-padding-4">
                 </div>
@@ -16,8 +20,8 @@
             </div>
             <hr class="w3-responsive w3-padding-12 w3-theme-d3 w3-round-large">
         </section>
-        <footer class="m-footer">
-    <span class="tit3 w3-card-4 w3-theme-d4">Creaciones Julieth</span>
+        <footer class="is-FooterXD">
+    <span class="tit3 w3-card-4" style="background-color: #7F8C8D; color: #fff;">Creaciones Julieth</span>
 </footer>
 <script src="../js/vista.js"></script>
 <script src="../js/ajax_conections_entities.js"></script>

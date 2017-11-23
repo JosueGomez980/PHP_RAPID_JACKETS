@@ -26,6 +26,9 @@ and open the template in the editor.
         ?>
         <div id="CARRITO"></div>
         <section class="m-section">
+            <?php
+            $userManager->mostrarNavbarUsuario();
+            ?>
             <div class="w3-row">
                 <div class="w3-container w3-half w3-light-grey">
                     <h4 class="w3-center">Buscar por...</h4> 

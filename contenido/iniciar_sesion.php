@@ -24,6 +24,9 @@ and open the template in the editor.
         if (!$sesion->existe(Session::US_LOGED)) {
             ?>
             <section class="m-section">
+                <?php
+                $userManager->mostrarNavbarUsuario();
+                ?>
                 <div class="w3-container w3-card-8 w3-theme-d4" id="RTA"></div>
                 <div class="m-tituloA">INICIO DE SESIÓN</div>
                 <form  name="log_in" method="post" id="login_form" onsubmit="return false;">
@@ -61,7 +64,7 @@ and open the template in the editor.
         } else {
             $cuentaSession = $sesion->getEntidad(Session::CU_LOGED);
             $cuentaSession instanceof CuentaDTO;
-            
+
             echo('<div class="m-tituloA">HOLA <b>' . $cuentaSession->getPrimerNombre() . '</b>, ya has iniciado Sesión.</div>');
             $userManager->mostrarCardUsuario();
         }

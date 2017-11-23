@@ -1,29 +1,29 @@
-<footer class="m-footer">
-    <span class="tit3 w3-card-4 w3-theme-d4">Creaciones Julieth</span>
+<footer class="w3-white">
+    <span class="is-Tamaño-Letra01-1 w3-card-4 is-Color13">Creaciones Julieth</span>
     <div class="w3-container w3-row">
         <div class="w3-container w3-quarter">
-            <h5 class="w3-text-deep-orange w3-center">Datos de Contacto</h5>
-            <div class="m-list-footer"><span class="negri">Teléfono: </span>5710604</div>
-            <div class="m-list-footer"><span class="negri">Email: </span>creacionesjuliethuniformes@hotmail.com</div>
-            <div class="m-list-footer"><span class="negri">Dirección: </span> Localidad de Kennedy(Diag. al INEM) Bogotá DC <br> Calle 38C Sur No. 79A-05</div>
+            <h5 class="w3-text-deep-orange w3-center"><span class="negri">Datos de Contacto</span></h5>
+            <div class="is-Footer-List"><span class="negri">Teléfono: </span>5710604</div>
+            <div class="is-Footer-List"><span class="negri">Email: </span>creacionesjuliethuniformes@hotmail.com</div>
+            <div class="is-Footer-List"><span class="negri">Dirección: </span> Localidad de Kennedy(Diag. al INEM) Bogotá DC <br> Calle 38C Sur No. 79A-05</div>
 
-            <h5 class="w3-text-deep-orange w3-center">Punto de Fábrica</h5>
-            <div class="m-list-footer"><span class="negri">Teléfono: </span>5710604</div>
-            <div class="m-list-footer"><span class="negri">Dirección: </span>Cra80F No. 41-17 Sur<br>Bogotá DC</div>
+            <h5 class="w3-text-deep-orange w3-center"><span class="negri">Punto de Fábrica</span></h5>
+            <div class="is-Footer-List"><span class="negri">Teléfono: </span>5710604</div>
+            <div class="is-Footer-List"><span class="negri">Dirección: </span>Cra80F No. 41-17 Sur<br>Bogotá DC</div>
 
-            <h5 class="w3-text-deep-orange w3-center">Asesor de Venta</h5>
-            <div class="m-list-footer"><span class="negri">CARLOS OSMA</span></div>
-            <div class="m-list-footer"><span class="negri">Celular: </span>312 554 5605 - 315 583 0651</div>
-            <div class="m-list-footer"><span class="negri">Dirección: </span>Cra80F No. 41-17 Sur Bogotá DC</div>
+            <h5 class="w3-text-deep-orange w3-center"><span class="negri">Asesor de Venta</span></h5>
+            <div class="is-Footer-List"><span class="negri">CARLOS OSMA</span></div>
+            <div class="is-Footer-List"><span class="negri">Celular: </span>312 554 5605 - 315 583 0651</div>
+            <div class="is-Footer-List"><span class="negri">Dirección: </span>Cra80F No. 41-17 Sur Bogotá DC</div>
         </div>
         <div class="w3-container w3-half">
-            <h5 class="w3-text-deep-orange w3-center">Creadores de Rapid Jackets</h5>
+            <h5 class="w3-text-deep-orange w3-center">Creadores de Pagina de Creaciones Julieth</h5>
                 <div class="w3-accordion m-autores">
                     <!-- -------------------------------------------------------------- -->
-                    <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin1')"><span class="negri">Anderson Steevenn Garcia</span></button>
-                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin1">
+                    <button class="w3-btn-block is-Color13 w3-left-align w3-tiny" onclick="acordeon('admin1')"><span class="negri">Anderson Garcia Romero</span></button>
+                    <div class="w3-accordion-content w3-container" id="admin1">
                         <div class="w3-row w3-container">
-                            <img class="m-autor-foto w3-col" src="../media/img/icons_users/bald-user-with-glasses.png">
+                            <img class="m-autor-foto w3-col" src="../media/img/EsteXDXD.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
                                 <p>Encargado de Proyecto. Responsable de que el proyecto este listo para entregar antes de Quinto trimestre</p>
                             </div>
@@ -31,8 +31,8 @@
                     </div>
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
-                    <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin2')"><span class="negri">Elkin Fernando Alaguna</span></button>
-                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin2">
+                    <button class="w3-btn-block is-Color13 w3-left-align w3-tiny" onclick="acordeon('admin2')"><span class="negri">Elkin Fernando Alaguna</span></button>
+                    <div class="w3-accordion-content w3-container" id="admin2">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/man-with-low-beard.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -42,8 +42,8 @@
                     </div>
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
-                    <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin3')"><span class="negri">Josué Francisco Gómez</span></button>
-                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin3">
+                    <button class="w3-btn-block is-Color13 w3-left-align w3-tiny" onclick="acordeon('admin3')"><span class="negri">Josué Francisco Gómez</span></button>
+                    <div class="w3-accordion-content w3-container" id="admin3">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/boy-with-glasses.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -53,8 +53,8 @@
                     </div>
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
-                    <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin4')"><span class="negri">Heidy Natalia Carvajal</span></button>
-                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin4">
+                    <button class="w3-btn-block is-Color13 w3-left-align w3-tiny" onclick="acordeon('admin4')"><span class="negri">Heidy Natalia Carvajal</span></button>
+                    <div class="w3-accordion-content w3-container" id="admin4">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/edit-woman-with-bund-profile.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -64,8 +64,8 @@
                     </div>
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
-                    <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin5')"><span class="negri">Angie Jasbleidy Rodríguez</span></button>
-                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin5">
+                    <button class="w3-btn-block is-Color13 w3-left-align w3-tiny" onclick="acordeon('admin5')"><span class="negri">Angie Jasbleidy Rodríguez</span></button>
+                    <div class="w3-accordion-content w3-container" id="admin5">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/woman-with-bund-and-glasses.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -78,8 +78,8 @@
                 </div>
         </div>
         <div class="w3-container w3-quarter">
-            <h5 class="w3-text-deep-orange w3-center">Redes Sociales</h5>
-            <div class="m-redes-social">
+            <h5 class="w3-text-deep-orange w3-center"><span class="negri">Redes Sociales</span></h5>
+            <div class="m-redes-social w3-center">
                 <a title="Faccebook" href="#"><img class="icon" src="../media/img/icons_social/facebook.png"></a>
                 <a title="Instagram" href="#"><img class="icon" src="../media/img/icons_social/instagram.png"></a>
                 <a title="Twitter" href="#"><img class="icon" src="../media/img/icons_social/twitter.png"></a>

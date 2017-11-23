@@ -340,13 +340,28 @@ class UsuarioController implements Validable, GenericController {
         return $usuario;
     }
 
-    public function mostrarCardUsuario() {
+    public function mostrarNavAdminUsuario() {
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;
-        if ($sesion->existe(Session::US_LOGED)) {
+        if ($sesion->existe(Session::US_ADMIN_LOGED)) {
             $usuario = $sesion->getEntidad(Session::US_LOGED);
             $cuenta = $sesion->getEntidad(Session::CU_LOGED);
-            $this->usuarioMQT->maquetaCardSesion($usuario, $cuenta);
+            $this->usuarioMQT->maquetaNavAdminPrin($cuenta);
+        }else if($sesion->existe(Session::US_SUB_ADMIN_LOGED)){
+            $usuario = $sesion->getEntidad(Session::US_LOGED);
+            $cuenta = $sesion->getEntidad(Session::CU_LOGED);
+            $this->usuarioMQT->maquetaNavAdminSec($cuenta);
+        }
+    }
+    
+    public function mostrarNavbarUsuario() {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        if (!$sesion->existe(Session::US_LOGED)) {
+            include_once 'includes/navbar.php';
+        }else{
+            $cuenta = $sesion->getEntidad(Session::CU_LOGED);
+            $this->usuarioMQT->maquetaNavSession($cuenta);
         }
     }
 

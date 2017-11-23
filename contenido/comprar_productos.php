@@ -36,6 +36,9 @@ $modal = $facturaControl->insertarFacturaDefault();
         $contenido->getHeader();
         ?>
         <section class="m-section">
+            <?php
+            $userControl->mostrarNavbarUsuario();
+            ?>
             <div class="RESPUESTA"></div>
             <?php
             $userControl->mostrarNoLoginUser();

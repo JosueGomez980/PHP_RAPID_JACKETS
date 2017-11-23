@@ -22,6 +22,7 @@ AutoCarga::init();
         <section class="m-section">
             <?php
             $contenido->getHeader();
+            $userManager->mostrarNavbarUsuario();
             $userManager->mostrarManagerLink();
             if ($sesion->existe(Session::US_LOGED)) {
                 $cuentaSession = $sesion->getEntidad(Session::CU_LOGED);

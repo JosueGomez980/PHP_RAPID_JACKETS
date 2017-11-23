@@ -83,48 +83,132 @@ class UsuarioMaquetador implements GenericMaquetador {
         echo($salida);
     }
 
-    public function maquetaCardSesion(UsuarioDTO $user, CuentaDTO $cuenta) {
-        $idUser = Validador::fixTexto($user->getIdUsuario());
-        $nombre = Validador::fixTexto($cuenta->getPrimerNombre());
-        $apellido = Validador::fixTexto($cuenta->getPrimerApellido());
-        $nombres = $nombre . " " . $apellido;
-        $salida = '<hr><div class="w3-row">
-                <div class="w3-container w3-theme-d2 w3-half w3-right">
-                    <div class="w3-row">
-                        <div class="w3-quarter">
-                            <img class="m-user-in-sesion-img" src="../media/img/icons_users/man-user.png">
-                        </div>
-                        <div class="w3-theme-l5 w3-container w3-threequarter">
-                            <ul class="w3-ul w3-tiny">
-                                <li><span class="w3-text-theme">NOMBRE: <b>' . $nombres . '</b></span></li>
-                                <li><span class="w3-text-theme">TU USERNAME: <b>' . $idUser . '</b></span></li>
-                            </ul>
-                        </div>
+    public function maquetarNothingXD() {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $cuentaSession = $sesion->getEntidad(Session::CU_LOGED);
+        $cuentaSession instanceof CuentaDTO;
+
+        if (!$sesion->existe(Session::US_LOGED)) {
+
+            echo '<br><br>
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                    <br><br>
+                    <div class="w3-center">
+                        <span class="is-Tamaño-Letra09"> 
+                            <span class="glyphicon glyphicon-yen"></span>
+                             Nothing  
+                            <span class="glyphicon glyphicon-ice-lolly-tasted"></span>
+                        </span>
+                        <br>
+                        <img class="m-login-logo w3-animate-zoom" src="../media/img/NothingXD.png">
+                        <br>
+                        <br><a href="inicio.php"><button class="is-Button-Nothing">Inicio</button></a>
                     </div>
-                    <div class="w3-right w3-container w3-padding-4 w3-card-2">
-                        <a href="controlador/negocio/unlog.php"><button class="w3-btn w3-blue w3-tiny w3-text-white w3-round-large m-c-v">Salir<img class="m-user-admin-icons" src="../media/img/icons_users/logout.png" ></button></a>
-                        <a href="configurar_cuenta.php"><button class="w3-btn w3-blue w3-tiny w3-text-white w3-round-large m-c-v">Configuración<img class="m-user-admin-icons" src="../media/img/icons_users/config_cuenta.png" ></button></a>
-                    </div>
+                    <br><br>
                 </div>
-            </div>';
-        echo($salida);
+                <br><br>';
+        } else {
+
+            echo '<br><br>
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                    <br><br>
+                    <div class="w3-center">
+                        <span class="is-Tamaño-Letra09"> 
+                            <span class="glyphicon glyphicon-yen"></span>
+                             Nothing ' . $cuentaSession->getPrimerNombre() . ' 
+                            <span class="glyphicon glyphicon-ice-lolly-tasted"></span>
+                        </span>
+                        <br>
+                        <img class="m-login-logo w3-animate-zoom" src="../media/img/NothingXD.png">
+                        <br>
+                        <br><a href="inicio.php"><button class="is-Button-Nothing">Inicio</button></a>
+                    </div>
+                    <br><br>
+                </div>
+                <br><br>';
+        }
+    }
+
+    public function maquetaNavSession(CuentaDTO $cuenta) {
+        $nombre = $cuenta->getPrimerNombre();
+        $apelldido = $cuenta->getPrimerApellido();
+        $nombreCompleto = $nombre . " " . $apelldido;
+        $este = '<nav class="navbar m-nav is-navbar-XD">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li><a class="is-hover-Letra01 w3-center" href="inicio.php">Inicio</a></li>
+                            <li><a class="is-hover-Letra01 w3-center" href="sobre_nosotros.php">Sobre Nosotros</a></li>
+                            <li><a class="is-hover-Letra01 w3-center" href="productos.php">Nuestros productos</a></li>
+                            <li><a class="is-hover-Letra01 w3-center" href="contacto.php">Contactenos</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="is-hover-Color11 w3-center" onclick="verCarritoComprasInModal()"><img src="../media/img/CarritoNav.png" alt="CarritoRapidJackets" title="Ver Carrito Rapid" style="width: 25px;">  Ver carrito</a></li>
+                            <li><a class="is-hover-Color10 w3-center"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
+                            <li><a href="configurar_cuenta.php" class="is-hover-Color12 w3-center"><span class="glyphicon glyphicon-cog"></span> Configuracion</a></li>
+                            <li><a href="controlador/negocio/unlog.php" class="w3-hover-black w3-center"><span class="glyphicon glyphicon-off"></span> Cerrar Sesion</a></li>
+                        </ul>
+                    </nav>
+                </div>';
+        echo ($este);
+    }
+
+    public function maquetaNavAdminPrin(CuentaDTO $cuenta) {
+
+        $nombre = $cuenta->getPrimerNombre();
+        $apelldido = $cuenta->getPrimerApellido();
+        $nombreCompleto = $nombre . " " . $apelldido;
+        $esteOtro = '<nav class="navbar"  style="background-color: #fff; border-bottom: 2px solid #000">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_usuarios_crud.php" style="color: #000;">Gestión de Usuarios</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_productos.php" style="color: #000;">Gestión de Productos</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
+                            </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
+                        <li><a href="inicio.php" class="is-hover-Color12 text-center" style="color: #000;"><span class="glyphicon glyphicon-th-large"></span> Pagina de Inicio</a></li>
+                        </ul>
+                    </nav>
+                </div>';
+        echo ($esteOtro);
+    }
+    
+    public function maquetaNavAdminSec(CuentaDTO $cuenta) {
+
+        $nombre = $cuenta->getPrimerNombre();
+        $apelldido = $cuenta->getPrimerApellido();
+        $nombreCompleto = $nombre . " " . $apelldido;
+        $esteOtro = '<nav class="navbar"  style="background-color: #fff; border-bottom: 2px solid #000">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_productos.php" style="color: #000;">Gestión de Productos</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
+                            </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
+                        <li><a href="inicio.php" class="is-hover-Color12 text-center" style="color: #000;"><span class="glyphicon glyphicon-th-large"></span> Pagina de Inicio</a></li>
+                        </ul>
+                    </nav>
+                </div>';
+        echo ($esteOtro);
     }
 
     public function maquetarManagerLink($userName) {
-        echo('<div class="m-manager-tools w3-col l3 m5 s12 w3-container w3-animate-right">
+        echo('<div class="m-manager-tools w3-col l2 m5 s12 w3-container w3-animate-right w3-center">
                 <img src="../media/img/icons_users/man-with-sunglasses-and-suit.png" style="width: 25px; height: auto; margin: auto;">
-                <span class="w3-small w3-text-green">Bienvenido ' . $userName . ' (Administrador)</span><br>
-                <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-green w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>
-                <a href="controlador/negocio/unlog.php"><button class="w3-btn w3-green w3-round-xlarge w3-tiny">SALIR</button></a>
+                <span class="w3-small" style="color: #000">Bienvenido ' . $userName . '</span><br>
+                <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-black w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>
             </div>');
     }
 
     public function maquetaSubManagerLink($userName) {
-        echo('<div class="m-manager-tools w3-col l3 m5 s12 w3-container w3-animate-right">
+        echo('<div class="m-manager-tools w3-col l2 m5 s12 w3-container w3-animate-right">
                 <img src="../media/img/icons_users/man-with-sunglasses-and-suit.png" style="width: 25px; height: auto; margin: auto;">
-                <span class="w3-small w3-text-blue">Bienvenido ' . $userName . ' (Administrador)</span><br>
+                <span class="w3-small w3-text-blue">Bienvenido ' . $userName . '</span><br>
                 <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-blue w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>
-                <a href="controlador/negocio/unlog.php"><button class="w3-btn w3-blue w3-round-xlarge w3-tiny">SALIR</button></a>
             </div>');
     }
 

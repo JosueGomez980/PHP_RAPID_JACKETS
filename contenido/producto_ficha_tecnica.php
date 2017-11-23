@@ -11,6 +11,7 @@ and open the template in the editor.
 
     $contenido = ContenidoPagina::getInstancia();
     $contenido->getHead();
+    $userEste = new UsuarioController();
 
     AutoCarga::init();
     $acceso = AccesoPagina::getInstacia();
@@ -35,6 +36,7 @@ and open the template in the editor.
         <div id="CARRITO"></div>
         <section class="m-section">
             <?php
+            $userEste->mostrarNavBarUser();
             if (!is_null($proFinded)) {
                 $userManager->encontrar($proFinded);
             } else {
