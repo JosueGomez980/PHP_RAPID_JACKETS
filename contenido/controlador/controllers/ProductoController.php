@@ -255,18 +255,31 @@ class ProductoController implements GenericController, Validable {
     }
 
     public function listarPorDefecto() {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
         $productos = $this->productoDAO->findAll();
         $pros = array();
         if (!is_null($productos)) {
-            $limite = (int) (ceil(rand(1, count($productos))));
+            $limite = (int) (ceil(rand(1, count($productos))) / 2);
             for ($i = 0; $i < $limite; $i++) {
                 $pros[$i] = $productos[$i];
             }
-            $this->productoMQT->maquetaArrayObject($pros);
+            if ($sesion->existe(Session::US_LOGED)) {
+
+                echo '<div class=" container-fluid" style="width: 95%">'
+                . '<br><br>';
+                $this->productoMQT->maquetaArrayObject($pros);
+                echo '</div>';
+            } else {
+
+                echo '<div class=" container-fluid" style="width: 95%">'
+                . '<br><br>';
+                $this->productoMQT->maquetaArrayObjectNoSession($pros);
+                echo '</div>';
+            }
         } else {
             $this->contentMGR->setFormato(new Neutral());
             $this->contentMGR->setContenido("No existe ningún producto aún.");
-            echo($this->contentMGR->maquetar());
         }
     }
 

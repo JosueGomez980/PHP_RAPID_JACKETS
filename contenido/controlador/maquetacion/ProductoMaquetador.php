@@ -38,22 +38,79 @@ class ProductoMaquetador implements GenericMaquetador {
                                     </button>';
             }
             if ($producto->getActivo()) {
-                echo('<div class="w3-col m4 l2 s10">
-                        <div class="w3-card-4 w3-white m-producto-card">
-                            <a href="producto_ficha_tecnica.php?producto_id=' . $idProductoUrl . '"><img src="' . $foto . '" alt="' . $nombre . '" title="' . $nombre . '" class="m-producto-view-1-img"></a>
+                echo('<div class="w3-col m6 l2 s10">
+                        <div class="w3-card-8 w3-white m-producto-card">
+                            <a href="producto_ficha_tecnica.php?producto_id=' . $idProductoUrl . '"><img src="'.$foto.'" alt="' . $nombre . '" title="' . $nombre . '" class="is-Producto-view-1-img"></a>
                             <input type="hidden" value="' . $idProducto . '">
-                            <div class="w3-display-container w3-white m-producto-name w3-responsive">
-                                <div class="">' . $nombre . '</div>                                
+                            <div class="w3-container w3-white m-producto-name">
+                                <span><br>' . $nombre . '</span>                                
                             </div>
-                            <div class="w3-row w3-theme-d1">
-                                <div class="w3-row w3-center">
-                                    <div class="w3-black w3-padding-4 w3-tiny">' . $precio . '</div>
+                            <br>
+                            <div class="w3-row is-Color16">
+                                <br>
+                                <div class="w3-center"><input type="number" id="' . $idProducto . '" class="input_carrito w3-center" max="' . $cantidad . '" min="1" placeholder="Cantidad"></div>
+                                <br>
+                                <div class="w3-half w3-center" style="padding: 5%  5%";>
+                                    <span class="w3-round is-Color17 w3-padding-4">' . $precio . '</span>
                                 </div>
-                                <div class="w3-row w3-center">
-                                    ' . $botonCarrito . '
+                                <div class="w3-half w3-center">
+                                    <button class="is-Button-Carrito" onclick="agregarAlCarrito(this)">
+                                        <input type="hidden" value="' . $idProducto . '">
+                                        <img src="../media/img/carrito2.png" alt="Agregar al carrito" title="Agregar al carrito" class="m-carrito">
+                                        Agregar al Carrito
+                                    </button>
                                 </div>
+                                <br><br><br>
                             </div>
-                            ' . $inputCarrito . '
+                        </div>
+                    </div>');
+            }
+        }
+        echo('</div>');
+    }
+    
+    public function maquetaArrayObjectNoSession(array $entidades) {
+        echo('<div class="w3-row w3-container" id="productos_principal">');
+        foreach ($entidades as $producto) {
+            $botonCarrito = "";
+            $inputCarrito = "";
+            $producto instanceof ProductoDTO;
+            $nombre = $producto->getNombre();
+            $precio = Validador::formatPesos($producto->getPrecio());
+            $idProducto = base64_encode($producto->getIdProducto());
+            $idProductoUrl = CriptManager::urlVarEncript($producto->getIdProducto());
+            $foto = $this->urlFoto($producto->getFoto());
+            $cantidad = $producto->getCantidad();
+            if ($producto->getCantidad() <= 0) {
+                $inputCarrito = '<div class="w3-display-container w3-grey w3-small negri" style="height: 60px;"><div class="w3-display-middle"> PRODUCTO AGOTADO </div></div>';
+//                $botonCarrito = '<div class="w3-center w3-container w3-tiny w3-padding-4 w3-gray">
+//                    No está a la venta
+//                </div>';
+            } else {
+                $inputCarrito = '<div class="w3-center"><input type="number" id="' . $idProducto . '" class="input_carrito w3-center" max="' . $cantidad . '" min="1" placeholder="Cantidad"></div>';
+                $botonCarrito = '<button class="m-boton-add-carrito" onclick="agregarAlCarrito(this)">
+                                        <input type="hidden" value="' . $idProducto . '">
+                                        <img src="../media/img/carrito_compra.png" alt="Agregar al carrito" title="Agregar al carrito" class="m-carrito">
+                                        Agregar al carrito
+                                    </button>';
+            }
+            
+            if ($producto->getActivo()) {
+                echo('<div class="w3-col m6 l2 s10">
+                        <div class="w3-card-8 w3-white m-producto-card">
+                            <a href="producto_ficha_tecnica.php?producto_id=' . $idProductoUrl . '"><img src="'.$foto.'" alt="' . $nombre . '" title="' . $nombre . '" class="is-Producto-view-1-img"></a>
+                            <input type="hidden" value="' . $idProducto . '">
+                            <div class="w3-container w3-white m-producto-name">
+                                <span><br>' . $nombre . '</span>                                
+                            </div>
+                            <br>
+                            <div class="w3-row is-Color16">
+                                <br><br>
+                                <div class="w3-center">
+                                    <span class="w3-round is-Color17 w3-padding-8 w3-padding-left w3-padding-right w3-center">' . $precio . '</span>
+                                </div>
+                                <br><br>
+                            </div>
                         </div>
                     </div>');
             }

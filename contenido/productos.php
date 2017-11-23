@@ -25,44 +25,67 @@ and open the template in the editor.
         $contenido->getHeader();
         ?>
         <div id="CARRITO"></div>
-        <section class="m-section">
+        <section class="is-Fondo-01">
             <?php
             $userManager->mostrarNavbarUsuario();
             ?>
             <div class="w3-row">
-                <div class="w3-container w3-half w3-light-grey">
-                    <h4 class="w3-center">Buscar por...</h4> 
-                    <label  class="labels">Categoría</label>
-                    <?php
-                    $proMQT->maquetaCategoriasForUser();
-                    ?>
-                </div>
-                <div class="w3-container w3-half w3-card-4 w3-padding-8">
-                    <label class="labels">Buscar por Nombre del producto</label>
-                    <div class="w3-padding-4">
-                        <input type="text" class="input_texto" name="producto_name" id="producto_name" placeholder="Nombre a buscar" onkeyup="mostrarProductosPorNombre();"><br>
-                        <button class="w3-btn w3-theme-d2 w3-round-medium" onclick="mostrarProductosPorNombre();">Buscar</button>
-                        <button onclick="document.getElementById('modal_busqueda').style.display = 'block'" class="w3-button w3-theme-dark w3-round-medium w3-small">Búsqueda Avanzada</button>
+                <div class="container-fluid is-Tamaño-ContainerXD">
+                    <br>
+                    <div class="w3-btn-group w3-medium">
+                        <button onclick="mostrarOcultarTab('buscar_Categoria')" class="w3-btn w3-ripple w3-round-large is-Button-EscojerProXD">Buscar por Categoria</button>
+                        <button onclick="mostrarOcultarTab('buscar_Nombre')" class="w3-btn w3-ripple w3-round-large is-Button-EscojerProXD">Buscar por Nombre</button>
+                    </div>
+                    <br>
+                    <div class="container-fluid tab w3-animate-top" id="buscar_Categoria">
+                        <div class="w3-container w3-light-grey col-md-13" style="border-radius: 15px;">
+                            <br><br>
+                            <div class="container is-Tamaño-ContainerXD">
+                                <label for="cuenta_tip_doc" class="labels">Categoría : </label>
+                                <?php
+                                echo '<div class="w3-center">' . $proMQT->maquetaCategoriasForUser() . '</div>';
+                                ?>
+                                <br><br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row tab w3-hide w3-animate-top" id="buscar_Nombre">
+                        <div class="w3-container w3-light-grey col-md-13">
+                            <div class="container-fluid is-Tamaño-ContainerXD w3-light-grey">
+                                <br><br>
+                                <label class="labels">Buscar por Nombre del producto</label>
+                                <div class="w3-padding-4">
+                                    <center><input type="text" style="border: 1px solid #000;" class="input_texto" name="producto_name" id="producto_name" placeholder="Nombre a buscar" onkeyup="mostrarProductosPorNombre();"></center>
+                                    <center><button class="is-Button-CarritoXD" onclick="mostrarProductosPorNombre();">Buscar</button>
+                                        <button onclick="document.getElementById('modal_busqueda').style.display = 'block'" class="is-Button-BusquedaXD">Búsqueda Avanzada</button></center>
+                                    <br><br>
+                                </div>
+                            </div>
+
+                            <div class="w3-row w3-responsive">
+                                <div id="TAB_ADV_SEARCH">
+                                    <!----------------------------------------------------------------------------------------->
+                                    <?php $productoControl->mostrarModalBusquedaAvanzada('PRODUCTOS', 'producto_busqueda_avanzada_user'); ?>
+                                    <!------------------------------------------------------------------------------------------------->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="w3-row w3-responsive">
-                <div id="TAB_ADV_SEARCH">
-                    <!----------------------------------------------------------------------------------------->
-                    <?php $productoControl->mostrarModalBusquedaAvanzada('PRODUCTOS', 'producto_busqueda_avanzada_user'); ?>
-                    <!------------------------------------------------------------------------------------------------->
+                <center><hr class="w3-padding-4" style="background-color: #5B2C6F; width: 90%"></center>
+                <div id="RTA" class="w3-center">
+                    <div class="container is-Tamaño-ContainerXD w3-white" style="border-radius: 20px;">
+                        <div id="PRODUCTOS" class="w3-responsive w3-center">
+                            <?php
+                            $productoControl->listarPorDefecto();
+                            ?>
+                            <br>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <hr class="w3-lime w3-padding-4">
-            <div id="RTA" class="w3-center">
-                <div id="PRODUCTOS" class="w3-responsive w3-center w3-padding-large">
-                    <?php
-                    $productoControl->listarPorDefecto();
-                    ?>
-                </div>
-            </div>
+                <br><br>
         </section>
         <?php
         $contenido->getFooter();
