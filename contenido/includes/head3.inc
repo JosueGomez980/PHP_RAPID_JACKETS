@@ -22,6 +22,7 @@
     <link href="../css/stilos_propios.css" rel="stylesheet" type="text/css">
     <link href="../css/sprite.css" rel="stylesheet" type="text/css">
     <link href="../css/manager_theme.css" rel="stylesheet" type="text/css">
+    <link href="../css/cssIsseiXD.css" rel="stylesheet" type="text/css"> 
     
     <script src="../css/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../css/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>

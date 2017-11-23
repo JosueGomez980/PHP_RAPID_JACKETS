@@ -13,7 +13,8 @@
     <link href="../css/w3.css" rel="stylesheet" type="text/css">
     <link href="../css/stilos_propios.css" rel="stylesheet" type="text/css">
     <link href="../css/sprite.css" rel="stylesheet" type="text/css">
-    <link href="../css/user_theme.css" rel="stylesheet" type="text/css">  
+    <link href="../css/user_theme.css" rel="stylesheet" type="text/css">
+    <link href="../css/cssIsseiXD.css" rel="stylesheet" type="text/css"> 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

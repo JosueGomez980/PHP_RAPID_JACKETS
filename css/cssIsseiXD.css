@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 01-nov-2017, 8:05:45
+    Created on : 23-nov-2017, 7:27:39
     Author     : SOPORTE
 */
 
@@ -12,13 +12,54 @@ and open the template in the editor.
     background-color: #000033; 
 }
 .is-logo{
-    width: 60%;
+    width: 230px;
     height: auto;
+}
+
+.is-Title-Header-Admin-01{
+    font-size: 50px;
+    color:#e80374;
+    text-shadow: 1px 1px 2px #CC00FF;
+    display: block;
+    text-align: center;
+}
+.is-Title-Header-Admin-02{
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 2px #ffffff;
+    display: block;
+    line-height: 30px;
 }
 
 .is-logoAdmin{
     width: 30%;
     height: auto;
+}
+
+.is-Labels-XD{
+    color: #FFF;
+    font-size: medium;
+    font-weight: bolder;
+    display: block;
+}
+
+.is-Input-Text-Otro{
+    border: 0px;
+    margin-bottom: 25px;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #333333;
+    width: 80%;
+    -webkit-transition: width 0.36s, box-shadow 0.5s;
+    -moz-transition: width 0.36s, box-shadow 0.5s;
+    -o-transition: width 0.36s, box-shadow 0.5s;
+    transition: width 0.36s, box-shadow 0.5s;
+}
+.is-Input-Text-Otro:focus{
+    width: 85%;
+    box-shadow: 2px 2px 6px #000;
 }
 
 .is-Textarea-XD{
@@ -60,6 +101,14 @@ and open the template in the editor.
     background-color: #ffffff;
     color: #000;
     border-color: #ff6600;
+}
+
+.is-Title01{
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    text-align: center;
 }
 
 .is-Tamaño-ContainerXD {
@@ -185,6 +234,10 @@ and open the template in the editor.
     color:#FFF!important;
     background-color:#66BB6A!important
 }
+.is-Color30,.is-hover-Color30:hover{
+    color:#000!important;
+    background-color: #A6ACAF!important;
+}
 
 
 
@@ -243,11 +296,21 @@ and open the template in the editor.
     color: #3949AB!important; 
 }
 
+.is-ColorAdmin,is-hover-ColorAdmin{
+    color: #fff!important;
+    background-color: #000;
+}
+
 
 .is-Letra01,.is-hover-Letra01:hover{
     font-weight: bold;
     color:#FFF!important;
     background-color:#303F9F!important
+}
+.is-Letra02,.is-hover-Letra02:hover{
+    font-weight: bold;
+    color:#FFF!important;
+    background-color:#515A5A!important
 }
 
 .is-PoscisionXD{
@@ -444,10 +507,34 @@ and open the template in the editor.
     -webkit-transform: rotate(-7deg);
     -moz-transform: rotate(-7deg);
 }
+.is-Button-Volver{
+    width: auto;
+    font-size: 1em;
+    background-color: #FFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-Volver:hover{
+    background-color: #2980B9;
+    border-color: #154360;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
 .is-Button-CarritoXD{
     width: auto;
     font-size: 1em;
-    background-color: #FFFFFF;
+    background-color: #fff;
     color: #000;
     border: 1px solid #000;
     padding: 10px 15px;
@@ -494,6 +581,31 @@ and open the template in the editor.
     -moz-transform: rotate(-7deg);
 }
 
+.is-Button-DisableXD-Inverted{
+    width: auto;
+    font-size: 1em;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-DisableXD-Inverted:hover{
+    background-color: #e53935;
+    border-color: #b71c1c;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
 .is-Button-BorrarXD{
     width: auto;
     font-size: 1em;
@@ -519,6 +631,7 @@ and open the template in the editor.
     -moz-transform: rotate(-7deg);
 }
 
+
 .is-Button-BorrarXD-Inverted{
     width: auto;
     font-size: 1em;
@@ -537,6 +650,31 @@ and open the template in the editor.
 .is-Button-BorrarXD-Inverted:hover{
     background-color: #424949;
     border-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+}
+
+.is-Button-SelectXD{
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+}
+.is-Button-SelectXD:hover{
+    background-color: #8E44AD;
+    border-color: #5B2C6F;
     color: #fff;
     cursor: pointer;
     transform: rotate(-7deg);
@@ -710,7 +848,7 @@ and open the template in the editor.
     transition: width 0.36s, box-shadow 0.5s;
 }
 .is-Selects:hover{
-    width: 100%;
+    width: 85%;
     box-shadow: 2px 2px 6px #000;
 }
 
@@ -755,6 +893,10 @@ input[id^="EsteXDXD"] + label {
     -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
     -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
     -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 input[id^="EsteXDXD"] + label:hover{
     background-color: #239B56;
@@ -764,11 +906,19 @@ input[id^="EsteXDXD"] + label:hover{
     transform: rotate(-7deg);
     -webkit-transform: rotate(-7deg);
     -moz-transform: rotate(-7deg);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 input[id^="EsteXDXD"]:checked + label {
     background-color: #239B56;
     border-color: #1B5E20;
     color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 input[id^="EsteXDXD"] ~ .EsteXDXD {
     width: 90%;
@@ -781,4 +931,22 @@ input[id^="EsteXDXD"]:checked + label + .EsteXDXD{
     height: auto;
     opacity: 1;
 }
+.is-Prueba-button:before {
+ content:'';
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 0px;
+ height: 42px;
+ background: rgba(255,255,255,0.3);
+ border-radius: 5px;
+ transition: all 2s ease;
+}
+is-Prueba-button:hover:before {
+ width: 100%;
+}
+
+
+
+
 
