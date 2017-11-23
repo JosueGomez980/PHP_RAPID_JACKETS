@@ -11,8 +11,8 @@
  *
  * @author JosueFrancisco
  */
-require_once 'cargar_clases3.php';
-AutoCarga3::init();
+//require_once 'cargar_clases3.php';
+//AutoCarga3::init();
 
 final class FacturaRequest extends Request {
 
@@ -252,7 +252,7 @@ class FacturaController implements GenericController, Validable {
             //Llenar las propiedades de esta clase necesarias para maquetar las factuuras
             $this->faturaDTO = $faturaInsert;
             $itemsInsert = array();
-            foreach ($carritoDTO->getItems() as $it){
+            foreach ($carritoDTO->getItems() as $it) {
                 $itemsInsert[] = ItemDAO::itemCarritoToItemDTO($it, $faturaInsert->getIdFactura());
             }
             $this->itemsFacturaDTO = $itemsInsert;
@@ -276,7 +276,28 @@ class FacturaController implements GenericController, Validable {
         $this->facturaMQT->maquetarFacturaTipoA($factura, $items);
     }
 
-    public function descontarProductos(array $items) { //Deben ser itemsDTO no de Carrito
+    public function descontarProductos(array $items) { //Deben ser items de Carrito
+        $ok = false;
+        $proDAO = ProductoDAO::getInstancia();
+        $proDAO instanceof ProductoDAO;
+        $numItems = count($items);
+        $numItemsOK = 0;
+        foreach ($items as $it) {
+            $it instanceof ItemCarritoDTO;
+            $proDTO = $it->getProducto();
+            $proDTO instanceof ProductoDTO;
+            $proFinded = $proDAO->find($proDTO);
+            $proFinded instanceof ProductoDTO;
+            $nuevaCantidad = ($proFinded->getCantidad() - $it->getCantidad());
+            $proDTO->setCantidad($nuevaCantidad);
+            if ($proDAO->updateCantidad($proDTO) == 1) {
+                $numItemsOK++;
+            }
+        }
+        if($numItems == $numItemsOK){
+            $ok = true;
+        }
+        return $ok;
     }
 
     public function consolidarFactura(FacturaDTO $factura) {

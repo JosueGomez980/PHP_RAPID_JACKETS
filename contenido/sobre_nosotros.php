@@ -20,14 +20,8 @@ AutoCarga::init();
         <?php
         $userManager->mostrarManagerLink();
         $contenido->getHeader();
-        
         ?>
         <section class="m-section">
-            <div id="cardUser">
-                <?php
-                $userManager->mostrarCardUsuario();
-                ?>
-            </div>
         </section>
         <?php
         $contenido->getFooter();

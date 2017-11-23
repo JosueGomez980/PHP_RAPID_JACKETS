@@ -56,6 +56,34 @@ final class AccesoPagina {
         }
     }
 
+    public function comprobarUserInAccountRecovery($destino) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $ok = true;
+        if (!$sesion->existe(Session::USER_RESCUE)) {
+            $ok = FALSE;
+        } else {
+            $userRescue = $sesion->getEntidad(Session::USER_RESCUE);
+            $userRescue instanceof UsuarioDTO;
+            $userRescue->setIdUsuario(CriptManager::urlVarDecript($userRescue->getIdUsuario()));
+            $userDAO = UsuarioDAO::getInstancia();
+            $userDAO instanceof UsuarioDAO;
+            if (is_null($userDAO->find($userRescue))) {
+                $ok = FALSE;
+            }
+        }
+        if (!$ok) {
+            $modal = new ModalSimple();
+            $neutral = new Neutral();
+            $neutral->setValor("No tienes permiso para acceder a este módulo");
+            $modal->addElemento($neutral);
+            $modal->setClosebtn("Aceptar");
+            $sesion->add(Session::NEGOCIO_RTA, $modal);
+            $this->irPagina($destino);
+        }
+    }
+    
+
     public function comprobarSesionAdmin($destino) {
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;

@@ -65,7 +65,7 @@ final class Validador {
     public static function validaUserName($userName) {
         $r = TRUE;
         $arr = str_split($userName);
-        if (strlen($userName) < 8) {
+        if (strlen($userName) < 8 || strlen($userName > 255)) {
             $r = FALSE;
         }
         $cont = 0;
@@ -100,7 +100,7 @@ final class Validador {
         if (strlen($telefono) < $min || strlen($telefono) > $max) {
             $ok = FALSE;
         }
-        
+
         $telArray = str_split($telefono);
         for ($i = 0; $i < count($telArray); $i++) {
             if (!self::validaInteger($telArray[$i])) {
@@ -110,12 +110,13 @@ final class Validador {
         }
         return $ok;
     }
-    public static function validaTel2($telefono, $min, $max){
+
+    public static function validaTel2($telefono, $min, $max) {
         $ok = true;
-        if(!self::validaTel($telefono, 10, 10) || (!self::validaTel($telefono, 7, 7))){
+        if (!self::validaTel($telefono, 10, 10) || (!self::validaTel($telefono, 7, 7))) {
             $ok = false;
         }
-        if(!preg_match("/^[0-9]{7,10}$/", $telefono)){
+        if (!preg_match("/^[0-9]{7,10}$/", $telefono)) {
             $ok = false;
         }
         return $ok;

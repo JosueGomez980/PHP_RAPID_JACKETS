@@ -20,12 +20,13 @@ and open the template in the editor.
         <?php
         $contenido->getHeader();
         $userManager->mostrarManagerLink();
+        $contenido->mostrarRespuestaNegocio();
         if (!$sesion->existe(Session::US_LOGED)) {
             ?>
             <section class="m-section">
                 <div class="w3-container w3-card-8 w3-theme-d4" id="RTA"></div>
                 <div class="m-tituloA">INICIO DE SESIÓN</div>
-                <form  name="log_in" id="login_form" onsubmit="login()">
+                <form  name="log_in" method="post" id="login_form" onsubmit="return false;">
                     <div class="w3-row">
                         <div class="w3-quarter w3-container"></div>
                         <div class="w3-half w3-container w3-card-8 w3-padding w3-theme-l3 w3-center">
@@ -47,7 +48,7 @@ and open the template in the editor.
                             <a href="inicio.php"><button class="m-boton-a">Cancelar</button></a>
                             <br><br>
                             <div class="w3-center">
-                                <a href="#"><span class="w3-tag w3-yellow">Olvidé mi contraseña</span></a>
+                                <a href="recuperar_contrasena.php"><span class="w3-tag w3-yellow">Olvidé mi contraseña</span></a>
                                 <a href="registro_usuarios.php"><span class="w3-tag w3-green">¿No tienes cuenta? Regístrate</span></a>
                             </div>
                         </div>

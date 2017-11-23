@@ -50,10 +50,21 @@ CREATE TABLE RAPID_JACKETS.USUARIO (
   ID_USUARIO VARCHAR(255) NOT NULL COMMENT 'Esta es la llave promaria de la tabla usuario. Corresponde al nombre digitado por el usuario que se reguistre como cliente en el sistema. Se optará por mantener este campo encriptado por seguridad',
   CONTRASENA VARCHAR(255) NOT NULL COMMENT 'Esta campo es para la contraseña del usuario. ',
   ROL VARCHAR(50) NOT NULL DEFAULT 'USER' COMMENT 'Este espacio es para que el usuario diga su rol.',
-  ESTADO VARCHAR(20) NOT NULL DEFAULT 'ENABLED' COMMENT 'Este campo es para que el usuario tenga conocimiento de su estado bien sea activo o inactivo.',
+  ESTADO TEXT NULL COMMENT 'Este campo es para que el usuario tenga conocimiento de su estado bien sea activo o inactivo.',
   EMAIL VARCHAR(255) UNIQUE NOT NULL COMMENT 'Este campo es para el correo electronico del usuario,donde se le enviara la informacion de la empresa.',
   PRIMARY KEY (ID_USUARIO)
 )COMMENT 'Esta tabla almacena todos los usuarios del sistema, tanto clientes como administradores';
+
+CREATE TABLE RAPID_JACKETS.CUENTA_RESCUE (
+	USUARIO_ID_USUARIO VARCHAR(255) NOT NULL,
+    ESTADO VARCHAR(150) NOT NULL DEFAULT 'LOST_PASSWORD',
+    CODIGO VARCHAR(10) NOT NULL,
+    TOKEN TEXT NOT NULL,
+    LAST_RECOVER DATETIME NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (USUARIO_ID_USUARIO),
+    FOREIGN KEY (USUARIO_ID_USUARIO) REFERENCES RAPID_JACKETS.USUARIO (ID_USUARIO),
+    CONSTRAINT CHK_ESTADO CHECK(ESTADO IN('LOST_PASSWORD', 'RESCUED_PASSWORD', 'ACCOUNT_TIME_OUT'))
+)COMMENT '';
 
 CREATE TABLE RAPID_JACKETS.CUENTA (
   TIPO_DOCUMENTO VARCHAR(10) NOT NULL COMMENT 'Este campo es para el tipo de documento que tiene el usuario.Este dato es no nulo',
@@ -107,7 +118,7 @@ CREATE TABLE RAPID_JACKETS.FACTURA (
   PRIMARY KEY (ID_FACTURA),
   FOREIGN KEY (CUENTA_TIPO_DOCUMENTO , CUENTA_NUM_DOCUMENTO)
   REFERENCES RAPID_JACKETS.CUENTA (TIPO_DOCUMENTO , NUM_DOCUMENTO)
-)COMMENT 'Esta tabla es para guardar informacion acerca de una factura. Solo el cliente puede hacer una compra y hacer que el sistema le genere una factura';
+) COMMENT 'Esta tabla es para guardar informacion acerca de una factura. Solo el cliente puede hacer una compra y hacer que el sistema le genere una factura';
 
 CREATE TABLE RAPID_JACKETS.ITEM_FACTURA (
   PRODUCTO_ID_PRODUCTO VARCHAR(50) NOT NULL COMMENT 'Esta es la llave primaria de la tabla.',
@@ -153,7 +164,7 @@ CREATE TABLE RAPID_JACKETS.PAGO (
   PRIMARY KEY (FACTURA_ID_FACTURA),
   FOREIGN KEY (FACTURA_ID_FACTURA)
   REFERENCES RAPID_JACKETS.FACTURA (ID_FACTURA)
-)COMMENT 'Esta tabla es para guardar informacion acerca del tipo de pago que efectua el cliente para un determinado pedido.';
+) COMMENT 'Esta tabla es para guardar informacion acerca del tipo de pago que efectua el cliente para un determinado pedido.';
 
 -- --------------------PROCEDIMIENTOS Y FUNCIONES-----------------------------
 -- AUTO incrmentar el id de un producto. Permitirá inicicialmente hasta 9.999.999 de productos

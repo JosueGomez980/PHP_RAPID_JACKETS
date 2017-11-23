@@ -38,6 +38,7 @@ final class UsuarioDAO implements DAOPaginable {
     const EST_ACTIVO = "ENABLED";
     const EST_INACTIVO = "DISABLED";
     const EST_ELIMINADO = "DELETED";
+    const EST_NO_VALID = "POR_VALIDAR";
 
     public function __construct() {
         $this->db = Conexion::getInstance();

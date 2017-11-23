@@ -15,7 +15,7 @@
 //include_once 'PreparedSQL.php';
 //include_once 'PedidoEntregaDTO.php';
 
-final class PedidoEntregaDAO implements DAOPaginable{
+final class PedidoEntregaDAO implements DAOPaginable {
 
     private $db;
     private static $idFactura = "FACTURA_ID_FACTURA";
@@ -30,16 +30,16 @@ final class PedidoEntregaDAO implements DAOPaginable{
     private static $impuestos = "IMPUESTOS";
     private static $total = "TOTAL";
     //-------------------------------------------------------------------------
-    public $ENTREGADO = "PEDIDO ENTREGADO";
-    public $FINALIZADO = "PEDIDO FINALIZADO";
-    public $SOLICITADO = "PEDIDO SOLICITADO";
-    public $ENVIADO = "PEDIDO ENVIADO";
-    public $DEVUELTO = "PEDIDO DEVUELTO";
-    public $SIN_PAGO = "PEDIDO SIN PAGAR";
-    public $NO_PUDO_ENTREGAR = "PEDIDO NO SE PUDO ENTREGAR";
-    public $RETRASADO = "PEDIDO RETRASADO";
-    public $POR_LLEGAR = "PEDIDO ESTÁ POR LLEGAR";
-    public $ELIMINADO = "PEDIDO ELIMINADO";
+    public static $ENTREGADO = "PEDIDO ENTREGADO";
+    public static $FINALIZADO = "PEDIDO FINALIZADO";
+    public static $SOLICITADO = "PEDIDO SOLICITADO";
+    public static $ENVIADO = "PEDIDO ENVIADO";
+    public static $DEVUELTO = "PEDIDO DEVUELTO";
+    public static $SIN_PAGO = "PEDIDO SIN PAGAR";
+    public static $NO_PUDO_ENTREGAR = "PEDIDO NO SE PUDO ENTREGAR";
+    public static $RETRASADO = "PEDIDO RETRASADO";
+    public static $POR_LLEGAR = "PEDIDO ESTÁ POR LLEGAR";
+    public static $ELIMINADO = "PEDIDO ELIMINADO";
 
     public function __construct() {
         $this->db = Conexion::getInstance();
@@ -299,8 +299,8 @@ final class PedidoEntregaDAO implements DAOPaginable{
         }
         return $pedidosFd;
     }
-    
-    public function findByPaginationLimit($inicio, $cantidad){
+
+    public function findByPaginationLimit($inicio, $cantidad) {
         
     }
 

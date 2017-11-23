@@ -12,7 +12,6 @@
  * @author JosueFrancisco
  */
 include_once 'cargar_clases3.php';
-
 AutoCarga3::init();
 
 class ControlVistas {
@@ -167,12 +166,19 @@ class ControlVistas {
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLike($proDTO);
     }
-    
+
     public function vista_productos_ver_por_nombre_like_admin() {
         $productoControl = new ProductoController();
         $proReques = new ProductoRequest();
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLikeAdmin($proDTO);
+    }
+
+    public function vista_productos_ver_por_nombre_like_admin_inv() {
+        $productoControl = new ProductoController();
+        $proReques = new ProductoRequest();
+        $proDTO = $proReques->getProductoDTO();
+        $productoControl->listarPorNombreLikeAdminInv($proDTO);
     }
 
     public function vista_inventario_ver_nuevo() {
@@ -240,6 +246,60 @@ class ControlVistas {
         $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
         $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
         $productoControl->encontrarPorBusquedaAvanzadaByAdmin($productoPost, $rangoPrecio);
+    }
+
+    public function producto_busqueda_avanzada_admin_inv() {
+        $productoControl = ProductoController::getInstancia();
+        $productoControl instanceof ProductoController;
+        $proRequest = new ProductoRequest();
+        $productoPost = $proRequest->getProductoDTO();
+        $productoPost instanceof ProductoDTO;
+        $productoPost->setCategoriaIdCategoria(CriptManager::urlVarDecript(filter_input(INPUT_POST, ProductoRequest::pro_id_cat)));
+        $rangoPrecio = array();
+        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
+        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
+        $productoControl->encontrarPorBusquedaAvanzadaByAdminInventario($productoPost, $rangoPrecio);
+    }
+
+    public function password_recovery_part_a() {
+        $modal = null;
+        $userControl = UsuarioController::getInstancia();
+        $userControl instanceof UsuarioController;
+        $userRequest = new UsuarioRequest();
+        $userDTO = $userRequest->getUsuarioDTO();
+        $userControl->accountRecoveryEnvioEmail($userDTO);
+    }
+
+    public function password_recovery_part_b() {
+        $userControl = new UsuarioController();
+        $userMQT = new UsuarioMaquetador();
+        $userDAO = UsuarioDAO::getInstancia();
+        $userDAO instanceof UsuarioDAO;
+        $cuentaRescueCode = new CuentaRescueDTO();
+        $cuentaRescueCode->setCodigo(filter_input(INPUT_POST, "codigo"));
+        $userIdCripted = filter_input(INPUT_POST, UsuarioRequest::us_id);
+        $userIdValue = base64_decode((filter_input(INPUT_POST, UsuarioRequest::us_id)));
+        $userIdValue = CriptManager::urlVarDecript($userIdValue);
+        $cuentaRescueCode->setUsuarioIdUsuario($userIdValue);
+
+        if ($userControl->validarCodigoAccountRescue($cuentaRescueCode)) {
+            $userMQT->maquetaFormAccoutRecoveryChangePassword($userIdCripted);
+        }
+    }
+
+    public function password_recovery_part_final() {
+        $acceso = new AccesoPagina();
+        $userControl = new UsuarioController();
+        
+        $acceso->validaEnviode(UsuarioRequest::us_id, AccesoPagina::NEG_TO_IN_SESION);
+        $acceso->validaEnviode(UsuarioRequest::us_pass, AccesoPagina::NEG_TO_IN_SESION);
+        
+        $userRequest = new UsuarioRequest();
+        $userDTOPost = $userRequest->getUsuarioDTO();
+        $userDTOPost instanceof UsuarioDTO;
+        $passwordB = filter_input(INPUT_POST, "user_passwordB");
+        
+        $userControl->accountRescueConsolidar($userDTOPost, $passwordB);
     }
 
 }

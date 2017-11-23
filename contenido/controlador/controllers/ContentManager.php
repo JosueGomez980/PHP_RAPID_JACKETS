@@ -315,5 +315,10 @@ class ContentManager implements Content {
         //echo($salida);
         return $salida;
     }
+    public function mostrar() {
+        $salida = $this->formato->toString($this->contenido);
+        echo($salida);
+        return $salida;
+    }
 
 }

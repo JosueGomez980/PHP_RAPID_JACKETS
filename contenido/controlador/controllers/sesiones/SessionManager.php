@@ -24,6 +24,7 @@ interface Session {
     const NEGOCIO_RTA = "RESPUESTA_DE_CAPA_NEGOCIO";
     const PAGINADOR = "PAGINADOR_EN_MEMORIA";
     const PRO_DTO = "PRODUCTO_DTO_NEGOCIO";
+    const USER_RESCUE = "USUARIO_ACCOUNT_RECOVERY";
 
     public static function open();
 

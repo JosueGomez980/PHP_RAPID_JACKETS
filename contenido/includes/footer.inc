@@ -21,7 +21,7 @@
                 <div class="w3-accordion m-autores">
                     <!-- -------------------------------------------------------------- -->
                     <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin1')"><span class="negri">Anderson Steevenn Garcia</span></button>
-                    <div class="w3-accordion-content w3-container" id="admin1">
+                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin1">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/bald-user-with-glasses.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -32,7 +32,7 @@
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
                     <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin2')"><span class="negri">Elkin Fernando Alaguna</span></button>
-                    <div class="w3-accordion-content w3-container" id="admin2">
+                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin2">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/man-with-low-beard.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -43,7 +43,7 @@
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
                     <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin3')"><span class="negri">Josué Francisco Gómez</span></button>
-                    <div class="w3-accordion-content w3-container" id="admin3">
+                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin3">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/boy-with-glasses.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -54,7 +54,7 @@
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
                     <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin4')"><span class="negri">Heidy Natalia Carvajal</span></button>
-                    <div class="w3-accordion-content w3-container" id="admin4">
+                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin4">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/edit-woman-with-bund-profile.png">
                             <div class="w3-rest m-auto-desc w3-card-16">
@@ -65,7 +65,7 @@
                     <!-- -------------------------------------------------------------- -->
                     <!-- -------------------------------------------------------------- -->
                     <button class="w3-btn-block w3-theme-d4 w3-left-align w3-tiny" onclick="acordeon('admin5')"><span class="negri">Angie Jasbleidy Rodríguez</span></button>
-                    <div class="w3-accordion-content w3-container" id="admin5">
+                    <div class="w3-accordion-content w3-container w3-animate-top" id="admin5">
                         <div class="w3-row w3-container">
                             <img class="m-autor-foto w3-col" src="../media/img/icons_users/woman-with-bund-and-glasses.png">
                             <div class="w3-rest m-auto-desc w3-card-16">

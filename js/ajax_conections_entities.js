@@ -229,6 +229,7 @@ function disable_enable_producto(divRTA, yn) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function disable_enable_producto(divRTA, yn, idProducto) {
@@ -241,6 +242,7 @@ function disable_enable_producto(divRTA, yn, idProducto) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function mostrarProductosPorNombre() {
@@ -261,10 +263,23 @@ function mostrarProductosPorNombreAdmin() {
         url: 'controlador/controllers/ControlVistas.php',
         data: {m: "vista_productos_ver_por_nombre_like_admin", producto_name: nombreLike},
         success(response) {
-                $("#TABLA_CRUD").html(response);
+            $("#TABLA_CRUD").html(response);
         }
     });
 }
+function mostrarProductosPorNombreAdminInv() {
+    var nombreLike = $("#producto_name").val();
+    $.ajax({
+        type: 'get',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: {m: "vista_productos_ver_por_nombre_like_admin_inv", producto_name: nombreLike},
+        success(response) {
+            $("#TABLA_CRUD").html(response);
+        }
+    });
+}
+
+
 
 
 //Funciones para la Gestion de Categorias
@@ -504,6 +519,49 @@ function productoBusquedaAvanzada(idRta, method) {
         data: datos,
         success(response) {
             $("#" + idRta).html(response);
+        }
+    });
+}
+
+function accountRescuePasoA() {
+    loadingGif("RTA2");
+    var inA = document.getElementById("user_id");
+    var inB = document.getElementById("user_email");
+    console.log(inA);
+    console.log(inB);
+//    var id_user = $('user_id').val();
+//    var email_user = $('user_email').val();
+    var txtinA = inA.value;
+    var txtinB = inB.value;
+    var ee = new Object();
+    ee.m = "password_recovery_part_a";
+    ee.user_id = "sdfsdfsdf";
+    ee.user_email = "sdfsdf";
+//    var datos = {m : "password_recovery_part_a", user_id: id_user, user_email: email_user};
+    var datos = {m: "password_recovery_part_a", user_id: txtinA, user_email: txtinB};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RTA2").html(response);
+        }
+    });
+}
+function accountRescuePasoB() {
+    loadingGif("RTA_NEGOCIO");
+    var txtCodigo = $("#codigo");
+    var txtIdUser = $("#user_id");
+    var userIdValue = txtIdUser.val();
+    var codeValue = txtCodigo.val();
+    var datos = {m: "password_recovery_part_b", user_id: userIdValue, codigo: codeValue};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RTA_NEGOCIO").html("");
+            $("#RESPUESTA").html(response);
         }
     });
 }

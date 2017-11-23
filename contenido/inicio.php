@@ -12,9 +12,9 @@ and open the template in the editor.
     $contenido = ContenidoPagina::getInstancia();
     $contenido instanceof ContenidoPagina;
     $contenido->getHead();
-    
+
     AutoCarga::init();
-    
+
     $sesion = SimpleSession::getInstancia();
     $userManager = new UsuarioController();
     ?>
@@ -28,11 +28,6 @@ and open the template in the editor.
             <?php
             $userManager->mostrarManagerLink();
             ?>
-            <div id="cardUser">
-                <?php
-                $userManager->mostrarCardUsuario();
-                ?>
-            </div>
             <div class="slider"> 
                 <ul>
                     <img src="../media/img/imagen1.png" alt="">
@@ -41,8 +36,8 @@ and open the template in the editor.
                 </ul>
             </div>
         </section>
-        <?php
-        $contenido->getFooter();
-        ?>
+           <?php
+           $contenido->getFooter();
+           ?>
     </body>
 </html>
