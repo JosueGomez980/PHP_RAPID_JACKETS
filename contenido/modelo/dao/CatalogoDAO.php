@@ -33,7 +33,7 @@ final class CatalogoDAO implements DAOPaginable{
         $res = 0;
         try {
             $conexion = $this->db->creaConexion();
-            $conexion instanceof mysqli;
+            $conexion instanceof Mysqli;
             $stmt = $conexion->prepare(PreparedSQL::catalogo_insert);
             $stmt->bind_param("sss", $nombre, $descripcion, $foto);
             if ($stmt->execute()) {

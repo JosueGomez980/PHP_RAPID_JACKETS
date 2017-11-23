@@ -303,7 +303,7 @@ class FacturaController implements GenericController, Validable {
     public function consolidarFactura(FacturaDTO $factura) {
         
     }
-
+    
     public function validaFK(EntityDTO $entidad) {
         $entidad instanceof FacturaDTO;
         if (!empty($entidad->getCuentaNumDocumento() && !empty($entidad->getCuentaTipoDocumento()))) {
