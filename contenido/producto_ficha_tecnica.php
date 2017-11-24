@@ -11,9 +11,12 @@ and open the template in the editor.
 
     $contenido = ContenidoPagina::getInstancia();
     $contenido->getHead();
-    $userEste = new UsuarioController();
 
     AutoCarga::init();
+    $sesion = SimpleSession::getInstancia();
+    $sesion instanceof SimpleSession;
+    $userEste = new UsuarioController();
+
     $acceso = AccesoPagina::getInstacia();
     $acceso instanceof AccesoPagina;
     $userManager = new ProductoController();
@@ -34,19 +37,24 @@ and open the template in the editor.
         $contenido->getHeader();
         ?>
         <div id="CARRITO"></div>
-        <section class="m-section">
+        <section class="is-Fondo-02">
             <?php
-            $userEste->mostrarNavBarUser();
-            if (!is_null($proFinded)) {
-                $userManager->encontrar($proFinded);
-            } else {
-                $msg = new Neutral();
-                $msg->setValor("No se encontrón ningún producto :(");
-                echo($msg->toString($msg->getValor()));
-            }
+            $userEste->mostrarNavbarUsuario();
             ?>
+            <br><br>
+            <div class="container-fluid is-Tamaño-ContainerXD">
+                <?php
+                if (!is_null($proFinded)) {
+                    $userManager->encontrar($proFinded);
+                } else {
+                    $msg = new Neutral();
+                    $msg->setValor("No se encontrón ningún producto :(");
+                    echo($msg->toString($msg->getValor()));
+                }
+                ?>
+            </div>
         </section>
-        
+
         <?php
         $contenido->getFooter();
         ?>

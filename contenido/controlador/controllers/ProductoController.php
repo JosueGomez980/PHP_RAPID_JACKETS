@@ -205,7 +205,13 @@ class ProductoController implements GenericController, Validable {
 
     public function encontrar(EntityDTO $entidad) {
         $entidad instanceof ProductoDTO;
-        $this->productoMQT->maquetaObject($entidad);
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        if ($sesion->existe(Session::US_LOGED)) {
+            $this->productoMQT->maquetaObject($entidad);
+        } else {
+            $this->productoMQT->maquetaObjectNoSession($entidad);
+        }
     }
 
     public function encontrarTodos() {
