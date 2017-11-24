@@ -17,6 +17,10 @@ class AutoCarga3 {
         $this->maquetacion();
         $this->sesiones();
         $this->cookies();
+        //Linea provisional para activar session_start() en todos las vistas para admin y usuario
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        //-----------------------------------
     }
 
     public function cargarResto() {

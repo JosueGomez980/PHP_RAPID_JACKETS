@@ -8,7 +8,6 @@ $contenido->getHead();
 
 AutoCarga::init();
 
-$sesion = SimpleSession::getInstancia();
 $userManager = new UsuarioController();
 
 ?>

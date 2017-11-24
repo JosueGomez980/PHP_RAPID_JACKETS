@@ -2,10 +2,8 @@
 include_once 'includes/ContenidoPagina.php';
 include_once 'cargar_clases.php';
 
-$contenido = ContenidoPagina::getInstancia();
-$contenido->getHead();
-
 AutoCarga::init();
+
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
 $userManager = new ProductoController();
@@ -28,7 +26,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-
+    <?php
+    $contenido = ContenidoPagina::getInstancia();
+    $contenido->getHead();
+    ?>
     <body>
         <?php
         $contenido->getHeader();

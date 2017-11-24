@@ -1,19 +1,4 @@
 ﻿<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UsuarioController
- *
- * @author Josué Francisco
- */
-//include_once 'cargar_clases3.php';
-//
-//AutoCarga3::init();
-
 class UsuarioRequest extends Request {
 
     private $usuarioDTO;
@@ -740,7 +725,6 @@ class UsuarioController implements Validable, GenericController {
         if ($ok == FALSE) {
             $sesion = new SimpleSession();
             $acceso = new AccesoPagina();
-
             $modal->setClosebtn("Cerrar");
             $sesion->add(Session::NEGOCIO_RTA, $modal);
             $acceso->irPagina(AccesoPagina::INICIO);

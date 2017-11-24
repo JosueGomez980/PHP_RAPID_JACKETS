@@ -16,6 +16,8 @@ $sesion instanceof SimpleSession;
 //Clases de controladores que se necesitan para empezar
 $userDrawer = new UsuarioMaquetador();
 $modal = new ModalSimple();
+$userDAO = UsuarioDAO::getInstancia();
+$userDAO instanceof UsuarioDAO;
 $userManager = new UsuarioController();
 $userRequest = new UsuarioRequest(); //Clase para obtener los datos enviados por POST y para setearlos en un objeto de la clase UsuarioDTO
 $cuetaManager = new CuentaController();
@@ -134,6 +136,8 @@ if ($cuetaManager->validaPK($cuentaDTO)) {
 //$cuentaDTO->setSegundoApellido(Validador::fixTexto($cuentaDTO->getSegundoApellido()));
 if ($ok) {
     if ($userManager->insertar($userDTO)) {
+        $userDTO->setEstado(UsuarioDAO::EST_ACTIVO);
+        $userDAO->putEstado($userDTO);
         if ($cuetaManager->insertar($cuentaDTO)) {
             $exito = new Exito();
             $exito->setValor("El usuario y los datos personales fueron guardados correctamente");
