@@ -123,9 +123,11 @@ class CarritoComprasMaquetador implements GenericMaquetador {
 
         $modal->open();
         if (empty($items)) {
+            echo ('<div class="container-fluid is-Tamaño-ContainerXD">');
             $vacio = new Neutral();
             $vacio->setValor("No has agregado productos al carrito ;)");
             $modal->addElemento($vacio);
+            echo ('</div');
         } else {
             $botones = TRUE;
             echo('<div class = "w3-card-8 w3-responsive">

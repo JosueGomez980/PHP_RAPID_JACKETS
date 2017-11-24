@@ -9,9 +9,9 @@
             </div>
             <div class="col-md-8">
                 <div class="container-fluid">
-                    <div class="is-Tamaño-Letra01">Creaciones Julieth</div>
+                    <div class="is-Tamaño-Letra01"><b>Creaciones Julieth</b></div>
                     <br>
-                    <h3 class="w3-center is-Tamaño-Letra02 is-TipodeLetra-01 w3-hide-medium w3-hide-small">Uniformes Escolares - Diario y Deportivo - Dotaciones - Programación Bordados - Screen</h3>
+                    <h3 class="w3-center is-Tamaño-Letra02 w3-hide-medium w3-hide-small">Uniformes Escolares - Diario y Deportivo - Dotaciones - Programación Bordados - Screen</h3>
                 </div>
             </div>
         </div>

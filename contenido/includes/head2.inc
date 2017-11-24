@@ -26,7 +26,7 @@
     <link href="../css/stilos_propios.css" rel="stylesheet" type="text/css">
     <link href="../css/sprite.css" rel="stylesheet" type="text/css">
     <link href="../css/manager_theme.css" rel="stylesheet" type="text/css">
-    <link href="../css/cssIssei.css" rel="stylesheet" type="text/css"> 
+    <link href="../css/cssIsseiXD.css" rel="stylesheet" type="text/css"> 
 
     <link href="../js/jquery-ui-1.12.1.custom/jquery-ui.structure.css" rel="stylesheet" type="text/css"> 
     <link href="../js/jquery-ui-1.12.1.custom/jquery-ui.theme.css" rel="stylesheet" type="text/css"> 

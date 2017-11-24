@@ -179,11 +179,11 @@ class ProductoMaquetador implements GenericMaquetador {
                             if ($entidad->getCantidad() <= 0) {
                                  echo ('<<span class="w3-large w3-round w3-gray w3-padding-8 w3-padding-left w3-padding-right w3-center">Producto Agotado</span>');
                             } else {
-                            echo ('<div class="w3-center"><input type="number" id="' . $idProducto . '" class="input_carrito w3-center" max="' . $cantidadDisponible . '" min="1" placeholder="Cantidad"></div>
-                                    <br><br>
-                                    <button class="m-boton-add-carrito" onclick="agregarAlCarrito(this)">
+                            echo ('<br><br><div class="w3-center"><input type="number" id="' . $idProducto . '" class="input_carrito w3-center" max="' . $cantidadDisponible . '" min="1" placeholder="Cantidad"></div>
+                                    <br>
+                                    <button class="is-Button-CarritoXD" onclick="agregarAlCarrito(this)">
                                         <input type="hidden" value="' . $idProducto . '">
-                                        <img src="../media/img/carrito_compra.png" alt="Agregar al carrito" title="Agregar al carrito" class="m-carrito">
+                                        <img src="../media/img/carrito2.png" alt="Agregar al carrito" title="Agregar al carrito" class="m-carrito">
                                         Agregar al carrito
                                     </button>');
                             }

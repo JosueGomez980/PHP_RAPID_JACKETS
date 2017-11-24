@@ -251,9 +251,11 @@ class ProductoController implements GenericController, Validable {
         $productos = $this->productoDAO->findByCategoria($prodPost);
         if (!is_null($productos)) {
             $cantidad = count($productos);
-            $this->contentMGR->setFormato(new Exito());
+            $this->contentMGR->setFormato(new ProductosIsseiXD());
             $this->contentMGR->setContenido("Encontrados $cantidad productos");
+            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
             $this->productoMQT->maquetaArrayObject($productos);
+            echo ('<br></div>');
         } else {
             $this->contentMGR->setFormato(new Neutral());
             $this->contentMGR->setContenido("No se encontraron productos de esta categoría.");
@@ -293,9 +295,11 @@ class ProductoController implements GenericController, Validable {
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
-            $this->contentMGR->setFormato(new Exito());
+            $this->contentMGR->setFormato(new ProductosIsseiXD());
             $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
             $this->productoMQT->maquetaArrayObject($arrayProductos);
+            echo ('<br></div>');
         } else {
             $neu = new Neutral();
             $neu->setValor("No se encontró ningun producto que coincida con el nombre que has escrito :( ");

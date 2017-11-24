@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 23-nov-2017, 11:37:41
+    Created on : 24-nov-2017, 9:19:35
     Author     : SOPORTE
 */
 
@@ -238,6 +238,10 @@ and open the template in the editor.
     color:#000!important;
     background-color: #A6ACAF!important;
 }
+.is-Color31,.is-hover-Color31:hover{
+    color: #fff!important;
+    background-color: #196F3D!important;
+}
 
 
 
@@ -317,9 +321,25 @@ and open the template in the editor.
     position:absolute; 
     top:50%; 
     left:50%;
-
 }
 
+.is-Submanager-Tool-͡°͜ʖ͡°{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: #FFF;
+    border: 3px solid #2196f3;
+    border-radius: 10px;
+    opacity: 0.45;
+    transition: opacity 1.20s;
+    -webkit-transition: opacity 1.20s;
+    -moz-transition: opacity 1.20s;
+    -o-transition: opacity 1.20s;
+}
+.is-Submanager-Tool-͡°͜ʖ͡°:hover{
+    opacity: 1;
+}
 
 .is-Producto-view-1-img{
     width: 100%;
@@ -353,7 +373,7 @@ and open the template in the editor.
 }
 
 .is-Tamaño-Letra01{
-    font-size: 40px;
+    font-size: 45px;
     color:#76448a;
     display: block;
     text-align: center;
@@ -971,8 +991,4 @@ input[id^="EsteXDXD"]:checked + label + .EsteXDXD{
 is-Prueba-button:hover:before {
  width: 100%;
 }
-
-
-
-
 

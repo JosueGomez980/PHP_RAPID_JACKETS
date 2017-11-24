@@ -69,7 +69,7 @@ class Neutral implements Formato {
     }
 
     public function toString($valor) {
-        $salida = '<div class="w3-container w3-theme w3-card-8">
+        $salida = '<div class="w3-container w3-white w3-card-8">
                     <span class="w3-closebtn" onclick="hide_closebtn(this);">&Chi;</span>
                     <p>' . $valor . '</p>
                   </div>';
@@ -91,8 +91,34 @@ class Exito implements Formato {
     }
 
     public function toString($valor) {
-        $salida = '<div class="w3-container w3-green w3-card-8">
+        $salida = '<div class="w3-container w3-green w3-card-8 w3-center">
                     <span class="w3-closebtn" onclick="hide_closebtn(this);">&Chi;</span>
+                    <br>
+                    <img class="m-login-logo w3-animate-zoom" src="../media/img/ExitoRJ.png">
+                    <br>
+                    <p><br>' . $valor . '<br></p>
+                  </div>';
+        return $salida;
+    }
+
+}
+
+class ProductosIsseiXD implements Formato {
+
+    private $valor;
+
+    public function setValor($txt) {
+        $this->valor = $txt;
+    }
+
+    public function getValor() {
+        return $this->valor;
+    }
+
+    public function toString($valor) {
+        $salida = '<div class="w3-container w3-green w3-card-8 w3-center">
+                    <span class="w3-closebtn" onclick="hide_closebtn(this);">&Chi;</span>
+                    <br>
                     <p>' . $valor . '</p>
                   </div>';
         return $salida;
@@ -115,7 +141,11 @@ class Errado implements Formato {
     public function toString($valor) {
         $salida = '<div class="w3-container w3-red w3-card-8">
                     <span class="w3-closebtn" onclick="hide_closebtn(this);">&Chi;</span>
-                    <p>' . $valor . '</p>
+                    <br>
+                    <img class="m-login-logo w3-animate-zoom" src="../media/img/ErrorRJ.png">
+                    <br>
+                    <p><center><b>' . $valor . '</b></center></p>
+                    <br>
                   </div>';
         return $salida;
     }
@@ -140,6 +170,52 @@ class CloseBtn implements Formato {
 
     public function toString($valor) {
         $salida = '<button class="w3-btn w3-white w3-border w3-border-blue w3-round w3-large w3-block w3-center" onclick="close_modal(this)">' . $valor . '</button>';
+        return $salida;
+    }
+
+}
+
+class CerraloPapuBtn implements Formato {
+
+    private $valor;
+
+    public function __construct() {
+        
+    }
+
+    public function getValor() {
+        return $this->valor;
+    }
+
+    public function setValor($txt) {
+        $this->valor = $txt;
+    }
+
+    public function toString($valor) {
+        $salida = '<a href="gestion_productos_crud.php" style="text-decoration:none;"><button class="w3-btn w3-white w3-border w3-border-blue w3-round w3-large w3-block w3-center">' . $valor . '</button></a>';
+        return $salida;
+    }
+
+}
+
+class CloseUsuBtn implements Formato {
+
+    private $valor;
+
+    public function __construct() {
+        
+    }
+
+    public function getValor() {
+        return $this->valor;
+    }
+
+    public function setValor($txt) {
+        $this->valor = $txt;
+    }
+
+    public function toString($valor) {
+        $salida = '<a href="gestion_usuarios_crud.php" style="text-decoration:none;"><button class="w3-btn w3-white w3-border w3-border-blue w3-round w3-large w3-block w3-center">' . $valor . '</button></a>';
         return $salida;
     }
 
@@ -235,7 +311,7 @@ class ModalSimple implements Modal {
 
     public function open() {
         echo('<div class="w3-modal" style="display: block" id="modal">
-            <div class="w3-modal-content w3-animate-top">');
+            <div class="w3-modal-content w3-animate-top" style="border-radius:10px;">');
     }
 
     public function close() {

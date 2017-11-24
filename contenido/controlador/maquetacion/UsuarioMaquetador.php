@@ -198,14 +198,14 @@ class UsuarioMaquetador implements GenericMaquetador {
 
     public function maquetarManagerLink($userName) {
         echo('<div class="m-manager-tools w3-col l2 m5 s12 w3-container w3-animate-right w3-center">
-                <img src="../media/img/icons_users/man-with-sunglasses-and-suit.png" style="width: 25px; height: auto; margin: auto;">
+                <img src="../media/img/man-with-sunglasses-suit-and-star.png" style="width: 25px; height: auto; margin: auto;">
                 <span class="w3-small" style="color: #000">Bienvenido ' . $userName . '</span><br>
                 <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-black w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>
             </div>');
     }
 
     public function maquetaSubManagerLink($userName) {
-        echo('<div class="m-manager-tools w3-col l2 m5 s12 w3-container w3-animate-right">
+        echo('<div class="is-Submanager-Tool-͡°͜ʖ͡° w3-col l2 m5 s12 w3-container w3-animate-right w3-center">
                 <img src="../media/img/icons_users/man-with-sunglasses-and-suit.png" style="width: 25px; height: auto; margin: auto;">
                 <span class="w3-small w3-text-blue">Bienvenido ' . $userName . '</span><br>
                 <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-blue w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>

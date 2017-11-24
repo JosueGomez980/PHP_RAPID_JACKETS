@@ -95,7 +95,7 @@ if ($ok) {
                 $exito->setValor("Logeo Exitoso <br>");
                 $modal->addElemento($exito);
                 $enlace = new Neutral();
-                $enlace->setValor("<a href='inicio.php'><span class='w3-tag w3-teal w3-large w3-round-large'>Continuar</span></a>");
+                $enlace->setValor("<a href='inicio.php' style='text-decoration: none; color: #000;'><span class='w3-large w3-round-large'><center><b>Continuar</b></center></span></a>");
                 $modal->addElemento($enlace);
 
                 //Colocar en sesion los elementos 
