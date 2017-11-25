@@ -11,8 +11,8 @@
  *
  * @author JosueFrancisco
  */
-require_once 'cargar_clases3.php';
-AutoCarga3::init();
+//require_once 'cargar_clases3.php';
+//AutoCarga3::init();
 
 final class FacturaRequest extends Request {
 
@@ -303,7 +303,7 @@ class FacturaController implements GenericController, Validable {
     public function consolidarFactura(FacturaDTO $factura) {
         
     }
-
+    
     public function validaFK(EntityDTO $entidad) {
         $entidad instanceof FacturaDTO;
         if (!empty($entidad->getCuentaNumDocumento() && !empty($entidad->getCuentaTipoDocumento()))) {

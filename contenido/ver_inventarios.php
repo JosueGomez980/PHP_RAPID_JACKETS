@@ -3,6 +3,7 @@ require_once 'includes/ContenidoPagina.php';
 require_once 'cargar_clases.php';
 
 AutoCarga::init();
+
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
 $acceso->comprobarSesionAdmin(AccesoPagina::INICIO);

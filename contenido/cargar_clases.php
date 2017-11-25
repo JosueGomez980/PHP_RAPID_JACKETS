@@ -20,6 +20,10 @@ class AutoCarga {
         $this->sesiones();
         $this->cookies();
         $this->carga();
+        //Linea provisional para activar session_start() en todos las vistas para admin y usuario
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        //-----------------------------------
     }
 
     public function cargarResto() {
@@ -47,7 +51,12 @@ class AutoCarga {
         if (file_exists('modelo/dao/EntityDTO.php')) {
             include_once 'modelo/dao/EntityDTO.php';
         }
-        require_once 'controlador/PHPMailer-master/PHPMailerAutoload.php';
+        if (file_exists("controlador/PHPMailer-master/PHPMailerAutoload.php")) {
+            require_once 'controlador/PHPMailer-master/PHPMailerAutoload.php';
+        }
+        if (file_exists("includes/ContenidoPagina.php")) {
+            require_once 'includes/ContenidoPagina.php';
+        }
     }
 
     public function modelo() {

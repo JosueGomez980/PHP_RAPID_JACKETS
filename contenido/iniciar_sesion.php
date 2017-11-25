@@ -1,3 +1,14 @@
+<?php
+include_once './includes/ContenidoPagina.php';
+include_once 'cargar_clases.php';
+AutoCarga::init();
+$contenido = ContenidoPagina::getInstancia();
+$contenido instanceof ContenidoPagina;
+$contenido->getHead();
+$sesion = SimpleSession::getInstancia();
+$sesion instanceof SimpleSession;
+$userManager = new UsuarioController();
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -5,17 +16,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <?php
-    include_once './includes/ContenidoPagina.php';
-    include_once 'cargar_clases.php';
-    AutoCarga::init();
-    $contenido = ContenidoPagina::getInstancia();
-    $contenido instanceof ContenidoPagina;
-    $contenido->getHead();
-    $sesion = SimpleSession::getInstancia();
-    $sesion instanceof SimpleSession;
-    $userManager = new UsuarioController();
-    ?>
     <body>
         <?php
         $contenido->getHeader();
@@ -61,7 +61,7 @@ and open the template in the editor.
         } else {
             $cuentaSession = $sesion->getEntidad(Session::CU_LOGED);
             $cuentaSession instanceof CuentaDTO;
-            
+
             echo('<div class="m-tituloA">HOLA <b>' . $cuentaSession->getPrimerNombre() . '</b>, ya has iniciado Sesión.</div>');
             $userManager->mostrarCardUsuario();
         }
