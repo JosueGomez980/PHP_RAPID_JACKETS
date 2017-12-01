@@ -153,6 +153,8 @@ final class FacturaRequest extends Request {
 class FacturaController implements GenericController, Validable {
 
     private $facturaDAO;
+    private $pedidoMQT;
+    private $pedidoDAO;
     private $faturaDTO;
     private $itemsFacturaDTO;
     private $itemDAO;
@@ -160,6 +162,8 @@ class FacturaController implements GenericController, Validable {
 
     public function __construct() {
         $this->facturaDAO = new FacturaDAO();
+        $this->pedidoDAO = new PedidoEntregaDAO();
+        $this->pedidoMQT = new PedidoMaquetador();
         $this->facturaMQT = new FacturaMaquetador();
         $this->itemDAO = new ItemDAO();
     }
@@ -231,6 +235,13 @@ class FacturaController implements GenericController, Validable {
                 $pagoDTO->setValor($faturaInsert->getTotal());
                 $rtaP = $pagoDAO->insert($pagoDTO);
                 //---------------------------------
+                //-------Insertar el pedido por defecto.
+                if (!$this->generarPedidoDefault($faturaInsert)) {
+                    $ok = false;
+                    $err = new Errado();
+                    $err->setValor("El pedido no pudo ser generado");
+                    $modal->addElemento($err);
+                }
 
                 if ($this->insertarItems($carritoDTO->getItems(), $faturaInsert->getIdFactura())) {
                     $ok = true;
@@ -270,6 +281,72 @@ class FacturaController implements GenericController, Validable {
         return $modal;
     }
 
+    public function generarPedidoDefault(FacturaDTO $fact) {
+        $domicilioDTO = null;
+        $domicioString = "";
+        $dater = DateManager::getInstance();
+        $dater instanceof DateManager;
+        $pedidoDAO = new PedidoEntregaDAO();
+        $domiDAO = new DomicilioCuentaDAO();
+        $domiDTO = new DomicilioCuentaDTO();
+
+        $pedidoDTO = new PedidoEntregaDTO();
+        $pedidoDTO->setFacturaIdFactura($fact->getIdFactura());
+        $pedidoDTO->setCuentaNumDocumento($fact->getCuentaNumDocumento());
+        $pedidoDTO->setCuentaTipoDocumento($fact->getCuentaTipoDocumento());
+        $pedidoDTO->setFechaSolicitud($dater->formatNowDate(DateManager::SQL_DATETIME));
+        $pedidoDTO->setEstado(PedidoEntregaDAO::$SOLICITADO);
+
+        $domiDTO->setCuentaNumDocumento($fact->getCuentaNumDocumento());
+        $domiDTO->setCuentaTipoDocumento($fact->getCuentaTipoDocumento());
+        $domicilioDTO = $domiDAO->find($domiDTO);
+        if (is_null($domicilioDTO)) {
+            $pedidoDTO->setDomicilio(PedidoEntregaDAO::DOM_NOT);
+        } else {
+            $domicioString = json_encode($domicilioDTO);
+            $pedidoDTO->setDomicilio($domicioString);
+        }
+        $pedidoDTO->setSubtotal($fact->getSubtotal());
+        $pedidoDTO->setImpuestos($fact->getImpuestos());
+        $pedidoDTO->setTotal($fact->getTotal());
+        if ($pedidoDAO->insert($pedidoDTO) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function mostrarCrudPedidosPorFechaPredefinida($metodo) {
+        $tablaPedidos = null;
+        switch ($metodo) {
+            case "FD_A":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_hoy);
+                break;
+            case "FD_B":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_ayer);
+                break;
+            case "FD_C":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_seman);
+                break;
+            case "FD_D":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_mes);
+                break;
+            case "FD_E":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_anio);
+                break;
+            default :
+                break;
+        }
+        if (is_null($tablaPedidos)) {
+            $neu = new Neutral();
+            echo($neu->toString("No se encontraron pedidos pendientes para fecha indicada"));
+        } else {
+            $this->pedidoMQT->maquetaTablaCrudAdmin($tablaPedidos);
+        }
+
+        return $tablaPedidos;
+    }
+
     public function mostrarFacturaWebTipoA() {
         $factura = $this->faturaDTO;
         $items = $this->itemsFacturaDTO;
@@ -294,7 +371,7 @@ class FacturaController implements GenericController, Validable {
                 $numItemsOK++;
             }
         }
-        if($numItems == $numItemsOK){
+        if ($numItems == $numItemsOK) {
             $ok = true;
         }
         return $ok;
@@ -303,7 +380,7 @@ class FacturaController implements GenericController, Validable {
     public function consolidarFactura(FacturaDTO $factura) {
         
     }
-    
+
     public function validaFK(EntityDTO $entidad) {
         $entidad instanceof FacturaDTO;
         if (!empty($entidad->getCuentaNumDocumento() && !empty($entidad->getCuentaTipoDocumento()))) {

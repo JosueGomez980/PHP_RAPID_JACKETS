@@ -44,7 +44,7 @@ and open the template in the editor.
                             <span class="w3-text-red w3-large">*</span>
                             <div><span class="w3-tiny w3-text-red" id="user_passA_res"></span></div>
 
-                            <input type="button" class="m-boton-a" onclick="login()" value="Iniciar Sesión">
+                            <button class="m-boton-a" onclick="login();">Iniciar Sesión</button>
                             <a href="inicio.php"><button class="m-boton-a">Cancelar</button></a>
                             <br><br>
                             <div class="w3-center">

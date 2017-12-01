@@ -41,6 +41,8 @@ final class PedidoEntregaDAO implements DAOPaginable {
     public static $POR_LLEGAR = "PEDIDO ESTÁ POR LLEGAR";
     public static $ELIMINADO = "PEDIDO ELIMINADO";
 
+    const DOM_NOT = "DOMICILIO_SIN_ASIGNAR";
+
     public function __construct() {
         $this->db = Conexion::getInstance();
     }
@@ -298,6 +300,23 @@ final class PedidoEntregaDAO implements DAOPaginable {
             echo $exc->getMessage();
         }
         return $pedidosFd;
+    }
+
+    public function findByDatePreBuilt($queryPreBuilt) {
+        $pedidos = NULL;
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $resultado = $conexion->query($queryPreBuilt);
+            if ($resultado->num_rows != 0) {
+                $pedidos = $this->resultToArray($resultado);
+            }
+            $resultado->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $pedidos;
     }
 
     public function findByPaginationLimit($inicio, $cantidad) {

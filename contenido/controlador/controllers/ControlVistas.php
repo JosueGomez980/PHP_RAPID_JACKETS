@@ -1,4 +1,5 @@
 <?php
+
 include_once 'cargar_clases3.php';
 AutoCarga3::init();
 
@@ -278,16 +279,27 @@ class ControlVistas {
     public function password_recovery_part_final() {
         $acceso = new AccesoPagina();
         $userControl = new UsuarioController();
-        
+
         $acceso->validaEnviode(UsuarioRequest::us_id, AccesoPagina::NEG_TO_IN_SESION);
         $acceso->validaEnviode(UsuarioRequest::us_pass, AccesoPagina::NEG_TO_IN_SESION);
-        
+
         $userRequest = new UsuarioRequest();
         $userDTOPost = $userRequest->getUsuarioDTO();
         $userDTOPost instanceof UsuarioDTO;
         $passwordB = filter_input(INPUT_POST, "user_passwordB");
-        
+
         $userControl->accountRescueConsolidar($userDTOPost, $passwordB);
+    }
+
+    public function find_pedidos_por_fecha_predefinida() {
+        if (isset($_POST["method_date"])) {
+            $metodoFecha = filter_input(INPUT_POST, "method_date");
+            $facturaController = new FacturaController();
+            $facturaController->mostrarCrudPedidosPorFechaPredefinida($metodoFecha);
+        } else {
+            $err = new Neutral();
+            echo($err->toString("No se recibió el parámetro necesario para ejecutar la acción"));
+        }
     }
 
 }
