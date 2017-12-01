@@ -469,7 +469,7 @@ class UsuarioController implements Validable, GenericController {
                         $numUsers = count($tablaUsuarios);
                         echo('
                  <div class="container-fluid is-Tamaño-ContainerXD w3-green" style="padding-top: 0.5%; padding-bottom: 0.5%;">
-                        <h5><center><span class="w3-text-dark-gray">Encontrados  ' . $numUsers . ' Usuarios </span></center></h5>
+                        <h5><center><span class="w3-text-black">Encontrados  ' . $numUsers . ' Usuarios </span></center></h5>
                  </div>
                  ');
                         $sesion = SimpleSession::getInstancia();
