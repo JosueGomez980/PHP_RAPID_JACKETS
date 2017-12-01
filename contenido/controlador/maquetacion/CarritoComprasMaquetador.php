@@ -53,7 +53,7 @@ class CarritoComprasMaquetador implements GenericMaquetador {
             echo('<tr class="is-Tamaño-LetraCarrito">
                     <td  style="width: 30%">' . $prodName . '</td>
                     <td  style="width: 10%">' . $precioU . '</td>
-                    <td  style="width: 10%">' . $cantidad . '</td>
+                    <td class="w3-center" style="width: 10%">' . $cantidad . '</td>
                     <td  style="width: 10%">' . $total . '</td>
                     <td class="w3-center" style="width: 15%">
                         <a href="controlador/negocio/delete_from_carrito.php?producto_id=' . $idProducto . '"><img src="../media/img/OtroCarritoEliminarXD.png" class="m-crud_icons"/></a>
@@ -84,28 +84,34 @@ class CarritoComprasMaquetador implements GenericMaquetador {
         $modal->open();
         echo('<form method="GET" action="controlador/negocio/update_item_carrito.php"><div class="w3-row">
             <input type="hidden" name="producto_id" value="' . $idPro . '">
-                <div class="w3-center w3-container w3-padding-8 w3-theme-dark"><span class="tit3">Cambia la cantidad</span></div>
-                <div class="w3-container w3-theme-l2"></div>
+                <br>
+                <div class="w3-center w3-container w3-padding-8 w3-white">
+                <center><div class="w3-tag w3-round" style="width: 60%; background-color:#FFC300;">
+                        <span class="is-Title01 w3-center">Cambia la Cantidad</span>
+                    </div></center>
+                <br>
+                <div class="w3-container w3-white"></div>
+                <br>
             </div>
-            <div class="w3-row w3-theme-light w3-responsive">
+            <div class="container-fluid w3-white">
                 <table class="w3-table-all w3-small">
-                    <tr class="w3-lime w3-border-blue w3-center">
+                    <tr class="is-Color27 w3-border-yellow w3-center">
                         <th style="width: 50%">PRODUCTO</th>
                         <th style="width: 25%">PRECIO</th>
                         <th style="width: 25%">CANTIDAD</th>
              </tr>');
 
-        echo('<tr class="w3-theme-dark">
+        echo('<tr class="w3-white">
                     <td  style="width: 50%">' . $prodName . '</td>
                     <td  style="width: 25%">' . $precioU . '</td>
                     <td  style="width: 25%">
-                         <input type="number" name="producto_cantidad" value="' . $cantidad . '" min="1" max="' . $disponible . '" class="input_number">
+                         <input type="number" style="border:1px solid #000" name="producto_cantidad" value="' . $cantidad . '" min="1" max="' . $disponible . '" class="input_number">
                     </td>
                 </tr>');
-        echo('</table></div>');
+        echo('</table><br></div>');
         echo('<div class="w3-center">
-                    <input type="submit" name="submit" value="Aplicar" class="w3-btn w3-green w3-round-large w3-hover-blue"></form>
-                </div>');
+                    <input type="submit" name="submit" value="Aplicar" class="w3-btn is-Button-CarritoXD"></form>
+                </div><br>');
         $closeBtn = new CloseBtn();
         $closeBtn->setValor("Cancelar");
         $modal->addElemento($closeBtn);

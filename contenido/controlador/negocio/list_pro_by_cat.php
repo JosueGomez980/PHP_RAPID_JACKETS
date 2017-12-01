@@ -8,8 +8,8 @@
 include_once 'cargar_clases2.php';
 AutoCarga2::init();
 
-$userManager = new ProductoController();
+$proManager = new ProductoController();
 $productoRequest = new ProductoRequest();
 $productoPost = $productoRequest->getProductoDTO();
-$userManager->listarByCategoria($productoPost);
+$proManager->listarByCategoria($productoPost);
 

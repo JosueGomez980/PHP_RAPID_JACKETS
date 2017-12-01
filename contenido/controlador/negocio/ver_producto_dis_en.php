@@ -41,8 +41,11 @@ if (!Validador::validaText($productoPost->getIdProducto(), 10, 50)) {
 if ($ok) {
     $proFinded = $productoDAO->find($productoPost);
     if (!is_null($proFinded)) {
+        $modal->open();
+        $modal->maquetar();
         $userManager->mostrarFormDisEnable($proFinded);
         $sesion->addEntidad($proFinded, "PRO_ENABLE_DISABLE");
+        $modal->close();
     } else {
         $neutro = new Neutral();
         $neutro->setValor("No se encotró nigún producto con ese código");

@@ -82,6 +82,8 @@ final class PreparedSQL {
     const usuario_find = "SELECT * FROM USUARIO WHERE ID_USUARIO = ? ;";
     const usuario_find_by_id_like = "SELECT * FROM USUARIO WHERE LOWER(ID_USUARIO) LIKE ? ;";
     const usuario_find_by_rol_and_estado = "SELECT * FROM USUARIO WHERE ROL = ? AND ESTADO = ? ;";
+    const usuario_find_by_rol = "SELECT * FROM USUARIO WHERE ROL = ? ;";
+    const usuario_find_by_estado = "SELECT * FROM USUARIO WHERE ESTADO = ? ;";
     const usuario_by_email = "SELECT * FROM USUARIO WHERE EMAIL = ? ;";
     const usuario_delete = "DELETE FROM USUARIO WHERE ID_USUARIO = ? ;";
     const usuario_put_rol = "UPDATE USUARIO SET ROL = ? WHERE ID_USUARIO = ? ;";

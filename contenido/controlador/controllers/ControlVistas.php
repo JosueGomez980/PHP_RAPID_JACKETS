@@ -144,6 +144,14 @@ class ControlVistas {
         $userPost instanceof UsuarioDTO;
         $usuarioControl->mostrarCrudPorRolYEstado($userPost);
     }
+    
+    public function vista_usuario_find_by_est() {
+        $usuarioControl = new UsuarioController();
+        $userRequest = new UsuarioRequest();
+        $userPost = $userRequest->getUsuarioDTO();
+        $userPost instanceof UsuarioDTO;
+        $usuarioControl->mostrarCrudPorRolYEstado($userPost);
+    }
 
     public function vista_usuario_find_by_num_doc() {
         $userControl = new UsuarioController();

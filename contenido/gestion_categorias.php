@@ -9,6 +9,7 @@ $sesion = SimpleSession::getInstancia();
 $sesion instanceof SimpleSession;
 $acceso->comprobarSesionAdmin(AccesoPagina::INICIO);
 $userManager = new ProductoController();
+$userMNG = new UsuarioController();
 $categoriaManager = new CategoriaController();
 $categoriaDAO = CategoriaDAO::getInstancia();
 $categoriaDAO instanceof CategoriaDAO;
@@ -42,12 +43,19 @@ $sesion->add(Session::PAGINADOR, $paginador);
         }
         ?>
 
-        <section class="m-section">
-            <div class="w3-row w3-theme-d4 w3-center">
-                <button class="w3-btn w3-hover-gray w3-yellow w3-medium w3-round" onclick="mostrarFormInsertCategoria();">
-                    Nueva Categoría <span class="w3-badge w3-circle w3-purple">+</span>
+        <section class="is-Fondo-03">
+            <?php
+            $userMNG->mostrarNavAdminUsuario();
+            ?>
+            <br>
+            <div class="container-fluid w3-gray w3-center" style="width: 50%; border-radius: 15px;">
+                <br>
+                <button class="w3-btn w3-medium w3-round is-Button-CarritoXD-Inverted" onclick="mostrarFormInsertCategoria();">
+                    Nueva Categoría <span class="w3-badge w3-circle w3-white" style="color: #000;">+</span>
                 </button>
+                <br><br>
             </div>
+            <br><br>
             <!--            <div class="w3-row w3-container w3-padding-2">
                             <form action="controlador/negocio/categoria_insert.php" method="POST" name="categoria_insert" id="categoria_insert">
                                 <label class="labels">Nombre</label>
@@ -74,13 +82,14 @@ $sesion->add(Session::PAGINADOR, $paginador);
                 $categoriaManager->mostrarCategoriasCrudTable($tablaUsuariosPaginada);
                 ?>
             </div>  
-                <?php
-                $paginador->maquetarBarraPaginacion();
-                ?>
-        </section>
             <?php
-            $contenido->getFooter2();
+            $paginador->maquetarBarraPaginacion();
             ?>
+            <br><br>
+        </section>
+        <?php
+        $contenido->getFooter2();
+        ?>
     </body>
 </html>
 

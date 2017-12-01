@@ -17,23 +17,20 @@ AutoCarga::init();
     $sesion = SimpleSession::getInstancia();
     $sesion instanceof SimpleSession;
     $userManager = new UsuarioController();
+    $contenido->getHeader();
     ?>
     <body>
-        <section class="m-section">
+        <section class="is-Fondo-02">
             <?php
-            $contenido->getHeader();
             $userManager->mostrarNavbarUsuario();
             $userManager->mostrarManagerLink();
-            if ($sesion->existe(Session::US_LOGED))
-            {
+            if ($sesion->existe(Session::US_LOGED)) {
                 $cuentaSession = $sesion->getEntidad(Session::CU_LOGED);
                 $cuentaSession instanceof CuentaDTO;
 
                 echo('<br><br><div class="is-LetraColor06-Error">Hola <b>' . $cuentaSession->getPrimerNombre() . '</b>,<br>No puedes ver esta pagina <br> Ya has iniciado Sesión. :*</div><br>'
-                        . '<img class="m-login-logo w3-animate-zoom" src="../media/img/ErrorPagina.png">');
-            }
-            else
-            {
+                . '<img class="m-login-logo w3-animate-zoom" src="../media/img/ErrorPagina.png">');
+            } else {
                 ?>
                 <br>
                 <div class="is-LetraColor05">Crear Cuenta XD</div>
@@ -45,7 +42,7 @@ AutoCarga::init();
                 <form method="POST" id="RegistroCuenta" class="form-horizontal">
                     <div class="w3-row">
                         <br>
-                        <div class="container-fluid is-Color18 is-Tamaño-ContainerXD">
+                        <div class="container-fluid is-Color18 is-Tamaño-ContainerXD" style="border-radius: 20px;">
                             <br>
                             <h3 class="w3-center" style="color: #76448a; font-weight:bolder;">Datos de Usuario</h3><hr class="is-Color19">
 
@@ -88,7 +85,7 @@ AutoCarga::init();
                             <br>
                         </div>
                         <br>
-                        <div class="container-fluid is-Color18 is-Tamaño-ContainerXD">
+                        <div class="container-fluid is-Color18 is-Tamaño-ContainerXD" style="border-radius: 20px;">
                             <br><h3 class="w3-center" style="color: #76448a; font-weight:bolder;">Información Personal</h3><hr style="background-color: #3333FF"><br>
 
                             <div class="form-group">
@@ -161,14 +158,14 @@ AutoCarga::init();
 
                 </form>
                 <div class="w3-container w3-card-8 w3-theme-d4" id="insert_res"></div>
-                <?php
-            }
-            ?>
+    <?php
+}
+?>
             <div id="loading"></div>
             <br><br>
         </section>
-        <?php
-        $contenido->getFooter();
-        ?>
+<?php
+$contenido->getFooter();
+?>
     </body>
 </html>

@@ -4,8 +4,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 24-nov-2017, 9:19:35
-    Author     : SOPORTE
+    Created on : 29-nov-2017, 18:44:45
+    Author     : Issei
 */
 
 .is-navbar-XD{
@@ -39,6 +39,13 @@ and open the template in the editor.
 
 .is-Labels-XD{
     color: #FFF;
+    font-size: medium;
+    font-weight: bolder;
+    display: block;
+}
+
+.is-Labels-Negro-XD{
+    color: #000;
     font-size: medium;
     font-weight: bolder;
     display: block;
@@ -977,6 +984,237 @@ input[id^="EsteXDXD"]:checked + label + .EsteXDXD{
     height: auto;
     opacity: 1;
 }
+
+input[id^="EsteXDXDXD"]{
+    display: none;
+}
+input[id^="EsteXDXDXD"] + label {
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXDXDXD"] + label:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXDXDXD"]:checked + label {
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXDXDXD"] ~ .EsteXDXDXD {
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 10px auto 0; 
+}
+input[id^="EsteXDXDXD"]:checked + label + .EsteXDXDXD{
+    height: auto;
+    opacity: 1;
+}
+
+
+input[id^="EsteXD"]{
+    display: none;
+}
+input[id^="EsteXD"] + label {
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXD"] + label:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXD"]:checked + label {
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="EsteXD"] ~ .EsteXD {
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 10px auto 0; 
+}
+input[id^="EsteXD"]:checked + label + .EsteXD{
+    height: auto;
+    opacity: 1;
+}
+
+
+input[id^="FierroteXDXD"]{
+    display: none;
+}
+input[id^="FierroteXDXD"] + label {
+    width: auto;
+    font-size: 1em;
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #FFF;
+    outline: none;
+    transition: background-color 0.6s , border-color 0.6s , color 0.6s, transform 0.6s;
+    -web-kit-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -moz-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -o-transition: background-color 0.6s , border-color 0.6s, color 0.6s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="FierroteXDXD"] + label:hover{
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(-7deg);
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="FierroteXDXD"]:checked + label {
+    background-color: #239B56;
+    border-color: #1B5E20;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+input[id^="FierroteXDXD"] ~ .FierroteXDXD {
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 10px auto 0; 
+}
+input[id^="FierroteXDXD"]:checked + label + .FierroteXDXD{
+    height: auto;
+    opacity: 1;
+}
+
+
+/* Reportes */
+
+.is-Imgen-Logo-Rep{
+    display:block;
+    margin:0 auto 0 auto;
+    height: auto;
+    width: 40%;
+    left: 20%;
+}
+.is-Imgen-Logo-Rep img{
+    display:block;
+    margin:0 auto 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.is-Head-XD{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    background-color: #fbdbf8;
+    font-family: Arial;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 100%;
+    margin: auto;
+}
+
+.is-Tabla-Heidy{
+    font-family: 'Arial';
+    background-color: #edf0f9;
+    border-radius: 10px;
+}
+.is-Tabla-Heidy-Th{
+    font-family: 'Arial';
+    border-bottom: 1px solid #000000;
+    background-color:#ccd1d1; 
+}
+
+.is-Tabla-Heidy-Tr{
+    font-family: 'Arial';
+    border-bottom: 1px solid #000;
+    background-color: #7d3c98; 
+}
+
+.is-Clear{
+    clear: both;
+}
+.is-PXD{
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #292121;
+    font-family: Arial;
+    text-align: justify;
+    line-height: 1em;
+}
+
+/* Fin Reportes */
+
 .is-Prueba-button:before {
  content:'';
  position: absolute;

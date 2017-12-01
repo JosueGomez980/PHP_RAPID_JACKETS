@@ -36,7 +36,7 @@ and open the template in the editor.
                 <form method="POST" name="log_in">
                     <div class="w3-row">
                         <div class="w3-quarter w3-container"></div>
-                        <div class="w3-half w3-container w3-card-8 w3-padding w3-white w3-center" style="border-radius: 20px;">
+                        <div class="w3-half w3-container w3-card-8 w3-padding w3-white w3-center head1" style="border-radius: 20px;">
                             <br>
                             <img class="m-login-logo w3-animate-zoom" src="../media/img/usuario.png">
                             <br><br>

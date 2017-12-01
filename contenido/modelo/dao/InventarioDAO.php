@@ -15,9 +15,17 @@
 final class InventarioDAO implements DAOPaginable {
 
     private $db;
+    public static $instancia = NULL;
 
     public function __construct() {
         $this->db = Conexion::getInstance();
+    }
+    
+    public static function getInstancia() {
+        if (is_null(self::$instancia)) {
+            self::$instancia = new InventarioDAO();
+        }
+        return self::$instancia;
     }
 
     private function resultToArray(mysqli_result $resultado) {

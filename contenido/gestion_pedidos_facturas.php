@@ -5,6 +5,7 @@ include_once 'cargar_clases.php';
 AutoCarga::init();
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
+$userManager = new UsuarioController();
 $acceso->comprobarSesionAdmin(AccesoPagina::INICIO);
 $contenido = ContenidoPagina::getInstancia();
 $contenido instanceof ContenidoPagina;
@@ -28,9 +29,10 @@ and open the template in the editor.
         $contenido->getHeader2();
         $contenido->mostrarRespuestaNegocio();
         ?>
-        <section class="m-section">
-            <div id="RESPUESTA"></div>            
+        <section class="is-Fondo-03">
+            <div id="RESPUESTA"></div>
             <?php
+            $userManager->mostrarNavAdminUsuario();
 //            $smtpOpt = array(
 //                'ssl' => array(
 //                    'verify_peer' => false,
@@ -58,6 +60,11 @@ and open the template in the editor.
 //                echo "SUCCESS";
 //            }
             ?>
+            <br><br>
+            <div class="container-fluid is-Tamaño-ContainerXD w3-white" style="border-radius: 20px;">
+                <br><br><center><h1><b>Este XDXD</b></h1></center><br><br>
+            </div>
+            <br><br>
         </section>
         <?php
         $contenido->getFooter2();

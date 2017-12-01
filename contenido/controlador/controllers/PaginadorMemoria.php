@@ -104,7 +104,8 @@ class PaginadorMemoria extends PaginadorAbstracto {
     }
 
     public function maquetarBarraPaginacion() {
-        echo('<div class="w3-container w3-theme-l1 w3-center w3-card-8 w3-padding-8 w3-tiny">');
+        echo('<div class="container-fluid" style="width: 90%;">'
+                . '<div class="w3-container w3-theme-l1 w3-center w3-card-8 w3-padding-8 w3-tiny">');
         $this->btnFirstPage->maquetar();
         $this->btnPrev->maquetar();
         foreach ($this->listaBotones as $btn) {
@@ -113,7 +114,7 @@ class PaginadorMemoria extends PaginadorAbstracto {
         }
         $this->btnNext->maquetar();
         $this->btnLastPage->maquetar();
-        echo('</div>');
+        echo('</div></div>');
     }
 
     public function nextPage() {

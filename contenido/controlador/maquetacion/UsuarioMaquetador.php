@@ -62,6 +62,7 @@ class UsuarioMaquetador implements GenericMaquetador {
     public function maquetaArrayObject(array $entidades) {
         echo("");
     }
+    
 
     public function maquetaObject(EntityDTO $entidad) {
         $entidad instanceof UsuarioDTO;
@@ -165,6 +166,8 @@ class UsuarioMaquetador implements GenericMaquetador {
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_productos.php" style="color: #000;">Gestión de Productos</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_reportes.php" style="color: #000;">Gestión de Reportes</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Facturas</a></li>
                             </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
@@ -174,7 +177,7 @@ class UsuarioMaquetador implements GenericMaquetador {
                 </div>';
         echo ($esteOtro);
     }
-    
+
     public function maquetaNavAdminSec(CuentaDTO $cuenta) {
 
         $nombre = $cuenta->getPrimerNombre();
@@ -186,6 +189,8 @@ class UsuarioMaquetador implements GenericMaquetador {
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_productos.php" style="color: #000;">Gestión de Productos</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_reportes.php" style="color: #000;">Gestión de Reportes</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Facturas</a></li>
                             </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
@@ -198,7 +203,7 @@ class UsuarioMaquetador implements GenericMaquetador {
 
     public function maquetarManagerLink($userName) {
         echo('<div class="m-manager-tools w3-col l2 m5 s12 w3-container w3-animate-right w3-center">
-                <img src="../media/img/man-with-sunglasses-suit-and-star.png" style="width: 25px; height: auto; margin: auto;">
+                <img src="../media/img/icons_users/man-with-sunglasses-suit-and-star.png" style="width: 25px; height: auto; margin: auto;">
                 <span class="w3-small" style="color: #000">Bienvenido ' . $userName . '</span><br>
                 <a href="admin_panel.php" target="_blank"><button class="w3-btn w3-black w3-round-xlarge w3-tiny">IR A PANEL DE ADMINISTRADOR</button></a>
             </div>');
@@ -212,10 +217,10 @@ class UsuarioMaquetador implements GenericMaquetador {
             </div>');
     }
 
-    //Metodo reservado para maquetar la tabla de crud de usuarios. (Solo accesible por el administrador)
+//Metodo reservado para maquetar la tabla de crud de usuarios. (Solo accesible por el administrador)
     public function maquetarCrudUsuarios(array $tablaUsuarios) {
 
-        echo('<div class="w3-row w3-responsive w3-block">
+        echo('<div class="container-fluid" style="width: 85%">
                     <table class="w3-table-all w3-hoverable w3-responsive w3-small w3-striped">
                         <tr class="w3-theme-d3">
                             <th style="width: 10%; max-width: 10%">ACCIONES</th>
@@ -276,7 +281,8 @@ class UsuarioMaquetador implements GenericMaquetador {
             ');
         }
         echo('</table>
-                </div>');
+                </div>
+                <br>');
     }
 
     public function maquetarFormUpdateUsuario(UsuarioDTO $user, CuentaDTO $account) {
@@ -315,85 +321,134 @@ class UsuarioMaquetador implements GenericMaquetador {
         $telefono = $account->getTelefono();
         $modal->open();
         echo('
-            <ul class="w3-ul w3-card-8 w3-tiny w3-hoverable w3-border">
-                <li>Los campos con <span class="w3-text-red w3-large">*</span> son OBLIGATORIOS</li>
-                <li>Para cambiar la contraseña digite una nueva, de lo contrario deje el campo vacio</li>
-                <li>La contraseña debe tener minimo 8 caracteres incluyendo al menos 3 numeros</li>
-                <li>El campo de teléfono sólo debe contener números</li>
-            </ul>
-            <form method="POST" id="modificarUsuario" action="controlador/negocio/usuario_modificar.php">
-                <div class="w3-row">
-                    <div class="w3-half w3-container w3-theme-d1">
-                        <h3 class="w3-center">Datos de Usuario</h3><hr class="w3-lime">
-                        
-                        <input type="hidden" name="user_id" id="user_id" value="' . $idUsuario . '">
-                        
-                        <label for="user_id" class="labels">Correo Electrónico</label>
-                        <input type="email" class="input_texto" name="user_email" id="user_email" placeholder="Email" required onblur="valida_user_email()" value="' . $email . '">
-                        <span class="w3-text-red w3-large">*</span>
-                        <div><span class="w3-tiny w3-text-red" id="user_email_res"></span></div>
+                <form method="POST" id="modificarUsuario" action="controlador/negocio/usuario_modificar.php" class="form-horizontal">
+                    
+                    <div class="w3-row" style="background-color: #BDBDBD;">
+                    <ul class="w3-ul w3-card-8 w3-tiny w3-border w3-white">
+            <li class="w3-center">Los campos con <span class="w3-text-red">*</span> son OBLIGATORIOS</li>
+            <li class="w3-center">El campo de teléfono sólo debe contener números</li>
+        </ul>
                         <br>
-                        <label for="user_id" class="labels">Contraseña</label>
-                        <input type="password" class="input_texto" name="user_password" id="user_passwordA" placeholder="Password" onkeydown="valida_user_passA()" onblur="valida_user_passA()">
-                        <span class="w3-text-red w3-large">*</span>
-                        <div><span class="w3-tiny w3-text-red" id="user_passA_res"></span></div>
-                        <div><span class="w3-tiny" id="user_passA_res2"></span></div>
+                        <div class="container-fluid" style="width: 95%; border-radius: 15px; background-color: #797D7F;">
+                            <br>
+                            <h3 class="w3-center" style="color: #fff; font-weight:bolder;">Datos de Usuario</h3><center><hr style="width: 80%"></<center>
+
+                            <input type="hidden" name="user_id" id="user_id" value="' . $idUsuario . '">
+
+                            <div class="form-group">
+                                <label for="user_id" class="is-Labels-XD col-lg-3 control-label">Correo Electrónico : </label>
+                                <div class="col-lg-8">
+                                    <input type="email" style="border:1px solid #000000" class="input_texto" name="user_email" id="user_email" placeholder="Email" required onblur="valida_user_email()" value="' . $email . '">
+                                    <span class="w3-text-red w3-large">*</span>
+                                    <div><span class="w3-tiny w3-text-red" id="user_email_res"></span></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_id" class="is-Labels-XD col-lg-3 control-label">Contraseña : </label>
+                                <div class="col-lg-8">
+                                    <input type="password" style="border:1px solid #000000" class="input_texto" name="user_password" id="user_passwordA" placeholder="Password" required onkeydown="valida_user_passA()" onblur="valida_user_passA()">
+                                    <span class="w3-text-red w3-large">*</span>
+                                    <div><span class="w3-tiny w3-text-red" id="user_passA_res"></span></div>
+                                    <div><span class="w3-tiny" id="user_passA_res2"></span></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_id" class="is-Labels-XD col-lg-3 control-label">Repite la contraseña : </label>
+                                <div class="col-lg-8">
+                                    <input type="password" style="border:1px solid #000000" class="input_texto" name="user_passwordB" id="user_passwordB" placeholder="Password" required onblur="valida_user_passB()" onpaste="avoid_paste()">
+                                    <span class="w3-text-red w3-large">*</span>
+                                    <div><span class="w3-tiny" id="user_passB_res"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="rol_user" class="is-Labels-XD col-lg-3 control-label">Rol de Usuario : </label>
+                                <div class="col-lg-8">
+                                    <select name="rol_user" id="rol_user" class="is-Selects" style="border:1px solid #000">
+                                        <option value="' . $rolInt . '" selected>' . $rolHtml . '</option>
+                                        <option value="1">Cliente Corriente</option>
+                                        <option value="2">Cliente Particular</option>
+                                        <option value="3">Institucion Educativa</option>                          
+                                        <option value="4">Administrador (Secundario)</option>                          
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <br>
+                        </div>
                         <br>
-                        <label for="user_id" class="labels">Repite la contraseña</label>
-                        <input type="password" class="input_texto" name="user_passwordB" id="user_passwordB" placeholder="Password" onblur="valida_user_passB()" onpaste="avoid_paste()">
-                        <span class="w3-text-red w3-large">*</span>
-                        <div><span class="w3-tiny" id="user_passB_res"></span></div>
-                        <br>
-                        <label for="rol_user" class="labels">Rol del Usuario</label>
-                        <select name="rol_user" id="rol_user" class="m-selects">
-                            <option value="' . $rolInt . '" selected>' . $rolHtml . '</option>
-                            <option value="1">Cliente Corriente</option>
-                            <option value="2">Cliente Particular</option>
-                            <option value="3">Institucion Educativa</option>                          
-                            <option value="4">Administrador (Secundario)</option>                          
-                        </select>
+                        <div class="container-fluid" style="width: 95%; border-radius: 15px; background-color: #797D7F;">
+                            <br><h3 class="w3-center"  style="color: #fff; font-weight:bolder;">Información Personal</h3><center><hr style="width: 80%"></center><br>
+
+                            <div class="form-group">
+                                <label for="cuenta_tip_doc" class="is-Labels-XD col-lg-3 control-label">Tipo de Documento : </label>
+                                <div class="col-lg-8">
+                                    <select name="cuenta_tip_doc" id="cuenta_tip_doc" class="is-Selects">
+                                        <option value="CC">CC. Cedula de Ciudadania</option>
+                                        <option value="TI">TI. Tarjeta de Identidad</option>
+                                        <option value="CEX">CEX. Cedula de Extranjería</option>
+                                        <option value="RC">RC. Registro Civil</option>                            
+                                        <option value="PST">PST. Pasaporte</option>                            
+                                    </select>
+                                    <span class="w3-text-red w3-large">*</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cuenta_num_doc" class="is-Labels-XD col-lg-3 control-label">Número de Documento : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $numDoc . '" style="border:1px solid #000000" class="input_texto" name="cuenta_num_doc" id="cuenta_num_doc" placeholder="Numero de Documento" required onblur="valida_simple_input(this)">
+                                    <span class="w3-text-red w3-large">*</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cuenta_prim_name" class="is-Labels-XD col-lg-3 control-label">Primer Nombre : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $primName . '" style="border:1px solid #000000" class="input_texto" name="cuenta_prim_name" id="cuenta_prim_name" placeholder="Primer Nombre" required onblur="valida_simple_input(this)">
+                                    <span class="w3-text-red w3-large">*</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="is-Labels-XD col-lg-3 control-label">Segundo Nombre : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $secName . '" style="border:1px solid #000000" class="input_texto" name="cuenta_sec_name" id="cuenta_sec_name" placeholder="Segundo Nombre">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="is-Labels-XD col-lg-3 control-label">Primer Apellido : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $primApe . '" style="border:1px solid #000000" class="input_texto" name="cuenta_prim_ape" id="cuenta_prim_ape" placeholder="Primer Apellido" required onblur="valida_simple_input(this)">
+                                    <span class="w3-text-red w3-large">*</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="is-Labels-XD col-lg-3 control-label">Segundo Apellido : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $secApe . '" style="border:1px solid #000000" class="input_texto" name="cuenta_sec_ape" id="cuenta_sec_ape" placeholder="Segundo Apellido">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="is-Labels-XD col-lg-3 control-label">Teléfono : </label>
+                                <div class="col-lg-8">
+                                    <input type="text" value="' . $telefono . '" style="border:1px solid #000000" class="input_texto" name="cuenta_tel" id="cuenta_tel" placeholder="Telefono de Contacto" required onblur="valida_simple_input(this)">
+                                    <span class="w3-text-red w3-large">*</span>
+                                </div>
+                            </div>
+
+                            <div class="w3-center w3-padding-24">
+                                <input type="submit" class="w3-btn is-Button-CarritoXD" value="Modificar">
+                            </div>
+                        </div>
                     </div>
-                    <div class="w3-half w3-container w3-theme-d1">
-                        <h3 class="w3-center">Información Personal</h3><hr class="w3-lime">
-                        <label for="cuenta_tip_doc" class="labels">Tipo de Documento</label>
-                        <select name="cuenta_tip_doc" id="cuenta_tip_doc" class="m-selects">
-                            <option value="' . $tipDoc . '" selected >' . $strTipDoc . '</option>
-                            <option value="CC">CC. Cedula de Ciudadania</option>
-                            <option value="TI">TI. Tarjeta de Identidad</option>
-                            <option value="CEX">CEX. Cedula de Extranjería</option>
-                            <option value="RC">RC. Registro Civil</option>                            
-                            <option value="PST">PST. Pasaporte</option>                            
-                        </select>
-                        <span class="w3-text-red w3-large">*</span>
-                        <br>
-                        <label for="cuenta_num_doc" class="labels">Número de Documento</label>
-                        <input type="text" value="' . $numDoc . '" class="input_texto" name="cuenta_num_doc" id="cuenta_num_doc" placeholder="Numero de Documento" required onblur="valida_simple_input(this)">
-                        <span class="w3-text-red w3-large">*</span>
-
-                        <label for="cuenta_prim_name" class="labels">Primer Nombre</label>
-                        <input type="text" value="' . $primName . '" class="input_texto" name="cuenta_prim_name" id="cuenta_prim_name" placeholder="Primer Nombre" required onblur="valida_simple_input(this)">
-                        <span class="w3-text-red w3-large">*</span>
-
-                        <label class="labels">Segundo Nombre</label>
-                        <input type="text" value="' . $secName . '" class="input_texto" name="cuenta_sec_name" id="cuenta_sec_name" placeholder="Segundo Nombre">
-                        <br>
-                        <label class="labels">Primer Apellido</label>
-                        <input type="text" value="' . $primApe . '" class="input_texto" name="cuenta_prim_ape" id="cuenta_prim_ape" placeholder="Primer Apellido" required onblur="valida_simple_input(this)">
-                        <span class="w3-text-red w3-large">*</span>
-
-                        <label class="labels">Segundo Apellido</label>
-                        <input type="text" value="' . $secApe . '" class="input_texto" name="cuenta_sec_ape" id="cuenta_sec_ape" placeholder="Segundo Apellido">
-                        <br>
-                        <label class="labels">Teléfono</label>
-                        <input type="text" value="' . $telefono . '" class="input_texto" name="cuenta_tel" id="cuenta_tel" placeholder="Telefono de Contacto" required onblur="valida_simple_input(this)">
-                        <span class="w3-text-red w3-large">*</span>
-                    </div>
-                </div>
-                <div class="w3-center w3-padding-8">
-                    <input type="submit" class="w3-btn w3-round-large w3-border-blue w3-theme-l1" value="Modificar">
-                </div>
-            </form>
-
+                            
+                    </form>
         ');
         $modal->maquetar();
         $modal->close();
@@ -418,7 +473,7 @@ class UsuarioMaquetador implements GenericMaquetador {
     }
 
     public function maquetaLogedUserMenu() {
-        //Metodo a ubicar en el header de la página
+//Metodo a ubicar en el header de la página
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;
         if ($sesion->existe(Session::US_LOGED)) {
@@ -438,7 +493,7 @@ class UsuarioMaquetador implements GenericMaquetador {
         echo('
             <form name="form_acc_recovery_change_password" method="POST" id="form_acc_recovery_change_password" action="controlador/controllers/ControlVistas.php">
     <input type="hidden" name="m" value="password_recovery_part_final"> 
-    <input type="hidden" name="user_id" value="'.$userIdCripted.'"> 
+    <input type="hidden" name="user_id" value="' . $userIdCripted . '"> 
     <div id="RESPUESTA" class="w3-animate-top">
         <div class="w3-row w3-theme-l4">
             <div class="w3-quarter w3-container"></div>
@@ -470,6 +525,60 @@ class UsuarioMaquetador implements GenericMaquetador {
     </div>
 </form>
         ');
+    }
+
+    public function generarStringReporteA(array $usuarios, $hojaCss) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $cuentaAdmin = $sesion->getEntidad(Session::CU_ADMIN_LOGED);
+        $cuentaAdmin instanceof CuentaDTO;
+        $userAdmin = $sesion->getEntidad(Session::US_ADMIN_LOGED);
+        $userAdmin instanceof UsuarioDTO;
+        $idUser = utf8_decode($userAdmin->getIdUsuario());
+        $nombreAdmin = utf8_decode($cuentaAdmin->getPrimerNombre() . " " . $cuentaAdmin->getPrimerApellido());
+        $dater = new DateManager();
+        $fecha = $dater->dateSpa1();
+        $salida = null;
+        $salida = '<style>' . $hojaCss . '</style>';
+        $cantidad = count($usuarios);
+        $salida .= ('  
+                <div class="is-Head-XD" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                    <p class="is-PXD" style="text-align: right;">
+                    ' . $fecha . '
+                    <p class="is-PXD">
+                     <center><div class="is-Imgen-Logo-Report"><img src="../media/img/LogoCreaciones.png"></div></center> 
+                     <p class="is-PXD">
+                        Obtenidos ' . $cantidad . ' Usuarios<br><br>
+                        Reporte solicitado por: ' . $nombreAdmin . ' (' . $idUser . ')
+                     </p>     
+                </div>
+               <table class="is-Tabla-Heidy" style="width: 100%;">
+                    <tr class="lol">
+                        <th class="is-Tabla-Heidy-Tr" style="width:30%">ID de Usuario / Email</th>
+                        <th class="is-Tabla-Heidy-Tr">Rol</th>
+                        <th class="is-Tabla-Heidy-Tr">Estado</th>
+                    </tr>');
+        $UserDAO = UsuarioDAO::getInstancia();
+        $UserDAO instanceof UsuarioDAO;
+        foreach ($usuarios as $usu) {
+            $usu instanceof UsuarioDTO;
+            $idUsuario = $usu->getIdUsuario();
+            $rol = $usu->getRol();
+            $email = $usu->getEmail();
+            $estado = $usu->getEstado();
+
+            $salida .= '<tr class="lol">
+                        <td class="is-Tabla-Heidy-Th" style="width:30%"><center>' . $idUsuario . '<br><b>' . $email . '</b></center></td>
+                        <td class="is-Tabla-Heidy-Th"><center>' . $rol . '</center></td>';
+            if ($estado) {
+                $salida .= '<td class="is-Tabla-Heidy-Th"><center>Activo</center></td>';
+            } else {
+                $salida .= '<td class="is-Tabla-Heidy-Th"><center>Inactivo</center></td>';
+            }
+            $salida .= '</tr>';
+        }
+        $salida .= '</table>';
+        return $salida;
     }
 
 }

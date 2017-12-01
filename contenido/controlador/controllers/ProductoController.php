@@ -147,6 +147,11 @@ class ProductoController implements GenericController, Validable {
         }
         return self::$instance;
     }
+    
+    public function mostrarProductoSelect($nameForm, $idForm, $selected) {
+        $tablaProductos = $this->productoDAO->findAll();
+        $this->productoMQT->maquetaProductosSelectXD($tablaProductos, $nameForm, $idForm, $selected);
+    }
 
     public function actualizar(EntityDTO $entidad) {
         $entidad instanceof ProductoDTO;
@@ -208,9 +213,13 @@ class ProductoController implements GenericController, Validable {
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;
         if ($sesion->existe(Session::US_LOGED)) {
+            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
             $this->productoMQT->maquetaObject($entidad);
+            echo ('<br></div>');
         } else {
+            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
             $this->productoMQT->maquetaObjectNoSession($entidad);
+            echo ('<br></div>');
         }
     }
 
@@ -248,14 +257,24 @@ class ProductoController implements GenericController, Validable {
     }
 
     public function listarByCategoria(ProductoDTO $prodPost) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
         $productos = $this->productoDAO->findByCategoria($prodPost);
         if (!is_null($productos)) {
             $cantidad = count($productos);
-            $this->contentMGR->setFormato(new ProductosIsseiXD());
-            $this->contentMGR->setContenido("Encontrados $cantidad productos");
-            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
-            $this->productoMQT->maquetaArrayObject($productos);
-            echo ('<br></div>');
+            $exito = new ProductosIsseiXD();
+            $exito->setValor('Encontrados ' . $cantidad . ' productos');
+            if ($sesion->existe(Session::US_LOGED)) {
+                echo ('<div class="container-fluid is-Tamaño-ContainerXD w3-white" style="border-radius: 20px;"><div class="container-fluid w3-white" style="width: 95%"><br><br>');
+                echo($exito->toString($exito->getValor()));
+                $this->productoMQT->maquetaArrayObject($productos);
+                echo ('</div></div>');
+            } else {
+                echo ('<div class="container-fluid is-Tamaño-ContainerXD w3-white" style="border-radius: 20px;"><div class="container-fluid w3-white" style="width: 95%"><br><br>');
+                echo($exito->toString($exito->getValor()));
+                $this->productoMQT->maquetaArrayObjectNoSession($productos);
+                echo ('</div></div>');
+            }
         } else {
             $this->contentMGR->setFormato(new Neutral());
             $this->contentMGR->setContenido("No se encontraron productos de esta categoría.");
@@ -292,14 +311,22 @@ class ProductoController implements GenericController, Validable {
     }
 
     public function listarPorNombreLike(ProductoDTO $proFind) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
             $this->contentMGR->setFormato(new ProductosIsseiXD());
             $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
-            echo ('<div class="container-fluid" style="width: 95% border-radius:15px;"><br><br>');
-            $this->productoMQT->maquetaArrayObject($arrayProductos);
-            echo ('<br></div>');
+            if ($sesion->existe(Session::US_LOGED)) {
+                echo ('<div class="container-fluid w3-center" style="width: 95% border-radius:15px;"><br><br>');
+                $this->productoMQT->maquetaArrayObject($arrayProductos);
+                echo ('<br></div>');
+            } else {
+                echo ('<div class="container-fluid w3-center" style="width: 95% border-radius:15px;"><br><br>');
+                $this->productoMQT->maquetaArrayObjectNoSession($arrayProductos);
+                echo ('<br></div>');
+            }
         } else {
             $neu = new Neutral();
             $neu->setValor("No se encontró ningun producto que coincida con el nombre que has escrito :( ");
@@ -333,13 +360,16 @@ class ProductoController implements GenericController, Validable {
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
-            $this->contentMGR->setFormato(new Exito());
-            $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            $XD = new ProductosIsseiXD();
+            $XD->setValor('"Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.');
+            echo('<div class="container-fluid is-Tamaño-ContainerXD">' . $XD->toString($XD->getValor()));
+            echo ('</div>');
             $this->mostrarCrudTableForInventario($arrayProductos);
         } else {
             $neu = new Neutral();
             $neu->setValor("No se encontró ningun producto que coincida con el nombre que has escrito :( ");
-            echo($neu->toString($neu->getValor()));
+            echo('<div class="container-fluid is-Tamaño-ContainerXD">' . $neu->toString($neu->getValor()));
+            echo ('</div>');
         }
     }
 
@@ -362,7 +392,7 @@ class ProductoController implements GenericController, Validable {
         $sesion instanceof SimpleSession;
         $pager = $sesion->get(Session::PAGINADOR);
         $pager instanceof PaginadorMemoria;
-        
+
         $pager->maquetarBarraPaginacion();
         $this->productoMQT->maquetaProductoTablaCrudInventario($productos);
         $pager->maquetarBarraPaginacion();

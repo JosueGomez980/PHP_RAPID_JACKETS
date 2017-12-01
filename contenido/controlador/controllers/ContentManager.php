@@ -275,7 +275,7 @@ class BtnPaginacion implements Formato, Maquetable {
             $salidaBtn .= '<a href="' . $this->enlace . '">';
         }
 
-        $salidaBtn .= '<button class="w3-btn w3-theme-dark  w3-round-medium w3-hover-blue-gray" onclick="' . $this->onclick . '">' . $this->valor . '</button></a>';
+        $salidaBtn .= '<button class="w3-btn w3-round-medium is-Button-Pag" onclick="' . $this->onclick . '">' . $this->valor . '</button></a>';
 
         if ($this->enlace != "" && !is_null($this->enlace)) {
             $salidaBtn .= '</a>';

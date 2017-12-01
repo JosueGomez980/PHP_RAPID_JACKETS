@@ -220,16 +220,15 @@ function mostrarDisEnable(divRTA) {
     ajax.executePost();
     ajax.responder(RTA);
 }
-function disable_enable_producto(divRTA, yn) {
+function disable_enable_productoXD(divRTA, yn) {
     loadingGif(divRTA);
     var RTA = document.getElementById(divRTA);
     var peticion = "producto_activo=" + yn;
     var ajax = new AjaxManager();
-    ajax.setUrl("controlador/negocio/producto_enable_disable.php");
+    ajax.setUrl("controlador/negocio/producto_enable_disable_fr.php");
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
-    document.location.reload();
 }
 
 function disable_enable_producto(divRTA, yn, idProducto) {
@@ -238,11 +237,10 @@ function disable_enable_producto(divRTA, yn, idProducto) {
     var peticion = "producto_activo=" + yn;
     peticion += "&producto_id=" + idProducto;
     var ajax = new AjaxManager();
-    ajax.setUrl("controlador/negocio/producto_enable_disable.php");
+    ajax.setUrl("controlador/negocio/producto_enable_disable_se.php");
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
-    document.location.reload();
 }
 
 function mostrarProductosPorNombre() {

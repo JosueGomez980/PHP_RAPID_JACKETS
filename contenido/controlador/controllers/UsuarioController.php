@@ -347,19 +347,19 @@ class UsuarioController implements Validable, GenericController {
             $usuario = $sesion->getEntidad(Session::US_LOGED);
             $cuenta = $sesion->getEntidad(Session::CU_LOGED);
             $this->usuarioMQT->maquetaNavAdminPrin($cuenta);
-        }else if($sesion->existe(Session::US_SUB_ADMIN_LOGED)){
+        } else if ($sesion->existe(Session::US_SUB_ADMIN_LOGED)) {
             $usuario = $sesion->getEntidad(Session::US_LOGED);
             $cuenta = $sesion->getEntidad(Session::CU_LOGED);
             $this->usuarioMQT->maquetaNavAdminSec($cuenta);
         }
     }
-    
+
     public function mostrarNavbarUsuario() {
         $sesion = SimpleSession::getInstancia();
         $sesion instanceof SimpleSession;
         if (!$sesion->existe(Session::US_LOGED)) {
             include_once 'includes/navbar.php';
-        }else{
+        } else {
             $cuenta = $sesion->getEntidad(Session::CU_LOGED);
             $this->usuarioMQT->maquetaNavSession($cuenta);
         }
@@ -389,7 +389,7 @@ class UsuarioController implements Validable, GenericController {
         $pageActual = $paginador->getPaginaActual();
         $totalPages = $paginador->getNumeroPaginas();
         echo('
-                 <div class="w3-row w3-col l4 m6 s12 w3-container w3-theme-light">
+                <div class="container-fluid is-Tamaño-ContainerXD w3-white">
                         <h4><span class="w3-text-dark-gray">Registrados ' . $numFullUsers . ' Usuarios</span></h4>
                         <h5><span class="w3-text-dark-gray">Se muestran ' . $numUsers . ' Usuarios .  Página ' . $pageActual . ' de ' . $totalPages . '</span></h5>
                  </div>

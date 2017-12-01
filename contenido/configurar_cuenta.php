@@ -69,21 +69,21 @@ and open the template in the editor.
                             <div class="col-md-6 container-fluid w3-white" style="border-top-left-radius: 15px;">
                                 <br><br>
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Primer Nombre : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Primer Nombre : </label>
                                     <div class="col-lg-9">
                                         <input type="text" style="border:1px solid #000000" class="is-Input-Text-Otro" name="cuenta_prim_name" id="cuenta_prim_name" required onblur="valida_simple_input(this)" value="<?php echo($primerNombre); ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Segundo Nombre : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Segundo Nombre : </label>
                                     <div class="col-lg-9">
                                         <input type="text" style="border:1px solid #000000" class="is-Input-Text-Otro" name="cuenta_sec_name" id="cuenta_sec_name" required value="<?php echo($segundoNombre); ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Teléfono : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Teléfono : </label>
                                     <div class="col-lg-9">
                                         <input type="text" style="border:1px solid #000000" class="is-Input-Text-Otro" name="cuenta_tel" id="cuenta_tel" required onblur="valida_simple_input(this)" value="<?php echo($telefono); ?>">
                                     </div>
@@ -94,21 +94,21 @@ and open the template in the editor.
                             <div class="col-md-6 container-fluid w3-white" style="border-top-right-radius: 15px">
                                 <br><br>
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Primer Apellido : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Primer Apellido : </label>
                                     <div class="col-lg-9">
                                         <input type="text" style="border:1px solid #000000" class="is-Input-Text-Otro" name="cuenta_prim_ape" id="cuenta_prim_ape" required onblur="valida_simple_input(this)" value="<?php echo($primerApellido); ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Segundo Apellido : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Segundo Apellido : </label>
                                     <div class="col-lg-9">
                                         <input type="text" style="border:1px solid #000000" class="is-Input-Text-Otro" name="cuenta_sec_ape" id="cuenta_sec_ape" required value="<?php echo($segundoApellido); ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="labels col-lg-3 control-label">Email : </label>
+                                    <label class="is-Labels-Negro-XD col-lg-3 control-label">Email : </label>
                                     <div class="col-lg-9">
                                         <input type="email" style="border:1px solid #000000" class="is-Input-Text-Otro" name="user_email" id="user_email" required onblur="valida_user_email()" value="<?php echo($email); ?>">
                                         <div><span class="w3-tiny w3-text-red" id="user_email_res"></span></div>
@@ -136,7 +136,7 @@ and open the template in the editor.
                             <div class="w3-center container-fluid w3-white" style="border-radius: 15px;">
                                 <br><br>
                                 <div class="form-group">
-                                    <label for="user_id" class="labels col-lg-3">Contraseña nueva : </label>
+                                    <label for="user_id" class="is-Labels-Negro-XD col-lg-3">Contraseña nueva : </label>
                                     <div class="col-lg-8">
                                         <input type="password" style="border:1px solid #000000" class="is-Input-Text-Otro" name="user_password" id="user_passwordA" placeholder="Password" required onkeydown="valida_user_passA()" onblur="valida_user_passA()">
                                         <span class="w3-text-red w3-large">*</span>
@@ -146,7 +146,7 @@ and open the template in the editor.
                                 </div>
                                 <br><br><br>
                                 <div class="form-group">
-                                    <label for="user_id" class="labels col-lg-3">Repite La Nueva Contraseña : </label>
+                                    <label for="user_id" class="is-Labels-Negro-XD col-lg-3">Repite La Nueva Contraseña : </label>
                                     <div class="col-lg-8">
                                         <input type="password" style="border:1px solid #000000" class="is-Input-Text-Otro" name="user_passwordB" id="user_passwordB" placeholder="Password" required onblur="valida_user_passB()" onpaste="avoid_paste()">
                                         <span class="w3-text-red w3-large">*</span>

@@ -34,14 +34,14 @@ and open the template in the editor.
                     <br>
                     <div class="w3-btn-group w3-medium">
                         <button onclick="mostrarOcultarTab('buscar_Categoria')" class="w3-btn w3-ripple w3-round-large is-Button-EscojerProXD">Buscar por Categoria</button>
-                        <button onclick="mostrarOcultarTab('buscar_Nombre')" class="w3-btn w3-ripple w3-round-large is-Button-EscojerProXD">Buscar por Nombre</button>
+                        <button onclick="mostrarOcultarTab('buscar_Nombre') " class="w3-btn w3-ripple w3-round-large is-Button-EscojerProXD">Buscar por Nombre</button>
                     </div>
                     <br>
                     <div class="container-fluid tab w3-animate-top" id="buscar_Categoria">
-                        <div class="w3-container w3-light-grey col-md-13" style="border-radius: 15px;">
+                        <div class="w3-container w3-white col-md-13" style="border-radius: 15px;">
                             <br><br>
                             <div class="container is-Tamaño-ContainerXD">
-                                <label for="cuenta_tip_doc" class="labels">Categoría : </label>
+                                <label for="cuenta_tip_doc" class="is-Labels-Negro-XD" >Categoría : </label>
                                 <?php
                                 echo '<div class="w3-center">' . $proMQT->maquetaCategoriasForUser() . '</div>';
                                 ?>
@@ -51,12 +51,12 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="w3-row tab w3-hide w3-animate-top" id="buscar_Nombre">
-                        <div class="w3-container w3-light-grey col-md-13">
-                            <div class="container-fluid is-Tamaño-ContainerXD w3-light-grey">
+                        <div class="container-fluid w3-white col-md-13" style="border-radius: 20px;">
+                            <div class="container-fluid is-Tamaño-ContainerXD w3-white">
                                 <br><br>
-                                <label class="labels">Buscar por Nombre del producto</label>
+                                <label class="is-Labels-Negro-XD">Buscar por Nombre del producto</label>
                                 <div class="w3-padding-4">
-                                    <center><input type="text" style="border: 1px solid #000;" class="input_texto" name="producto_name" id="producto_name" placeholder="Nombre a buscar" onkeyup="mostrarProductosPorNombre();"></center>
+                                    <center><input type="text" style="border: 1px solid #000;" class="is-Input-Text-Otro" name="producto_name" id="producto_name" placeholder="Nombre a buscar" onkeyup="mostrarProductosPorNombre();"></center>
                                     <center><button class="is-Button-CarritoXD" onclick="mostrarProductosPorNombre();">Buscar</button>
                                         <button onclick="document.getElementById('modal_busqueda').style.display = 'block'" class="is-Button-BusquedaXD">Búsqueda Avanzada</button></center>
                                     <br><br>

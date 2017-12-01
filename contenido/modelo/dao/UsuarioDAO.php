@@ -98,6 +98,52 @@ final class UsuarioDAO implements DAOPaginable {
         }
         return $usuario;
     }
+    
+    public function findByRol(UsuarioDTO $user) {
+        $rol = $user->getRol();
+        $usuario = NULL;
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $stmt = $conexion->prepare(PreparedSQL::usuario_find_by_rol);
+            $stmt->bind_param("s", $rol);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            $resultado instanceof mysqli_result;
+            if ($resultado->num_rows != 0) {
+                $usuario = $this->resultToObject($resultado);
+            }
+            $resultado->close();
+            $stmt->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $usuario;
+    }
+    
+    public function findByState(UsuarioDTO $user) {
+        $estado = $user->getEstado();
+        $usuario = NULL;
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $stmt = $conexion->prepare(PreparedSQL::usuario_find_by_estado);
+            $stmt->bind_param("s", $estado);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            $resultado instanceof mysqli_result;
+            if ($resultado->num_rows != 0) {
+                $usuario = $this->resultToObject($resultado);
+            }
+            $resultado->close();
+            $stmt->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $usuario;
+    }
 
     public function findByEmail(UsuarioDTO $user) {
         $email = $user->getEmail();

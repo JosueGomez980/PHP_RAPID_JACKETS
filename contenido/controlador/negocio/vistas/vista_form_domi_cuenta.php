@@ -28,7 +28,7 @@ if (!is_null($domiDTO)) {
             <span class="is-Title01 w3-center">Cambia tu Domicilio</span>
         </div></center>
     <br>
-    <div class="w3-center container-fluid w3-white">
+    <div class="w3-center container-fluid w3-white" style="border-radius: 20px;">
         <br><br>
         <div class="container-fluid is-Tamaño-ContainerXD">
             <div class="form-group">
@@ -38,7 +38,7 @@ if (!is_null($domiDTO)) {
                     <span class="w3-text-red w3-large">*</span>
                 </div>
             </div>
-
+            <br><br>
             <div class="form-group">
                 <label class="labels col-lg-3 control-label">Telefono: </label>
                 <div class="col-lg-8">
@@ -46,7 +46,7 @@ if (!is_null($domiDTO)) {
                     <span class="w3-text-red w3-large">*</span>
                 </div>
             </div>
-
+            <br><br>
             <div class="form-group">
                 <label class="labels col-lg-3 control-label">Localidad: </label>
                 <div class="col-lg-8">
@@ -56,19 +56,27 @@ if (!is_null($domiDTO)) {
                     <span class="w3-text-red w3-large">*</span>
                 </div>
             </div>
-            
             <br><br>
-            <label style="color: #012641; -size: medium; font-weight: bolder; display: block;">Barrio: </label>
-            <input type="text" value="<?php echo($domiBarrio); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_barrio" id="domi_barrio" placeholder="Barrio" required onblur="valida_simple_input(this)">
-            <span class="w3-text-red w3-large">*</span>
+            <div class="form-group">
+                <label class="is-Labels-Negro-XD col-lg-3 control-label">Barrio: </label>
+                <div class="col-lg-8">
+                    <input type="text" value="<?php echo($domiBarrio); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_barrio" id="domi_barrio" placeholder="Barrio" required onblur="valida_simple_input(this)">
+                    <span class="w3-text-red w3-large">*</span>
+                </div>
+            </div>
             <br><br>
-            <label style="color: #012641; -size: medium; font-weight: bolder; display: block;">Correo Postal (Opcional) : </label>
-            <input type="text" value="<?php echo($domiCorrPostal); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_correo_postal" id="domi_correo_postal" placeholder="Correo Postal" required onblur="valida_simple_input(this)">
-            <br><br>
+            <div class="form-group">
+                <label class="is-Labels-Negro-XD col-lg-3 control-label">Correo Postal (Opcional) : </label>
+                <div class="col-lg-8">
+                    <input type="text" value="<?php echo($domiCorrPostal); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_correo_postal" id="domi_correo_postal" placeholder="Correo Postal" required onblur="valida_simple_input(this)">
+                </div>
+            </div>
+            <br><br><br>
             <input type="hidden" value="OK" name="envio">
             <button type="submit" class="w3-btn" style="background-color: #FFF; border: 1px solid #000; color: #000;padding: 10px 15px;border-radius: 8px;">Aplicar</button>
             <a href="configurar_cuenta.php"><button class="w3-btn"  type="button" style=" background-color: #FFF; border: 1px solid #000; color: #000;padding: 10px 15px;border-radius: 8px;">Cancelar</button></a>
         </div>
+        <br>
     </div>
 </form>
 
