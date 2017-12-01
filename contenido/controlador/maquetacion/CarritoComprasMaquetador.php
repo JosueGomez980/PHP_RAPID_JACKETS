@@ -136,51 +136,58 @@ class CarritoComprasMaquetador implements GenericMaquetador {
             echo ('</div');
         } else {
             $botones = TRUE;
-            echo('<div class = "w3-card-8 w3-responsive">
-        <div class = "w3-row w3-theme-d1">
-        <div class = "w3-container w3-threequarter">
-        <div class = "w3-center w3-padding-12 w3-large w3-text-orange">Esto es lo que deseas comprar</div>
-        </div>
-        <div class = "w3-container w3-quarter"><img src = "../media/img/carrito.png" style = "width: 30%; height: auto;"></div>
-        </div>
-        <table class = "w3-table-all w3-small">
-        <tr>
-        <th>PRODUCTO</th>
-        <th>PRECIO U.</th>
-        <th>CANTIDAD</th>
-        <th>TOTAL</th>
-        <th>VER PRODUCTO</th>
-        </tr>');
-            foreach ($items as $it) {
-                $it instanceof ItemCarritoDTO;
-                $pro = $it->getProducto();
-                $pro instanceof ProductoDTO;
-                $precioU = Validador::formatPesos($pro->getPrecio());
-                $idProducto = CriptManager::urlVarEncript($it->getProductoIdProducto());
-                $cantidad = $it->getCantidad();
-                $total = Validador::formatPesos($it->getCostoTotal());
-                $prodName = ($pro->getNombre());
+            echo('<div class = "w3-card-8">
+        <div class = "w3-row is-Color16">
+            <div class = "container-fluid" style="width: 70%;">
+                <br>
+                <div class="col-md-9">
+                    <span class= "w3-large is-LetraColor07">Esto es lo que deseas comprar</span>
+                </div>
+                <div class="col-md-3" style="padding-bottom: 2%;">
+                        <img src = "../media/img/boton-de-carrito-de-la-compra.png" style = "width: 30px; height: auto;">
+                    </div>
+                </div>
+                <br>
+            </div>
+            
+            <table class = "w3-table-all w3-small">
+                <tr>
+                    <th>PRODUCTO</th>
+                    <th>PRECIO U.</th>
+                    <th>CANTIDAD</th>
+                    <th>TOTAL</th>
+                    <th>VER PRODUCTO</th>
+                </tr>');
+                foreach ($items as $it) {
+                    $it instanceof ItemCarritoDTO;
+                    $pro = $it->getProducto();
+                    $pro instanceof ProductoDTO;
+                    $precioU = Validador::formatPesos($pro->getPrecio());
+                    $idProducto = CriptManager::urlVarEncript($it->getProductoIdProducto());
+                    $cantidad = $it->getCantidad();
+                    $total = Validador::formatPesos($it->getCostoTotal());
+                    $prodName = ($pro->getNombre());
 
-                echo('<tr>
-        <td>' . $prodName . '</td>
-        <td>' . $precioU . '</td>
-        <td>' . $cantidad . '</td>
-        <td>' . $total . '</td>
-        <td><a href = "producto_ficha_tecnica.php?producto_id=' . $idProducto . '"><button class = "m-boton-a w3-tiny">Ver Producto</button></a></td>
-        </tr>');
-            }
-            if ($botones) {
-                echo('<tr><td colspan = 5><span class = "w3-tiny"><b>SUBTOTAL</b> = ' . $subTotalCarrito . '</span><span class = "w3-tiny"><br><b>IMPUESTOS</b> = ' . $impuestosCarrito . '</span>
-        <br><span class = "w3-tiny"><b>TOTAL</b> = ' . $totalCarrito . '</span></td></tr>');
-            }
-        }
-        echo('</table>');
-        if ($botones) {
-            echo('<div class = "w3-center w3-padding-8">
-        <a href = "gestion_carrito.php"><button class = "w3-btn w3-yellow w3-round-large w3-hover-blue">Administrar Carrito</button></a>
-        <a href = "comprar_productos.php"><button class = "w3-btn w3-theme-d5 w3-round-large w3-hover-green">Realizar Compra</button></a>
-        </div>');
-        }
+           echo('<tr>
+                    <td>' . $prodName . '</td>
+                    <td>' . $precioU . '</td>
+                    <td>' . $cantidad . '</td>
+                    <td>' . $total . '</td>
+                    <td><a href = "producto_ficha_tecnica.php?producto_id=' . $idProducto . '"><button class = "is-Button-CarritoXD w3-tiny">Ver Producto</button></a></td>
+                </tr>');
+                    }
+                    if ($botones) {
+               echo('<tr><td colspan = 5><span class = "is-Tamaño-Letra04"><b>SUBTOTAL</b> : ' . $subTotalCarrito . '</span><span class = "is-Tamaño-Letra04"><br><b>IMPUESTOS</b> : ' . $impuestosCarrito . '</span>
+                     <br><span class = "is-Tamaño-Letra04"><b>TOTAL</b> : ' . $totalCarrito . '</span></td></tr>');
+                    }
+                }
+       echo('</table>');
+                if ($botones) {
+                    echo('<div class = "w3-center w3-padding-8">
+                            <a href = "gestion_carrito.php"><button class = "w3-btn is-Button-AdminCarr w3-round-large">Administrar Carrito</button></a>
+                            <a href = "comprar_productos.php"><button class = "w3-btn is-Button-CompraCarr w3-round-large">Realizar Compra</button></a>
+                         </div>');
+                }
         echo('</div>');
         $closeBtn = new CloseBtn();
         $closeBtn->setValor("Cerrar");

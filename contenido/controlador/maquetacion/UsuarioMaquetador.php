@@ -93,7 +93,7 @@ class UsuarioMaquetador implements GenericMaquetador {
         if (!$sesion->existe(Session::US_LOGED)) {
 
             echo '<br><br>
-                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD" style="border-radius: 20px;">
                     <br><br>
                     <div class="w3-center">
                         <span class="is-Tamaño-Letra09"> 
@@ -112,7 +112,7 @@ class UsuarioMaquetador implements GenericMaquetador {
         } else {
 
             echo '<br><br>
-                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD" style="border-radius: 20px;">
                     <br><br>
                     <div class="w3-center">
                         <span class="is-Tamaño-Letra09"> 

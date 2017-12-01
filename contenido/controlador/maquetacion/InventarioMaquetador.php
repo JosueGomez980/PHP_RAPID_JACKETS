@@ -165,7 +165,7 @@ class InventarioMaquetador implements GenericMaquetador {
                         Reporte solicitado por: ' . $nombreAdmin . ' (' . $idUser . ')
                      </p>     
                 </div>
-                <table class="is-Tabla-Heidy" style="border-radius: 15px;">
+                <table class="is-Tabla-Heidy" style="border-radius: 15px; width: 100%;">
                     <tr class="lol">
                         <th class="is-Tabla-Heidy-Tr"><center>ID PRODUCTO</center></th>
                         <th class="is-Tabla-Heidy-Tr"><center>NOMBRE</center></th>

@@ -63,7 +63,7 @@ and open the template in the editor.
                         <br><br>
                         <form method="POST" name="cambiar_informacion_personal" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
                             <center><div class="w3-tag w3-blue-gray w3-round" style="width: 60%;">
-                                    <span class="is-Title01 w3-center">Inicio de Sesión</span>
+                                    <span class="is-Title01 w3-center">Tu Información Personal</span>
                                 </div></center>
                             <br>
                             <div class="col-md-6 container-fluid w3-white" style="border-top-left-radius: 15px;">
@@ -185,7 +185,7 @@ and open the template in the editor.
                             ?>
                         </div>
                         <div class="w3-container w3-center">
-                            <button class=" w3-btn w3-round-large w3-white w3-hover-red w3-border w3-border-red" onclick="closeE('mod_ley_datos')">Aceptar</button>
+                            <button class="is-Button-DisableXD-Inverted" onclick="closeE('mod_ley_datos')">Aceptar</button>
                         </div>
                     </div>
                 </div>

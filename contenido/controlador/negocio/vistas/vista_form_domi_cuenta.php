@@ -68,13 +68,13 @@ if (!is_null($domiDTO)) {
             <div class="form-group">
                 <label class="is-Labels-Negro-XD col-lg-3 control-label">Correo Postal (Opcional) : </label>
                 <div class="col-lg-8">
-                    <input type="text" value="<?php echo($domiCorrPostal); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_correo_postal" id="domi_correo_postal" placeholder="Correo Postal" required onblur="valida_simple_input(this)">
+                    <input type="text" value="<?php echo($domiCorrPostal); ?>" style="border:1px solid #000000; width: 80%;padding: 10px 15px;border-radius: 8px;" name="domi_correo_postal" id="domi_correo_postal" placeholder="Correo Postal" onblur="valida_simple_input(this)">
                 </div>
             </div>
             <br><br><br>
             <input type="hidden" value="OK" name="envio">
-            <button type="submit" class="w3-btn" style="background-color: #FFF; border: 1px solid #000; color: #000;padding: 10px 15px;border-radius: 8px;">Aplicar</button>
-            <a href="configurar_cuenta.php"><button class="w3-btn"  type="button" style=" background-color: #FFF; border: 1px solid #000; color: #000;padding: 10px 15px;border-radius: 8px;">Cancelar</button></a>
+            <button type="submit" class="is-Button-CarritoXD">Aplicar</button>
+            <a href="configurar_cuenta.php"><button class="is-Button-CancelarXD"  type="button">Cancelar</button></a>
         </div>
         <br>
     </div>
