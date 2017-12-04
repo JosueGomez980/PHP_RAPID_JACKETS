@@ -97,9 +97,136 @@ class PedidoMaquetador implements GenericMaquetador {
     }
 
     // Para maqueta un pedido completo
-    public function maquetarFullInfoPedido(PedidoEntregaDTO $pedido, array $items){
-        
+    public function maquetarFullInfoPedido(PedidoEntregaDTO $pedido, array $items) {
+        $dater = new DateManager();
+        $proDAO = ProductoDAO::getInstancia();
+        $proDAO instanceof ProductoDAO;
+        $userDAO = UsuarioDAO::getInstancia();
+        $userDAO instanceof UsuarioDAO;
+        $cuetaDAO = CuentaDAO::getInstancia();
+        $cuetaDAO instanceof CuentaDAO;
+        $cuToFind = new CuentaDTO();
+        $cuToFind->setNumDocumento($pedido->getCuentaNumDocumento());
+        $cuToFind->setTipoDocumento($pedido->getCuentaTipoDocumento());
+        $cuentaDTO = $cuetaDAO->find($cuToFind);
+        $nombres = Validador::fixTexto($cuentaDTO->getPrimerNombre() . " " . $cuentaDTO->getSegundoNombre() . " " . $cuentaDTO->getPrimerApellido() . " " . $cuentaDTO->getSegundoApellido());
+        $fechaSoliciPedido = $dater->stringToDate($pedido->getFechaSolicitud());
+        $fechaToshow = $dater->dateSpa2($fechaSoliciPedido);
+        $tipoDocumento = $cuentaDTO->getTipoDocumento();
+        $numeroDoc = $cuentaDTO->getNumDocumento();
+        $telefono = $cuentaDTO->getTelefono();
+        $idFactura = $pedido->getFacturaIdFactura();
+
+        //--------------------------------------
+        $pedidoEstado = $pedido->getEstado();
+        //-------------------------------------
+        $domicilioJson = $pedido->getDomicilio();
+        //-------------------------------------
+        $direccionDomi = "SIN ASIGNAR";
+        $telefonoDomi = "SIN ASIGNAR";
+        $localidadDomi = "SIN ASIGNAR";
+        $barriDomi = "SIN ASIGNAR";
+        if ($domicilioJson != PedidoEntregaDAO::DOM_NOT && !is_null($domicilioJson)) {
+            $domicilioDTO = DomicilioCuentaDTO::stdClassToDTO(json_decode($domicilioJson));
+            $domicilioDTO instanceof DomicilioCuentaDTO;
+            $direccionDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getDireccion()));
+            $telefonoDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getTelefono()));
+            $localidadDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getLocalidad()));
+            $barriDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getBarrio()));
+        }
+        echo('        
+            <div class="w3-container">
+                    <div class="w3-row w3-white w3-padding-large">
+                        <div class="w3-half w3-container w3-responsive"> 
+                        <h3 class="w3-text-blue-gray">
+                            Información del Domicilio
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </button>
+                        </h3>
+                            <div class="w3-container">
+                                <ul class="w3-ul">
+                                    <li><span class="w3-large">Direccion Domicilio:</span> '.$direccionDomi.'</li> 
+                                    <li><span class="w3-large">Telefono Domicilio: </span> '.$telefonoDomi.'</li> 
+                                    <li><span class="w3-large">Localidad: </span> '.$localidadDomi.'</li> 
+                                    <li><span class="w3-large">Barrio: </span> '.$barriDomi.'</li> 
+                                    <li><span class="w3-large">Fecha de Solicitud del pedido:</span>  ' . $fechaToshow . ' </li> 
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w3-half w3-container">
+                            <h3 class="w3-text-blue">FACTURA ( ' . $idFactura . ' )</h3>
+
+                            <div class="w3-text-blue-gray w3-responsive">
+                                <ul class="w3-ul">
+                                    <li><span class="w3-large">Cliente: </span> ' . $nombres . '</li> 
+                                    <li><span class="w3-large">Documento: </span> (' . $tipoDocumento . ')  ' . $numeroDoc . '</li> 
+                                    <li><span class="w3-large">Telefono: </span> ' . $telefono . '</li> 
+                                    <li><span class="w3-large w3-text-amber">Estado: </span> <b>' . $pedidoEstado . '</b></li> 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-theme-l5">
+                        <div class="w3-padding-xlarge w3-responsive">
+                            <table class="w3-table-all w3-responsive w3-small">
+                                <tr class="w3-theme-d4 w3-hover-blue">
+                                    <th style="width: 10%">CANTIDAD</th>
+                                    <th style="width: 70%">DESCRIPCION</th>
+                                    <th style="width: 10%">COSTO UNITARIO</th>
+                                    <th style="width: 10%">TOTAL</th>
+                                </tr>
+        ');
+        foreach ($items as $itt) {
+            $itt instanceof ItemDTO;
+            $ItCant = $itt->getCantidad();
+            $ItUnit = Validador::formatPesos($itt->getCostoUnitario());
+            $itTotal = Validador::formatPesos($itt->getCostoTotal());
+            $proToFind = new ProductoDTO();
+            $proToFind->setIdProducto($itt->getProductoIdProducto());
+            $proFinded = $proDAO->find($proToFind);
+            $namePro = utf8_encode($proFinded->getNombre());
+            echo('
+                <tr>
+                    <td>' . $ItCant . '</td>
+                    <td>' . $namePro . '</td>
+                    <td>' . $ItUnit . '</td>
+                    <td>' . $itTotal . '</td>
+                </tr>
+            ');
+        }
+        $subtotalPedido = Validador::formatPesos($pedido->getSubtotal());
+        $impuestos = Validador::formatPesos($pedido->getImpuestos());
+        $totalPagar = Validador::formatPesos($pedido->getTotal());
+        echo('
+             </table></div></div>
+             <div class="w3-row w3-white w3-padding-large">
+                        <div class="w3-container w3-threequarter w3-responsive">
+                            <table class="w3-table-all">
+                                <tr>
+                                    <td class="w3-large">SUBTOTAL</td>
+                                    <td class="w3-text-black">' . $subtotalPedido . '</td>
+                                </tr>
+                                <tr>
+                                    <td class="w3-large">IMPUESTOS</td>
+                                    <td class="w3-text-black">' . $impuestos . '</td>
+                                </tr>
+                                <tr>
+                                    <td class="w3-large">TOTAL A PAGAR</td>
+                                    <td class="w3-text-black">' . $totalPagar . '</td>
+                                </tr>
+                                <tr>
+                                    <td class="w3-large">FORMA DE PAGO</td>
+                                    <td class="w3-text-black">CONTRAENTREGA</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="w3-container w3-quarter"></div>
+                    </div>
+            </div>
+        ');
     }
+
     public function maquetaObject(EntityDTO $entidad) {
         $entidad instanceof PedidoEntregaDTO;
         return null;

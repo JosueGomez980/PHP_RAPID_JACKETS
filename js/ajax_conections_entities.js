@@ -585,6 +585,7 @@ function buscarPedidosPorFechasAdmin() {
 function verPedidoFull(idFactura) {
     window.location = "ver_pedido.php?factura_id=" + idFactura;
 }
+
 //function verFullInfoPedidoAdmin(idFactura) {
 //    loadingGif("LOAD_GIF");
 //    var datos = {m: "ver_full_info_pedido_admin", factura_id: idFactura};

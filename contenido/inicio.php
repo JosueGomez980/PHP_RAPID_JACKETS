@@ -34,6 +34,7 @@ $userManager = new UsuarioController();
             </div>
         </section>
         <?php
+        echo(password_hash("A123456", PASSWORD_DEFAULT));
         $contenido->getFooter();
         ?>
     </body>

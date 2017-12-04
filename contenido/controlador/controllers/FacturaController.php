@@ -353,6 +353,13 @@ class FacturaController implements GenericController, Validable {
         $this->facturaMQT->maquetarFacturaTipoA($factura, $items);
     }
 
+    public function mostrarFacturaWebTipoB(PedidoEntregaDTO $pedido) {
+        $itemFind = new ItemDTO();
+        $itemFind->setFacturaIdFactura($pedido->getFacturaIdFactura());
+        $items = $this->itemDAO->findByFactura($itemFind);
+        $this->pedidoMQT->maquetarFullInfoPedido($pedido, $items);
+    }
+
     public function descontarProductos(array $items) { //Deben ser items de Carrito
         $ok = false;
         $proDAO = ProductoDAO::getInstancia();

@@ -154,6 +154,7 @@ final class PreparedSQL {
     const pedido_put_estado = "UPDATE PEDIDO_ENTREGA SET ESTADO = ? WHERE FACTURA_ID_FACTURA = ? ;";
     // --ADMIN
     const pedido_find = "SELECT * FROM PEDIDO_ENTREGA WHERE FACTURA_ID_FACTURA = ? AND CUENTA_TIPO_DOCUMENTO = ? AND CUENTA_NUM_DOCUMENTO = ? ;";
+    const pedido_find_by_factura = "SELECT * FROM PEDIDO_ENTREGA WHERE FACTURA_ID_FACTURA = ? ;";
     // --ADMIN
     const pedido_find_all = "SELECT * FROM PEDIDO_ENTREGA ;";
     const pedido_find_all_limit = "SELECT * FROM PEDIDO_ENTREGA LIMIT ? , ? ;";

@@ -84,7 +84,7 @@ CREATE TABLE RAPID_JACKETS.DOMICILIO_CUENTA (
   CUENTA_TIPO_DOCUMENTO VARCHAR(10) NOT NULL COMMENT '',
   CUENTA_NUM_DOCUMENTO VARCHAR(60) NOT NULL COMMENT '',
   DIRECCION TEXT NOT NULL COMMENT 'En este campo se el usuario ingresara la direccion a la cual sera llevado el domicilio.',
-  TELEFONO VARCHAR(250) NULL COMMENT 'En este campo el usuario ingresara el telefono de contacto de la recidencia a donde sera llevado el domicilio.',
+  TELEFONO VARCHAR(50) NULL COMMENT 'En este campo el usuario ingresara el telefono de contacto de la recidencia a donde sera llevado el domicilio.',
   BARRIO TEXT NULL COMMENT 'En este campo se ingresara el lugar o bario a donde se llevara el domicilio.',
   LOCALIDAD TEXT NULL COMMENT 'En este campo se ingresara la localidad a la cual pertenece el barrio a el cual se llevara el domicilio.',
   CORREO_POSTAL TEXT NULL COMMENT 'En este campo se ingresara un correo a el cual se enviara la confirmacion de su domicilio con su dia de entrega.',

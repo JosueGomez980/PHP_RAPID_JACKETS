@@ -43,7 +43,7 @@ $sesion instanceof SimpleSession;
                     <h4 class="w3-text-shadow-white">Búsqueda avanzada de pedidos</h4>
                 </div>
             </div>
-            <div class="w3-row w3-padding-xlarge" onclick="">
+            <div class="w3-row w3-padding-xlarge">
                 <div id="TABLA_CRUD_PEDIDOS" class="w3-responsive w3-border-black">
                     <?php
                         $pedidoManager->mostrarCrudPedidosPorFechaPredefinida("FD_A");

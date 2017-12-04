@@ -199,6 +199,28 @@ final class PedidoEntregaDAO implements DAOPaginable {
         return $pedidoFd;
     }
 
+    public function findByFactura(PedidoEntregaDTO $pedido) {
+        $pedidoFd = NULL;
+        $idFactura = $pedido->getFacturaIdFactura();
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $stmt = $conexion->prepare(PreparedSQL::pedido_find_by_factura);
+            $stmt->bind_param("s", $idFactura);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            if ($resultado->num_rows != 0) {
+                $pedidoFd = $this->resultToObject($resultado);
+            }
+            $resultado->close();
+            $stmt->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $pedidoFd;
+    }
+
     public function findAll() {
         $pedidos = NULL;
         try {
