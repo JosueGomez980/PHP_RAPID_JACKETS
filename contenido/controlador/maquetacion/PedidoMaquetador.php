@@ -50,6 +50,9 @@ class PedidoMaquetador implements GenericMaquetador {
             case PedidoEntregaDAO::$SOLICITADO:
                 $estadoS = '<td class="w3-text-blue-gray"><strong>Solicitado</strong></td>';
                 break;
+            case PedidoEntregaDAO::$SOLICITADO:
+                $estadoS = '<td class="w3-text-green"><strong>Aceptado por Admin</strong></td>';
+                break;
         }
         return $estadoS;
     }
@@ -116,6 +119,7 @@ class PedidoMaquetador implements GenericMaquetador {
         $numeroDoc = $cuentaDTO->getNumDocumento();
         $telefono = $cuentaDTO->getTelefono();
         $idFactura = $pedido->getFacturaIdFactura();
+        $idCripted = CriptManager::urlVarEncript($idFactura);
 
         //--------------------------------------
         $pedidoEstado = $pedido->getEstado();
@@ -134,7 +138,26 @@ class PedidoMaquetador implements GenericMaquetador {
             $localidadDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getLocalidad()));
             $barriDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getBarrio()));
         }
-        echo('        
+        echo('
+            <div class="w3-center w3-padding-large">
+                <div class="w3-container">
+                    <span class="w3-tag w3-large w3-theme-d3">Acciones rápidas</span>
+                </div><br>
+
+                <button class="btn btn-success" onclick="accionesRapidasPedidoAdmin(\''.$idCripted.'\', \'ACEPTAR\')">
+                    <span class="glyphicon glyphicon-ok"></span> Aceptar Pedido
+                </button>
+                <button class="btn btn-warning" onclick="accionesRapidasPedidoAdmin(\''.$idCripted.'\', \'CANCELAR\')">
+                    <span class="glyphicon glyphicon-remove"></span> Cancelar/Denegar Pedido
+                </button>
+                <form action="controlador/controllers/ControlVistas.php?m=eliminar_pedido_admin" method="POST" name="formDeletePedido">
+                    <input type="hidden" value="'.$idCripted.'" name="'.FacturaRequest::fac_id.'">
+                    <button class="btn btn-danger" type="submit" name="btnDeletePedido">
+                        <span class="glyphicon glyphicon-trash"></span> Eliminar Definitivo
+                    </button>
+                </form>
+            </div>
+              
             <div class="w3-container">
                     <div class="w3-row w3-white w3-padding-large">
                         <div class="w3-half w3-container w3-responsive"> 
@@ -150,7 +173,7 @@ class PedidoMaquetador implements GenericMaquetador {
                                     <li><span class="w3-large">Telefono Domicilio: </span> '.$telefonoDomi.'</li> 
                                     <li><span class="w3-large">Localidad: </span> '.$localidadDomi.'</li> 
                                     <li><span class="w3-large">Barrio: </span> '.$barriDomi.'</li> 
-                                    <li><span class="w3-large">Fecha de Solicitud del pedido:</span>  ' . $fechaToshow . ' </li> 
+                                    <li class="w3-theme-l3"><span class="w3-large">Fecha de Solicitud del pedido:</span>  ' . $fechaToshow . ' </li> 
                                 </ul>
                             </div>
                         </div>
@@ -162,7 +185,7 @@ class PedidoMaquetador implements GenericMaquetador {
                                     <li><span class="w3-large">Cliente: </span> ' . $nombres . '</li> 
                                     <li><span class="w3-large">Documento: </span> (' . $tipoDocumento . ')  ' . $numeroDoc . '</li> 
                                     <li><span class="w3-large">Telefono: </span> ' . $telefono . '</li> 
-                                    <li><span class="w3-large w3-text-amber">Estado: </span> <b>' . $pedidoEstado . '</b></li> 
+                                    <li class="w3-theme-l3"><span class="w3-large">Estado: </span> <b>' . $pedidoEstado . '</b></li> 
                                 </ul>
                             </div>
                         </div>

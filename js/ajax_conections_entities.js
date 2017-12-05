@@ -585,6 +585,20 @@ function buscarPedidosPorFechasAdmin() {
 function verPedidoFull(idFactura) {
     window.location = "ver_pedido.php?factura_id=" + idFactura;
 }
+function accionesRapidasPedidoAdmin(idFactura, action) {
+    alert(idFactura);
+    loadingGif("LOAD_GIF");
+    var datos = {m: "acciones_rapidas_pedido", factura_id: idFactura, operacion: action};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success: function (response) {
+            $("#RTA_NEGOCIO").html(response);
+        }
+    });
+    $("#LOAD_GIF").html("");
+}
 
 //function verFullInfoPedidoAdmin(idFactura) {
 //    loadingGif("LOAD_GIF");

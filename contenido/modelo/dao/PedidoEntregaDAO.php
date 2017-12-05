@@ -40,6 +40,7 @@ final class PedidoEntregaDAO implements DAOPaginable {
     public static $RETRASADO = "PEDIDO RETRASADO";
     public static $POR_LLEGAR = "PEDIDO ESTÁ POR LLEGAR";
     public static $ELIMINADO = "PEDIDO ELIMINADO";
+    public static $ACEPTADO = "PEDIDO ACEPTADO";
 
     const DOM_NOT = "DOMICILIO_SIN_ASIGNAR";
 

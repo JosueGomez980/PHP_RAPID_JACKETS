@@ -27,6 +27,7 @@ $sesion instanceof SimpleSession;
         ?>
         <section class="m-section">
             <div id="LOAD_GIF"></div>
+            <div id="RTA_NEGOCIO"></div>
             <div class="w3-row container-fluid w3-white w3-padding-large">
                 <div class="w3-half w3-container">
                     <h4 class="w3-text-blue-gray">Ver pedidos según fechas predefinidas</h4>

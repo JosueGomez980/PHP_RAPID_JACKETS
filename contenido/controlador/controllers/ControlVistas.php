@@ -301,6 +301,17 @@ class ControlVistas {
             echo($err->toString("No se recibió el parámetro necesario para ejecutar la acción"));
         }
     }
+    
+    public function acciones_rapidas_pedido(){
+        
+    }
+    public function eliminar_pedido_admin(){
+        $facturaManager = new FacturaController();
+        $this->controlAcceso->comprobarSesionAdmin(AccesoPagina::NEG_TO_INICIO);
+        $this->controlAcceso->validaEnviode(FacturaRequest::fac_id, AccesoPagina::NEG_PED_GES);
+        $this->controlAcceso->validaEnviode("operacion", AccesoPagina::NEG_PED_GES);
+        
+    }
 
 }
 

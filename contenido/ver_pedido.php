@@ -48,14 +48,7 @@ if (is_null($pedidoFinded)) {
                         <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
                     </button>
                 </div>
-                <div class="w3-center w3-padding-large">
-                    <div class="w3-container">
-                        <span class="w3-tag w3-large w3-theme-d3">Acciones rápidas</span>
-                    </div>
-                    <button class="btn btn-success">
-                        <span class="glyphicon glyphicon-ok"> Aceptar Pedido</span>
-                    </button>
-                </div>
+                
 
                 <?php
                 $facturaManager->mostrarFacturaWebTipoB($pedidoFinded);

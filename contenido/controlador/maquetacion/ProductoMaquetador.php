@@ -18,7 +18,7 @@ class ProductoMaquetador implements GenericMaquetador {
             $botonCarrito = "";
             $inputCarrito = "";
             $producto instanceof ProductoDTO;
-            $nombre = $producto->getNombre();
+            $nombre = utf8_encode($producto->getNombre());
             $precio = Validador::formatPesos($producto->getPrecio());
             $idProducto = base64_encode($producto->getIdProducto());
             $idProductoUrl = CriptManager::urlVarEncript($producto->getIdProducto());
@@ -97,7 +97,7 @@ class ProductoMaquetador implements GenericMaquetador {
 
         $idProducto = base64_encode($entidad->getIdProducto());
         $categoriaNombre = $cateDTO->getNombre();
-        $nombre = ($entidad->getNombre());
+        $nombre = utf8_encode($entidad->getNombre());
         $precio = Validador::formatPesos($entidad->getPrecio());
         $descripcion = $entidad->getDescripcion();
         $cantidadDisponible = $entidad->getCantidad();

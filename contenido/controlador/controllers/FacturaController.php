@@ -219,7 +219,7 @@ class FacturaController implements GenericController, Validable {
             $faturaInsert->setCuentaTipoDocumento($cuentaUser->getTipoDocumento());
             $faturaInsert->setEstado(FacturaDAO::EST_SIN_PAGAR);
             $faturaInsert->setFecha($dater->getSQLDateTime());
-            $faturaInsert->setIdFactura($this->facturaDAO->generateIdInDB());
+            $faturaInsert->setIdFactura($this->facturaDAO->generateIdInCoreA());
             $faturaInsert->setImpuestos($carritoDTO->getImpuestos());
             $faturaInsert->setSubtotal($carritoDTO->getSubtotal());
             $faturaInsert->setTotal($carritoDTO->getTotal());
@@ -385,6 +385,10 @@ class FacturaController implements GenericController, Validable {
     }
 
     public function consolidarFactura(FacturaDTO $factura) {
+        
+    }
+    
+    public function cancelarPedido(PedidoEntregaDTO $pedido){
         
     }
 
