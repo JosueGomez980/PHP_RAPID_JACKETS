@@ -33,7 +33,7 @@ final class InventarioDAO implements DAOPaginable {
         while ($fila = $resultado->fetch_array()) {
             $inv = new InventarioDTO();
             $inv->setIdInventario($fila["ID_INVENTARIO"]);
-            $inv->setProductoIdProducto("PRODUCTO_ID_PRODUCTO");
+            $inv->setProductoIdProducto($fila["PRODUCTO_ID_PRODUCTO"]);
             $inv->setFecha($fila["FECHA"]);
             $inv->setCantidad($fila["CANTIDAD"]);
             $inv->setPrecioMayor($fila["PRECIO_MAYOR"]);
@@ -47,7 +47,7 @@ final class InventarioDAO implements DAOPaginable {
         $fila = $resultado->fetch_array();
         $inv = new InventarioDTO();
         $inv->setIdInventario($fila["ID_INVENTARIO"]);
-        $inv->setProductoIdProducto("PRODUCTO_ID_PRODUCTO");
+        $inv->setProductoIdProducto($fila["PRODUCTO_ID_PRODUCTO"]);
         $inv->setFecha($fila["FECHA"]);
         $inv->setCantidad($fila["CANTIDAD"]);
         $inv->setPrecioMayor($fila["PRECIO_MAYOR"]);

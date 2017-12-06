@@ -73,13 +73,20 @@ class FacturaMaquetador implements GenericMaquetador {
         $direccion = $cuentaDTO->getTelefono();
         //-------------------------------------
         echo('        
-            <div class="w3-container">
-                    <h3>Hola id '.$iUser.' Aquí está tu factura</h3>
-                    <div class="w3-row w3-white w3-padding-large">
-                        <div class="w3-half w3-container">
-                            <div class="w3-container">
-                                <img src="../media/img/logo.png" class="w3-card-4 m-img-logo-2">
-                                <div class="w3-container"><span class="w3-tiny w3-tag w3-light-gray w3-i">"Uniformesb Escolares Diario y Deportivo Dotaciones, Programación Bordados Screen </span></div>
+                <div class="container-fluid is-Tamaño-ContainerXD">
+                    <br>
+                    <center><div class="w3-tag w3-round w3-text-white w3-hover-black" style="width: 60%; background-color:#244063;">
+                        <span class="is-Title01 w3-center">Hola '.$iUser.' Aquí está tu factura</span>
+                    </div></center>
+                    <br>
+                    <div class="container-fluid w3-white" style="width: 80%; border-top-right-radius:20px; border-top-left-radius:20px;">
+                    <center><div class="container-fluid is-Tamaño-ContainerXD">
+                        <div class="col-md-6">
+                        <br><br>
+                            <div class="container-fluid w3-center">
+                                <img src="../media/img/LogoCreaciones.png" class="w3-card-4 m-img-logo-2"><br><br>
+                                <div class="container-fluid w3-center"><div class="container-fluid w3-tiny w3-blue-gray w3-text-white w3-i" style="border-radius:10px; width: 70%;">"Uniformes Escolares Diario y Deportivo Dotaciones, <br>Programación Bordados Screen </div></div>
+                                <br>
                                 <ul class="w3-ul">
                                     <li><span class="w3-large">Direccion:</span> Calle 38C Sur No. 79A-05 Kennedy Bogotá DC</li> 
                                     <li><span class="w3-large">Telefono: </span> 571 0604</li> 
@@ -87,8 +94,9 @@ class FacturaMaquetador implements GenericMaquetador {
                                 </ul>
                             </div>
                         </div>
-                        <div class="w3-half w3-container">
-                            <h3 class="w3-text-blue">FACTURA ( ' . $idFactura . ' )</h3>
+                        <div class="col-md-6" style="padding-right:4%;">
+                        <br><br><br>
+                            <h3 style="color: #244063;"><b>FACTURA - ' . $idFactura . '</b></h3>
 
                             <div class="w3-text-blue-gray w3-responsive">
                                 <ul class="w3-ul">
@@ -100,15 +108,17 @@ class FacturaMaquetador implements GenericMaquetador {
                                 </ul>
                             </div>
                         </div>
+                    </div></center>
                     </div>
-                    <div class="w3-row w3-theme-l5">
+                    <div class="container-fluid w3-white" style="width: 80%; border-bottom-right-radius:20px; border-bottom-left-radius:20px;">
                         <div class="w3-padding-xlarge w3-responsive">
-                            <table class="w3-table-all w3-responsive w3-small">
-                                <tr class="w3-theme-d4 w3-hover-blue">
+                        <br>
+                            <center><table class="w3-table-all w3-responsive w3-small" style="width: 90%">
+                                <tr class="w3-theme-d4 w3-hover-black">
                                     <th style="width: 10%">CANTIDAD</th>
                                     <th style="width: 70%">DESCRIPCION</th>
-                                    <th style="width: 10%">COSTO UNITARIO</th>
-                                    <th style="width: 10%">TOTAL</th>
+                                    <th style="width: 10%"><center>COSTO UNITARIO</center></th>
+                                    <th style="width: 10%"><center>TOTAL</center></th>
                                 </tr>
         ');
         foreach ($items as $itt) {
@@ -122,7 +132,7 @@ class FacturaMaquetador implements GenericMaquetador {
             $namePro = Validador::fixTexto($proFinded->getNombre());
             echo('
                 <tr>
-                    <td>' . $ItCant . '</td>
+                    <td><center>' . $ItCant . '</center></td>
                     <td>' . $namePro . '</td>
                     <td>' . $ItUnit . '</td>
                     <td>' . $itTotal . '</td>
@@ -134,32 +144,35 @@ class FacturaMaquetador implements GenericMaquetador {
         $totalPagar = Validador::formatPesos($factura->getTotal());
         echo('
             
-            </tr></table></div></div>
-             <div class="w3-row w3-white w3-padding-jumbo">
-                        <div class="w3-container w3-quarter"></div>
-                        <div class="w3-container w3-half w3-center">
+            </tr></table></center></div>
+            <div class="w3-center">
+            <div class="container-fluid w3-white">
+                        <br>
+                        <div class="container-fluid w3-center w3-small" style="width: 40%">
                             <table class="w3-table-all w3-responsive">
                                 <tr>
-                                    <td class="w3-large">SUBTOTAL</td>
-                                    <td class="w3-text-blue-grey">' . $subtotalFactura . '</td>
+                                    <td style="font-weight: bold;">SUBTOTAL</td>
+                                    <td class="w3-text-blue-grey w3-center">' . $subtotalFactura . '</td>
                                 </tr>
                                 <tr>
-                                    <td class="w3-large">IMPUESTOS</td>
-                                    <td class="w3-text-blue-grey">' . $impuestos . '</td>
+                                    <td style="font-weight: bold;">IMPUESTOS</td>
+                                    <td class="w3-text-blue-grey w3-center">' . $impuestos . '</td>
                                 </tr>
                                 <tr>
-                                    <td class="w3-large">TOTAL A PAGAR</td>
-                                    <td class="w3-text-blue-grey">' . $totalPagar . '</td>
+                                    <td style="font-weight: bold;">TOTAL A PAGAR</td>
+                                    <td class="w3-text-blue-grey w3-center">' . $totalPagar . '</td>
                                 </tr>
                                 <tr>
-                                    <td class="w3-large">FORMA DE PAGO</td>
-                                    <td class="w3-text-blue-grey">CONTRAENTREGA</td>
+                                    <td style="font-weight: bold;">FORMA DE PAGO</td>
+                                    <td class="w3-text-blue-grey w3-center">CONTRAENTREGA</td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="w3-container w3-quarter"></div>
+                        <br><br>
                     </div>
             </div>
+            
+        </div>
         ');
     }
 

@@ -23,6 +23,7 @@ and open the template in the editor.
         ?>
         <section class="m-section">
             <?php
+            $userManager->mostrarManagerLink();
             $userManager->mostrarNavbarUsuario();
             $userMQT->maquetarNothingXD();
             ?>

@@ -55,8 +55,9 @@ class CategoriaController implements Validable, GenericController {
         $rta = $this->categoriaDAO->disable_enable($categoria);
         switch ($rta) {
             case 1:
-                $this->contentMGR->setFormato(new Exito());
-                $this->contentMGR->setContenido("La categoria " . Validador::fixTexto($categoria->getNombre()) . " fue " . $accion);
+                $exito = new Exito();
+                $exito->setValor("La categoria " . Validador::fixTexto($categoria->getNombre()) . " fue " . $accion);
+                echo($exito->toString($exito->getValor()));
                 $ok = TRUE;
                 break;
             case 0:

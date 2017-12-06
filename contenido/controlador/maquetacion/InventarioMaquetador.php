@@ -175,12 +175,12 @@ class InventarioMaquetador implements GenericMaquetador {
                         <th class="is-Tabla-Heidy-Tr"><center>FOTO</center></th>
                     </tr>
                     <tr class="lol">
-                        <th class="is-Tabla-Heidy-Th"><center>'.$ProId.'</center></th>
-                        <th class="is-Tabla-Heidy-Th">'.$ProNom.'</center></th>
-                        <th class="is-Tabla-Heidy-Th"><center>'.$ProCant.'</center></th>
-                        <th class="is-Tabla-Heidy-Th"><center>'.$ProPreUni.'</center></th>
-                        <th class="is-Tabla-Heidy-Th"><center>'.$ProTot.'</center></th>
-                        <th class="is-Tabla-Heidy-Th"><center><img style="width: 70px; height: 70px;" src="' .$ProImg. '"></center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProId . '</center></th>
+                        <th class="is-Tabla-Heidy-Th">' . $ProNom . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProCant . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProPreUni . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProTot . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center><img style="width: 70px; height: 70px;" src="' . $ProImg . '"></center></th>
                     </tr>
                 </table>
                 <br>
@@ -216,6 +216,103 @@ class InventarioMaquetador implements GenericMaquetador {
             $salida .= '</tr>';
         }
         $salida .= '</table>';
+        return $salida;
+    }
+
+    public function generarStringReporteB(array $inventario, $hojaCss) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $cuentaAdmin = $sesion->getEntidad(Session::CU_ADMIN_LOGED);
+        $cuentaAdmin instanceof CuentaDTO;
+        $userAdmin = $sesion->getEntidad(Session::US_ADMIN_LOGED);
+        $userAdmin instanceof UsuarioDTO;
+        $idUser = utf8_decode($userAdmin->getIdUsuario());
+        $nombreAdmin = utf8_decode($cuentaAdmin->getPrimerNombre() . " " . $cuentaAdmin->getPrimerApellido());
+        $dater = new DateManager();
+        $fecha = $dater->dateSpa1();
+        $salida = null;
+        $salida = '<style>' . $hojaCss . '</style>';
+        $cantidad = count($inventario);
+        $salida .= ('  
+                <div class="is-Head-XD" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                    <p class="is-PXD" style="text-align: right;">
+                    ' . $fecha . '
+                    <p class="is-PXD">
+                     <center><div class="is-Imgen-Logo-Report"><img src="../media/img/LogoCreaciones.png"></div></center> 
+                     <p class="is-PXD">
+                        Obtenidos ' . $cantidad . ' Registros de Inventario<br>
+                        Reporte solicitado por: ' . $nombreAdmin . ' (' . $idUser . ')
+                     </p>     
+                </div>
+                ');
+        $proDAO = ProductoDAO::getInstancia();
+        $proDAO instanceof ProductoDAO;
+        foreach ($inventario as $inv) {
+            $proSearch = new ProductoDTO();
+            $proSearch->setIdProducto($inv->getProductoIdProducto());
+            $proFinded = $proDAO->find($proSearch);
+            $inv instanceof InventarioDTO;
+            $proMQT = new ProductoMaquetador();
+            $ProId = $proFinded->getIdProducto();
+            $ProNom = $proFinded->getNombre();
+            $ProCant = $proFinded->getCantidad();
+            $ProUni = $proFinded->getPrecio();
+            $ProPreUni = Validador::formatPesos($ProUni);
+            $ProTot = Validador::formatPesos(($ProUni * $ProCant));
+            $ProImg = $proMQT->urlFoto($proFinded->getFoto());
+
+            $salida .= ('<table class="is-Tabla-Heidy" style="border-radius: 15px; width: 100%;">
+                    <tr class="lol">
+                        <th class="is-Tabla-Heidy-Tr"><center>ID PRODUCTO</center></th>
+                        <th class="is-Tabla-Heidy-Tr"><center>NOMBRE</center></th>
+                        <th class="is-Tabla-Heidy-Tr"><center>EXISTENCIAS</center></th>
+                        <th class="is-Tabla-Heidy-Tr"><center>VALOR UNIDAD</center></th>
+                        <th class="is-Tabla-Heidy-Tr"><center>VALOR TOTAL</center></th>
+                        <th class="is-Tabla-Heidy-Tr"><center>FOTO</center></th>
+                    </tr>
+                    <tr class="lol">
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProId . '</center></th>
+                        <th class="is-Tabla-Heidy-Th">' . $ProNom . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProCant . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProPreUni . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center>' . $ProTot . '</center></th>
+                        <th class="is-Tabla-Heidy-Th"><center><img style="width: 70px; height: 70px;" src="' . $ProImg . '"></center></th>
+                    </tr>
+                </table>
+                <br>
+                <table class="is-Tabla-Heidy">
+                    <tr class="lol">
+                        <th class="is-Tabla-Heidy-Tr">ID INVENTARIO</th>
+                        <th class="is-Tabla-Heidy-Tr">FECHA</th>
+                        <th class="is-Tabla-Heidy-Tr">MODO</th>
+                        <th class="is-Tabla-Heidy-Tr">CANTIDAD</th>
+                        <th class="is-Tabla-Heidy-Tr">OBSERVACIONES</th>
+                    </tr>');
+            foreach ($inventario as $invXD) {
+                $invXD instanceof InventarioDTO;
+                $IdInv = $invXD->getIdInventario();
+                $modo = "";
+                $date = $dater->stringToDate($invXD->getFecha());
+                $fecha = $dater->dateSpa2($date) . " - " . $dater->formatDate($date, DateManager::HORA_AM_PM);
+                if ($invXD->getPrecioMayor() == 0) {
+                    $modo = '<span style="color:#a93226;"><center>Descuento</center></span>';
+                } else {
+                    $modo = '<span style="color:#28b463;"><center>Aumento</center></span>';
+                }
+                $cantidad = $invXD->getCantidad();
+                $observaciones = Validador::fixTexto($invXD->getObservaciones());
+
+
+                $salida .= '<tr class="lol">
+                        <td class="is-Tabla-Heidy-Th"><center>' . $IdInv . '</center></td>
+                        <td class="is-Tabla-Heidy-Th">' . $fecha . '</td>
+                        <td class="is-Tabla-Heidy-Th">' . $modo . '</td>';
+                $salida .= '<td class="is-Tabla-Heidy-Th"><center>' . $cantidad . '</center></td>';
+                $salida .= '<td class="is-Tabla-Heidy-Th">' . $observaciones . '</td>';
+                $salida .= '</tr>';
+            }
+            $salida .= '</table><br><br>';
+        }
         return $salida;
     }
 

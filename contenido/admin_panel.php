@@ -35,7 +35,7 @@ and open the template in the editor.
             $cuentaSession instanceof CuentaDTO;
             if ($sesion->existe(Session::US_ADMIN_LOGED)) {
                 echo '<br><br>
-                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD" style="border-radius:20px;">
                     <br><br>
                     <div class="w3-center">
                         <span class="is-Tamaño-Letra09"> 
@@ -51,7 +51,7 @@ and open the template in the editor.
                 </div>';
             }else if($sesion->existe(Session::US_SUB_ADMIN_LOGED)) {
                 echo '<br><br>
-                <div class="container-fluid w3-white is-Tamaño-ContainerXD">
+                <div class="container-fluid w3-white is-Tamaño-ContainerXD" style="border-radius:20px;>
                     <br><br>
                     <div class="w3-center">
                         <span class="is-Tamaño-Letra09"> 

@@ -102,7 +102,7 @@ class UsuarioMaquetador implements GenericMaquetador {
                             <span class="glyphicon glyphicon-ice-lolly-tasted"></span>
                         </span>
                         <br>
-                        <img class="m-login-logo w3-animate-zoom" src="../media/img/NothingXD.png">
+                        <img class="m-login-logo w3-animate-zoom" src="../media/img/NothingNoSessionXD.png">
                         <br>
                         <br><a href="inicio.php"><button class="is-Button-Nothing">Inicio</button></a>
                     </div>
@@ -167,7 +167,7 @@ class UsuarioMaquetador implements GenericMaquetador {
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_reportes.php" style="color: #000;">Gestión de Reportes</a></li>
-                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Facturas</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Pedidos</a></li>
                             </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>
@@ -190,7 +190,7 @@ class UsuarioMaquetador implements GenericMaquetador {
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gestión de Categorías</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gestión de Inventarios</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_reportes.php" style="color: #000;">Gestión de Reportes</a></li>
-                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Facturas</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gestión de Pedidos</a></li>
                             </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> ' . $nombreCompleto . '</a></li>

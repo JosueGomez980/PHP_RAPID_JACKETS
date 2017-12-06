@@ -2,6 +2,26 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/gestion_productos.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/negocio/login.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/negocio/categoria_enable_disable.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/controllers/ControlVistas.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/contacto.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/controllers/CriptManager.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/recuperar_contrasena.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/gestion_categorias.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/registro_usuarios.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/maquetacion/InventarioMaquetador.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/inicio.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/controllers/UsuarioController.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/maquetacion/CategoriaMaquetador.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/maquetacion/UsuarioMaquetador.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/iniciar_sesion.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/gestion_reportes.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/js/ajax_conections_entities.js</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/controllers/CategoriaController.php</file>
+            <file>file:/C:/xampp/htdocs/PHP_RAPID_JACKETS_ActualXDXD/contenido/controlador/controllers/ProductoController.php</file>
+        </group>
     </open-files>
 </project-private>

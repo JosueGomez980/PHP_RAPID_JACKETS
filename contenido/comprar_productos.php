@@ -35,7 +35,7 @@ $modal = $facturaControl->insertarFacturaDefault();
         <?php
         $contenido->getHeader();
         ?>
-        <section class="m-section">
+        <section class="is-Fondo-02">
             <?php
             $userControl->mostrarNavbarUsuario();
             ?>
@@ -48,9 +48,11 @@ $modal = $facturaControl->insertarFacturaDefault();
             $modal->close();
             ?>
             <div id="FACTURA_USUARIO_VISTA_1">
+                <br>
                 <?php
                 $facturaControl->mostrarFacturaWebTipoA();
                 ?>
+                <br><br>
             </div>
         </section>
         <?php

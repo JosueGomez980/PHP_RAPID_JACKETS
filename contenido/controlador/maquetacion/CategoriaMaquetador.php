@@ -197,16 +197,16 @@ class CategoriaMaquetador implements GenericMaquetador {
         $salida = null;
         $salida = '<style>' . $hojaCss . '</style>';
         $cantidad = count($categorias);
-        $salida .= ('  
+        $salida .= ('
                 <div class="is-Head-XD" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
                     <p class="is-PXD" style="text-align: right;">
                     ' . $fecha . '
                     <p class="is-PXD">
-                     <center><div class="is-Imgen-Logo-Report"><img src="../media/img/LogoCreaciones.png"></div></center> 
-                     <p class="is-PXD">
-                        Obtenidas ' . $cantidad . ' Categorias<br><br>
+                        <center><div class="is-Imgen-Logo-Report"><img src="../media/img/LogoCreaciones.png"></div></center> 
+                    <p class="is-PXD">
+                        Obtenidas ' . $cantidad . ' Categorias<br>
                         Reporte solicitado por: ' . $nombreAdmin . ' (' . $idUser . ')
-                     </p>     
+                    </p>     
                 </div>
                <table class="is-Tabla-Heidy" style="width: 100%;">
                     <tr class="lol">

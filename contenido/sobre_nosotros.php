@@ -24,6 +24,7 @@ AutoCarga::init();
         ?>
         <section class="is-Fondo-02">
             <?php
+            $userManager->mostrarManagerLink();
             $userManager->mostrarNavbarUsuario();
             $userMQT->maquetarNothingXD();
             ?>

@@ -1,4 +1,4 @@
-<span style='color: #000'>126 frames</span>	<span style='color: #900'>8,192 KB</span>	<span style='color: #090'>294.43 ms</span>	<span style='color: #009' title='Quirksmode'><span style='color: #c00'>ON</span></span><br />
+<span style='color: #000'>853 frames</span>	<span style='color: #900'>18,432 KB</span>	<span style='color: #090'>1,573.36 ms</span>	<span style='color: #009' title='Quirksmode'><span style='color: #c00'>ON</span></span><br />
 <!DOCTYPE html>
 
 <html>
@@ -89,7 +89,7 @@
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_categorias.php" style="color: #000;">Gesti贸n de Categor铆as</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_inventarios.php" style="color: #000;">Gesti贸n de Inventarios</a></li>
                                 <li><a class="is-hover-Letra02 text-center" href="gestion_reportes.php" style="color: #000;">Gesti贸n de Reportes</a></li>
-                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gesti贸n de Facturas</a></li>
+                                <li><a class="is-hover-Letra02 text-center" href="gestion_pedidos_facturas.php" style="color: #000;">Gesti贸n de Pedidos</a></li>
                             </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li><a class="is-hover-ColorAdmin text-center" style="color: #000;"><span class="glyphicon glyphicon-user"></span> Issei Hyoudou</a></li>
@@ -129,7 +129,7 @@
                                     <br>
                                     <form method="GET" name="pdf" action="gestion_reportes.php">
                                         <input type="hidden" value="B" name="report">
-                                        <select name="idCat" id="idCat" class="m-selects">\n\t<option value="NDh8" selected>Seleccionar</option>\n\t<option value="NTB8">UNIFORMES PARA APRENDICES SENA</option>\n\t<option value="NTF8">UNIFORMES PARA INSTRUCTORES SENA</option>\n\t<option value="NTJ8">UNIFORMES PARA ESTUDIANTES DE COLEGIO</option>\n\t<option value="NTN8">CHAQUETAS</option>\n\t<option value="NTR8">OVEROLES DE TODOS MATERIALES</option>\n\t<option value="NTV8">UNIFORMES FORMALES</option>\n\t<option value="NTZ8">SUDADERAS PARA DEPPORTES SENA</option>\n\t<option value="NTd8">BATAS DE EDUCACION</option>\n\t<option value="NDl8NDh8">ELEMENTOS DE PROTECCION</option>\n\t<option value="NDl8NDl8">SUDADERAS DAMA Y CABALLERO</option>\n\t<option value="NDl8NTB8">UNIFORMES DE DIARIO</option>\n</select>                                        <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por categoria">
+                                        <select name="idCat" id="idCat" class="m-selects">\n\t<option value="NDh8" selected>Seleccionar</option>\n\t<option value="NTB8">UNIFORMES PARA APRENDICES SENA</option>\n\t<option value="NTF8">UNIFORMES PARA INSTRUCTORES SENA</option>\n\t<option value="NTJ8">UNIFORMES PARA ESTUDIANTES DE COLEGIO</option>\n\t<option value="NTN8">CHAQUETAS</option>\n\t<option value="NTR8">OVEROLES DE TODOS MATERIALES</option>\n\t<option value="NTV8">UNIFORMES FORMALES</option>\n\t<option value="NTZ8">SUDADERAS PARA DEPPORTES SENA</option>\n\t<option value="NTd8">BATAS DE EDUCACION</option>\n\t<option value="NDl8NDh8">ELEMENTOS DE PROTECCION</option>\n\t<option value="NDl8NDl8">SUDADERAS DAMA Y CABALLERO</option>\n\t<option value="NDl8NTB8">UNIFORMES DE DIARIO</option>\n\t<option value="NDl8NTF8">High School DxD</option>\n\t<option value="NDl8NTJ8">uNIFORMES PARA APRENDICES SENA</option>\n</select>                                        <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por categoria">
                                     </form>
                                     <br>
                                 </div>
@@ -180,16 +180,35 @@
                     <label for="FierroteXDXD1">Reportes de Inventario</label>
 
                     <div class="FierroteXDXD">
-                        <br>
-                        <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                        <!--<br>
+                        <div class="w3-btn-group w3-medium">
                             <br>
-                            <form method="GET" name="pdf" action="gestion_reportes.php">
-                                <input type="hidden" value="E" name="report">
-                                <select name="idPro" id="idPro" class="m-selects">\n\t<option value="0" selected>Seleccionar</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NDl8">CHAQUETA PARA APRENDICES ADSI</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTB8">OVEROL DE MECIDYCE</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTF8">OVEROL DE METALMECANICA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTJ8">OVEROL DE ELECTRICIDAD</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTN8">OVEROL DE MANTENIEMIENTO DE COMPUTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTR8">BOTAS DIELECTRICAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTV8">CASCO DE SEGURIDAD PL罶TICO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTZ8">GAFAS DE SEGURIDAD PL罶TICAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTd8">GUANTES AISLANTES</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NDh8">MASCARA DE GAS ANTIRADIACION</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NDl8">CAMISA LARGA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTB8">CAMISAS PUNTO BLANCO </option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTF8">TENNIS ADIDAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTJ8">CHAQUETA NIKE</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTN8">LEGIS AZUQUITAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTR8">BRASIERES LEONISA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTV8">VESTIDO MUERTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTZ8">ZANDALIAS AZALEIYA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTd8">CARTERAS FEAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NDh8">BILLETERAS CANONO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NDl8">MEDIAS VELADAS SEDA FRIA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTB8">MEDIAS VELADAS RICHI</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTF8">MEDIAS CON PECUECA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTJ8">BILLETERAS TOTTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTN8">CHALECO ANTIBALAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTR8">CHALECO CON MANGAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTV8">CAMISETA SIN MANGAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTZ8">PANTALON AJUSTADO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTd8">CHAQUETA CHALECO PARA TPS SENA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NDh8">CHAQUETA CHALECO PARA TPS SENA adictos al crack</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NDl8">Holiwi</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTB8">High School DxD Hero</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTF8">Producto Prueba XD</option>\n</select>                                <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por Registro de Inventario">
-                            </form>
+                            <button onclick="mostrarOcultarTab('reportes_Todo_Inv')" class="is-Button-SelectXD">Reporte de Todo</button>
+                            <button onclick="mostrarOcultarTab('reportes_Inv')" class="is-Button-SelectXD">Reporte por Categorias</button>
+                        </div>
+                        <div id="reportes_Todo_Inv" class="w3-row tab w3-animate-top w3-center">
+                            <br>
+                            <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                                <br>
+                                <form method="GET" name="pdf" action="gestion_reportes.php">
+                                    <input type="hidden" value="F" name="report">
+                                    <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir Todo">
+                                </form>
+                                <br>
+                            </div>
                             <br>
                         </div>
-                        <br>
+                        <div id="reportes_Inv" class="w3-row tab w3-animate-top w3-center w3-hide">-->
+                            <br>
+                            <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                                <br>
+                                <form method="GET" name="pdf" action="gestion_reportes.php">
+                                    <input type="hidden" value="E" name="report">
+                                    <select name="idPro" id="idPro" class="m-selects">\n\t<option value="0" selected>Seleccionar</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTB8">OVEROL DE MECIDYCE</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTF8">OVEROL DE METALMECANICA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTJ8">OVEROL DE ELECTRICIDAD</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTN8">OVEROL DE MANTENIEMIENTO DE COMPUTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTR8">BOTAS DIELECTRICAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTV8">CASCO DE SEGURIDAD PL罶TICO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTZ8">GAFAS DE SEGURIDAD PL罶TICAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDh8NTd8">GUANTES AISLANTES</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NDh8">MASCARA DE GAS ANTIRADIACION</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NDl8">CAMISA LARGA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTB8">CAMISAS PUNTO BLANCO </option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTF8">TENNIS ADIDAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTJ8">CHAQUETA NIKE</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTN8">LEGIS AZUQUITAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTR8">BRASIERES LEONISA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTV8">VESTIDO MUERTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTZ8">ZANDALIAS AZALEIYA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NDl8NTd8">CARTERAS FEAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NDh8">BILLETERAS CANONO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NDl8">MEDIAS VELADAS SEDA FRIA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTB8">MEDIAS VELADAS RICHI</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTF8">MEDIAS CON PECUECA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTJ8">BILLETERAS TOTTO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTN8">CHALECO ANTIBALAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTR8">CHALECO CON MANGAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTV8">CAMISETA SIN MANGAS</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTZ8">PANTALON AJUSTADO</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTB8NTd8">CHAQUETA CHALECO PARA TPS SENA</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NDh8">CHAQUETA CHALECO PARA TPS SENA adictos al crack</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NDl8">Holiwi</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTB8">High School DxD Hero</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTF8">Producto Prueba XD</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTJ8">Rias Gremory XD</option>\n\t<option value="MTEyfDExNHwxMTF8NDh8NDh8NDh8NDh8NDh8NTF8NTN8">Sudadera</option>\n</select>                                    <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por Registro de Inventario">
+                                </form>
+                                <br>
+                            </div>
+                            <br>
                     </div>
 
 

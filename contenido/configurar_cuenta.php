@@ -47,6 +47,7 @@ and open the template in the editor.
         ?>
         <section class="is-Fondo-01">
             <?php
+            $userManager->mostrarManagerLink();
             $userManager->mostrarNavbarUsuario();
             ?>
             <div class="w3-container w3-card-8 w3-theme-d4" id="RTA"></div>

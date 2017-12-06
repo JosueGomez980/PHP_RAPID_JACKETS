@@ -315,9 +315,11 @@ class ProductoController implements GenericController, Validable {
         $sesion instanceof SimpleSession;
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
+        $cantidad = count($arrayProductos);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
-            $this->contentMGR->setFormato(new ProductosIsseiXD());
-            $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            $exito = new ProductosIsseiXD();
+            $exito->setValor('Encontrados ' . $cantidad . ' productos que coinciden con tu búsqueda.');
+            echo($exito->toString($exito->getValor()));
             if ($sesion->existe(Session::US_LOGED)) {
                 echo ('<div class="container-fluid w3-center" style="width: 95% border-radius:15px;"><br><br>');
                 $this->productoMQT->maquetaArrayObject($arrayProductos);
@@ -341,9 +343,11 @@ class ProductoController implements GenericController, Validable {
         $pager instanceof PaginadorMemoria;
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
+        $cantidad = count($arrayProductos);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
-            $this->contentMGR->setFormato(new Exito());
-            $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            $exito = new ProductosIsseiXD();
+            $exito->setValor('Encontrados ' . $cantidad . ' productos que coinciden con tu búsqueda.');
+            echo($exito->toString($exito->getValor()));
             $this->productoMQT->maquetaProductoTablaCrud($arrayProductos);
         } else {
             $neu = new Neutral();
@@ -359,10 +363,11 @@ class ProductoController implements GenericController, Validable {
         $pager instanceof PaginadorMemoria;
         $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
         $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
+        $cantidad = count($arrayProductos);
         if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
-            $XD = new ProductosIsseiXD();
-            $XD->setValor('"Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.');
-            echo('<div class="container-fluid is-Tamaño-ContainerXD">' . $XD->toString($XD->getValor()));
+            $exito = new ProductosIsseiXD();
+            $exito->setValor('Encontrados ' . $cantidad . ' productos que coinciden con tu búsqueda.');
+            echo('<div class="container-fluid is-Tamaño-ContainerXD">' . $exito->toString($exito->getValor()));
             echo ('</div>');
             $this->mostrarCrudTableForInventario($arrayProductos);
         } else {

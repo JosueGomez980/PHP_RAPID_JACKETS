@@ -143,19 +143,38 @@ ob_start();
                     <label for="FierroteXDXD1">Reportes de Inventario</label>
 
                     <div class="FierroteXDXD">
-                        <br>
-                        <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                        <!--<br>
+                        <div class="w3-btn-group w3-medium">
                             <br>
-                            <form method="GET" name="pdf" action="gestion_reportes.php">
-                                <input type="hidden" value="E" name="report">
-                                <?php
-                                $userManager->mostrarProductoSelect("idPro", "idPro", null);
-                                ?>
-                                <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por Registro de Inventario">
-                            </form>
+                            <button onclick="mostrarOcultarTab('reportes_Todo_Inv')" class="is-Button-SelectXD">Reporte de Todo</button>
+                            <button onclick="mostrarOcultarTab('reportes_Inv')" class="is-Button-SelectXD">Reporte por Categorias</button>
+                        </div>
+                        <div id="reportes_Todo_Inv" class="w3-row tab w3-animate-top w3-center">
+                            <br>
+                            <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                                <br>
+                                <form method="GET" name="pdf" action="gestion_reportes.php">
+                                    <input type="hidden" value="F" name="report">
+                                    <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir Todo">
+                                </form>
+                                <br>
+                            </div>
                             <br>
                         </div>
-                        <br>
+                        <div id="reportes_Inv" class="w3-row tab w3-animate-top w3-center w3-hide">-->
+                            <br>
+                            <div class="container-fluid w3-dark-gray w3-center" style="width: 70%; border-radius: 20px;">
+                                <br>
+                                <form method="GET" name="pdf" action="gestion_reportes.php">
+                                    <input type="hidden" value="E" name="report">
+                                    <?php
+                                    $userManager->mostrarProductoSelect("idPro", "idPro", null);
+                                    ?>
+                                    <input type="submit" class="is-Button-CarritoXD-Inverted" value="Imprimir por Registro de Inventario">
+                                </form>
+                                <br>
+                            </div>
+                            <br>
                     </div>
 
 
@@ -232,8 +251,8 @@ if (isset($_GET['report'])) {
                 $proF = $productoDAO->find($proS);
                 $tablaInventarios = $inventarioDAO->findByProducto($invF);
                 if (!is_null($tablaInventarios)) {
-                    $contenido = $invMQR->generarStringReporteA($tablaInventarios, $hojaEstilos,$invProPro);
-                    $nombreReport = "reporte_inventarios_".$proF->getNombre()."_";
+                    $contenido = $invMQR->generarStringReporteA($tablaInventarios, $hojaEstilos, $invProPro);
+                    $nombreReport = "reporte_inventarios_" . $proF->getNombre() . "_";
                 } else {
                     $ok = FALSE;
                     $modal = new ModalSimple();
@@ -247,6 +266,15 @@ if (isset($_GET['report'])) {
                 }
                 break;
             }
+        /*   
+        case "F": {
+                $tablaInventarios = $inventarioDAO->findAll();
+                $contenido = $invMQR->generarStringReporteB($tablaInventarios, $hojaEstilos);
+                $nombreReport = "reporte_inventarios_todos_";
+                break;
+            }
+         * 
+         */
     }
     if ($ok) {
         $nameOfFile = $nombreReport . $dater->formatNowDate(DateManager::FOR_PDF_NAME);
