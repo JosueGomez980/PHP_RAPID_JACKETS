@@ -138,24 +138,37 @@ class PedidoMaquetador implements GenericMaquetador {
             $localidadDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getLocalidad()));
             $barriDomi = Validador::fixTexto(CriptManager::urlVarDecript($domicilioDTO->getBarrio()));
         }
-        echo('
-            <div class="w3-center w3-padding-large">
-                <div class="w3-container">
-                    <span class="w3-tag w3-large w3-theme-d3">Acciones rápidas</span>
-                </div><br>
-
-                <button class="btn btn-success" onclick="accionesRapidasPedidoAdmin(\''.$idCripted.'\', \'ACEPTAR\')">
-                    <span class="glyphicon glyphicon-ok"></span> Aceptar Pedido
-                </button>
-                <button class="btn btn-warning" onclick="accionesRapidasPedidoAdmin(\''.$idCripted.'\', \'CANCELAR\')">
-                    <span class="glyphicon glyphicon-remove"></span> Cancelar/Denegar Pedido
-                </button>
-                <form action="controlador/controllers/ControlVistas.php?m=eliminar_pedido_admin" method="POST" name="formDeletePedido">
-                    <input type="hidden" value="'.$idCripted.'" name="'.FacturaRequest::fac_id.'">
+        $btnEliminar = '<form action="controlador/controllers/ControlVistas.php?m=eliminar_pedido_admin" method="POST" name="formDeletePedido">
+                    <input type="hidden" value="' . $idCripted . '" name="' . FacturaRequest::fac_id . '">
                     <button class="btn btn-danger" type="submit" name="btnDeletePedido">
                         <span class="glyphicon glyphicon-trash"></span> Eliminar Definitivo
                     </button>
-                </form>
+                </form>';
+        $btnAceptar = '<button class="btn btn-success" onclick="accionesRapidasPedidoAdmin(\'' . $idCripted . '\', \'ACEPTAR\')">
+                    <span class="glyphicon glyphicon-ok"></span> Aceptar Pedido
+                </button>';
+        $btnDenie = '<button class="btn btn-warning" onclick="accionesRapidasPedidoAdmin(\'' . $idCripted . '\', \'CANCELAR\')">
+                    <span class="glyphicon glyphicon-remove"></span> Cancelar/Denegar Pedido
+                </button>';
+        switch ($pedido->getEstado()) {
+            case PedidoEntregaDAO::$ELIMINADO:
+                $btnEliminar = '';
+                $btnDenie = '';
+                break;
+            case PedidoEntregaDAO::$ACEPTADO:
+                $btnAceptar = '';
+                break;
+            case PedidoEntregaDAO::$DENIED:
+                $btnDenie = '';
+                break;
+        }
+        echo('
+            <div class="w3-center w3-padding-large">
+                <div class="w3-center">
+                    <span class="w3-tag w3-theme-d2 w3-large">ACCIONES RÁPIDAS</span>
+                </div>
+               ' . $btnAceptar . $btnDenie . $btnEliminar . '
+                
             </div>
               
             <div class="w3-container">
@@ -169,10 +182,10 @@ class PedidoMaquetador implements GenericMaquetador {
                         </h3>
                             <div class="w3-container">
                                 <ul class="w3-ul">
-                                    <li><span class="w3-large">Direccion Domicilio:</span> '.$direccionDomi.'</li> 
-                                    <li><span class="w3-large">Telefono Domicilio: </span> '.$telefonoDomi.'</li> 
-                                    <li><span class="w3-large">Localidad: </span> '.$localidadDomi.'</li> 
-                                    <li><span class="w3-large">Barrio: </span> '.$barriDomi.'</li> 
+                                    <li><span class="w3-large">Direccion Domicilio:</span> ' . $direccionDomi . '</li> 
+                                    <li><span class="w3-large">Telefono Domicilio: </span> ' . $telefonoDomi . '</li> 
+                                    <li><span class="w3-large">Localidad: </span> ' . $localidadDomi . '</li> 
+                                    <li><span class="w3-large">Barrio: </span> ' . $barriDomi . '</li> 
                                     <li class="w3-theme-l3"><span class="w3-large">Fecha de Solicitud del pedido:</span>  ' . $fechaToshow . ' </li> 
                                 </ul>
                             </div>

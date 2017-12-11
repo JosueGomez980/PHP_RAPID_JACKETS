@@ -155,6 +155,7 @@ final class Validador {
     public static function textoParaBuscar($text) {
         $salida = trim($text);
         $salida = strtolower($salida);
+        $salida = utf8_encode($salida);
         return $salida;
     }
 

@@ -301,16 +301,34 @@ class ControlVistas {
             echo($err->toString("No se recibió el parámetro necesario para ejecutar la acción"));
         }
     }
-    
-    public function acciones_rapidas_pedido(){
+
+    public function acciones_rapidas_pedido() {
         
     }
-    public function eliminar_pedido_admin(){
+
+    public function eliminar_pedido_admin() {
+        $pedidoDAO = PedidoEntregaDAO::getInstancia();
+        $pedidoDAO instanceof PedidoEntregaDAO;
         $facturaManager = new FacturaController();
         $this->controlAcceso->comprobarSesionAdmin(AccesoPagina::NEG_TO_INICIO);
         $this->controlAcceso->validaEnviode(FacturaRequest::fac_id, AccesoPagina::NEG_PED_GES);
-        $this->controlAcceso->validaEnviode("operacion", AccesoPagina::NEG_PED_GES);
-        
+        $facturaRequest = new FacturaRequest();
+        $factDTO = $facturaRequest->getFacturaDTO();
+        $factDTO instanceof FacturaDTO;
+        $pedidoToDelete = new PedidoEntregaDTO();
+        $pedidoToDelete->setFacturaIdFactura(CriptManager::urlVarDecript($factDTO->getIdFactura()));
+        $pedidoDTO = $pedidoDAO->findByFactura($pedidoToDelete);
+        if (!is_null($pedidoDTO)) {
+            $facturaManager->eliminarPedido($pedidoDTO);
+        } else {
+            $this->modal = new ModalSimple();
+            $err = new Errado();
+            $err->setValor("El pedido no existe");
+            $this->modal->addElemento($err);
+            $this->modal->setClosebtn("Cerrar");
+            $this->sesion->add(Session::NEGOCIO_RTA, $this->modal);
+        }
+        $this->controlAcceso->irPagina(AccesoPagina::NEG_PED_GES);
     }
 
 }

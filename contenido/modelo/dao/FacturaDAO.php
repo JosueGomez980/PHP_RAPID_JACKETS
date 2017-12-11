@@ -32,6 +32,9 @@ final class FacturaDAO implements DAOPaginable {
     const EST_CANCELADA = "CANCELADA";
     const EST_ANULADA = "ANULADA";
     const EST_ABONADA = "ABONADA";
+    const EST_ELIMINDA = "ELIMINADA";
+
+    const OBS_NOT = "NO HAY OBSERVACIONES POR PARTE DEL ADMINISTRADOR";
 
     public function __construct() {
         $this->db = Conexion::getInstance();
@@ -304,8 +307,8 @@ final class FacturaDAO implements DAOPaginable {
             return "F#AAA000000000";
         }
     }
-    
-    public function generateIdInDB(){
+
+    public function generateIdInDB() {
         $newId = NULL;
         try {
             $conexion = $this->db->creaConexion();

@@ -387,9 +387,88 @@ class FacturaController implements GenericController, Validable {
     public function consolidarFactura(FacturaDTO $factura) {
         
     }
-    
-    public function cancelarPedido(PedidoEntregaDTO $pedido){
-        
+
+    // Este metodo realmente no servirá para eliminar un pedido, sólo cambiara su estado para identificar asi que 
+    // el sistema no debe tenerlo en cuenta para la gestion de pedidos.
+    public function eliminarPedido(PedidoEntregaDTO $pedido) {
+        $ok = true;
+        $modal = new ModalSimple();
+        $session = SimpleSession::getInstancia();
+        $session instanceof SimpleSession;
+//Este metodo es para cambiar el estado de la factura y del pedido  a cancelados
+        $facturaDTO = new FacturaDTO();
+        $pedido->setEstado(PedidoEntregaDAO::$ELIMINADO);
+        $facturaDTO->setIdFactura($pedido->getFacturaIdFactura());
+        $facturaDTO = $this->facturaDAO->find($facturaDTO);
+        $facturaDTO->setEstado(FacturaDAO::EST_ELIMINDA);
+
+        $facturaDTO->setObservaciones(FacturaDAO::OBS_NOT);
+        $pedido->setObservaciones(PedidoEntregaDAO::OBS_NOT);
+        $rta1 = $this->pedidoDAO->update($pedido);
+        $rta2 = $this->facturaDAO->update($facturaDTO);
+        $rta1 = $this->facturaDAO->putEstado($facturaDTO);
+        $rta2 = $this->pedidoDAO->putEstado($pedido);
+        if ($rta1 == 1 && $rta2 == 1) {
+            $exito = new Exito();
+            $exito->setValor("El pedido cambió su estado a ELIMINADO correctamente");
+            $modal->addElemento($exito);
+            $ok = true;
+        } else {
+            $neu = new Neutral();
+            $neu->setValor("No se registraron cambios en el pedido");
+            $modal->addElemento($neu);
+            $ok = false;
+        }
+        $modal->setClosebtn("Cerrar");
+        $session->add(Session::NEGOCIO_RTA, $modal);
+        return $ok;
+    }
+
+    public function accionesRapidasPedido(PedidoEntregaDTO $pedido) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $ok = true;
+        $modal = new ModalSimple();
+        $pedidoFinded = $this->pedidoDAO->findByFactura($pedido);
+        if (!is_null($pedidoFinded)) {
+            $factDTO = new FacturaDTO();
+            $factDTO->setIdFactura($pedido->getFacturaIdFactura());
+            $facturaFinded = $this->facturaDAO->find($factDTO);
+            switch ($pedido->getEstado()) {
+                case PedidoEntregaDAO::$ACEPTADO:
+                    $facturaFinded->setEstado(FacturaDAO::EST_CANCELADA);
+                    break;
+                case PedidoEntregaDAO::$DENIED:
+                    $facturaFinded->setEstado(FacturaDAO::EST_ANULADA);
+                    break;
+            }
+            $pedidoFinded->setObservaciones(PedidoEntregaDAO::OBS_NOT);
+            $facturaFinded->setObservaciones(FacturaDAO::OBS_NOT);
+            $rta = $this->pedidoDAO->putEstado($pedido);
+            $rta = $this->facturaDAO->putEstado($facturaFinded);
+            $rta = $this->pedidoDAO->update($pedidoFinded);
+            $rta = $this->facturaDAO->update($facturaFinded);
+            if ($rta == 1) {
+                $ex = new Exito();
+                $ex->setValor("El pedido fue ".$pedido->getEstado(). " correctamente");
+                $modal->addElemento();
+            } else {
+                $ok = false;
+                $err = new Neutral();
+                $err->setValor("No se registraron cambios en el pedido");
+                $modal->addElemento($err);
+            }
+            return $ok;
+        } else {
+            $ok = false;
+            $err = new Errado();
+            $err->setValor("El pedido no existe. Datos erróneos");
+            $modal->addElemento($err);
+        }
+        $modal->setClosebtn("Aceptar");
+        $modal->show();
+        $sesion->add(Session::NEGOCIO_RTA, $modal);
+        return $ok;
     }
 
     public function validaFK(EntityDTO $entidad) {

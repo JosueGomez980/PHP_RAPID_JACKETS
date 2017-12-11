@@ -48,8 +48,6 @@ if (is_null($pedidoFinded)) {
                         <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
                     </button>
                 </div>
-                
-
                 <?php
                 $facturaManager->mostrarFacturaWebTipoB($pedidoFinded);
                 ?>
