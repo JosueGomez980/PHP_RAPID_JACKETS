@@ -83,6 +83,7 @@ function login() {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    return false;
 }
 
 function cambiarPersonalData() {
@@ -229,6 +230,7 @@ function disable_enable_producto(divRTA, yn) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function disable_enable_producto(divRTA, yn, idProducto) {
@@ -241,6 +243,7 @@ function disable_enable_producto(divRTA, yn, idProducto) {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    document.location.reload();
 }
 
 function mostrarProductosPorNombre() {
@@ -261,10 +264,23 @@ function mostrarProductosPorNombreAdmin() {
         url: 'controlador/controllers/ControlVistas.php',
         data: {m: "vista_productos_ver_por_nombre_like_admin", producto_name: nombreLike},
         success(response) {
-                $("#TABLA_CRUD").html(response);
+            $("#TABLA_CRUD").html(response);
         }
     });
 }
+function mostrarProductosPorNombreAdminInv() {
+    var nombreLike = $("#producto_name").val();
+    $.ajax({
+        type: 'get',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: {m: "vista_productos_ver_por_nombre_like_admin_inv", producto_name: nombreLike},
+        success(response) {
+            $("#TABLA_CRUD").html(response);
+        }
+    });
+}
+
+
 
 
 //Funciones para la Gestion de Categorias
@@ -507,6 +523,94 @@ function productoBusquedaAvanzada(idRta, method) {
         }
     });
 }
+
+function accountRescuePasoA() {
+    loadingGif("RTA2");
+    var inA = document.getElementById("user_id");
+    var inB = document.getElementById("user_email");
+    console.log(inA);
+    console.log(inB);
+//    var id_user = $('user_id').val();
+//    var email_user = $('user_email').val();
+    var txtinA = inA.value;
+    var txtinB = inB.value;
+    var ee = new Object();
+    ee.m = "password_recovery_part_a";
+    ee.user_id = "sdfsdfsdf";
+    ee.user_email = "sdfsdf";
+//    var datos = {m : "password_recovery_part_a", user_id: id_user, user_email: email_user};
+    var datos = {m: "password_recovery_part_a", user_id: txtinA, user_email: txtinB};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RTA2").html(response);
+        }
+    });
+}
+function accountRescuePasoB() {
+    loadingGif("RTA_NEGOCIO");
+    var txtCodigo = $("#codigo");
+    var txtIdUser = $("#user_id");
+    var userIdValue = txtIdUser.val();
+    var codeValue = txtCodigo.val();
+    var datos = {m: "password_recovery_part_b", user_id: userIdValue, codigo: codeValue};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success(response) {
+            $("#RTA_NEGOCIO").html("");
+            $("#RESPUESTA").html(response);
+        }
+    });
+}
+
+function buscarPedidosPorFechasAdmin() {
+    loadingGif("LOAD_GIF");
+    var select = $("#selectFindByFechas");
+    var action = select.val();
+    var datos = {m: "find_pedidos_por_fecha_predefinida", method_date: action};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success: function (response) {
+            $("#TABLA_CRUD_PEDIDOS").html(response);
+        }
+    });
+    $("#LOAD_GIF").html("");
+}
+function verPedidoFull(idFactura) {
+    window.location = "ver_pedido.php?factura_id=" + idFactura;
+}
+function accionesRapidasPedidoAdmin(idFactura, action) {
+    loadingGif("RTA_NEGOCIO");
+    var datos = {m: "acciones_rapidas_pedido", factura_id: idFactura, operacion: action};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success: function (response) {
+            $("#RTA_NEGOCIO").html(response);
+        }
+    });
+    window.location.reload(); 
+}
+
+//function verFullInfoPedidoAdmin(idFactura) {
+//    loadingGif("LOAD_GIF");
+//    var datos = {m: "ver_full_info_pedido_admin", factura_id: idFactura};
+//    $.ajax({
+//        type: 'POST',
+//        url: 'controlador/controllers/ControlVistas.php',
+//        data: datos,
+//        success: function (response) {
+//            $("#TABLA_CRUD_PEDIDOS").html(response);
+//        }
+//    });
+//}
 
 
 

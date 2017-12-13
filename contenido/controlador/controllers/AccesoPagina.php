@@ -21,9 +21,11 @@ final class AccesoPagina {
     const ABT_US = "sobre_nosotros.php";
     const US_SIGN_IN = "registro_usuarios.php";
     const CONTC = "contacto.php";
+    const PED_GEST = "gestion_pedidos_facturas.php";
     const PER_DATA = "configurar_cuenta.php";
     const GES_INVT = "gestion_inventarios.php";
     const NEG_TO_INICIO = "../../inicio.php";
+    const NEG_PED_GES = "../../gestion_pedidos_facturas.php";
     const NEG_TO_IN_SESION = "../../iniciar_sesion.php";
     const NEG_TO_PRODUCTOS = "../../productos.php";
     const NEG_TO_ABT_US = "../../sobre_nosotros.php";
@@ -55,6 +57,34 @@ final class AccesoPagina {
             $this->irPagina($destino);
         }
     }
+
+    public function comprobarUserInAccountRecovery($destino) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $ok = true;
+        if (!$sesion->existe(Session::USER_RESCUE)) {
+            $ok = FALSE;
+        } else {
+            $userRescue = $sesion->getEntidad(Session::USER_RESCUE);
+            $userRescue instanceof UsuarioDTO;
+            $userRescue->setIdUsuario(CriptManager::urlVarDecript($userRescue->getIdUsuario()));
+            $userDAO = UsuarioDAO::getInstancia();
+            $userDAO instanceof UsuarioDAO;
+            if (is_null($userDAO->find($userRescue))) {
+                $ok = FALSE;
+            }
+        }
+        if (!$ok) {
+            $modal = new ModalSimple();
+            $neutral = new Neutral();
+            $neutral->setValor("No tienes permiso para acceder a este módulo");
+            $modal->addElemento($neutral);
+            $modal->setClosebtn("Aceptar");
+            $sesion->add(Session::NEGOCIO_RTA, $modal);
+            $this->irPagina($destino);
+        }
+    }
+    
 
     public function comprobarSesionAdmin($destino) {
         $sesion = SimpleSession::getInstancia();
@@ -138,7 +168,7 @@ final class AccesoPagina {
 
     public function irPagina($pagina) {
         header("HTTP/1.1 301 Moved Permanently");
-        header("Location: " . $pagina);
+        header("location: " . $pagina);
         exit();
     }
 

@@ -119,7 +119,7 @@ class FacturaMaquetador implements GenericMaquetador {
             $proToFind = new ProductoDTO();
             $proToFind->setIdProducto($itt->getProductoIdProducto());
             $proFinded = $proDAO->find($proToFind);
-            $namePro = Validador::fixTexto($proFinded->getNombre());
+            $namePro = utf8_encode($proFinded->getNombre());
             echo('
                 <tr>
                     <td>' . $ItCant . '</td>
@@ -162,5 +162,7 @@ class FacturaMaquetador implements GenericMaquetador {
             </div>
         ');
     }
+    
+   
 
 }

@@ -27,6 +27,7 @@ final class DateManager {
     const DIA_MES_ANO_2 = "D d/M/Y";
     const FOR_PDF_NAME = "Y-m-d___H_i_s_B";
     const UTC = "U";
+    const NO_DATE = "0000-00-00 00:00:00";
 
     function __construct() {
         $this->zonaHoraria = new DateTimeZone("America/Bogota");
@@ -45,6 +46,16 @@ final class DateManager {
         $this->date->setTimeZone($this->zonaHoraria);
     }
 
+    public function mkdate($str) {
+        try {
+            $newDate = new DateTime($str, $this->zonaHoraria);
+            return $newDate;
+        } catch (ErrorException $exc) {
+            return null;
+        }
+        return null;
+    }
+
     public function getSQLDate() {
         return $this->date->format(self::SQL_DATE);
     }
@@ -59,7 +70,7 @@ final class DateManager {
 
     public function stringToDate($s_fecha) {
         try {
-            $fecha = new DateTime($s_fecha);
+            $fecha = new DateTime($s_fecha, $this->zonaHoraria);
         } catch (Exception $exc) {
             echo $exc->getMessage();
             return NULL;
@@ -76,11 +87,41 @@ final class DateManager {
     }
 
     public function getDate() {
+        $this->update();
         return $this->date;
     }
 
     public function getTime() {
         return $this->date->format(self::HORA_AM_PM);
+    }
+
+    public function unixToDate($unix) {
+        if (is_int((int)$unix)) {
+            try {
+                $date = new DateTime("now", $this->zonaHoraria);
+                $date->setTimestamp((int) $unix);
+                return $date;
+            } catch (Exception $ex) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function agregar(DateTime $fecha, $strDateInterval) {
+        try {
+            $interval = DateInterval::createFromDateString($strDateInterval);
+            if ($interval instanceof DateInterval) {
+                $fecha->add($interval);
+                return $fecha;
+            } else {
+                return null;
+            }
+        } catch (ErrorException $exc) {
+            echo $exc->getMessage();
+            return null;
+        }
     }
 
     public function dateSpa1() {
@@ -238,6 +279,3 @@ final class DateManager {
     }
 
 }
-
-
-

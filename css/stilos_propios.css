@@ -109,11 +109,11 @@ body{
     display: block;
 }
 .m-user-admin-icons{
-    width: 16px;
+    width: 20px;
     height: auto;
     border: 1px solid white;
     border-radius: 5px;
-    margin: 5px;
+    vertical-align: middle;
 }
 .m-c-v{
     vertical-align: central;

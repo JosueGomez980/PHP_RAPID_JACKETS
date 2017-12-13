@@ -11,8 +11,8 @@
  *
  * @author Josué Francisco
  */
-include_once 'cargar_clases3.php';
-AutoCarga3::init();
+//include_once 'cargar_clases3.php';
+//AutoCarga3::init();
 
 class ProductoRequest extends Request {
 
@@ -302,6 +302,24 @@ class ProductoController implements GenericController, Validable {
         }
     }
 
+    public function listarPorNombreLikeAdminInv(ProductoDTO $proFind) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $pager = $sesion->get(Session::PAGINADOR);
+        $pager instanceof PaginadorMemoria;
+        $nombreAbuscar = Validador::textoParaBuscar($proFind->getNombre());
+        $arrayProductos = $this->productoDAO->findByNameLike($nombreAbuscar);
+        if (!is_null($arrayProductos) && count($arrayProductos) >= 1) {
+            $this->contentMGR->setFormato(new Exito());
+            $this->contentMGR->setContenido("Encontrados " . count($arrayProductos) . " productos que coinciden con tu búsqueda.");
+            $this->mostrarCrudTableForInventario($arrayProductos);
+        } else {
+            $neu = new Neutral();
+            $neu->setValor("No se encontró ningun producto que coincida con el nombre que has escrito :( ");
+            echo($neu->toString($neu->getValor()));
+        }
+    }
+
     public function mostrarFormDisEnable(ProductoDTO $producto) {
         $this->productoMQT->maquetaProductoDisableEnable($producto);
     }
@@ -317,7 +335,14 @@ class ProductoController implements GenericController, Validable {
     }
 
     public function mostrarCrudTableForInventario(array $productos) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $pager = $sesion->get(Session::PAGINADOR);
+        $pager instanceof PaginadorMemoria;
+        
+        $pager->maquetarBarraPaginacion();
         $this->productoMQT->maquetaProductoTablaCrudInventario($productos);
+        $pager->maquetarBarraPaginacion();
     }
 
     public function disableEnable(ProductoDTO $pro, $yn) {
@@ -341,16 +366,19 @@ class ProductoController implements GenericController, Validable {
                 $msg = "EL PRODUCTO YA ESTABA " . $activo;
                 $this->contentMGR->setFormato(new Neutral());
                 $this->contentMGR->setContenido($msg);
+                $this->contentMGR->mostrar();
                 break;
             case 1:
                 $msg = "EL PRODUCTO FUE " . $activo2;
                 $this->contentMGR->setFormato(new Exito());
                 $this->contentMGR->setContenido($msg);
+                $this->contentMGR->mostrar();
                 break;
             case -1:
                 $msg = "HUBO UN ERROR. INTENTE DE NUEVO";
                 $this->contentMGR->setFormato(new Errado());
                 $this->contentMGR->setContenido($msg);
+                $this->contentMGR->mostrar();
                 $ok = FALSE;
                 break;
         }
@@ -400,6 +428,37 @@ class ProductoController implements GenericController, Validable {
                 echo($err->toString($err->getValor()));
 
                 $this->mostrarCrudTable($tablaProductos);
+            }
+        }
+    }
+
+    public function encontrarPorBusquedaAvanzadaByAdminInventario(ProductoDTO $profind, array $rangoPrecio) {
+        $profind->setDescripcion(Validador::textoParaBuscar($profind->getDescripcion()));
+        if ($rangoPrecio["MAX"] < $rangoPrecio["MIN"]) {
+            $err = new Errado();
+            $err->setValor("Datos del precio incorrectos");
+            echo($err->toString($err->getValor()));
+        } else {
+            $tablaProductos = $this->productoDAO->findDinamic($profind, $rangoPrecio);
+            if (is_null($tablaProductos) || count($tablaProductos) <= 0) {
+                $err = new Neutral();
+                $err->setValor("No se encontró ningun producto con los parámetros que estableciste.");
+                echo($err->toString($err->getValor()));
+            } else {
+                $err = new Exito();
+                $err->setValor("Encontrados " . count($tablaProductos) . " productos con los parámetros indicados.");
+                echo($err->toString($err->getValor()));
+                //----------Traer el paginador de sesion, modificarlo y ponerlo de nuevo en sesion
+                $sesion = SimpleSession::getInstancia();
+                $sesion instanceof SimpleSession;
+                $pager = $sesion->get(Session::PAGINADOR);
+                $pager instanceof PaginadorMemoria;
+                $pager->setTablaCompleta($tablaProductos);
+                $pager->init(null, null);
+                $tablaProductosPaginada = $pager->firstPage();
+                $sesion->add(Session::PAGINADOR, $pager);
+                //-------------------------------------------
+                $this->mostrarCrudTableForInventario($tablaProductosPaginada);
             }
         }
     }

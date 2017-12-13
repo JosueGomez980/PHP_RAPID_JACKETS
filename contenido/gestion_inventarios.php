@@ -44,22 +44,31 @@ and open the template in the editor.
         ?>
         <section class="m-section">
             <div id="RESPUESTA"></div>
-            <div class="w3-center">
-                
+            <!-----------------------Espacio pa el panel de búsqueda avanzada ---------------------------->
+            <div class="w3-row">
+                <div class="w3-container w3-half w3-card-4 w3-padding-8">
+                    <label class="labels">Buscar por Nombre del producto</label>
+                    <div class="w3-padding-4">
+                        <input type="text" class="input_texto" name="producto_name" id="producto_name" placeholder="Nombre a buscar" onkeyup="mostrarProductosPorNombreAdminInv();"><br>
+                        <button class="w3-btn w3-theme-d2 w3-round-medium" onclick="mostrarProductosPorNombreAdminInv();">Buscar</button>
+                        <button onclick="document.getElementById('modal_busqueda').style.display = 'block'" class="w3-button w3-theme-dark w3-round-medium w3-small">Búsqueda Avanzada</button>
+                    </div>
+                </div>
             </div>
-            <?php
-            $paginador->maquetarBarraPaginacion();
-            ?>
-            
+            <!----------------------------------------------------------------------->
+
+            <div class="w3-row w3-responsive">
+                <div id="TAB_ADV_SEARCH">
+                    <!----------------------------------------------------------------------------------------->
+                    <?php $proManager->mostrarModalBusquedaAvanzada('TABLA_CRUD', 'producto_busqueda_avanzada_admin_inv'); ?>
+                    <!------------------------------------------------------------------------------------------------->
+                </div>
+            </div>
             <div id="TABLA_CRUD">
                 <?php
                 $proManager->mostrarCrudTableForInventario($tablaUsuariosPaginada);
                 ?>
             </div>
-            <?php
-            $paginador->maquetarBarraPaginacion();
-            ?>
-            
         </section>
         <?php
         $contenido->getFooter2();

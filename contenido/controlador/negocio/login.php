@@ -47,6 +47,10 @@ if (!Validador::validaPassword($userDTO->getPassword())) {
     $modal->addElemento($error);
     $ok = FALSE;
 }
+
+//Valida que el usuario ha validado la cuenta mediante el correo electronico
+
+
 $userFinded = NULL;
 if ($ok) {
     switch ($modo) {
@@ -72,6 +76,12 @@ if ($ok) {
             }
     }
     if (!is_null($userFinded)) {
+        if ($userManager->usuarioIsNotVerified($userFinded)) {
+            $error = new Errado();
+            $error->setValor("El usuario digitado (" . Validador::fixTexto($userDTO->getIdUsuario()) . ") ho ha sido activado mediante el correo electrónico.");
+            $modal->addElemento($error);
+            $logeo = FALSE;
+        }
         if ($userFinded->getEstado() == UsuarioDAO::EST_INACTIVO || $userFinded->getEstado() == UsuarioDAO::EST_ELIMINADO) {
             $error = new Errado();
             $error->setValor("El usuario digitado (" . Validador::fixTexto($userDTO->getIdUsuario()) . ") ha sido retirado del sistema. Por favor contacte al administrador.");
@@ -101,6 +111,7 @@ if ($ok) {
                     $sesion->addEntidad($userFinded, Session::US_SUB_ADMIN_LOGED);
                     $sesion->addEntidad($cuentaFinded, Session::CU_SUB_ADMIN_LOGED);
                 }
+                //Verificar que el usuario ya ha sido activado
                 //Pasar a session
                 $sesion->addEntidad($userFinded, Session::US_LOGED);
                 $sesion->addEntidad($cuentaFinded, Session::CU_LOGED);

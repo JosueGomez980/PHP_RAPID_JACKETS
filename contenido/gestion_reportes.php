@@ -5,15 +5,62 @@ include_once 'cargar_clases.php';
 AutoCarga::init();
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
+$acceso->comprobarSesionAdmin(AccesoPagina::INICIO);
 $sesion = SimpleSession::getInstancia();
 $sesion instanceof SimpleSession;
-$acceso->comprobarSesionAdmin(AccesoPagina::INICIO); 
 $categoriaManager = new CategoriaController();
 $productoDAO = ProductoDAO::getInstancia();
 $productoDAO instanceof ProductoDAO;
 $productoMAQ = new ProductoMaquetador();
 $dater = DateManager::getInstance();
 $dater instanceof DateManager;
+
+if (isset($_GET['report'])) {
+    $hojaEstilos = null;
+    $hojaEstilos = file_get_contents("../css/print.css");
+    include 'dompdf/dompdf_config.inc.php';
+    $ok = TRUE;
+    $contenido = null;
+    switch ($_GET['report']) {
+        case "A": {
+                $tablaInventarios = $productoDAO->findAll();
+                $contenido = $productoMAQ->generarStringReporteA($tablaInventarios, $hojaEstilos);
+                break;
+            }
+        case "B": {
+                $idcat = $_GET["idCat"];
+                $idCat = CriptManager::urlVarDecript($idcat);
+                $proF = new ProductoDTO();
+                $proF->setCategoriaIdCategoria($idCat);
+                $tablaInventarios = $productoDAO->findByCategoria($proF);
+                if (!is_null($tablaInventarios)) {
+                    $contenido = $productoMAQ->generarStringReporteA($tablaInventarios, $hojaEstilos);
+                } else {
+                    $ok = FALSE;
+                    $modal = new ModalSimple();
+                    $neutro = new Neutral();
+                    $neutro->setValor("No se hallaron productos que esté asociados a esa categoría");
+                    $modal->addElemento($neutro);
+                    $closeBtn = new CloseBtn();
+                    $closeBtn->setValor("Aceptar");
+                    $modal->addElemento($closeBtn);
+                    $sesion->add(Session::NEGOCIO_RTA, $modal);
+                }
+                break;
+            }
+        default :
+            $acceso->irPagina(AccesoPagina::INICIO);
+            break;
+    }
+    if ($ok) {
+        $nameOfFile = "reporte_productos_" . $dater->formatNowDate(DateManager::FOR_PDF_NAME);
+        $contenido = utf8_decode($contenido);
+        $pdf = new DOMPDF();
+        $pdf->load_html($contenido);
+        $pdf->render();
+        $pdf->stream($nameOfFile . ".pdf", array("Attachment" => 0));
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,49 +103,5 @@ $dater instanceof DateManager;
         ?>
     </body>
 </html>
-<?php
-if (isset($_GET['report'])) {
-    $hojaEstilos = null;
-    $hojaEstilos = file_get_contents("../css/print.css");
-    include 'dompdf/dompdf_config.inc.php';
-    $ok = TRUE;
-    $contenido = null;
-    switch ($_GET['report']) {
-        case "A": {
-                $tablaInventarios = $productoDAO->findAll();
-                $contenido = $productoMAQ->generarStringReporteA($tablaInventarios, $hojaEstilos);
-                break;
-            }
-        case "B": {
-                $idcat = $_GET["idCat"];
-                $idCat = CriptManager::urlVarDecript($idcat);
-                $proF = new ProductoDTO();
-                $proF->setCategoriaIdCategoria($idCat);
-                $tablaInventarios = $productoDAO->findByCategoria($proF);
-                if (!is_null($tablaInventarios)) {
-                    $contenido = $productoMAQ->generarStringReporteA($tablaInventarios, $hojaEstilos);
-                } else {
-                    $ok = FALSE;
-                    $modal = new ModalSimple();
-                    $neutro = new Neutral();
-                    $neutro->setValor("No se hallaron productos que esté asociados a esa categoría");
-                    $modal->addElemento($neutro);
-                    $closeBtn = new CloseBtn();
-                    $closeBtn->setValor("Aceptar");
-                    $modal->addElemento($closeBtn);
-                    $sesion->add(Session::NEGOCIO_RTA, $modal);
-                }
-                break;
-            }
-    }
-    if ($ok) {
-        $nameOfFile = "reporte_productos_" . $dater->formatNowDate(DateManager::FOR_PDF_NAME);
-        $contenido = utf8_decode($contenido);
-        $pdf = new DOMPDF();
-        $pdf->load_html($contenido);
-        $pdf->render();
-        $doc = $pdf->output();
-        $pdf->stream($nameOfFile . ".pdf");
-    }
-}
+
 

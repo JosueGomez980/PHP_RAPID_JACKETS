@@ -257,6 +257,27 @@ class ModalSimple implements Modal {
             echo($elem->toString($elem->getValor()));
         }
     }
+    public function addError($valor){
+        $err = new Errado();
+        $err->setValor($valor);
+        $this->addElemento($err);
+    }
+    public function addExito($valor){
+        $err = new Exito();
+        $err->setValor($valor);
+        $this->addElemento($err);
+    }
+    public function addNeutral($valor){
+        $err = new Neutral();
+        $err->setValor($valor);
+        $this->addElemento($err);
+    }
+    public function show(){
+        $this->open();
+        $this->maquetar();
+        $this->close();
+    }
+
     public function setClosebtn($value){
         $clBtn = new CloseBtn();
         $clBtn->setValor($value);
@@ -313,6 +334,11 @@ class ContentManager implements Content {
     public function maquetar() {
         $salida = $this->formato->toString($this->contenido);
         //echo($salida);
+        return $salida;
+    }
+    public function mostrar() {
+        $salida = $this->formato->toString($this->contenido);
+        echo($salida);
         return $salida;
     }
 

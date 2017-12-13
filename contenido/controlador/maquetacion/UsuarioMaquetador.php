@@ -333,4 +333,59 @@ class UsuarioMaquetador implements GenericMaquetador {
             </div>');
     }
 
+    public function maquetaLogedUserMenu() {
+        //Metodo a ubicar en el header de la página
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        if ($sesion->existe(Session::US_LOGED)) {
+            $userS = $sesion->getEntidad(Session::US_LOGED);
+            $userS instanceof UsuarioDTO;
+            $idUser = Validador::fixTexto($userS->getIdUsuario());
+            echo('<li class="w3-right"><a class="w3-theme-dark w3-hover-red" href="controlador/negocio/unlog.php">Salir <img class="m-user-admin-icons" src="../media/img/icons_users/logout.png" ></a></li>
+            <li class="w3-right"><a class="w3-theme-l1 w3-hover-green" href="configurar_cuenta.php">Tu Perfil: <b>' . $idUser . '</b> <img class="m-user-admin-icons" src="../media/img/icons_users/config_cuenta.png" ></a></li>');
+            echo('<li class="w3-right"><a class="w3-theme-d3 w3-hover-pink" href="#">Tus compras  <img class="m-user-admin-icons" src="../media/img/icons_clothes/hand-bag-5.png"> </a></li>');
+        } else {
+            echo('<li class="w3-right"><a class="w3-hover-green" href="iniciar_sesion.php">Inicie Sesion</a></li>
+            <li class="w3-right"><a class="w3-hover-orange" href="registro_usuarios.php">Registrarse</a></li>');
+        }
+    }
+
+    public function maquetaFormAccoutRecoveryChangePassword($userIdCripted) {
+        echo('
+            <form name="form_acc_recovery_change_password" method="POST" id="form_acc_recovery_change_password" action="controlador/controllers/ControlVistas.php">
+    <input type="hidden" name="m" value="password_recovery_part_final"> 
+    <input type="hidden" name="user_id" value="'.$userIdCripted.'"> 
+    <div id="RESPUESTA" class="w3-animate-top">
+        <div class="w3-row w3-theme-l4">
+            <div class="w3-quarter w3-container"></div>
+            <div class="w3-half w3-card-8 w3-container w3-display-container">
+                <div class="w3-display-topright">
+                    <img style="width: 50px; height: 50px;"class="w3-image" src="../media/img/pass_reco.png" alt="Recuperación de contraseña" title="Recuperar Contraseña">
+                </div>
+                <h3 class="w3-center w3-text-blue-grey w3-text-shadow" style="font-weight: bold">
+                    Bueno, ahora debes cambiar tu contraseña
+                </h3>
+                <br>
+                <label for="user_id" class="labels">Escribe una nueva contraseña</label>
+                <input type="password" class="input_texto" name="user_password" id="user_passwordA" placeholder="Password" required onkeydown="valida_user_passA()" onblur="valida_user_passA()">
+                <span class="w3-text-red w3-large">*</span>
+                <div><span class="w3-tiny w3-text-red" id="user_passA_res"></span></div>
+                <div><span class="w3-tiny" id="user_passA_res2"></span></div>
+                <br>
+                <label for="user_id" class="labels">Repite la nueva contraseña</label>
+                <input type="password" class="input_texto" name="user_passwordB" id="user_passwordB" placeholder="Password" required onblur="valida_user_passB()" onpaste="avoid_paste()">
+                <span class="w3-text-red w3-large">*</span>
+                <div><span class="w3-tiny" id="user_passB_res"></span></div>
+                <div class="w3-center  w3-padding-large">
+                    <button class="w3-btn m-boton-a w3-green" type="submit">Cambiar Contraseña</button>
+                    <button class="w3-btn m-boton-a w3-red" type="reset" onclick="window.location.replace(\'iniciar_sesion.php\')">Cancelar</button>
+                </div>
+            </div>
+            <div class="w3-quarter w3-container"></div>
+        </div>
+    </div>
+</form>
+        ');
+    }
+
 }

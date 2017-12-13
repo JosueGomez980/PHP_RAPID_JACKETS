@@ -1,4 +1,14 @@
-
+@page {
+    margin-top: 0.1em;
+    margin-left: 0.1em;
+    margin-right:  0.1em;
+    margin-bottom:0.1em;
+}
+body{
+    font-family: Tahoma;
+    padding: 0;
+    margin: 0;
+}
 table{
     background-color: #edf0f9;
     border-radius: 10px;
@@ -16,14 +26,41 @@ table th{
     width: 100%;
     margin: auto;
 }
+.head2{
+    padding: 0px;
+    background-color: white;
+    font-family: Tahoma;
+    font-size: 1em;
+    width: 100%;
+    margin: auto;
+}
+
+.tablaFacturaHead{
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Tahoma;
+}
+.tablaFacturaHead tr{
+    padding: 5px;
+    border: 1px solid black;
+}
+.tablaFacturaHead th{
+    border: 1px solid black;
+}
+.tablaFacturaHead td{
+    padding: 5px;
+    border: 1px solid black;
+    text-align: justify;
+    font-size: 0.95em;
+}
 .img-logo{
     height: auto;
-    width: 40%;
+    width: 45%;
     left: 20%;
 }
 .img-logo img{
     width: 100%;
-    height: auto;
 }
 
 .clear{
@@ -44,8 +81,10 @@ p{
     text-decoration: underline;
 }
 .titulo2{
-    
+    font-size: 2em;
+    font-weight: bold;
+    color: #333333;
 }
 .titulo3{
-    
+
 }

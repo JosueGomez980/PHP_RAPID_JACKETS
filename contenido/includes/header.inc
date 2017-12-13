@@ -1,3 +1,7 @@
+<?php
+$userManager = UsuarioController::getInstancia();
+$userManager instanceof UsuarioController;
+?>
 <header>
     <div class="m-header">
         <div class="w3-row">
@@ -13,13 +17,15 @@
     </div>
     <nav class="m-nav" name="UP">
         <a name="UP"></a>
-        <ul class="w3-navbar w3-theme-d1">
+        <ul class="w3-navbar w3-theme-d1 w3-padding-large">
             <li><a href="inicio.php" class="w3-hover-blue">Inicio</a></li>
             <li><a href="sobre_nosotros.php" class="w3-hover-blue">Sobre Nosotros</a></li>
             <li><a href="productos.php" class="w3-hover-blue">Nuestros productos</a></li>
             <li><a href="contacto.php" class="w3-hover-blue">Contactenos</a></li>
-            <li class="w3-right"><a class="w3-hover-green" href="iniciar_sesion.php">Inicie Sesion</a></li>
-            <li class="w3-right"><a class="w3-hover-orange" href="registro_usuarios.php">Registrarse</a></li>
+            
+            <?php
+            $userManager->mostrarNavBarUser();
+            ?>
             <li class="w3-right"><button class="w3-btn w3-theme-d1 w3-hover-yellow" onclick="verCarritoComprasInModal()"><img src="../media/img/carrito_compra.png" alt="CarritoRapidJackets" title="Ver Carrito Rapid" style="width: 25px;">  Ver carrito</button></li>
         </ul>
     </nav>

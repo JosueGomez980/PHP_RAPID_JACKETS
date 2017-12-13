@@ -1,18 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of ControlVistas
- *
- * @author JosueFrancisco
- */
 include_once 'cargar_clases3.php';
-
 AutoCarga3::init();
 
 class ControlVistas {
@@ -167,12 +155,19 @@ class ControlVistas {
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLike($proDTO);
     }
-    
+
     public function vista_productos_ver_por_nombre_like_admin() {
         $productoControl = new ProductoController();
         $proReques = new ProductoRequest();
         $proDTO = $proReques->getProductoDTO();
         $productoControl->listarPorNombreLikeAdmin($proDTO);
+    }
+
+    public function vista_productos_ver_por_nombre_like_admin_inv() {
+        $productoControl = new ProductoController();
+        $proReques = new ProductoRequest();
+        $proDTO = $proReques->getProductoDTO();
+        $productoControl->listarPorNombreLikeAdminInv($proDTO);
     }
 
     public function vista_inventario_ver_nuevo() {
@@ -242,8 +237,131 @@ class ControlVistas {
         $productoControl->encontrarPorBusquedaAvanzadaByAdmin($productoPost, $rangoPrecio);
     }
 
-}
+    public function producto_busqueda_avanzada_admin_inv() {
+        $productoControl = ProductoController::getInstancia();
+        $productoControl instanceof ProductoController;
+        $proRequest = new ProductoRequest();
+        $productoPost = $proRequest->getProductoDTO();
+        $productoPost instanceof ProductoDTO;
+        $productoPost->setCategoriaIdCategoria(CriptManager::urlVarDecript(filter_input(INPUT_POST, ProductoRequest::pro_id_cat)));
+        $rangoPrecio = array();
+        $rangoPrecio["MAX"] = filter_input(INPUT_POST, "producto_max_price", FILTER_SANITIZE_NUMBER_INT);
+        $rangoPrecio["MIN"] = filter_input(INPUT_POST, "producto_min_price", FILTER_SANITIZE_NUMBER_INT);
+        $productoControl->encontrarPorBusquedaAvanzadaByAdminInventario($productoPost, $rangoPrecio);
+    }
 
+    public function password_recovery_part_a() {
+        $modal = null;
+        $userControl = UsuarioController::getInstancia();
+        $userControl instanceof UsuarioController;
+        $userRequest = new UsuarioRequest();
+        $userDTO = $userRequest->getUsuarioDTO();
+        $userControl->accountRecoveryEnvioEmail($userDTO);
+    }
+
+    public function password_recovery_part_b() {
+        $userControl = new UsuarioController();
+        $userMQT = new UsuarioMaquetador();
+        $userDAO = UsuarioDAO::getInstancia();
+        $userDAO instanceof UsuarioDAO;
+        $cuentaRescueCode = new CuentaRescueDTO();
+        $cuentaRescueCode->setCodigo(filter_input(INPUT_POST, "codigo"));
+        $userIdCripted = filter_input(INPUT_POST, UsuarioRequest::us_id);
+        $userIdValue = base64_decode((filter_input(INPUT_POST, UsuarioRequest::us_id)));
+        $userIdValue = CriptManager::urlVarDecript($userIdValue);
+        $cuentaRescueCode->setUsuarioIdUsuario($userIdValue);
+
+        if ($userControl->validarCodigoAccountRescue($cuentaRescueCode)) {
+            $userMQT->maquetaFormAccoutRecoveryChangePassword($userIdCripted);
+        }
+    }
+
+    public function password_recovery_part_final() {
+        $acceso = new AccesoPagina();
+        $userControl = new UsuarioController();
+
+        $acceso->validaEnviode(UsuarioRequest::us_id, AccesoPagina::NEG_TO_IN_SESION);
+        $acceso->validaEnviode(UsuarioRequest::us_pass, AccesoPagina::NEG_TO_IN_SESION);
+
+        $userRequest = new UsuarioRequest();
+        $userDTOPost = $userRequest->getUsuarioDTO();
+        $userDTOPost instanceof UsuarioDTO;
+        $passwordB = filter_input(INPUT_POST, "user_passwordB");
+
+        $userControl->accountRescueConsolidar($userDTOPost, $passwordB);
+    }
+
+    public function find_pedidos_por_fecha_predefinida() {
+        if (isset($_POST["method_date"])) {
+            $metodoFecha = filter_input(INPUT_POST, "method_date");
+            $facturaController = new FacturaController();
+            $facturaController->mostrarCrudPedidosPorFechaPredefinida($metodoFecha);
+        } else {
+            $err = new Neutral();
+            echo($err->toString("No se recibió el parámetro necesario para ejecutar la acción"));
+        }
+    }
+
+    public function acciones_rapidas_pedido() {
+        $facturaManager = new FacturaController();
+        if (isset($_POST[FacturaRequest::fac_id]) && isset($_POST["operacion"])) {
+            $pedidoDTO = new PedidoEntregaDTO();
+            $pedidoDTO->setFacturaIdFactura(CriptManager::urlVarDecript(filter_input(INPUT_POST, FacturaRequest::fac_id)));
+            switch (filter_input(INPUT_POST, "operacion")) {
+                case "ACEPTAR":
+                    $pedidoDTO->setEstado(PedidoEntregaDAO::$ACEPTADO);
+                    break;
+                case "CANCELAR":
+                    $pedidoDTO->setEstado(PedidoEntregaDAO::$DENIED);
+                    break;
+                default :
+                    $pedidoDTO->setEstado("NOT");
+                    break;
+            }
+            $facturaManager->accionesRapidasPedido($pedidoDTO);
+        } else {
+            echo("Error!");
+        }
+    }
+
+    public function eliminar_pedido_admin() {
+        $pedidoDAO = PedidoEntregaDAO::getInstancia();
+        $pedidoDAO instanceof PedidoEntregaDAO;
+        $facturaManager = new FacturaController();
+        $this->controlAcceso->comprobarSesionAdmin(AccesoPagina::NEG_TO_INICIO);
+        $this->controlAcceso->validaEnviode(FacturaRequest::fac_id, AccesoPagina::NEG_PED_GES);
+        $facturaRequest = new FacturaRequest();
+        $factDTO = $facturaRequest->getFacturaDTO();
+        $factDTO instanceof FacturaDTO;
+        $pedidoToDelete = new PedidoEntregaDTO();
+        $pedidoToDelete->setFacturaIdFactura(CriptManager::urlVarDecript($factDTO->getIdFactura()));
+        $pedidoDTO = $pedidoDAO->findByFactura($pedidoToDelete);
+        if (!is_null($pedidoDTO)) {
+            $facturaManager->eliminarPedido($pedidoDTO);
+        } else {
+            $this->modal = new ModalSimple();
+            $err = new Errado();
+            $err->setValor("El pedido no existe");
+            $this->modal->addElemento($err);
+            $this->modal->setClosebtn("Cerrar");
+            $this->sesion->add(Session::NEGOCIO_RTA, $this->modal);
+        }
+        $this->controlAcceso->irPagina(AccesoPagina::NEG_PED_GES);
+    }
+
+    public function imprimir_pedido_pdf_admin() {
+        $this->controlAcceso->comprobarSesionAdmin(AccesoPagina::NEG_TO_INICIO);
+        $facturaManager = new FacturaController();
+        $facturaRequest = new FacturaRequest();
+        $this->controlAcceso->validaEnviode(FacturaRequest::fac_id, AccesoPagina::NEG_PED_GES);
+        $facturaDTO = $facturaRequest->getFacturaDTO();
+        $facturaDTO instanceof FacturaDTO;
+        $facturaDTO->setIdFactura(CriptManager::urlVarDecript($facturaDTO->getIdFactura()));
+        $pedidoDTO = new PedidoEntregaDTO();
+        $pedidoDTO->setFacturaIdFactura($facturaDTO->getIdFactura());
+        $facturaManager->generarPdfPedidoFactura($pedidoDTO);
+    }
+}
 if (isset($_REQUEST['m'])) {
     $method = $_REQUEST['m'];
     $rutaFinal = ControlVistas::rutaBase . $method . ".php";
