@@ -586,8 +586,7 @@ function verPedidoFull(idFactura) {
     window.location = "ver_pedido.php?factura_id=" + idFactura;
 }
 function accionesRapidasPedidoAdmin(idFactura, action) {
-    alert(action + "  " + idFactura);
-    loadingGif("LOAD_GIF");
+    loadingGif("RTA_NEGOCIO");
     var datos = {m: "acciones_rapidas_pedido", factura_id: idFactura, operacion: action};
     $.ajax({
         type: 'POST',
@@ -597,7 +596,6 @@ function accionesRapidasPedidoAdmin(idFactura, action) {
             $("#RTA_NEGOCIO").html(response);
         }
     });
-    $("#LOAD_GIF").html("");
     window.location.reload(); 
 }
 

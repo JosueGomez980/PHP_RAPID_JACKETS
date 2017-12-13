@@ -41,13 +41,14 @@ if (is_null($pedidoFinded)) {
         $contenido->mostrarRespuestaNegocio();
         ?>
         <section class="m-section">
-
+            <div id="RTA_NEGOCIO"></div>
+            <div class="w3-display-container">
+                <button class="w3-display-topleft btn btn-info" onclick="document.location = 'gestion_pedidos_facturas.php'"  data-toggle="tooltip" data-placement="top" title="Volver a los pedidos">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+                </button>
+            </div>
             <div id="PEDIDO_FULL">
-                <div class="w3-display-container">
-                    <button class="w3-display-topleft btn btn-info" onclick="document.location = 'gestion_pedidos_facturas.php'"  data-toggle="tooltip" data-placement="top" title="Volver a los pedidos">
-                        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-                    </button>
-                </div>
+                
                 <?php
                 $facturaManager->mostrarFacturaWebTipoB($pedidoFinded);
                 ?>

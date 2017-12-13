@@ -303,7 +303,25 @@ class ControlVistas {
     }
 
     public function acciones_rapidas_pedido() {
-        
+        $facturaManager = new FacturaController();
+        if (isset($_POST[FacturaRequest::fac_id]) && isset($_POST["operacion"])) {
+            $pedidoDTO = new PedidoEntregaDTO();
+            $pedidoDTO->setFacturaIdFactura(CriptManager::urlVarDecript(filter_input(INPUT_POST, FacturaRequest::fac_id)));
+            switch (filter_input(INPUT_POST, "operacion")) {
+                case "ACEPTAR":
+                    $pedidoDTO->setEstado(PedidoEntregaDAO::$ACEPTADO);
+                    break;
+                case "CANCELAR":
+                    $pedidoDTO->setEstado(PedidoEntregaDAO::$DENIED);
+                    break;
+                default :
+                    $pedidoDTO->setEstado("NOT");
+                    break;
+            }
+            $facturaManager->accionesRapidasPedido($pedidoDTO);
+        } else {
+            echo("Error!");
+        }
     }
 
     public function eliminar_pedido_admin() {
@@ -331,8 +349,19 @@ class ControlVistas {
         $this->controlAcceso->irPagina(AccesoPagina::NEG_PED_GES);
     }
 
+    public function imprimir_pedido_pdf_admin() {
+        $this->controlAcceso->comprobarSesionAdmin(AccesoPagina::NEG_TO_INICIO);
+        $facturaManager = new FacturaController();
+        $facturaRequest = new FacturaRequest();
+        $this->controlAcceso->validaEnviode(FacturaRequest::fac_id, AccesoPagina::NEG_PED_GES);
+        $facturaDTO = $facturaRequest->getFacturaDTO();
+        $facturaDTO instanceof FacturaDTO;
+        $facturaDTO->setIdFactura(CriptManager::urlVarDecript($facturaDTO->getIdFactura()));
+        $pedidoDTO = new PedidoEntregaDTO();
+        $pedidoDTO->setFacturaIdFactura($facturaDTO->getIdFactura());
+        $facturaManager->generarPdfPedidoFactura($pedidoDTO);
+    }
 }
-
 if (isset($_REQUEST['m'])) {
     $method = $_REQUEST['m'];
     $rutaFinal = ControlVistas::rutaBase . $method . ".php";

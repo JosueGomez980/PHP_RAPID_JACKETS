@@ -108,4 +108,8 @@
     'italic' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed-Italic',
     'normal' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed',
   ),
+  'glyphicons halflings' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'c26a68b38edfdb9017a5db0be2f63d97',
+  ),
 ) ?>

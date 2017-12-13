@@ -1,4 +1,5 @@
 ﻿<?php
+
 class UsuarioRequest extends Request {
 
     private $usuarioDTO;
@@ -368,6 +369,7 @@ class UsuarioController implements Validable, GenericController {
     }
 
     public function mostrarFormUpdate() {
+        $modal = new ModalSimple();
         $cuentaDAO = new CuentaDAO();
         $userRequest = new UsuarioRequest();
         $userPost = $userRequest->getUsuarioDTO();
@@ -378,7 +380,13 @@ class UsuarioController implements Validable, GenericController {
         $cuDTO = new CuentaDTO();
         $cuDTO->setUsuarioIdUsuario($userFinded->getIdUsuario());
         $cuentaFinded = $cuentaDAO->findByUsuario($cuDTO);
-        $this->usuarioMQT->maquetarFormUpdateUsuario($userFinded, $cuentaFinded);
+        if (!is_null($cuentaFinded) && !is_null($userFinded)) {
+            $this->usuarioMQT->maquetarFormUpdateUsuario($userFinded, $cuentaFinded);
+        } else {
+            $modal->addError("El usuario a actualizar no posee una cuenta registrada.");
+            $modal->setClosebtn("Aceptar");
+            $modal->show();
+        }
     }
 
     public function disableEnableUsuario(UsuarioDTO $user) {

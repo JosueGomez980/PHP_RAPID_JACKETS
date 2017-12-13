@@ -441,24 +441,29 @@ class FacturaController implements GenericController, Validable {
                 case PedidoEntregaDAO::$DENIED:
                     $facturaFinded->setEstado(FacturaDAO::EST_ANULADA);
                     break;
+                case "NOT" :
+                    $pedido->setEstado($pedidoFinded->getEstado());
+                    break;
             }
             $pedidoFinded->setObservaciones(PedidoEntregaDAO::OBS_NOT);
+            $pedidoFinded->setFechaEntrega(null);
             $facturaFinded->setObservaciones(FacturaDAO::OBS_NOT);
-            $rta = $this->pedidoDAO->putEstado($pedido);
-            $rta = $this->facturaDAO->putEstado($facturaFinded);
-            $rta = $this->pedidoDAO->update($pedidoFinded);
-            $rta = $this->facturaDAO->update($facturaFinded);
-            if ($rta == 1) {
+
+            $rta1 = $this->pedidoDAO->putEstado($pedido);
+            $rta2 = $this->facturaDAO->putEstado($facturaFinded);
+            $rta3 = $this->pedidoDAO->update($pedidoFinded);
+            $rta4 = $this->facturaDAO->update($facturaFinded);
+            $res = ($rta1 + $rta2 + $rta3 + $rta4);
+            if ($res == 4 || $res == 2) {
                 $ex = new Exito();
-                $ex->setValor("El pedido fue ".$pedido->getEstado(). " correctamente");
-                $modal->addElemento();
+                $ex->setValor("El pedido fue " . $pedido->getEstado() . " correctamente");
+                $modal->addElemento($ex);
             } else {
                 $ok = false;
                 $err = new Neutral();
                 $err->setValor("No se registraron cambios en el pedido");
                 $modal->addElemento($err);
             }
-            return $ok;
         } else {
             $ok = false;
             $err = new Errado();
@@ -480,6 +485,43 @@ class FacturaController implements GenericController, Validable {
             return false;
         }
         return FALSE;
+    }
+
+    public function generarPdfPedidoFactura(PedidoEntregaDTO $pedidoToPrint) {
+        $modal = new ModalSimple();
+        $dater = new DateManager();
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $acceso = AccesoPagina::getInstacia();
+        $acceso instanceof AccesoPagina;
+        $ok = true;
+        $pedidoFinded = $this->pedidoDAO->findByFactura($pedidoToPrint);
+        $cssHoja = file_get_contents("../../../css/print.css");
+        if (!is_null($pedidoFinded)) {
+            $fechaSolicituPedido = $dater->stringToDate($pedidoFinded->getFechaSolicitud());
+            $itemDTO = new ItemDTO();
+            $itemDTO->setFacturaIdFactura($pedidoFinded->getFacturaIdFactura());
+            $itemsFinded = $this->itemDAO->findByFactura($itemDTO);
+            if (is_null($itemsFinded)) {
+                $modal->addError("Hubo un error grave, El pedido no contiene items");
+            } else {
+                $htmlPdf = $this->pedidoMQT->generarHtmlPedidoPDF($pedidoFinded, $itemsFinded, $cssHoja);
+                $htmlPdf = utf8_decode($htmlPdf);
+                $nameOfFile = "reporte_pedido_" . $dater->formatDate($fechaSolicituPedido, DateManager::FOR_PDF_NAME) . ".pdf";
+                $pdf = new DOMPDF();
+                $pdf->load_html($htmlPdf);
+                $pdf->render();
+                $pdf->stream($nameOfFile, array("Attachment" => false));
+            }
+        } else {
+            $ok = false;
+            $modal->addError("El pedido solicitado para generar pdf no está registrado");
+        }
+        if (!$ok) {
+            $modal->setClosebtn();
+            $sesion->add(Session::NEGOCIO_RTA, $modal);
+            $acceso->irPagina(AccesoPagina::NEG_PED_GES);
+        }
     }
 
     public function validaPK(EntityDTO $entidad) {

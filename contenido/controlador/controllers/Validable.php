@@ -148,7 +148,7 @@ final class Validador {
     }
 
     public static function formatPesos($dinero) {
-        $pesos = number_format($dinero, 2, ',', '.');
+        $pesos = number_format($dinero, 0, ',', '.');
         return "$ " . $pesos;
     }
 

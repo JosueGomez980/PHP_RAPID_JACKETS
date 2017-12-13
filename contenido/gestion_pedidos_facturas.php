@@ -41,7 +41,7 @@ $sesion instanceof SimpleSession;
                     </select>
                 </div>
                 <div class="w3-half w3-container">
-                    <h4 class="w3-text-shadow-white">Búsqueda avanzada de pedidos</h4>
+                    <!--<h4 class="w3-text-shadow-white">Búsqueda avanzada de pedidos</h4>-->
                 </div>
             </div>
             <div class="w3-row w3-padding-xlarge">

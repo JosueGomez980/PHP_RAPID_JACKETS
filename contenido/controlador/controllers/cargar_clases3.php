@@ -51,6 +51,9 @@ class AutoCarga3 {
         if (file_exists('../PHPMailer-master/PHPMailerAutoload.php')) {
             require_once '../PHPMailer-master/PHPMailerAutoload.php';
         }
+        if (file_exists('../../dompdf/dompdf_config.inc.php')) {
+            require_once '../../dompdf/dompdf_config.inc.php';
+        }
     }
 
     public function modelo() {
