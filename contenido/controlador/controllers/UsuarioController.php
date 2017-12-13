@@ -1,18 +1,4 @@
 ﻿<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UsuarioController
- *
- * @author Josué Francisco
- */
-//include_once 'cargar_clases3.php';
-//
-//AutoCarga3::init();
 
 class UsuarioRequest extends Request {
 
@@ -383,6 +369,7 @@ class UsuarioController implements Validable, GenericController {
     }
 
     public function mostrarFormUpdate() {
+        $modal = new ModalSimple();
         $cuentaDAO = new CuentaDAO();
         $userRequest = new UsuarioRequest();
         $userPost = $userRequest->getUsuarioDTO();
@@ -393,7 +380,13 @@ class UsuarioController implements Validable, GenericController {
         $cuDTO = new CuentaDTO();
         $cuDTO->setUsuarioIdUsuario($userFinded->getIdUsuario());
         $cuentaFinded = $cuentaDAO->findByUsuario($cuDTO);
-        $this->usuarioMQT->maquetarFormUpdateUsuario($userFinded, $cuentaFinded);
+        if (!is_null($cuentaFinded) && !is_null($userFinded)) {
+            $this->usuarioMQT->maquetarFormUpdateUsuario($userFinded, $cuentaFinded);
+        } else {
+            $modal->addError("El usuario a actualizar no posee una cuenta registrada.");
+            $modal->setClosebtn("Aceptar");
+            $modal->show();
+        }
     }
 
     public function disableEnableUsuario(UsuarioDTO $user) {
@@ -740,7 +733,6 @@ class UsuarioController implements Validable, GenericController {
         if ($ok == FALSE) {
             $sesion = new SimpleSession();
             $acceso = new AccesoPagina();
-
             $modal->setClosebtn("Cerrar");
             $sesion->add(Session::NEGOCIO_RTA, $modal);
             $acceso->irPagina(AccesoPagina::INICIO);

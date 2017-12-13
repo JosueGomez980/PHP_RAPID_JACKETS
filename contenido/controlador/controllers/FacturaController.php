@@ -153,6 +153,8 @@ final class FacturaRequest extends Request {
 class FacturaController implements GenericController, Validable {
 
     private $facturaDAO;
+    private $pedidoMQT;
+    private $pedidoDAO;
     private $faturaDTO;
     private $itemsFacturaDTO;
     private $itemDAO;
@@ -160,6 +162,8 @@ class FacturaController implements GenericController, Validable {
 
     public function __construct() {
         $this->facturaDAO = new FacturaDAO();
+        $this->pedidoDAO = new PedidoEntregaDAO();
+        $this->pedidoMQT = new PedidoMaquetador();
         $this->facturaMQT = new FacturaMaquetador();
         $this->itemDAO = new ItemDAO();
     }
@@ -215,7 +219,7 @@ class FacturaController implements GenericController, Validable {
             $faturaInsert->setCuentaTipoDocumento($cuentaUser->getTipoDocumento());
             $faturaInsert->setEstado(FacturaDAO::EST_SIN_PAGAR);
             $faturaInsert->setFecha($dater->getSQLDateTime());
-            $faturaInsert->setIdFactura($this->facturaDAO->generateIdInDB());
+            $faturaInsert->setIdFactura($this->facturaDAO->generateIdInCoreA());
             $faturaInsert->setImpuestos($carritoDTO->getImpuestos());
             $faturaInsert->setSubtotal($carritoDTO->getSubtotal());
             $faturaInsert->setTotal($carritoDTO->getTotal());
@@ -231,6 +235,13 @@ class FacturaController implements GenericController, Validable {
                 $pagoDTO->setValor($faturaInsert->getTotal());
                 $rtaP = $pagoDAO->insert($pagoDTO);
                 //---------------------------------
+                //-------Insertar el pedido por defecto.
+                if (!$this->generarPedidoDefault($faturaInsert)) {
+                    $ok = false;
+                    $err = new Errado();
+                    $err->setValor("El pedido no pudo ser generado");
+                    $modal->addElemento($err);
+                }
 
                 if ($this->insertarItems($carritoDTO->getItems(), $faturaInsert->getIdFactura())) {
                     $ok = true;
@@ -270,10 +281,83 @@ class FacturaController implements GenericController, Validable {
         return $modal;
     }
 
+    public function generarPedidoDefault(FacturaDTO $fact) {
+        $domicilioDTO = null;
+        $domicioString = "";
+        $dater = DateManager::getInstance();
+        $dater instanceof DateManager;
+        $pedidoDAO = new PedidoEntregaDAO();
+        $domiDAO = new DomicilioCuentaDAO();
+        $domiDTO = new DomicilioCuentaDTO();
+
+        $pedidoDTO = new PedidoEntregaDTO();
+        $pedidoDTO->setFacturaIdFactura($fact->getIdFactura());
+        $pedidoDTO->setCuentaNumDocumento($fact->getCuentaNumDocumento());
+        $pedidoDTO->setCuentaTipoDocumento($fact->getCuentaTipoDocumento());
+        $pedidoDTO->setFechaSolicitud($dater->formatNowDate(DateManager::SQL_DATETIME));
+        $pedidoDTO->setEstado(PedidoEntregaDAO::$SOLICITADO);
+
+        $domiDTO->setCuentaNumDocumento($fact->getCuentaNumDocumento());
+        $domiDTO->setCuentaTipoDocumento($fact->getCuentaTipoDocumento());
+        $domicilioDTO = $domiDAO->find($domiDTO);
+        if (is_null($domicilioDTO)) {
+            $pedidoDTO->setDomicilio(PedidoEntregaDAO::DOM_NOT);
+        } else {
+            $domicioString = json_encode($domicilioDTO);
+            $pedidoDTO->setDomicilio($domicioString);
+        }
+        $pedidoDTO->setSubtotal($fact->getSubtotal());
+        $pedidoDTO->setImpuestos($fact->getImpuestos());
+        $pedidoDTO->setTotal($fact->getTotal());
+        if ($pedidoDAO->insert($pedidoDTO) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function mostrarCrudPedidosPorFechaPredefinida($metodo) {
+        $tablaPedidos = null;
+        switch ($metodo) {
+            case "FD_A":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_hoy);
+                break;
+            case "FD_B":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_ayer);
+                break;
+            case "FD_C":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_seman);
+                break;
+            case "FD_D":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_mes);
+                break;
+            case "FD_E":
+                $tablaPedidos = $this->pedidoDAO->findByDatePreBuilt(PreparedSQL::pedido_find_by_fecha_solicitud_anio);
+                break;
+            default :
+                break;
+        }
+        if (is_null($tablaPedidos)) {
+            $neu = new Neutral();
+            echo($neu->toString("No se encontraron pedidos pendientes para fecha indicada"));
+        } else {
+            $this->pedidoMQT->maquetaTablaCrudAdmin($tablaPedidos);
+        }
+
+        return $tablaPedidos;
+    }
+
     public function mostrarFacturaWebTipoA() {
         $factura = $this->faturaDTO;
         $items = $this->itemsFacturaDTO;
         $this->facturaMQT->maquetarFacturaTipoA($factura, $items);
+    }
+
+    public function mostrarFacturaWebTipoB(PedidoEntregaDTO $pedido) {
+        $itemFind = new ItemDTO();
+        $itemFind->setFacturaIdFactura($pedido->getFacturaIdFactura());
+        $items = $this->itemDAO->findByFactura($itemFind);
+        $this->pedidoMQT->maquetarFullInfoPedido($pedido, $items);
     }
 
     public function descontarProductos(array $items) { //Deben ser items de Carrito
@@ -294,7 +378,7 @@ class FacturaController implements GenericController, Validable {
                 $numItemsOK++;
             }
         }
-        if($numItems == $numItemsOK){
+        if ($numItems == $numItemsOK) {
             $ok = true;
         }
         return $ok;
@@ -302,6 +386,94 @@ class FacturaController implements GenericController, Validable {
 
     public function consolidarFactura(FacturaDTO $factura) {
         
+    }
+
+    // Este metodo realmente no servirá para eliminar un pedido, sólo cambiara su estado para identificar asi que 
+    // el sistema no debe tenerlo en cuenta para la gestion de pedidos.
+    public function eliminarPedido(PedidoEntregaDTO $pedido) {
+        $ok = true;
+        $modal = new ModalSimple();
+        $session = SimpleSession::getInstancia();
+        $session instanceof SimpleSession;
+//Este metodo es para cambiar el estado de la factura y del pedido  a cancelados
+        $facturaDTO = new FacturaDTO();
+        $pedido->setEstado(PedidoEntregaDAO::$ELIMINADO);
+        $facturaDTO->setIdFactura($pedido->getFacturaIdFactura());
+        $facturaDTO = $this->facturaDAO->find($facturaDTO);
+        $facturaDTO->setEstado(FacturaDAO::EST_ELIMINDA);
+
+        $facturaDTO->setObservaciones(FacturaDAO::OBS_NOT);
+        $pedido->setObservaciones(PedidoEntregaDAO::OBS_NOT);
+        $rta1 = $this->pedidoDAO->update($pedido);
+        $rta2 = $this->facturaDAO->update($facturaDTO);
+        $rta1 = $this->facturaDAO->putEstado($facturaDTO);
+        $rta2 = $this->pedidoDAO->putEstado($pedido);
+        if ($rta1 == 1 && $rta2 == 1) {
+            $exito = new Exito();
+            $exito->setValor("El pedido cambió su estado a ELIMINADO correctamente");
+            $modal->addElemento($exito);
+            $ok = true;
+        } else {
+            $neu = new Neutral();
+            $neu->setValor("No se registraron cambios en el pedido");
+            $modal->addElemento($neu);
+            $ok = false;
+        }
+        $modal->setClosebtn("Cerrar");
+        $session->add(Session::NEGOCIO_RTA, $modal);
+        return $ok;
+    }
+
+    public function accionesRapidasPedido(PedidoEntregaDTO $pedido) {
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $ok = true;
+        $modal = new ModalSimple();
+        $pedidoFinded = $this->pedidoDAO->findByFactura($pedido);
+        if (!is_null($pedidoFinded)) {
+            $factDTO = new FacturaDTO();
+            $factDTO->setIdFactura($pedido->getFacturaIdFactura());
+            $facturaFinded = $this->facturaDAO->find($factDTO);
+            switch ($pedido->getEstado()) {
+                case PedidoEntregaDAO::$ACEPTADO:
+                    $facturaFinded->setEstado(FacturaDAO::EST_CANCELADA);
+                    break;
+                case PedidoEntregaDAO::$DENIED:
+                    $facturaFinded->setEstado(FacturaDAO::EST_ANULADA);
+                    break;
+                case "NOT" :
+                    $pedido->setEstado($pedidoFinded->getEstado());
+                    break;
+            }
+            $pedidoFinded->setObservaciones(PedidoEntregaDAO::OBS_NOT);
+            $pedidoFinded->setFechaEntrega(null);
+            $facturaFinded->setObservaciones(FacturaDAO::OBS_NOT);
+
+            $rta1 = $this->pedidoDAO->putEstado($pedido);
+            $rta2 = $this->facturaDAO->putEstado($facturaFinded);
+            $rta3 = $this->pedidoDAO->update($pedidoFinded);
+            $rta4 = $this->facturaDAO->update($facturaFinded);
+            $res = ($rta1 + $rta2 + $rta3 + $rta4);
+            if ($res == 4 || $res == 2) {
+                $ex = new Exito();
+                $ex->setValor("El pedido fue " . $pedido->getEstado() . " correctamente");
+                $modal->addElemento($ex);
+            } else {
+                $ok = false;
+                $err = new Neutral();
+                $err->setValor("No se registraron cambios en el pedido");
+                $modal->addElemento($err);
+            }
+        } else {
+            $ok = false;
+            $err = new Errado();
+            $err->setValor("El pedido no existe. Datos erróneos");
+            $modal->addElemento($err);
+        }
+        $modal->setClosebtn("Aceptar");
+        $modal->show();
+        $sesion->add(Session::NEGOCIO_RTA, $modal);
+        return $ok;
     }
 
     public function validaFK(EntityDTO $entidad) {
@@ -313,6 +485,43 @@ class FacturaController implements GenericController, Validable {
             return false;
         }
         return FALSE;
+    }
+
+    public function generarPdfPedidoFactura(PedidoEntregaDTO $pedidoToPrint) {
+        $modal = new ModalSimple();
+        $dater = new DateManager();
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        $acceso = AccesoPagina::getInstacia();
+        $acceso instanceof AccesoPagina;
+        $ok = true;
+        $pedidoFinded = $this->pedidoDAO->findByFactura($pedidoToPrint);
+        $cssHoja = file_get_contents("../../../css/print.css");
+        if (!is_null($pedidoFinded)) {
+            $fechaSolicituPedido = $dater->stringToDate($pedidoFinded->getFechaSolicitud());
+            $itemDTO = new ItemDTO();
+            $itemDTO->setFacturaIdFactura($pedidoFinded->getFacturaIdFactura());
+            $itemsFinded = $this->itemDAO->findByFactura($itemDTO);
+            if (is_null($itemsFinded)) {
+                $modal->addError("Hubo un error grave, El pedido no contiene items");
+            } else {
+                $htmlPdf = $this->pedidoMQT->generarHtmlPedidoPDF($pedidoFinded, $itemsFinded, $cssHoja);
+                $htmlPdf = utf8_decode($htmlPdf);
+                $nameOfFile = "reporte_pedido_" . $dater->formatDate($fechaSolicituPedido, DateManager::FOR_PDF_NAME) . ".pdf";
+                $pdf = new DOMPDF();
+                $pdf->load_html($htmlPdf);
+                $pdf->render();
+                $pdf->stream($nameOfFile, array("Attachment" => false));
+            }
+        } else {
+            $ok = false;
+            $modal->addError("El pedido solicitado para generar pdf no está registrado");
+        }
+        if (!$ok) {
+            $modal->setClosebtn();
+            $sesion->add(Session::NEGOCIO_RTA, $modal);
+            $acceso->irPagina(AccesoPagina::NEG_PED_GES);
+        }
     }
 
     public function validaPK(EntityDTO $entidad) {

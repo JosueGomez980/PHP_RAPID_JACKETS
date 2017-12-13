@@ -120,7 +120,7 @@ final class CriptManager {
     }
 
     public static function generateRandomText($size) {
-        $allChars = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz1234567890*/!@-+=()&%#|_-{}?<>";
+        $allChars = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz1234567890*/!@-+=()&%#|_-{}?";
 //        $letras = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz";
 //        $numeros = "1234567890";
 //        $especial = "*/\!@-+=()&%$#|_-{}?<>";

@@ -83,6 +83,7 @@ function login() {
     ajax.setPeticion(peticion);
     ajax.executePost();
     ajax.responder(RTA);
+    return false;
 }
 
 function cambiarPersonalData() {
@@ -565,6 +566,51 @@ function accountRescuePasoB() {
         }
     });
 }
+
+function buscarPedidosPorFechasAdmin() {
+    loadingGif("LOAD_GIF");
+    var select = $("#selectFindByFechas");
+    var action = select.val();
+    var datos = {m: "find_pedidos_por_fecha_predefinida", method_date: action};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success: function (response) {
+            $("#TABLA_CRUD_PEDIDOS").html(response);
+        }
+    });
+    $("#LOAD_GIF").html("");
+}
+function verPedidoFull(idFactura) {
+    window.location = "ver_pedido.php?factura_id=" + idFactura;
+}
+function accionesRapidasPedidoAdmin(idFactura, action) {
+    loadingGif("RTA_NEGOCIO");
+    var datos = {m: "acciones_rapidas_pedido", factura_id: idFactura, operacion: action};
+    $.ajax({
+        type: 'POST',
+        url: 'controlador/controllers/ControlVistas.php',
+        data: datos,
+        success: function (response) {
+            $("#RTA_NEGOCIO").html(response);
+        }
+    });
+    window.location.reload(); 
+}
+
+//function verFullInfoPedidoAdmin(idFactura) {
+//    loadingGif("LOAD_GIF");
+//    var datos = {m: "ver_full_info_pedido_admin", factura_id: idFactura};
+//    $.ajax({
+//        type: 'POST',
+//        url: 'controlador/controllers/ControlVistas.php',
+//        data: datos,
+//        success: function (response) {
+//            $("#TABLA_CRUD_PEDIDOS").html(response);
+//        }
+//    });
+//}
 
 
 

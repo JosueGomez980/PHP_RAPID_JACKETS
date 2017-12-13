@@ -17,6 +17,10 @@ class AutoCarga3 {
         $this->maquetacion();
         $this->sesiones();
         $this->cookies();
+        //Linea provisional para activar session_start() en todos las vistas para admin y usuario
+        $sesion = SimpleSession::getInstancia();
+        $sesion instanceof SimpleSession;
+        //-----------------------------------
     }
 
     public function cargarResto() {
@@ -46,6 +50,9 @@ class AutoCarga3 {
         }
         if (file_exists('../PHPMailer-master/PHPMailerAutoload.php')) {
             require_once '../PHPMailer-master/PHPMailerAutoload.php';
+        }
+        if (file_exists('../../dompdf/dompdf_config.inc.php')) {
+            require_once '../../dompdf/dompdf_config.inc.php';
         }
     }
 

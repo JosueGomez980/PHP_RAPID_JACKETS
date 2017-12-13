@@ -18,6 +18,7 @@
 final class PedidoEntregaDAO implements DAOPaginable {
 
     private $db;
+    private static $instancia = null;
     private static $idFactura = "FACTURA_ID_FACTURA";
     private static $cuentaTipDoc = "CUENTA_TIPO_DOCUMENTO";
     private static $cuentaNumDoc = "CUENTA_NUM_DOCUMENTO";
@@ -40,9 +41,27 @@ final class PedidoEntregaDAO implements DAOPaginable {
     public static $RETRASADO = "PEDIDO RETRASADO";
     public static $POR_LLEGAR = "PEDIDO ESTÁ POR LLEGAR";
     public static $ELIMINADO = "PEDIDO ELIMINADO";
+    public static $ACEPTADO = "PEDIDO ACEPTADO";
+    public static $DENIED = "PEDIDO DENEGADO";
+    
+    const OBS_NOT = "NO HAY OBSERVACIONES POR PARTE DEL ADMINISTRADOR";
+
+    const DOM_NOT = "DOMICILIO_SIN_ASIGNAR";
+    const DOM_SENA_A = "SENA - CEET - Complejo Sur";
+    const DOM_SENA_B = "SENA - CEET - Sede Restrepo";
+    const DOM_SENA_C = "SENA - CEET - Barrio Colombia";
+    const DOM_SENA_D = "SENA - CEET - Sede Bosanova";
+    const DOM_SENA_E = "SENA - CEET - Sede Ricaurte";
 
     public function __construct() {
         $this->db = Conexion::getInstance();
+    }
+    
+    public static function getInstancia(){
+        if(is_null(self::$instancia)){
+            self::$instancia = new PedidoEntregaDAO();
+        }
+        return self::$instancia;
     }
 
     private function resultToObject(mysqli_result $resultado) {
@@ -197,6 +216,28 @@ final class PedidoEntregaDAO implements DAOPaginable {
         return $pedidoFd;
     }
 
+    public function findByFactura(PedidoEntregaDTO $pedido) {
+        $pedidoFd = NULL;
+        $idFactura = $pedido->getFacturaIdFactura();
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $stmt = $conexion->prepare(PreparedSQL::pedido_find_by_factura);
+            $stmt->bind_param("s", $idFactura);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            if ($resultado->num_rows != 0) {
+                $pedidoFd = $this->resultToObject($resultado);
+            }
+            $resultado->close();
+            $stmt->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $pedidoFd;
+    }
+
     public function findAll() {
         $pedidos = NULL;
         try {
@@ -298,6 +339,23 @@ final class PedidoEntregaDAO implements DAOPaginable {
             echo $exc->getMessage();
         }
         return $pedidosFd;
+    }
+
+    public function findByDatePreBuilt($queryPreBuilt) {
+        $pedidos = NULL;
+        try {
+            $conexion = $this->db->creaConexion();
+            $conexion instanceof mysqli;
+            $resultado = $conexion->query($queryPreBuilt);
+            if ($resultado->num_rows != 0) {
+                $pedidos = $this->resultToArray($resultado);
+            }
+            $resultado->close();
+            $conexion->close();
+        } catch (mysqli_sql_exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $pedidos;
     }
 
     public function findByPaginationLimit($inicio, $cantidad) {

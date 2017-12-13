@@ -16,7 +16,6 @@ final class PreparedSQL {
     // Querys de DML preparados
     // 
     //-------- Inntalacion de la base de datos----------------
-    
     // -------Tabla CATEGORIA -----------
     const categoria_insert = "INSERT INTO CATEGORIA (NOMBRE, DESCRIPCION, CATEGORIA_ID_CATEGORIA) VALUES (?,?,?) ;";
     const categoria_update = "UPDATE CATEGORIA SET NOMBRE = ?, DESCRIPCION = ?, CATEGORIA_ID_CATEGORIA = ? WHERE ID_CATEGORIA = ? ;";
@@ -56,14 +55,13 @@ final class PreparedSQL {
     //-- Por precio-max-min
     const producto_order_by_precio_asc = "SELECT * FROM PRODUCTO ORDER BY PRECIO ASC;";
     const producto_order_by_precio_desc = "SELECT * FROM PRODUCTO ORDER BY PRECIO DESC;";
-    
     //--- Seleccionar datos escalares relacionados con busquedas especificas de la tabla product
     const producto_get_max_price = "SELECT MAX(p.PRECIO) AS 'MAX_PRICE' FROM PRODUCTO p;";
     const producto_get_min_price = "SELECT MIN(p.PRECIO) AS 'MIN_PRICE' FROM PRODUCTO p;";
     //
     //
     //-------Tabla Inventario del producto
-    
+
     const inventario_insert = "INSERT INTO INVENTARIO VALUES (?, ?, ?, ?, ?, ?) ; ";
     const inventario_update = "UPDATE INVENTARIO SET FECHA = ?, CANTIDAD = ?, PRECIO_MAYOR = ?, OBSERVACIONES = ? WHERE ID_INVENTARIO = ? AND PRODUCTO_ID_PRODUCTO = ? ;";
     const inventario_delete = "DELETE FROM INVENTARIO WHERE ID_INVENTARIO = ? AND PRODUCTO_ID_PRODUCTO = ? ;";
@@ -71,8 +69,6 @@ final class PreparedSQL {
     const inventario_find_all = "SELECT * FROM INVENTARIO ;";
     const inventario_find_all_limit = "SELECT * FROM INVENTARIO LIMIT ? , ?;";
     const inventario_find_by_producto = "SELECT * FROM INVENTARIO WHERE PRODUCTO_ID_PRODUCTO = ? ;";
-    
-    
     //-------Tabla Usuario----------
     const usuario_insert = "INSERT INTO USUARIO (ID_USUARIO, CONTRASENA, ROL, EMAIL) VALUES (?, ?, ?, ?) ; ";
     const usuario_update = "UPDATE USUARIO SET CONTRASENA = ?, EMAIL = ? WHERE ID_USUARIO = ? ;";
@@ -158,6 +154,7 @@ final class PreparedSQL {
     const pedido_put_estado = "UPDATE PEDIDO_ENTREGA SET ESTADO = ? WHERE FACTURA_ID_FACTURA = ? ;";
     // --ADMIN
     const pedido_find = "SELECT * FROM PEDIDO_ENTREGA WHERE FACTURA_ID_FACTURA = ? AND CUENTA_TIPO_DOCUMENTO = ? AND CUENTA_NUM_DOCUMENTO = ? ;";
+    const pedido_find_by_factura = "SELECT * FROM PEDIDO_ENTREGA WHERE FACTURA_ID_FACTURA = ? ;";
     // --ADMIN
     const pedido_find_all = "SELECT * FROM PEDIDO_ENTREGA ;";
     const pedido_find_all_limit = "SELECT * FROM PEDIDO_ENTREGA LIMIT ? , ? ;";
@@ -169,7 +166,12 @@ final class PreparedSQL {
     const pedido_find_by_fecha_entrega = "SELECT * FROM PEDIDO_ENTREGA WHERE DATE(FECHA_ENTREGA) = ? ORDER BY FECHA_ENTREGA DESC;";
     // --ADMIN
     const pedido_find_by_fecha_solicitud = "SELECT * FROM PEDIDO_ENTREGA WHERE DATE(FECHA_SOLICITUD) = ? ORDER BY FECHA_SOLICITUD DESC ;";
-    
+    // --ADMIN - Busquedas por coincidencias de fechas predefinidas 
+    const pedido_find_by_fecha_solicitud_hoy = "SELECT * FROM PEDIDO_ENTREGA WHERE DATE(FECHA_SOLICITUD) = DATE(NOW()) ORDER BY FECHA_SOLICITUD DESC ;";
+    const pedido_find_by_fecha_solicitud_ayer = "SELECT * FROM PEDIDO_ENTREGA WHERE DATE(FECHA_SOLICITUD) = (ADDDATE(CURDATE(), INTERVAL -1 DAY)) ORDER BY FECHA_SOLICITUD DESC ;";
+    const pedido_find_by_fecha_solicitud_seman = "SELECT * FROM PEDIDO_ENTREGA WHERE WEEK(FECHA_SOLICITUD) = WEEK(NOW()) ORDER BY FECHA_SOLICITUD DESC ;";
+    const pedido_find_by_fecha_solicitud_mes = "SELECT * FROM PEDIDO_ENTREGA WHERE MONTH(FECHA_SOLICITUD) = MONTH(NOW()) ORDER BY FECHA_SOLICITUD DESC ;";
+    const pedido_find_by_fecha_solicitud_anio = "SELECT * FROM PEDIDO_ENTREGA WHERE YEAR(FECHA_SOLICITUD) = YEAR(NOW()) ORDER BY FECHA_SOLICITUD DESC ;";
     //------------------QUERYS PARA LA TABLA DE CUENTA_RESCUE -----------------
     const cueta_res_insertA = "INSERT INTO CUENTA_RESCUE (USUARIO_ID_USUARIO, CODIGO, TOKEN) VALUES (?, ?, ?) ;";
     const cueta_res_insertB = "INSERT INTO CUENTA_RESCUE VALUES ( ?, ?, ?, ?, ? ) ;";
@@ -181,4 +183,5 @@ final class PreparedSQL {
     const get_new_producto_id = "SELECT GET_NEW_ID_PRODUCTO() AS 'NEW_ID';";
     const get_new_inventario_id = "SELECT GET_NEW_ID_INVENTARIO() AS 'NEW_ID';";
     const get_new_factura_id = "SELECT GET_NEW_ID_FACTURA() AS 'NEW_ID';";
+
 }

@@ -18,7 +18,7 @@ class ProductoMaquetador implements GenericMaquetador {
             $botonCarrito = "";
             $inputCarrito = "";
             $producto instanceof ProductoDTO;
-            $nombre = $producto->getNombre();
+            $nombre = utf8_encode($producto->getNombre());
             $precio = Validador::formatPesos($producto->getPrecio());
             $idProducto = base64_encode($producto->getIdProducto());
             $idProductoUrl = CriptManager::urlVarEncript($producto->getIdProducto());
@@ -97,7 +97,7 @@ class ProductoMaquetador implements GenericMaquetador {
 
         $idProducto = base64_encode($entidad->getIdProducto());
         $categoriaNombre = $cateDTO->getNombre();
-        $nombre = ($entidad->getNombre());
+        $nombre = utf8_encode($entidad->getNombre());
         $precio = Validador::formatPesos($entidad->getPrecio());
         $descripcion = $entidad->getDescripcion();
         $cantidadDisponible = $entidad->getCantidad();
@@ -255,7 +255,7 @@ class ProductoMaquetador implements GenericMaquetador {
                     </tr>');
         foreach ($productos as $pro) {
             $pro instanceof ProductoDTO;
-            $nombre = $pro->getNombre();
+            $nombre = utf8_encode($pro->getNombre());
             $idMostrar = $pro->getIdProducto();
             $precio = Validador::formatPesos($pro->getPrecio());
             $estado = $pro->getActivo();
@@ -306,7 +306,7 @@ class ProductoMaquetador implements GenericMaquetador {
                     </tr>');
         foreach ($productos as $pro) {
             $pro instanceof ProductoDTO;
-            $nombre = $pro->getNombre();
+            $nombre = utf8_encode($pro->getNombre());
             $idMostrar = $pro->getIdProducto();
             $idCripted = CriptManager::urlVarEncript($pro->getIdProducto());
             $cantidad = $pro->getCantidad();
@@ -351,7 +351,7 @@ class ProductoMaquetador implements GenericMaquetador {
         $salida = null;
         $salida = '<style>' . $hojaCss . '</style>';
         $cantidad = count($productos);
-        $salida .= ('  
+        $salida .= ('
                 <div class="head1">
                      <div class="img-logo"><img src="../media/img/logo.png"></div> 
                      <p>

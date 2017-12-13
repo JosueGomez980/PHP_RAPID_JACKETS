@@ -3,22 +3,19 @@ include_once 'includes/ContenidoPagina.php';
 include_once 'cargar_clases.php';
 
 AutoCarga::init();
+
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
 $acceso->comprobarSesionAdmin(AccesoPagina::INICIO);
 $contenido = ContenidoPagina::getInstancia();
 $contenido instanceof ContenidoPagina;
-
+$pedidoManager = new FacturaController();
 $sesion = SimpleSession::getInstancia();
 $sesion instanceof SimpleSession;
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <?php
     $contenido->getHead2();
@@ -29,34 +26,33 @@ and open the template in the editor.
         $contenido->mostrarRespuestaNegocio();
         ?>
         <section class="m-section">
-            <div id="RESPUESTA"></div>            
+            <div id="LOAD_GIF"></div>
+            <div id="RTA_NEGOCIO"></div>
+            <div class="w3-row container-fluid w3-white w3-padding-large">
+                <div class="w3-half w3-container">
+                    <h4 class="w3-text-blue-gray">Ver pedidos según fechas predefinidas</h4>
+                    <label class="labels">Seleccione</label>
+                    <select class="m-selects w3-input" name="selectFindByFechas" id="selectFindByFechas" onchange="buscarPedidosPorFechasAdmin();">
+                        <option value="FD_A">Ver pedidos solicitados hoy</option>
+                        <option value="FD_B">Ver pedidos solicitados ayer</option>
+                        <option value="FD_C">Ver pedidos solicitados durante la semana</option>
+                        <option value="FD_D">Ver pedidos solicitados durante el mes</option>
+                        <option value="FD_E">Ver pedidos solicitados durante este año</option>
+                    </select>
+                </div>
+                <div class="w3-half w3-container">
+                    <!--<h4 class="w3-text-shadow-white">Búsqueda avanzada de pedidos</h4>-->
+                </div>
+            </div>
+            <div class="w3-row w3-padding-xlarge">
+                <div id="TABLA_CRUD_PEDIDOS" class="w3-responsive w3-border-black">
+                    <?php
+                        $pedidoManager->mostrarCrudPedidosPorFechaPredefinida("FD_A");
+                    ?>
+                </div>
+            </div>
+            
             <?php
-//            $smtpOpt = array(
-//                'ssl' => array(
-//                    'verify_peer' => false,
-//                    'verify_peer_name' => false,
-//                    'allow_self_signed' => true
-//            ));
-//            $mail = new PHPMailer();
-//            $mail->isSMTP();
-//            $mail->Host = gethostbyname('smtp.gmail.com');
-//            $mail->SMTPOptions = $smtpOpt;
-//            $mail->SMTPSecure = 'tls';
-//            $mail->SMTPAuth = true;
-//            $mail->Port = 587;
-//            $mail->Username = 'creacionesjulieth123@gmail.com';
-//            $mail->Password = 'losjaponeses123';
-//            $mail->setFrom('creacionesjulieth123@gmail.com', 'Creaciones Julieth');
-//            $mail->addAddress('creacionesjulieth123@gmail.com');
-//            $mail->Subject = 'Hello from PHPMailer!';
-////            $mail->Body = 'This is a test.';
-//            $mail->isHTML(true);
-//            $mail->Body = "<h1>Hola mano</h1>";
-//            if (!$mail->send()) {
-//                echo "ERROR: " . $mail->ErrorInfo;
-//            } else {
-//                echo "SUCCESS";
-//            }
             ?>
         </section>
         <?php

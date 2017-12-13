@@ -148,13 +148,14 @@ final class Validador {
     }
 
     public static function formatPesos($dinero) {
-        $pesos = number_format($dinero, 2, ',', '.');
+        $pesos = number_format($dinero, 0, ',', '.');
         return "$ " . $pesos;
     }
 
     public static function textoParaBuscar($text) {
         $salida = trim($text);
         $salida = strtolower($salida);
+        $salida = utf8_encode($salida);
         return $salida;
     }
 

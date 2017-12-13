@@ -27,6 +27,7 @@ final class DateManager {
     const DIA_MES_ANO_2 = "D d/M/Y";
     const FOR_PDF_NAME = "Y-m-d___H_i_s_B";
     const UTC = "U";
+    const NO_DATE = "0000-00-00 00:00:00";
 
     function __construct() {
         $this->zonaHoraria = new DateTimeZone("America/Bogota");
@@ -69,7 +70,7 @@ final class DateManager {
 
     public function stringToDate($s_fecha) {
         try {
-            $fecha = new DateTime($s_fecha);
+            $fecha = new DateTime($s_fecha, $this->zonaHoraria);
         } catch (Exception $exc) {
             echo $exc->getMessage();
             return NULL;

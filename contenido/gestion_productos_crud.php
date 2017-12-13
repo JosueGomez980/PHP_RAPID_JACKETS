@@ -2,6 +2,7 @@
 include_once 'includes/ContenidoPagina.php';
 include_once 'cargar_clases.php';
 AutoCarga::init();
+
 $acceso = AccesoPagina::getInstacia();
 $acceso instanceof AccesoPagina;
 $sesion = SimpleSession::getInstancia();

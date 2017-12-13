@@ -13,13 +13,13 @@ $domiLocalidad = "";
 $domiBarrio = "";
 $domiCorrPostal = "";
 $domiDTO = $cuentaControl->encontrarDomicilioporCuenta($cuentaSesion);
-if(!is_null($domiDTO)){
-    $domiDTO instanceof DomicilioCuentaDTO; 
-    $domiDireccion = CriptManager::urlVarDecript($domiDTO->getDireccion());
-    $domiTelefono = CriptManager::urlVarDecript($domiDTO->getTelefono());
-    $domiLocalidad = ($domiDTO->getLocalidad());
-    $domiBarrio = CriptManager::urlVarDecript($domiDTO->getBarrio());
-    $domiCorrPostal = CriptManager::urlVarDecript($domiDTO->getCorreoPostal());
+if (!is_null($domiDTO)) {
+    $domiDTO instanceof DomicilioCuentaDTO;
+    $domiDireccion = Validador::fixTexto(CriptManager::urlVarDecript($domiDTO->getDireccion()));
+    $domiTelefono = Validador::fixTexto(CriptManager::urlVarDecript($domiDTO->getTelefono()));
+    $domiLocalidad = Validador::fixTexto($domiDTO->getLocalidad());
+    $domiBarrio = Validador::fixTexto(CriptManager::urlVarDecript($domiDTO->getBarrio()));
+    $domiCorrPostal = Validador::fixTexto(CriptManager::urlVarDecript($domiDTO->getCorreoPostal()));
 }
 ?>
 
@@ -37,9 +37,9 @@ if(!is_null($domiDTO)){
         <span class="w3-text-red w3-large">*</span>
         <br><br>
         <label style="color: #012641; -size: medium; font-weight: bolder; display: block;">Localidad: </label>
-<?php
-$cuentaControl->mostrarSelectLocalidades($domiLocalidad); // Se debe para la localidad seleccionada encriptada
-?>
+        <?php
+        $cuentaControl->mostrarSelectLocalidades($domiLocalidad); // Se debe para la localidad seleccionada encriptada
+        ?>
         <span class="w3-text-red w3-large">*</span>
         <br><br>
         <label style="color: #012641; -size: medium; font-weight: bolder; display: block;">Barrio: </label>
